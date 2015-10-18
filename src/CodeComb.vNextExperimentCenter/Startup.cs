@@ -25,8 +25,12 @@ namespace CodeComb.vNextExperimentCenter
                 .AddSqlServer();
 
             services.AddIdentity<User, IdentityRole<long>>()
-                .AddEntityFrameworkStores<CenterContext>()
+                .AddEntityFrameworkStores<CenterContext, long>()
                 .AddDefaultTokenProviders();
+
+            services.AddMvc();
+            services.AddSmartUser<User, long>();
+            services.AddSmartCookies();
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
