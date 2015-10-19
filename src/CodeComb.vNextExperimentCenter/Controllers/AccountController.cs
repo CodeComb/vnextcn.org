@@ -76,6 +76,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             // 此时仍然需要检测一遍邮箱是否被注册
             var email = Aes.Decrypt(key);
             ViewBag.Key = key;
+            ViewBag.Email = email;
             if (DB.Users.Any(x => x.Email == email))
                 return Prompt(new Prompt 
                 {
@@ -92,7 +93,6 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         {
             // 此时仍然需要检测一遍邮箱是否被注册
             var email = Aes.Decrypt(key);
-            ViewBag.Key = key;
             if (DB.Users.Any(x => x.Email == email))
                 return Prompt(new Prompt 
                 {
