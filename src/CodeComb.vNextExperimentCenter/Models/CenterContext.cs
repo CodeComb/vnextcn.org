@@ -9,14 +9,15 @@ namespace CodeComb.vNextExperimentCenter.Models
 {
     public class CenterContext : IdentityDbContext<User, IdentityRole<long>, long>
     {
-        public DbSet<Problem> Problems { get; set; }
-        public DbSet<Status> Statuses { get; set; }
-        public DbSet<Blob> Blobs { get; set; }
+        //public DbSet<Problem> Problems { get; set; }
+        //public DbSet<Status> Statuses { get; set; }
+        //public DbSet<Blob> Blobs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
+            /*
             builder.Entity<Problem>(e =>
             {
                 e.HasIndex(x => x.Title);
@@ -36,6 +37,7 @@ namespace CodeComb.vNextExperimentCenter.Models
                 e.HasIndex(x => x.ContentLength);
                 e.HasIndex(x => x.ContentType);
             });
+            */
         }
     }
 }
