@@ -23,7 +23,7 @@ namespace CodeComb.vNextExperimentCenter.Models
         public byte[] Archive { get; set; }
         public StatusResult Result { get; set; }
         public DateTime Time { get; set; }
-        public TimeSpan TimeUsage { get; set; }
+        public long TimeUsage { get; set; }
         public long MemoryUsage { get; set; }
         public string Output { get; set; }
     }

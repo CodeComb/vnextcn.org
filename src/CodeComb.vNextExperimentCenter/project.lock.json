@@ -78,6 +78,24 @@
           "lib/dnx451/CodeComb.CI.Runner.dll": {}
         }
       },
+      "CodeComb.Net.EmailSender/2.0.0-t151019031233": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/CodeComb.Net.EmailSender.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/CodeComb.Net.EmailSender.dll": {}
+        }
+      },
       "CodeComb.Package/2.0.0-t151018054723": {
         "type": "package",
         "dependencies": {
@@ -97,6 +115,24 @@
         },
         "runtime": {
           "lib/dnx451/CodeComb.Package.dll": {}
+        }
+      },
+      "CodeComb.Security.Aes/2.0.0-t151018111537": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/CodeComb.Security.Aes.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/CodeComb.Security.Aes.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-rc1-16018": {
@@ -376,6 +412,33 @@
         },
         "runtime": {
           "lib/dnx451/Microsoft.AspNet.DataProtection.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.AspNet.Diagnostics/1.0.0-rc1-15899": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Diagnostics.Abstractions": "1.0.0-rc1-15899",
+          "Microsoft.AspNet.FileProviders.Physical": "1.0.0-rc1-15711",
+          "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-15834",
+          "Microsoft.AspNet.WebUtilities": "1.0.0-rc1-15834",
+          "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-15910",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-15704",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-15702",
+          "Microsoft.Extensions.WebEncoders.Core": "1.0.0-rc1-15834",
+          "System.Diagnostics.Tracing.Telemetry": "4.0.0-beta-23413"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Runtime"
+        ],
+        "compile": {
+          "lib/dnx451/Microsoft.AspNet.Diagnostics.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Microsoft.AspNet.Diagnostics.dll": {}
         }
       },
       "Microsoft.AspNet.Diagnostics.Abstractions/1.0.0-rc1-15899": {
@@ -1973,6 +2036,27 @@
           "lib/dnxcore50/CodeComb.CI.Runner.dll": {}
         }
       },
+      "CodeComb.Net.EmailSender/2.0.0-t151019031233": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23413",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705",
+          "System.Collections": "4.0.11-beta-23413",
+          "System.Console": "4.0.0-beta-23413",
+          "System.Linq": "4.0.1-beta-23413",
+          "System.Net.Http": "4.0.1-beta-23413",
+          "System.Net.Security": "4.0.0-beta-23413",
+          "System.Net.Sockets": "4.1.0-beta-23413",
+          "System.Runtime": "4.0.21-beta-23413",
+          "System.Threading": "4.0.11-beta-23413"
+        },
+        "compile": {
+          "lib/dnxcore50/CodeComb.Net.EmailSender.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/CodeComb.Net.EmailSender.dll": {}
+        }
+      },
       "CodeComb.Package/2.0.0-t151018054723": {
         "type": "package",
         "dependencies": {
@@ -1993,6 +2077,24 @@
         },
         "runtime": {
           "lib/dnxcore50/CodeComb.Package.dll": {}
+        }
+      },
+      "CodeComb.Security.Aes/2.0.0-t151018111537": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23413",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705",
+          "System.Collections": "4.0.11-beta-23413",
+          "System.Linq": "4.0.1-beta-23413",
+          "System.Runtime": "4.0.21-beta-23413",
+          "System.Security.Cryptography.Encryption.Aes": "4.0.0-beta-23311",
+          "System.Threading": "4.0.11-beta-23413"
+        },
+        "compile": {
+          "lib/dnxcore50/CodeComb.Security.Aes.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/CodeComb.Security.Aes.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-rc1-16018": {
@@ -2223,6 +2325,27 @@
         },
         "runtime": {
           "lib/dnxcore50/Microsoft.AspNet.DataProtection.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.AspNet.Diagnostics/1.0.0-rc1-15899": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Diagnostics.Abstractions": "1.0.0-rc1-15899",
+          "Microsoft.AspNet.FileProviders.Physical": "1.0.0-rc1-15711",
+          "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-15834",
+          "Microsoft.AspNet.WebUtilities": "1.0.0-rc1-15834",
+          "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-15910",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-15704",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-15702",
+          "Microsoft.Extensions.WebEncoders.Core": "1.0.0-rc1-15834",
+          "System.Diagnostics.Tracing.Telemetry": "4.0.0-beta-23413",
+          "System.Reflection.Extensions": "4.0.1-beta-23413"
+        },
+        "compile": {
+          "lib/dnxcore50/Microsoft.AspNet.Diagnostics.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/Microsoft.AspNet.Diagnostics.dll": {}
         }
       },
       "Microsoft.AspNet.Diagnostics.Abstractions/1.0.0-rc1-15899": {
@@ -3956,6 +4079,31 @@
           "ref/dotnet/System.Net.Primitives.dll": {}
         }
       },
+      "System.Net.Security/4.0.0-beta-23413": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.Net.Primitives": "4.0.10",
+          "System.Runtime": "4.0.0",
+          "System.Security.Cryptography.X509Certificates": "4.0.0-beta-23413",
+          "System.Threading.Tasks": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/System.Net.Security.dll": {}
+        }
+      },
+      "System.Net.Sockets/4.1.0-beta-23413": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.Net.Primitives": "4.0.10",
+          "System.Runtime": "4.0.0",
+          "System.Threading.Tasks": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/System.Net.Sockets.dll": {}
+        }
+      },
       "System.Net.WebSockets/4.0.0-beta-23413": {
         "type": "package",
         "dependencies": {
@@ -4255,6 +4403,19 @@
         },
         "compile": {
           "ref/dotnet/System.Security.Cryptography.Encoding.dll": {}
+        }
+      },
+      "System.Security.Cryptography.Encryption.Aes/4.0.0-beta-23311": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.0",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23311"
+        },
+        "compile": {
+          "lib/DNXCore50/System.Security.Cryptography.Encryption.Aes.dll": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Security.Cryptography.Encryption.Aes.dll": {}
         }
       },
       "System.Security.Cryptography.Primitives/4.0.0-beta-23413": {
@@ -4594,6 +4755,24 @@
           "lib/dnx451/CodeComb.CI.Runner.dll": {}
         }
       },
+      "CodeComb.Net.EmailSender/2.0.0-t151019031233": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/CodeComb.Net.EmailSender.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/CodeComb.Net.EmailSender.dll": {}
+        }
+      },
       "CodeComb.Package/2.0.0-t151018054723": {
         "type": "package",
         "dependencies": {
@@ -4613,6 +4792,24 @@
         },
         "runtime": {
           "lib/dnx451/CodeComb.Package.dll": {}
+        }
+      },
+      "CodeComb.Security.Aes/2.0.0-t151018111537": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/CodeComb.Security.Aes.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/CodeComb.Security.Aes.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-rc1-16018": {
@@ -4892,6 +5089,33 @@
         },
         "runtime": {
           "lib/dnx451/Microsoft.AspNet.DataProtection.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.AspNet.Diagnostics/1.0.0-rc1-15899": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Diagnostics.Abstractions": "1.0.0-rc1-15899",
+          "Microsoft.AspNet.FileProviders.Physical": "1.0.0-rc1-15711",
+          "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-15834",
+          "Microsoft.AspNet.WebUtilities": "1.0.0-rc1-15834",
+          "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-15910",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-15704",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-15702",
+          "Microsoft.Extensions.WebEncoders.Core": "1.0.0-rc1-15834",
+          "System.Diagnostics.Tracing.Telemetry": "4.0.0-beta-23413"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Runtime"
+        ],
+        "compile": {
+          "lib/dnx451/Microsoft.AspNet.Diagnostics.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Microsoft.AspNet.Diagnostics.dll": {}
         }
       },
       "Microsoft.AspNet.Diagnostics.Abstractions/1.0.0-rc1-15899": {
@@ -6518,6 +6742,24 @@
           "lib/dnx451/CodeComb.CI.Runner.dll": {}
         }
       },
+      "CodeComb.Net.EmailSender/2.0.0-t151019031233": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/CodeComb.Net.EmailSender.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/CodeComb.Net.EmailSender.dll": {}
+        }
+      },
       "CodeComb.Package/2.0.0-t151018054723": {
         "type": "package",
         "dependencies": {
@@ -6537,6 +6779,24 @@
         },
         "runtime": {
           "lib/dnx451/CodeComb.Package.dll": {}
+        }
+      },
+      "CodeComb.Security.Aes/2.0.0-t151018111537": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/CodeComb.Security.Aes.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/CodeComb.Security.Aes.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-rc1-16018": {
@@ -6816,6 +7076,33 @@
         },
         "runtime": {
           "lib/dnx451/Microsoft.AspNet.DataProtection.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.AspNet.Diagnostics/1.0.0-rc1-15899": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Diagnostics.Abstractions": "1.0.0-rc1-15899",
+          "Microsoft.AspNet.FileProviders.Physical": "1.0.0-rc1-15711",
+          "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-15834",
+          "Microsoft.AspNet.WebUtilities": "1.0.0-rc1-15834",
+          "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-15910",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-15704",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-15702",
+          "Microsoft.Extensions.WebEncoders.Core": "1.0.0-rc1-15834",
+          "System.Diagnostics.Tracing.Telemetry": "4.0.0-beta-23413"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Runtime"
+        ],
+        "compile": {
+          "lib/dnx451/Microsoft.AspNet.Diagnostics.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Microsoft.AspNet.Diagnostics.dll": {}
         }
       },
       "Microsoft.AspNet.Diagnostics.Abstractions/1.0.0-rc1-15899": {
@@ -8421,6 +8708,27 @@
           "lib/dnxcore50/CodeComb.CI.Runner.dll": {}
         }
       },
+      "CodeComb.Net.EmailSender/2.0.0-t151019031233": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23413",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705",
+          "System.Collections": "4.0.11-beta-23413",
+          "System.Console": "4.0.0-beta-23413",
+          "System.Linq": "4.0.1-beta-23413",
+          "System.Net.Http": "4.0.1-beta-23413",
+          "System.Net.Security": "4.0.0-beta-23413",
+          "System.Net.Sockets": "4.1.0-beta-23413",
+          "System.Runtime": "4.0.21-beta-23413",
+          "System.Threading": "4.0.11-beta-23413"
+        },
+        "compile": {
+          "lib/dnxcore50/CodeComb.Net.EmailSender.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/CodeComb.Net.EmailSender.dll": {}
+        }
+      },
       "CodeComb.Package/2.0.0-t151018054723": {
         "type": "package",
         "dependencies": {
@@ -8441,6 +8749,24 @@
         },
         "runtime": {
           "lib/dnxcore50/CodeComb.Package.dll": {}
+        }
+      },
+      "CodeComb.Security.Aes/2.0.0-t151018111537": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23413",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705",
+          "System.Collections": "4.0.11-beta-23413",
+          "System.Linq": "4.0.1-beta-23413",
+          "System.Runtime": "4.0.21-beta-23413",
+          "System.Security.Cryptography.Encryption.Aes": "4.0.0-beta-23311",
+          "System.Threading": "4.0.11-beta-23413"
+        },
+        "compile": {
+          "lib/dnxcore50/CodeComb.Security.Aes.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/CodeComb.Security.Aes.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-rc1-16018": {
@@ -8671,6 +8997,27 @@
         },
         "runtime": {
           "lib/dnxcore50/Microsoft.AspNet.DataProtection.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.AspNet.Diagnostics/1.0.0-rc1-15899": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Diagnostics.Abstractions": "1.0.0-rc1-15899",
+          "Microsoft.AspNet.FileProviders.Physical": "1.0.0-rc1-15711",
+          "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-15834",
+          "Microsoft.AspNet.WebUtilities": "1.0.0-rc1-15834",
+          "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-15910",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-15704",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-15702",
+          "Microsoft.Extensions.WebEncoders.Core": "1.0.0-rc1-15834",
+          "System.Diagnostics.Tracing.Telemetry": "4.0.0-beta-23413",
+          "System.Reflection.Extensions": "4.0.1-beta-23413"
+        },
+        "compile": {
+          "lib/dnxcore50/Microsoft.AspNet.Diagnostics.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/Microsoft.AspNet.Diagnostics.dll": {}
         }
       },
       "Microsoft.AspNet.Diagnostics.Abstractions/1.0.0-rc1-15899": {
@@ -10169,6 +10516,31 @@
           "lib/DNXCore50/System.Net.Primitives.dll": {}
         }
       },
+      "runtime.win7.System.Net.Security/4.0.0-beta-23413": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.Networking": "4.0.1-beta-23413"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Net.Security.dll": {}
+        }
+      },
+      "runtime.win7.System.Net.Sockets/4.1.0-beta-23413": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.Networking": "4.0.1-beta-23413",
+          "System.Runtime": "4.0.20"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Net.Sockets.dll": {}
+        }
+      },
       "runtime.win7.System.Private.Uri/4.0.1-beta-23413": {
         "type": "package",
         "compile": {
@@ -10818,6 +11190,31 @@
           "ref/dotnet/System.Net.Primitives.dll": {}
         }
       },
+      "System.Net.Security/4.0.0-beta-23413": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.Net.Primitives": "4.0.10",
+          "System.Runtime": "4.0.0",
+          "System.Security.Cryptography.X509Certificates": "4.0.0-beta-23413",
+          "System.Threading.Tasks": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/System.Net.Security.dll": {}
+        }
+      },
+      "System.Net.Sockets/4.1.0-beta-23413": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.Net.Primitives": "4.0.10",
+          "System.Runtime": "4.0.0",
+          "System.Threading.Tasks": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/System.Net.Sockets.dll": {}
+        }
+      },
       "System.Net.WebSockets/4.0.0-beta-23413": {
         "type": "package",
         "dependencies": {
@@ -11227,6 +11624,19 @@
           "ref/dotnet/System.Security.Cryptography.Encoding.dll": {}
         }
       },
+      "System.Security.Cryptography.Encryption.Aes/4.0.0-beta-23311": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.0",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23311"
+        },
+        "compile": {
+          "lib/DNXCore50/System.Security.Cryptography.Encryption.Aes.dll": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Security.Cryptography.Encryption.Aes.dll": {}
+        }
+      },
       "System.Security.Cryptography.Primitives/4.0.0-beta-23413": {
         "type": "package",
         "dependencies": {
@@ -11556,6 +11966,27 @@
           "lib/dnxcore50/CodeComb.CI.Runner.dll": {}
         }
       },
+      "CodeComb.Net.EmailSender/2.0.0-t151019031233": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23413",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705",
+          "System.Collections": "4.0.11-beta-23413",
+          "System.Console": "4.0.0-beta-23413",
+          "System.Linq": "4.0.1-beta-23413",
+          "System.Net.Http": "4.0.1-beta-23413",
+          "System.Net.Security": "4.0.0-beta-23413",
+          "System.Net.Sockets": "4.1.0-beta-23413",
+          "System.Runtime": "4.0.21-beta-23413",
+          "System.Threading": "4.0.11-beta-23413"
+        },
+        "compile": {
+          "lib/dnxcore50/CodeComb.Net.EmailSender.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/CodeComb.Net.EmailSender.dll": {}
+        }
+      },
       "CodeComb.Package/2.0.0-t151018054723": {
         "type": "package",
         "dependencies": {
@@ -11576,6 +12007,24 @@
         },
         "runtime": {
           "lib/dnxcore50/CodeComb.Package.dll": {}
+        }
+      },
+      "CodeComb.Security.Aes/2.0.0-t151018111537": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23413",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-15705",
+          "System.Collections": "4.0.11-beta-23413",
+          "System.Linq": "4.0.1-beta-23413",
+          "System.Runtime": "4.0.21-beta-23413",
+          "System.Security.Cryptography.Encryption.Aes": "4.0.0-beta-23311",
+          "System.Threading": "4.0.11-beta-23413"
+        },
+        "compile": {
+          "lib/dnxcore50/CodeComb.Security.Aes.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/CodeComb.Security.Aes.dll": {}
         }
       },
       "EntityFramework.Core/7.0.0-rc1-16018": {
@@ -11806,6 +12255,27 @@
         },
         "runtime": {
           "lib/dnxcore50/Microsoft.AspNet.DataProtection.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.AspNet.Diagnostics/1.0.0-rc1-15899": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Diagnostics.Abstractions": "1.0.0-rc1-15899",
+          "Microsoft.AspNet.FileProviders.Physical": "1.0.0-rc1-15711",
+          "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-15834",
+          "Microsoft.AspNet.WebUtilities": "1.0.0-rc1-15834",
+          "Microsoft.Dnx.Compilation.Abstractions": "1.0.0-rc1-15910",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-15704",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-15702",
+          "Microsoft.Extensions.WebEncoders.Core": "1.0.0-rc1-15834",
+          "System.Diagnostics.Tracing.Telemetry": "4.0.0-beta-23413",
+          "System.Reflection.Extensions": "4.0.1-beta-23413"
+        },
+        "compile": {
+          "lib/dnxcore50/Microsoft.AspNet.Diagnostics.dll": {}
+        },
+        "runtime": {
+          "lib/dnxcore50/Microsoft.AspNet.Diagnostics.dll": {}
         }
       },
       "Microsoft.AspNet.Diagnostics.Abstractions/1.0.0-rc1-15899": {
@@ -13304,6 +13774,31 @@
           "lib/DNXCore50/System.Net.Primitives.dll": {}
         }
       },
+      "runtime.win7.System.Net.Security/4.0.0-beta-23413": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.Networking": "4.0.1-beta-23413"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Net.Security.dll": {}
+        }
+      },
+      "runtime.win7.System.Net.Sockets/4.1.0-beta-23413": {
+        "type": "package",
+        "dependencies": {
+          "System.Private.Networking": "4.0.1-beta-23413",
+          "System.Runtime": "4.0.20"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Net.Sockets.dll": {}
+        }
+      },
       "runtime.win7.System.Private.Uri/4.0.1-beta-23413": {
         "type": "package",
         "compile": {
@@ -13953,6 +14448,31 @@
           "ref/dotnet/System.Net.Primitives.dll": {}
         }
       },
+      "System.Net.Security/4.0.0-beta-23413": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.Net.Primitives": "4.0.10",
+          "System.Runtime": "4.0.0",
+          "System.Security.Cryptography.X509Certificates": "4.0.0-beta-23413",
+          "System.Threading.Tasks": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/System.Net.Security.dll": {}
+        }
+      },
+      "System.Net.Sockets/4.1.0-beta-23413": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.Net.Primitives": "4.0.10",
+          "System.Runtime": "4.0.0",
+          "System.Threading.Tasks": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/System.Net.Sockets.dll": {}
+        }
+      },
       "System.Net.WebSockets/4.0.0-beta-23413": {
         "type": "package",
         "dependencies": {
@@ -14362,6 +14882,19 @@
           "ref/dotnet/System.Security.Cryptography.Encoding.dll": {}
         }
       },
+      "System.Security.Cryptography.Encryption.Aes/4.0.0-beta-23311": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime": "4.0.0",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23311"
+        },
+        "compile": {
+          "lib/DNXCore50/System.Security.Cryptography.Encryption.Aes.dll": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Security.Cryptography.Encryption.Aes.dll": {}
+        }
+      },
       "System.Security.Cryptography.Primitives/4.0.0-beta-23413": {
         "type": "package",
         "dependencies": {
@@ -14690,6 +15223,23 @@
         "lib/dnxcore50/CodeComb.CI.Runner.xml"
       ]
     },
+    "CodeComb.Net.EmailSender/2.0.0-t151019031233": {
+      "type": "package",
+      "sha512": "01p8iOZ5ChlSop9gcuO86LpUjc7KPgbQrFT5AnZOItBE9gyRTNy6G7HDQluaV9NX1kyLniehI5lW5qV24DqAAw==",
+      "files": [
+        "CodeComb.Net.EmailSender.2.0.0-t151019031233.nupkg",
+        "CodeComb.Net.EmailSender.2.0.0-t151019031233.nupkg.sha512",
+        "CodeComb.Net.EmailSender.nuspec",
+        "lib/dnx451/CodeComb.Net.EmailSender.dll",
+        "lib/dnx451/CodeComb.Net.EmailSender.xml",
+        "lib/dnxcore50/CodeComb.Net.EmailSender.dll",
+        "lib/dnxcore50/CodeComb.Net.EmailSender.xml",
+        "lib/net45/CodeComb.Net.EmailSender.dll",
+        "lib/net45/CodeComb.Net.EmailSender.xml",
+        "lib/net46/CodeComb.Net.EmailSender.dll",
+        "lib/net46/CodeComb.Net.EmailSender.xml"
+      ]
+    },
     "CodeComb.Package/2.0.0-t151018054723": {
       "type": "package",
       "sha512": "6TWFFinntcp7SYsJtZUPaolkRMMyG1jMn+uyRYBarB7nGIFAWm6fGu1X6itv5Vr36B2SE4LOJb5wJopf12M70Q==",
@@ -14705,6 +15255,23 @@
         "lib/net45/CodeComb.Package.xml",
         "lib/net46/CodeComb.Package.dll",
         "lib/net46/CodeComb.Package.xml"
+      ]
+    },
+    "CodeComb.Security.Aes/2.0.0-t151018111537": {
+      "type": "package",
+      "sha512": "Q8GgQQHgCfHd/lTB+G/q9ZJ6rtf7ATLMwOtFtOgqxXoOVe/WhFBuLKqFP/ooACTAy3YQNqja3EApDwTWnQTOFQ==",
+      "files": [
+        "CodeComb.Security.Aes.2.0.0-t151018111537.nupkg",
+        "CodeComb.Security.Aes.2.0.0-t151018111537.nupkg.sha512",
+        "CodeComb.Security.Aes.nuspec",
+        "lib/dnx451/CodeComb.Security.Aes.dll",
+        "lib/dnx451/CodeComb.Security.Aes.xml",
+        "lib/dnxcore50/CodeComb.Security.Aes.dll",
+        "lib/dnxcore50/CodeComb.Security.Aes.xml",
+        "lib/net45/CodeComb.Security.Aes.dll",
+        "lib/net45/CodeComb.Security.Aes.xml",
+        "lib/net46/CodeComb.Security.Aes.dll",
+        "lib/net46/CodeComb.Security.Aes.xml"
       ]
     },
     "EntityFramework.Core/7.0.0-rc1-16018": {
@@ -14904,6 +15471,20 @@
         "Microsoft.AspNet.DataProtection.Abstractions.1.0.0-rc1-15703.nupkg",
         "Microsoft.AspNet.DataProtection.Abstractions.1.0.0-rc1-15703.nupkg.sha512",
         "Microsoft.AspNet.DataProtection.Abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNet.Diagnostics/1.0.0-rc1-15899": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "SrTGbYHyZiNgnV0/yWjZY1r2cQMJXYbhg30K+1h/dYby5pE1amnzy9d1jyb6rRsPiPGllCHQmp7Z7mTkQcBhbw==",
+      "files": [
+        "lib/dnx451/Microsoft.AspNet.Diagnostics.dll",
+        "lib/dnx451/Microsoft.AspNet.Diagnostics.xml",
+        "lib/dnxcore50/Microsoft.AspNet.Diagnostics.dll",
+        "lib/dnxcore50/Microsoft.AspNet.Diagnostics.xml",
+        "Microsoft.AspNet.Diagnostics.1.0.0-rc1-15899.nupkg",
+        "Microsoft.AspNet.Diagnostics.1.0.0-rc1-15899.nupkg.sha512",
+        "Microsoft.AspNet.Diagnostics.nuspec"
       ]
     },
     "Microsoft.AspNet.Diagnostics.Abstractions/1.0.0-rc1-15899": {
@@ -15428,7 +16009,7 @@
     },
     "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
       "type": "package",
-      "sha512": "E7VdmGw6xO3VHWapC+pNLZmo6yncS53UY3bmb5WZm9wliJBB1A6brgzKA4fcqiLrmJFx71r0M2zEbRDphRLUNg==",
+      "sha512": "2+V/VDgZu59Thrlp+FQH38H/SmPBegMKsG0ie1ZZyHtx7kJNEozIx/p9zs0UrolX0uyYX7Ouoj3Q3Be15lqXxA==",
       "files": [
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.Analyzers.dll",
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
@@ -16185,7 +16766,7 @@
     "runtime.win7.System.Diagnostics.Process/4.1.0-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "WQ9fNSFkKk/aaKiVS9YA0b1W6CpXt60zvUY2HdmY5N9Js6h/mxhXavxCowYR9qVW95gqA42zcxb3FElWsCqqEw==",
+      "sha512": "hXKdXyMDMGkSwaOQOgNlQsJuROb0rs+B/nGdvEDQZLZj0J9mH2jZ1/sXOB6nfgm/quboh0/EhV8oqC/1pzmBog==",
       "files": [
         "lib/win8/_._",
         "lib/wp8/_._",
@@ -16309,6 +16890,29 @@
         "runtime.win7.System.Net.Primitives.4.0.11-beta-23413.nupkg.sha512",
         "runtime.win7.System.Net.Primitives.nuspec",
         "runtimes/win7/lib/netcore50/System.Net.Primitives.dll"
+      ]
+    },
+    "runtime.win7.System.Net.Security/4.0.0-beta-23413": {
+      "type": "package",
+      "sha512": "9aFe+NPXY1yj4JaHzKPw1WdqiVHbpPoyKlKUa1sBzbOaB0uSaXbcsBlgDZ33OVZkcZ2OhX984Fsjcrf0JMfImQ==",
+      "files": [
+        "lib/DNXCore50/System.Net.Security.dll",
+        "ref/dotnet/_._",
+        "runtime.win7.System.Net.Security.4.0.0-beta-23413.nupkg",
+        "runtime.win7.System.Net.Security.4.0.0-beta-23413.nupkg.sha512",
+        "runtime.win7.System.Net.Security.nuspec"
+      ]
+    },
+    "runtime.win7.System.Net.Sockets/4.1.0-beta-23413": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "j28jYdnYY4dJi/GhNtDntuLawEPgoRImX9BtMT9rVTlA97iMDDJMQkZgjI3loASLkBBYtnbcjk83xU+FGaDo7w==",
+      "files": [
+        "lib/DNXCore50/System.Net.Sockets.dll",
+        "ref/dotnet/_._",
+        "runtime.win7.System.Net.Sockets.4.1.0-beta-23413.nupkg",
+        "runtime.win7.System.Net.Sockets.4.1.0-beta-23413.nupkg.sha512",
+        "runtime.win7.System.Net.Sockets.nuspec"
       ]
     },
     "runtime.win7.System.Private.Uri/4.0.1-beta-23413": {
@@ -17806,6 +18410,69 @@
         "System.Net.Primitives.nuspec"
       ]
     },
+    "System.Net.Security/4.0.0-beta-23413": {
+      "type": "package",
+      "sha512": "es+ZOfAObBFU+DAlBNHFvk+zRu37cNXbn1hM7itwkz0LnpGjSFd00u5YNOIcOncFBxmLgIOIJH5oJGsz2UaX7Q==",
+      "files": [
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Net.Security.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet/de/System.Net.Security.xml",
+        "ref/dotnet/es/System.Net.Security.xml",
+        "ref/dotnet/fr/System.Net.Security.xml",
+        "ref/dotnet/it/System.Net.Security.xml",
+        "ref/dotnet/ja/System.Net.Security.xml",
+        "ref/dotnet/ko/System.Net.Security.xml",
+        "ref/dotnet/ru/System.Net.Security.xml",
+        "ref/dotnet/System.Net.Security.dll",
+        "ref/dotnet/System.Net.Security.xml",
+        "ref/dotnet/zh-hans/System.Net.Security.xml",
+        "ref/dotnet/zh-hant/System.Net.Security.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Net.Security.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "runtime.json",
+        "System.Net.Security.4.0.0-beta-23413.nupkg",
+        "System.Net.Security.4.0.0-beta-23413.nupkg.sha512",
+        "System.Net.Security.nuspec"
+      ]
+    },
+    "System.Net.Sockets/4.1.0-beta-23413": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "JyNQpMecCu5fVZWFZYmi5CcG8uyBaqgMVexkDisgi/Xx7VqdXfxbvx5vKlIuK16ZedCDW7/GHn+HZTs2QdC1XA==",
+      "files": [
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Net.Sockets.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet/de/System.Net.Sockets.xml",
+        "ref/dotnet/es/System.Net.Sockets.xml",
+        "ref/dotnet/fr/System.Net.Sockets.xml",
+        "ref/dotnet/it/System.Net.Sockets.xml",
+        "ref/dotnet/ja/System.Net.Sockets.xml",
+        "ref/dotnet/ko/System.Net.Sockets.xml",
+        "ref/dotnet/ru/System.Net.Sockets.xml",
+        "ref/dotnet/System.Net.Sockets.dll",
+        "ref/dotnet/System.Net.Sockets.xml",
+        "ref/dotnet/zh-hans/System.Net.Sockets.xml",
+        "ref/dotnet/zh-hant/System.Net.Sockets.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Net.Sockets.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "runtime.json",
+        "System.Net.Sockets.4.1.0-beta-23413.nupkg",
+        "System.Net.Sockets.4.1.0-beta-23413.nupkg.sha512",
+        "System.Net.Sockets.nuspec"
+      ]
+    },
     "System.Net.WebSockets/4.0.0-beta-23413": {
       "type": "package",
       "serviceable": true,
@@ -18792,6 +19459,27 @@
         "System.Security.Cryptography.Encoding.nuspec"
       ]
     },
+    "System.Security.Cryptography.Encryption.Aes/4.0.0-beta-23311": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "f0jn9xjsNQg2XOPrhrYDbHvQueuiGfqiHuZQvPRjakc3+6SJqRQeAtRbfTw90O2wSGKUlahbje1WDKirY8bA9w==",
+      "files": [
+        "de/System.Security.Cryptography.Encryption.Aes.xml",
+        "es/System.Security.Cryptography.Encryption.Aes.xml",
+        "fr/System.Security.Cryptography.Encryption.Aes.xml",
+        "it/System.Security.Cryptography.Encryption.Aes.xml",
+        "ja/System.Security.Cryptography.Encryption.Aes.xml",
+        "ko/System.Security.Cryptography.Encryption.Aes.xml",
+        "lib/DNXCore50/System.Security.Cryptography.Encryption.Aes.dll",
+        "ru/System.Security.Cryptography.Encryption.Aes.xml",
+        "System.Security.Cryptography.Encryption.Aes.4.0.0-beta-23311.nupkg",
+        "System.Security.Cryptography.Encryption.Aes.4.0.0-beta-23311.nupkg.sha512",
+        "System.Security.Cryptography.Encryption.Aes.nuspec",
+        "System.Security.Cryptography.Encryption.Aes.xml",
+        "zh-hans/System.Security.Cryptography.Encryption.Aes.xml",
+        "zh-hant/System.Security.Cryptography.Encryption.Aes.xml"
+      ]
+    },
     "System.Security.Cryptography.Primitives/4.0.0-beta-23413": {
       "type": "package",
       "serviceable": true,
@@ -19510,13 +20198,16 @@
       "Microsoft.AspNet.Mvc.TagHelpers >= 6.0.0-*",
       "Microsoft.AspNet.Identity.EntityFramework >= 3.0.0-*",
       "Microsoft.AspNet.StaticFiles >= 1.0.0-*",
+      "Microsoft.AspNet.Diagnostics >= 1.0.0-*",
       "Microsoft.Extensions.Logging >= 1.0.0-*",
       "Microsoft.Extensions.Logging.Console >= 1.0.0-*",
       "Microsoft.Extensions.Logging.Debug >= 1.0.0-*",
       "EntityFramework.SqlServer >= 7.0.0-*",
       "CodeComb.AspNet.Extensions >= 2.0.0-*",
       "CodeComb.CI.Extractor.Zip >= 2.0.0-*",
-      "CodeComb.CI.Runner >= 2.0.0-*"
+      "CodeComb.CI.Runner >= 2.0.0-*",
+      "CodeComb.Security.Aes >= 2.0.0-*",
+      "CodeComb.Net.EmailSender >= 2.0.0-*"
     ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": []
