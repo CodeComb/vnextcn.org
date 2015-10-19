@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Data.Entity;
+using Microsoft.Dnx.Runtime;
 using CodeComb.vNextExperimentCenter.Models;
 
 namespace CodeComb.vNextExperimentCenter
@@ -18,13 +19,24 @@ namespace CodeComb.vNextExperimentCenter
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            // 调试用
+            var _serv = services.BuildServiceProvider();
+            var appRoot = _serv.GetRequiredService<IApplicationEnvironment>().ApplicationBasePath;
+            
+            
             IConfiguration Configuration;
             services.AddConfiguration(out Configuration);
-
+               
+            /*
             services.AddEntityFramework()
                 .AddDbContext<CenterContext>(x => x.UseSqlServer(Configuration["Database:ConnectionString"]))
                 .AddSqlServer();
-
+            */
+            
+            services.AddEntityFramework()
+                .AddDbContext<CenterContext>(x => x.UseSqlite(Configuration["Database:ConnectionString"].Replace("{appRoot}", appRoot)))
+                .AddSqlite();
+            
             services.AddIdentity<User, IdentityRole<long>>(x => 
             {
                 x.Password.RequireDigit = false;
@@ -39,7 +51,7 @@ namespace CodeComb.vNextExperimentCenter
             services.AddMvc();
             services.AddSmartUser<User, long>();
             services.AddSmartCookies();
-            services.AddSmtpEmailSender("smtp.163.com", 25, "vNext China", "codecomb@163.com", "codecomb@163.com", "CodeComb123");
+            services.AddSmtpEmailSender("smtp.qq.com", 25, "vNext China", "911574351@qq.com", "911574351", "XXX");
             services.AddAesCrypto();
         }
 

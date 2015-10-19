@@ -8,7 +8,7 @@
             <div class="error-block-inner">
                 <h3>注册 vNext China 帐号</h3>
 				<p>请完善您的个人资料</p>
-                <form method="post">
+                <form method="post" asp-controller="Account" asp-action="RegisterDetail">
 					<p>
 						<span class="texthold">电子邮箱</span>
                         <span>@ViewBag.Email</span>

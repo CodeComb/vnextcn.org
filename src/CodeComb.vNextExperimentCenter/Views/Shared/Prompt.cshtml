@@ -10,12 +10,12 @@
                 <h1 class="error-code"><span>@Model.StatusCode</span></h1>
                 <h3>@ViewBag.Title</h3>
                 <p class="message-manual">@Model.Details</p>
-                <a href="javascript:window.history.go(-1);" class="btn btn-default ripple home-link">返回上一页</a>
-                <a asp-controller="Home" asp-action="Index" class="btn btn-default ripple home-link">返回首页</a>
                 @if (!string.IsNullOrEmpty(Model.RedirectUrl))
                 { 
-                    <a href="@Model.RedirectUrl">@Model.RedirectText</a>
+                    <a href="@Model.RedirectUrl" class="btn btn-default ripple home-link">@Model.RedirectText</a>
                 }
+                <a href="javascript:window.history.go(-1);" class="btn btn-default ripple home-link">返回上一页</a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-default ripple home-link">返回首页</a>
             </div>
         </div>
     </div>

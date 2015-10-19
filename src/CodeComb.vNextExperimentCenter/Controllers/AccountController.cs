@@ -54,10 +54,11 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             
             // 发送激活信
             var aes_email = Aes.Encrypt(email);
+            var url = Url.Link("default", new { controller = "Account", action = "RegisterDetail", key = aes_email });
             await Mail.SendEmailAsync(email, "vNext China 新用户注册验证信", $@"<html>
             <head></head>
             <body>
-            <p><a href=""http://{host}/Account/RegisterDetail?key={aes_email}"">点击继续注册</a></p>
+            <p><a href=""{url}"">点击继续注册</a></p>
             </body>
             </html>");
             
@@ -66,7 +67,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 Title = "请验证您的邮箱",
                 Details = $"我们向您的邮箱{email}中发送了一条包含验证链接的邮件，请通过邮件打开链接继续完成注册操作",
                 RedirectText = "进入邮箱",
-                RedirectUrl = "mail." + email.Split('@')[1]
+                RedirectUrl = "http://mail." + email.Split('@')[1]
             });
         }
         

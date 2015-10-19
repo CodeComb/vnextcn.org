@@ -14,6 +14,7 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0-*",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
     "EntityFramework.SqlServer": "7.0.0-*",
+    "EntityFramework.Sqlite": "7.0.0-*",
     "CodeComb.AspNet.Extensions": "2.0.0-*",
     "CodeComb.CI.Extractor.Zip": "2.0.0-*",
     "CodeComb.CI.Runner": "2.0.0-*",

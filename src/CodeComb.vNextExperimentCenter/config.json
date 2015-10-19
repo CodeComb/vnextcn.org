@@ -1,5 +1,5 @@
 ﻿{
   "Database": {
-    "ConnectionString": "Server=localhost;Database=vec;Uid=sa;Password=Yuuko19931101"
+    "ConnectionString": "Data source={appRoot}/Database/vec.db"
   }
 }
