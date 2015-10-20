@@ -27,15 +27,15 @@ namespace CodeComb.vNextExperimentCenter
             IConfiguration Configuration;
             services.AddConfiguration(out Configuration);
                
-            /*
             services.AddEntityFramework()
                 .AddDbContext<CenterContext>(x => x.UseSqlServer(Configuration["Database:ConnectionString"]))
                 .AddSqlServer();
-            */
             
+            /*
             services.AddEntityFramework()
                 .AddDbContext<CenterContext>(x => x.UseSqlite(Configuration["Database:ConnectionString"].Replace("{appRoot}", appRoot)))
                 .AddSqlite();
+            */
             
             services.AddIdentity<User, IdentityRole<long>>(x => 
             {
