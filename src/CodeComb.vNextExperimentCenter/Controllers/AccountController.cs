@@ -133,6 +133,9 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             {
                 x.Title = "您已注销";
                 x.Details = "您已成功注销了登录状态。";
+                x.RedirectText = "重新登录";
+                x.RedirectUrl = Url.Link("default", new { controller = "Account", Action = "Login" });
+                x.HideBack = true;
             });
         }
     }

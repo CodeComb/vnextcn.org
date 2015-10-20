@@ -1912,3 +1912,39 @@ pre {
 	color: #444;
 	text-shadow: 0 1px 0 #fff;
 }
+
+.shadow {
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+}
+
+.block {
+  border-left: 7px solid #ccc;
+  background-color: #fefefe;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.block:last-child {
+  border-bottom: none;
+}
+
+.block.red {
+  border-left: 7px solid #ff7373;
+  background-color: #fff0f0;
+}
+
+.block.blue {
+  border-left: 7px solid #56a5eb;
+  background-color: #ecf4ff;
+}
+
+.block.yellow {
+  border-left: 7px solid #fc0;
+  background-color: #fff8dd;
+}
+
+.small {
+  color: #888;
+  font-size: 10px;
+  line-height: 14px;
+}

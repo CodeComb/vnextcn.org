@@ -14,7 +14,10 @@
                 { 
                     <a href="@Model.RedirectUrl" class="btn btn-default ripple home-link">@Model.RedirectText</a>
                 }
-                <a href="javascript:window.history.go(-1);" class="btn btn-default ripple home-link">返回上一页</a>
+                @if (!Model.HideBack)
+                {
+                    <a href="javascript:window.history.go(-1);" class="btn btn-default ripple home-link">返回上一页</a>
+                }
                 <a asp-controller="Home" asp-action="Index" class="btn btn-default ripple home-link">返回首页</a>
             </div>
         </div>
