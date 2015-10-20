@@ -123,5 +123,17 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 StatusCode = 400
             });
         }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await SignInManager.SignOutAsync();
+            return Prompt(new Prompt
+            {
+                Title = "您已注销",
+                Details = "您已成功注销了登录状态。"
+            });
+        }
     }
 }
