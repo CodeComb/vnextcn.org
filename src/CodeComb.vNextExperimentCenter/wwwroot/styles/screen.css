@@ -1943,6 +1943,11 @@ pre {
   background-color: #fff8dd;
 }
 
+.block.green {
+  border-left: 7px solid #1be633;
+  background-color: #eefff0;
+}
+
 .small {
   color: #888;
   font-size: 10px;
