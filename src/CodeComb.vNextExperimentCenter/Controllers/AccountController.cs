@@ -23,13 +23,13 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             if (result.Succeeded)
                 return Redirect(Referer ?? Url.Link("defailt", new { controller = "Home", action = "Index" }));
             else
-                return Prompt(new Prompt
+                return Prompt(x =>
                 {
-                    Title = "登录失败",
-                    Details = "请检查用户名密码是否正确后返回上一页重试！",
-                    RedirectText = "忘记密码",
-                    RedirectUrl = Url.Link("default", new { controller = "Home", action = "Index" }),
-                    StatusCode = 403
+                    x.Title = "登录失败";
+                    x.Details = "请检查用户名密码是否正确后返回上一页重试！";
+                    x.RedirectText = "忘记密码";
+                    x.RedirectUrl = Url.Link("default", new { controller = "Home", action = "Index" });
+                    x.StatusCode = 403;
                 });
         }
         
@@ -45,11 +45,11 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         {
             // 判断该邮箱是否已经被注册
             if (DB.Users.Any(x => x.Email == email))
-                return Prompt(new Prompt 
+                return Prompt(x =>
                 {
-                    Title = "注册失败",
-                    Details = $"电子邮箱{email}已经被注册，请更换后重试！",
-                    StatusCode = 400
+                    x.Title = "注册失败";
+                    x.Details = $"电子邮箱{email}已经被注册，请更换后重试！";
+                    x.StatusCode = 400;
                 });
             
             // 发送激活信
@@ -62,12 +62,12 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             </body>
             </html>");
             
-            return Prompt(new Prompt
+            return Prompt(x =>
             {
-                Title = "请验证您的邮箱",
-                Details = $"我们向您的邮箱{email}中发送了一条包含验证链接的邮件，请通过邮件打开链接继续完成注册操作",
-                RedirectText = "进入邮箱",
-                RedirectUrl = "http://mail." + email.Split('@')[1]
+                x.Title = "请验证您的邮箱";
+                x.Details = $"我们向您的邮箱{email}中发送了一条包含验证链接的邮件，请通过邮件打开链接继续完成注册操作";
+                x.RedirectText = "进入邮箱";
+                x.RedirectUrl = "http://mail." + email.Split('@')[1];
             });
         }
         
@@ -79,11 +79,11 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             ViewBag.Key = key;
             ViewBag.Email = email;
             if (DB.Users.Any(x => x.Email == email))
-                return Prompt(new Prompt 
+                return Prompt(x =>
                 {
-                    Title = "注册失败",
-                    Details = $"电子邮箱{email}已经被注册，请更换后重试！",
-                    StatusCode = 400
+                    x.Title = "注册失败";
+                    x.Details = $"电子邮箱{email}已经被注册，请更换后重试！";
+                    x.StatusCode = 400;
                 });
             return View();
         }
@@ -95,11 +95,11 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             // 此时仍然需要检测一遍邮箱是否被注册
             var email = Aes.Decrypt(key);
             if (DB.Users.Any(x => x.Email == email))
-                return Prompt(new Prompt 
+                return Prompt(x => 
                 {
-                    Title = "注册失败",
-                    Details = $"电子邮箱{email}已经被注册，请更换后重试！",
-                    StatusCode = 400
+                    x.Title = "注册失败";
+                    x.Details = $"电子邮箱{email}已经被注册，请更换后重试！";
+                    x.StatusCode = 400;
                 });
             var user = new User
             {
@@ -109,18 +109,18 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             };
             var result = await UserManager.CreateAsync(user, password);
             if (result.Succeeded)
-                return Prompt(new Prompt
+                return Prompt(x =>
                 {
-                    Title = "注册成功",
-                    Details = "现在您可以使用这个帐号登录vNext China了！",
-                    RedirectText = "现在登录",
-                    RedirectUrl = Url.Link("default", new { controller = "Account", Action = "Login" })
+                    x.Title = "注册成功";
+                    x.Details = "现在您可以使用这个帐号登录vNext China了！";
+                    x.RedirectText = "现在登录";
+                    x.RedirectUrl = Url.Link("default", new { controller = "Account", Action = "Login" });
                 });
-            else return Prompt(new Prompt
+            else return Prompt(x =>
             {
-                Title = "注册失败",
-                Details = result.Errors.First().Description,
-                StatusCode = 400
+                x.Title = "注册失败";
+                x.Details = result.Errors.First().Description;
+                x.StatusCode = 400;
             });
         }
         
@@ -129,10 +129,10 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         public async Task<IActionResult> Logout()
         {
             await SignInManager.SignOutAsync();
-            return Prompt(new Prompt
+            return Prompt(x =>
             {
-                Title = "您已注销",
-                Details = "您已成功注销了登录状态。"
+                x.Title = "您已注销";
+                x.Details = "您已成功注销了登录状态。";
             });
         }
     }
