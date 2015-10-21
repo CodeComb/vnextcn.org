@@ -72,6 +72,8 @@ body {
   font-size: 16px;
   line-height: 28px;
   position: relative;
+  background-image: url(../images/noise-diagonal.png);
+  background-repeat: repeat;
 }
 body.dark-bg {
   background: #263238;
@@ -1953,4 +1955,16 @@ pre {
   color: #888;
   font-size: 10px;
   line-height: 14px;
+}
+
+.sidebar {
+  background-color: #fff;
+  padding: 0 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+  margin-bottom: 20px;
+  border-top: 5px solid #eee;
+}
+
+.header {
+  padding: 14px 0;
 }
