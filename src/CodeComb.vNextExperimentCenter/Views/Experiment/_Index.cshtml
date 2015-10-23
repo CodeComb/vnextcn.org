@@ -1,0 +1,20 @@
+@model IEnumerable<Problem>
+@{
+	Layout = null;
+}
+
+@foreach(var x in Model)
+{
+	<tr>
+		@if (User.IsSignedIn())
+		{
+			<td></td>
+		}
+		<td>E@(x.Id)</td>
+		<td>@x.Title</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+}

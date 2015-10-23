@@ -62,6 +62,7 @@ namespace CodeComb.vNextExperimentCenter
             loggerFactory.AddDebug();
             
             app.UseIISPlatformHandler();
+            app.UseAutoAjax();
             app.UseIdentity();
             app.UseExceptionHandler("/Shared/Prompt");
             app.UseStaticFiles();

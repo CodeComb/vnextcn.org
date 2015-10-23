@@ -6,7 +6,7 @@ using Microsoft.AspNet.Mvc;
 
 namespace CodeComb.vNextExperimentCenter.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public IActionResult Index()
         {
