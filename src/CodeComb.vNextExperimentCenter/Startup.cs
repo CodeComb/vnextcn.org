@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Dnx.Runtime;
+using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Data.Entity;
-using Microsoft.Dnx.Runtime;
 using CodeComb.vNextExperimentCenter.Models;
 
 namespace CodeComb.vNextExperimentCenter
@@ -61,7 +60,6 @@ namespace CodeComb.vNextExperimentCenter
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
             
-            app.UseIISPlatformHandler();
             app.UseAutoAjax();
             app.UseIdentity();
             app.UseExceptionHandler("/Shared/Prompt");
