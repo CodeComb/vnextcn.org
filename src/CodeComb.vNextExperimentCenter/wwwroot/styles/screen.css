@@ -1958,7 +1958,7 @@ pre {
 
 .sidebar {
   background-color: #fff;
-  padding: 0 15px;
+  padding: 0 20px 10px 20px;
   box-shadow: 0 0 10px rgba(0,0,0,.2);
   margin-bottom: 20px;
   border-top: 5px solid #eee;
@@ -1994,4 +1994,13 @@ pre {
 
 .detail-table-header {
   font-weight: bold;
+}
+
+.sidebar h2, .sidebar h3 {
+  padding-bottom: 0;
+  margin-bottom: 8px;
+}
+
+.sidebar p {
+  margin-bottom: 4px;
 }
