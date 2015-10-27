@@ -6,18 +6,26 @@
 	<div class="cont-wrap">
 		<div class="grid_9">
 			<table class="table">
+				@if (User.IsSignedIn())
+				{
+					<col style="width:7%;text-align:center" />
+				}
+				<col />
+				<col style="width:7%" />
+				<col style="width:7%" />
+				<col style="width:7%" />
+				<col style="width:7%" />
 				<thead>
 					<tr>
 						@if (User.IsSignedIn())
 						{
-							<th>状态</th>
+							<th>Flag</th>
 						}
-						<th>题号</th>
 						<th>标题</th>
-						<th></th>
 						<th>通过</th>
 						<th>提交</th>
-						<th>通过率</th>
+						<th>AC%</th>
+						<th>难度</th>
 					</tr>
 				</thead>
 				<tbody class="lst-experiments"></tbody>

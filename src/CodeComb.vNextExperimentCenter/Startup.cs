@@ -50,6 +50,7 @@ namespace CodeComb.vNextExperimentCenter
             services.AddMvc();
             services.AddSmartUser<User, long>();
             services.AddSmartCookies();
+            services.AddAntiXss();
             services.AddSmtpEmailSender("smtp.qq.com", 25, "vNext China", "911574351@qq.com", "911574351", "XXX");
             services.AddAesCrypto();
         }

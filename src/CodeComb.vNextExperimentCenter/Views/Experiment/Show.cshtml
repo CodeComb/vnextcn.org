@@ -22,6 +22,8 @@
 					<td>@Model.OS</td>
 				</tr>
 			</table>
+			<h3 class="exp-sub-title">实验内容</h3>
+			@Html.Sanitize(Html.Marked(Model.Description).ToString())
 		</div>
 		<div class="grid_3 sidebar">
 			<h3 class="header">操作</h2>
