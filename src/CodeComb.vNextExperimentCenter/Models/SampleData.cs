@@ -23,6 +23,20 @@ namespace CodeComb.vNextExperimentCenter.Models
 				var user = new User { UserName = "root", Email = "1@1234.sh" };
 				await UserManager.CreateAsync(user, "123456");
 				await UserManager.AddToRoleAsync(user, "Root");
+				
+				DB.Problems.Add(new Problem
+				{
+					Title = "编写Hello World网站",
+					OS = OSType.CrossPlatform,
+					Version = "beta8",
+					Description = "编写一个vNext网站程序，仅输出Hello World",
+					TimeLimit = 10000,
+					CheckPassed = true,
+					Difficulty = 0,
+					Namespace = "HelloWorld"
+				});
+				
+				DB.SaveChanges();
 			}
 		}
 	}

@@ -1967,3 +1967,30 @@ pre {
 .header {
   padding: 14px 0;
 }
+
+.exp-title {
+  border-bottom: 5px solid #00aff0;
+}
+
+.exp-sub-title {
+  border-left: 7px solid #ffdf00;
+  padding: 2px 5px;
+}
+
+.row-title {
+    background-color: #f0f0f0;
+    width: 180px;
+}
+
+.detail-table {
+    width: 100%;
+}
+
+.detail-table td {
+    padding: 16px 10px;
+    border: 1px solid #ddd;
+}
+
+.detail-table-header {
+  font-weight: bold;
+}

@@ -18,7 +18,9 @@
     "CodeComb.CI.Extractor.Zip": "2.0.0-*",
     "CodeComb.CI.Runner": "2.0.0-*",
     "CodeComb.Security.Aes": "2.0.0-*",
-    "CodeComb.Net.EmailSender": "2.0.0-*"
+    "CodeComb.Net.EmailSender": "2.0.0-*",
+    "CodeComb.Marked": "2.0.0-*",
+    "CodeComb.AspNet.AntiXSS": "2.0.0-*"
   },
 
   "commands": {

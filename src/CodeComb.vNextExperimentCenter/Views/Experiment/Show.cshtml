@@ -1,4 +1,30 @@
 @model Problem
 @{
-	ViewBag.Title = Model.Title + "实验室";
+	ViewBag.Title = Model.Title + " - 实验室";
 }
+
+<div class="container">
+	<div class="cont-wrap">
+		<div class="grid_9">
+			<h2 class="exp-title">@Model.Title</h2>
+			<h3 class="exp-sub-title">运行限制</h3>
+			<table class="detail-table">
+				<tr class="detail-table-header">
+					<td>时间限制</td>
+					<td>命名空间</td>
+					<td>运行时</td>
+					<td>OS</td>
+				</tr>
+				<tr>
+					<td>@Model.TimeLimit ms</td>
+					<td>@Model.Namespace</td>
+					<td>@Model.Version</td>
+					<td>@Model.OS</td>
+				</tr>
+			</table>
+		</div>
+		<div class="grid_3 sidebar">
+			<h3 class="header">操作</h2>
+		</div>
+	</div>
+</div>

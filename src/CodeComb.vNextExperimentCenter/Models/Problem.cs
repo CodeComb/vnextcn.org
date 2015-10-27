@@ -13,6 +13,15 @@ namespace CodeComb.vNextExperimentCenter.Models
         Test
     }
 
+    
+    public enum OSType 
+    {
+        OSX,
+        Windows,
+        Linux,
+        CrossPlatform
+    }
+    
     public class Problem
     {
         public long Id { get; set; }
@@ -29,11 +38,15 @@ namespace CodeComb.vNextExperimentCenter.Models
 
         [MaxLength(128)]
         public string Version { get; set; }
+        
+        public long TimeLimit { get; set; }
 
         public byte[] AnswerArchive { get; set; }
 
         public byte[] TestArchive { get; set; }
 
         public bool CheckPassed { get; set; }
+        
+        public OSType OS { get; set; }
     }
 }
