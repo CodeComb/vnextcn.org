@@ -14,12 +14,8 @@ namespace CodeComb.vNextExperimentCenter.Hub
         public EFNodeProvider(TContext db)
         {
             DB = db;
-        }
-
-        public IList<Node> GetNodes()
-        {
-            var ret = new List<Node>();
-            foreach(var x in DB.Nodes.ToList())
+            Nodes = new List<Node>();
+            foreach (var x in DB.Nodes.ToList())
             {
                 var y = new Node
                 {
@@ -30,10 +26,16 @@ namespace CodeComb.vNextExperimentCenter.Hub
                     PrivateKey = x.PrivateKey,
                     LostConnectionCount = 65536
                 };
-                ret.Add(y);
+                Nodes.Add(y);
                 y.Init();
             }
-            return ret;
+        }
+
+        public IList<Node> Nodes { get; set; }
+
+        public Node GetFreeNode()
+        {
+            return Nodes.Where(x => x.Status != NodeStatus.Lost).OrderBy(x => x.Status).FirstOrDefault();
         }
     }
 }

@@ -79,9 +79,10 @@ namespace CodeComb.vNextExperimentCenter.Node
                 new KeyValuePair<string, string> ("id", task.Identifier.ToString()),
                 new KeyValuePair<string, string> ("text", args.Output),
             })).Wait();
+            Console.WriteLine("向服务器反馈输出文本");
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();

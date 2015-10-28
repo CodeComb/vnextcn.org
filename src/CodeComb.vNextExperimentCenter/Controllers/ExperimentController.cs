@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 using CodeComb.vNextExperimentCenter.Models;
+using CodeComb.vNextExperimentCenter.Hub;
 
 namespace CodeComb.vNextExperimentCenter.Controllers
 {
@@ -74,9 +75,27 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             DB.Statuses.Add(Status);
             DB.SaveChanges();
             
-            // TODO: Call judge server
-            
+            NodeProvider.GetFreeNode().SendJudgeTask(Status.Id, Status.Archive, exp.TestArchive, Status.NuGet + "\r\n" + exp.NuGet);
+
             return RedirectToAction("Show", "Status", new { id = Status.Id });
+        }
+
+        [AnyRoles("Root, Master")]
+        public IActionResult Edit(long id)
+        {
+            var exp = DB.Problems
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+
+            if (exp == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+
+            return View(exp);
         }
     }
 }

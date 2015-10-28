@@ -4,15 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using CodeComb.vNextExperimentCenter.Hub.Models;
+
 
 namespace CodeComb.vNextExperimentCenter.Models
 {
-    public class CenterContext : IdentityDbContext<User, IdentityRole<long>, long>
+    public class CenterContext : IdentityDbContext<User, IdentityRole<long>, long>, INodeDbContext
     {
         public DbSet<Problem> Problems { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Blob> Blobs { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Node> Nodes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

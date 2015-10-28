@@ -7,6 +7,7 @@ namespace CodeComb.vNextExperimentCenter.Hub
 {
     public interface INodeProvider
     {
-        IList<Node> GetNodes();
+        IList<Node> Nodes { get; set; }
+        Node GetFreeNode();
     }
 }

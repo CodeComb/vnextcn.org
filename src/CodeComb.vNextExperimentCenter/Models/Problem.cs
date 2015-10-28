@@ -46,6 +46,8 @@ namespace CodeComb.vNextExperimentCenter.Models
         public byte[] TestArchive { get; set; }
 
         public bool CheckPassed { get; set; }
+
+        public string NuGet { get; set; }
         
         public OSType OS { get; set; }
     }

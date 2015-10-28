@@ -1,5 +1,8 @@
 ﻿{
   "MaxThread": 4,
   "JudgePool": "C:\\Pool\\Judge",
-  "CIPool": "C:\\Pool\\CI"
+  "CIPool": "C:\\Pool\\CI",
+  "Server": "localhost",
+  "Port": 5000,
+  "PrivateKey": "4IbkO2iRm0bm0hxj2VVTUR8rsNOmCIh5"
 }

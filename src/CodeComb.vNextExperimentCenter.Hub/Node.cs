@@ -84,12 +84,17 @@ namespace CodeComb.vNextExperimentCenter.Hub
             }
         }
 
-        public async Task<bool> SendJudgeTask(byte[] user, byte[] problem)
+        public async Task<bool> SendJudgeTask(long id, byte[] user, byte[] problem, string nuget)
         {
             using (var content = new MultipartFormDataContent("Upload----" + DateTime.Now.ToString()))
             {
                 content.Add(new StreamContent(new MemoryStream(user)), "user", "user.zip");
                 content.Add(new StreamContent(new MemoryStream(problem)), "problem", "problem.zip");
+                content.Add(new FormUrlEncodedContent(new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("id", id.ToString()),
+                    new KeyValuePair<string, string>("nuget", nuget)
+                }));
                 var result = await client.PostAsync("/api/judge/new", content);
                 if (result.StatusCode == System.Net.HttpStatusCode.OK)
                     return true;

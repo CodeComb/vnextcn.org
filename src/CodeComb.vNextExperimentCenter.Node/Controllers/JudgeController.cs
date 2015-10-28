@@ -11,14 +11,11 @@ using CodeComb.Package;
 
 namespace CodeComb.vNextExperimentCenter.Node.Controllers
 {
-    [Route("api/[controller]")]
-    public class JudgeController : Controller
+    [Route("api/judge/{action}")]
+    public class JudgeController : BaseController
     {
         [FromServices]
         public ICIRunner Runner { get; set; }
-
-        [FromServices]
-        public IConfiguration Configuration { get; set; }
 
         [HttpPost]
         public string New(long id, IFormFile user, IFormFile problem, string nuget)
@@ -47,7 +44,8 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
         {
             var tmp = "";
             foreach (var x in feeds)
-                tmp += $@"    <add key=""AdditionalFeed"" value=""{x}"" />";
+                if (!string.IsNullOrEmpty(x.Trim()))
+                    tmp += $@"    <add key=""AdditionalFeed"" value=""{x.Trim()}"" />";
             return $@"<?xml version=""1.0"" encoding=""utf-8""?>
 <configuration>
   <packageSources>

@@ -53,6 +53,7 @@ namespace CodeComb.vNextExperimentCenter
             services.AddAntiXss();
             services.AddSmtpEmailSender("smtp.qq.com", 25, "vNext China", "911574351@qq.com", "911574351", "XXX");
             services.AddAesCrypto();
+            services.AddEFNodeProvider<CenterContext>();
         }
 
         public async void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)

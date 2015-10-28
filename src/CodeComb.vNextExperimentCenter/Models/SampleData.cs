@@ -35,7 +35,15 @@ namespace CodeComb.vNextExperimentCenter.Models
 					Difficulty = 0,
 					Namespace = "HelloWorld"
 				});
-				
+
+                DB.Nodes.Add(new Hub.Models.Node
+                {
+                    Alias = "Code Comb #1",
+                    PrivateKey = "4IbkO2iRm0bm0hxj2VVTUR8rsNOmCIh5",
+                    Server = "localhost",
+                    Port = 6070
+                });
+
 				DB.SaveChanges();
 			}
 		}

@@ -9,14 +9,11 @@ using CodeComb.CI.Runner;
 
 namespace CodeComb.vNextExperimentCenter.Node.Controllers
 {
-    [Route("api/[controller]")]
-    public class CommonController : Controller
+    [Route("api/common/{action}")]
+    public class CommonController : BaseController
     {
         [FromServices]
         public ICIRunner Runner { get; set; }
-
-        [FromServices]
-        public IConfiguration Configuration { get; set; }
 
         [HttpGet]
         public ObjectResult GetNodeInfo()
