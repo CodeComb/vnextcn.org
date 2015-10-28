@@ -16,7 +16,7 @@ namespace CodeComb.vNextExperimentCenter.Hub
             DB = db;
         }
 
-        public List<Node> GetNodes()
+        public IList<Node> GetNodes()
         {
             var ret = new List<Node>();
             foreach(var x in DB.Nodes.ToList())
