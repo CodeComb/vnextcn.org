@@ -14,7 +14,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
     public class BaseController : BaseController<CenterContext, User, long>
     {
         [FromServices]
-        public EFNodeProvider<CenterContext> NodeProvider { get; set; }
+        public INodeProvider NodeProvider { get; set; }
 
         [FromServices]
         public IEmailSender Mail { get; set; }
