@@ -11,7 +11,7 @@ using CodeComb.Package;
 
 namespace CodeComb.vNextExperimentCenter.Node.Controllers
 {
-    [Route("api/judge/{action}")]
+    [Route("api/judge/[action]")]
     public class JudgeController : BaseController
     {
         [FromServices]

@@ -6,7 +6,7 @@ using Microsoft.AspNet.Mvc;
 
 namespace CodeComb.vNextExperimentCenter.Controllers
 {
-    [Route("api/judge/{action}")]
+    [Route("api/judge/[action]")]
     public class JudgeController : ApiController
     {
         [HttpPost]

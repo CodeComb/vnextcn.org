@@ -9,7 +9,7 @@ using CodeComb.CI.Runner;
 
 namespace CodeComb.vNextExperimentCenter.Node.Controllers
 {
-    [Route("api/common/{action}")]
+    [Route("api/common/[action]")]
     public class CommonController : BaseController
     {
         [FromServices]
