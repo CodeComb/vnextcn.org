@@ -5,12 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Configuration;
 using CodeComb.Package;
+using CodeComb.CI.Runner;
 
 namespace CodeComb.vNextExperimentCenter.Node.Controllers
 {
     [Route("api/[controller]")]
     public class CommonController : Controller
     {
+        [FromServices]
+        public ICIRunner Runner { get; set; }
+
         [FromServices]
         public IConfiguration Configuration { get; set; }
 
@@ -21,9 +25,15 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
             {
                 MaxThread = Convert.ToInt32(Configuration["Node:MaxThread"]),
                 Platform = OS.Current.ToString(),
-                CurrentThread = 0
+                CurrentThread = Runner.TaskQueue.Count
             };
             return new ObjectResult(ret);
+        }
+
+        [HttpGet]
+        public string HeartBeat()
+        {
+            return "ok";
         }
     }
 }

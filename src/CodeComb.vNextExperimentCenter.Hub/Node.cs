@@ -71,7 +71,7 @@ namespace CodeComb.vNextExperimentCenter.Hub
 
         public async Task HeartBeat()
         {
-            var response = await client.GetAsync("/common/heartbeat");
+            var response = await client.GetAsync("/api/common/heartbeat");
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 LostConnectionCount++;
@@ -86,12 +86,11 @@ namespace CodeComb.vNextExperimentCenter.Hub
 
         public async Task<bool> SendJudgeTask(byte[] user, byte[] problem)
         {
-            using (var content =
-             new MultipartFormDataContent("Upload----" + DateTime.Now.ToString()))
+            using (var content = new MultipartFormDataContent("Upload----" + DateTime.Now.ToString()))
             {
                 content.Add(new StreamContent(new MemoryStream(user)), "user", "user.zip");
                 content.Add(new StreamContent(new MemoryStream(problem)), "problem", "problem.zip");
-                var result = await client.PostAsync("/judge/new", content);
+                var result = await client.PostAsync("/api/judge/new", content);
                 if (result.StatusCode == System.Net.HttpStatusCode.OK)
                     return true;
                 else

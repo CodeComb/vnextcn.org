@@ -1,0 +1,5 @@
+﻿{
+  "MaxThread": 4,
+  "JudgePool": "C:\\Pool\\Judge",
+  "CIPool": "C:\\Pool\\CI"
+}

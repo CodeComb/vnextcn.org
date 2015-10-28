@@ -28,7 +28,7 @@ namespace CodeComb.vNextExperimentCenter.Hub
                     CurrentThread = 0,
                     MaxThread = 0,
                     PrivateKey = x.PrivateKey,
-                    LostConnectionCount = 0
+                    LostConnectionCount = 65536
                 };
                 ret.Add(y);
                 y.Init();
