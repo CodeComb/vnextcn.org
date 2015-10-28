@@ -1,4 +1,4 @@
-﻿{
+{
   "webroot": "wwwroot",
   "version": "1.0.0-*",
 
@@ -22,7 +22,8 @@
     "CodeComb.Net.EmailSender": "2.0.0-*",
     "CodeComb.Marked": "2.0.0-*",
     "CodeComb.AspNet.AntiXSS": "2.0.0-*",
-    "Microsoft.AspNet.SignalR.Server": "3.0.0-*"
+    "Microsoft.AspNet.SignalR.Server": "3.0.0-*",
+    "CodeComb.vNextExperimentCenter.Hub": "1.0.0-*"
   },
 
   "commands": {
