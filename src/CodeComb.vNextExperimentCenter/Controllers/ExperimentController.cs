@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 using CodeComb.vNextExperimentCenter.Models;
 
@@ -38,6 +39,44 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.StatusCode = 404;
                 });
             return View(exp);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Submit(long id, IFormFile file, string nuget)
+        {
+            var exp = DB.Problems
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (exp == null)
+                return Prompt(x => 
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            if (!(User.IsInRole("Root") || User.IsInRole("Manager")) && exp.CheckPassed == false)
+                return Prompt(x => 
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+                
+            var Status = new Status
+            {
+                UserId = User.Current.Id,
+                Time = DateTime.Now,
+                Result = StatusResult.Queued,
+                ProblemId = id,
+                Archive = await file.ReadAllBytesAsync()
+            };
+            DB.Statuses.Add(Status);
+            DB.SaveChanges();
+            
+            // TODO: Call judge server
+            
+            return RedirectToAction("Show", "Status", new { id = Status.Id });
         }
     }
 }

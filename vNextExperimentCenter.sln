@@ -20,6 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CodeComb.vNextExperimentCenter", "src\CodeComb.vNextExperimentCenter\CodeComb.vNextExperimentCenter.xproj", "{E7FB0AF2-FA9D-445B-962D-BA978DCB196A}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CodeComb.vNextExperimentCenter.Node", "src\CodeComb.vNextExperimentCenter.Node\CodeComb.vNextExperimentCenter.Node.xproj", "{4F98867C-7966-4AFE-B3B4-F2051E7E9684}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CodeComb.vNextExperimentCenter.Hub", "src\CodeComb.vNextExperimentCenter.Hub\CodeComb.vNextExperimentCenter.Hub.xproj", "{E9D54D5F-8058-48A9-952F-1471BD1C5A8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,11 +34,21 @@ Global
 		{E7FB0AF2-FA9D-445B-962D-BA978DCB196A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7FB0AF2-FA9D-445B-962D-BA978DCB196A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7FB0AF2-FA9D-445B-962D-BA978DCB196A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F98867C-7966-4AFE-B3B4-F2051E7E9684}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F98867C-7966-4AFE-B3B4-F2051E7E9684}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F98867C-7966-4AFE-B3B4-F2051E7E9684}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F98867C-7966-4AFE-B3B4-F2051E7E9684}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9D54D5F-8058-48A9-952F-1471BD1C5A8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9D54D5F-8058-48A9-952F-1471BD1C5A8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9D54D5F-8058-48A9-952F-1471BD1C5A8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9D54D5F-8058-48A9-952F-1471BD1C5A8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E7FB0AF2-FA9D-445B-962D-BA978DCB196A} = {EEEC60AF-07BE-4A9E-93EB-E44843A9D9ED}
+		{4F98867C-7966-4AFE-B3B4-F2051E7E9684} = {EEEC60AF-07BE-4A9E-93EB-E44843A9D9ED}
+		{E9D54D5F-8058-48A9-952F-1471BD1C5A8D} = {EEEC60AF-07BE-4A9E-93EB-E44843A9D9ED}
 	EndGlobalSection
 EndGlobal

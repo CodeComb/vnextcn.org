@@ -26,5 +26,6 @@ namespace CodeComb.vNextExperimentCenter.Models
         public long TimeUsage { get; set; }
         public long MemoryUsage { get; set; }
         public string Output { get; set; }
+        public string NuGet { get; set; }
     }
 }
