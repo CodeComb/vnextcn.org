@@ -223,4 +223,8 @@ var themeApp = {
 ==========================*/
 $(document).ready(function(){
 	themeApp.init();
+	
+	$('.btn-close').click(function () {
+		$(this).parents('.dialog').addClass('hide');
+	});
 });

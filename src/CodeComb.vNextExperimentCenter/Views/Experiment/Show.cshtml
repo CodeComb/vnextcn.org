@@ -2,7 +2,29 @@
 @{
 	ViewBag.Title = Model.Title + " - 实验室";
 }
-
+<div id="submit-area" class="dialog hide">
+	<h2>提交程序</h2>
+	<form asp-action="Submit" asp-controller="Experiment" asp-route-id="@Model.Id">
+		<table class="detail-table">
+			<tr>
+				<td class="row-title">打包文件(.zip)</td>
+				<td>
+					<input type="file" name="file" />
+				</td>
+			</tr>
+			<tr>
+				<td class="row-title">NuGet Feeds</td>
+				<td>
+					<textarea class="textbox" style="width:calc(100% - 10px);height:100px;" placeholder="每行一个，https://www.nuget.org/api/v2可省略"></textarea>
+				</td>
+			</tr>
+		</table>
+		<br />
+		<input type="submit" value="提交" class="btn btn-default" /> 
+		<input type="button" class="btn-close btn" value="关闭" />
+		<a asp-action="Index" asp-controller="FAQ">我需要帮助?</a>
+	</form>
+</div>
 <div class="container">
 	<div class="cont-wrap">
 		<div class="grid_9">
@@ -29,7 +51,7 @@
 			<h3 class="header">操作</h2>
 			@if (User.IsSignedIn())
 			{
-				<p><a href="javascript:submit()"><i class="fa fa-angle-double-right"></i> 提交程序</a></p>
+				<p><a href="javascript:$('#submit-area').removeClass('hide')"><i class="fa fa-angle-double-right"></i> 提交程序</a></p>
 			}
 			<p><a asp-action="Index" asp-controller="Status" asp-route-eid="@Model.Id"><i class="fa fa-angle-double-right"></i> 评测记录</a></p>
 			<p><a asp-action="Index" asp-controller="Forum" asp-route-experiment="@Model.Id"><i class="fa fa-angle-double-right"></i> 讨论该题</a></p>
