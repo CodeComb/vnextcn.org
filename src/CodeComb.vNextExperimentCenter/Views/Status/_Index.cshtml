@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Status>
+@{ 
+    Layout = null;
+}
+@foreach(var x in Model)
+{
+    <tr>
+        <td>@x.Result</td>
+        <td></td>
+        <td>@x.TimeUsage</td>
+        <td>@x.MemoryUsage</td>
+        <td>@x.Problem.Title</td>
+        <td>@x.User.UserName</td>
+        <td>@x.Time</td>
+    </tr>
+}

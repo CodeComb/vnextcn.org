@@ -23,7 +23,7 @@
           "lib/dnx451/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -41,10 +41,10 @@
           "lib/dnx451/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
+          "CodeComb.CI.Extractor": "2.0.0-t151029044638"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -59,7 +59,7 @@
           "lib/dnx451/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151029012638": {
+      "CodeComb.CI.Runner/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -1863,7 +1863,7 @@
           "lib/dotnet5.4/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -1875,10 +1875,10 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
+          "CodeComb.CI.Extractor": "2.0.0-t151029044638"
         },
         "compile": {
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
@@ -1887,7 +1887,7 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151029012638": {
+      "CodeComb.CI.Runner/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -4386,7 +4386,7 @@
           "lib/dnx451/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -4404,10 +4404,10 @@
           "lib/dnx451/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
+          "CodeComb.CI.Extractor": "2.0.0-t151029044638"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -4422,7 +4422,7 @@
           "lib/dnx451/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151029012638": {
+      "CodeComb.CI.Runner/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -6240,7 +6240,7 @@
           "lib/dnx451/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -6258,10 +6258,10 @@
           "lib/dnx451/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
+          "CodeComb.CI.Extractor": "2.0.0-t151029044638"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -6276,7 +6276,7 @@
           "lib/dnx451/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151029012638": {
+      "CodeComb.CI.Runner/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -8088,7 +8088,7 @@
           "lib/dotnet5.4/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -8100,10 +8100,10 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
+          "CodeComb.CI.Extractor": "2.0.0-t151029044638"
         },
         "compile": {
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
@@ -8112,7 +8112,7 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151029012638": {
+      "CodeComb.CI.Runner/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -11075,7 +11075,7 @@
           "lib/dotnet5.4/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -11087,10 +11087,10 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
+          "CodeComb.CI.Extractor": "2.0.0-t151029044638"
         },
         "compile": {
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
@@ -11099,7 +11099,7 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151029012638": {
+      "CodeComb.CI.Runner/2.0.0-t151029044638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -14062,12 +14062,12 @@
         "lib/dotnet5.4/CodeComb.AspNet.Extensions.xml"
       ]
     },
-    "CodeComb.CI.Extractor/2.0.0-t151029012638": {
+    "CodeComb.CI.Extractor/2.0.0-t151029044638": {
       "type": "package",
-      "sha512": "AMII6opVMu9usWo+WbKTXZRX/b/qrzR62qsG3yxcZM73uAmvQqybKbBBy7IJRfr5KFa1fMzKXfcoflTwuM4t3g==",
+      "sha512": "CkeXEvNYiMU2hi7+rmS0dzOELLmQRKGfPVeKn3IhpR3sH7BPS0FfGXKrkRLwKoR/Fkub6KATJEZpwfHiueZs7A==",
       "files": [
-        "CodeComb.CI.Extractor.2.0.0-t151029012638.nupkg",
-        "CodeComb.CI.Extractor.2.0.0-t151029012638.nupkg.sha512",
+        "CodeComb.CI.Extractor.2.0.0-t151029044638.nupkg",
+        "CodeComb.CI.Extractor.2.0.0-t151029044638.nupkg.sha512",
         "CodeComb.CI.Extractor.nuspec",
         "lib/dnx451/CodeComb.CI.Extractor.dll",
         "lib/dnx451/CodeComb.CI.Extractor.xml",
@@ -14075,12 +14075,12 @@
         "lib/dnxcore50/CodeComb.CI.Extractor.xml"
       ]
     },
-    "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
+    "CodeComb.CI.Extractor.Zip/2.0.0-t151029044638": {
       "type": "package",
-      "sha512": "pInwnbYZMI9GI9rXgG2bXLJlHqWEo8/Kit1aNeOD4vZgVzIP1qSKLtyRvlUWrClffzaZ5roI4X7g0eTUOCEFTg==",
+      "sha512": "E2YSu1CjwLjjYrHeu8b7yyfbxWJ8S2ySwFqJlCTpTmOGJvKWJtSYhZ3qR4USq7Zj/roA2zv3XCGhSX3xZ418yQ==",
       "files": [
-        "CodeComb.CI.Extractor.Zip.2.0.0-t151029012638.nupkg",
-        "CodeComb.CI.Extractor.Zip.2.0.0-t151029012638.nupkg.sha512",
+        "CodeComb.CI.Extractor.Zip.2.0.0-t151029044638.nupkg",
+        "CodeComb.CI.Extractor.Zip.2.0.0-t151029044638.nupkg.sha512",
         "CodeComb.CI.Extractor.Zip.nuspec",
         "lib/dnx451/CodeComb.CI.Extractor.Zip.dll",
         "lib/dnx451/CodeComb.CI.Extractor.Zip.xml",
@@ -14088,12 +14088,12 @@
         "lib/dnxcore50/CodeComb.CI.Extractor.Zip.xml"
       ]
     },
-    "CodeComb.CI.Runner/2.0.0-t151029012638": {
+    "CodeComb.CI.Runner/2.0.0-t151029044638": {
       "type": "package",
-      "sha512": "RwbzmfwHT1tVsaBKG9cvqLtMBkj1eIVhECvn2vfgFj9JRUZ3w0/tVdxN2rsP+1CTmqLC7WsU3VHtdz/YDZF5cA==",
+      "sha512": "IzavMkiOfP+Wde/My7//tYX9LUM6k9Z/+eA8ZvcYJrU/Bkt9aCTI/v9Zl22DX0e5NsbRSI63EDMomeypYfAXIQ==",
       "files": [
-        "CodeComb.CI.Runner.2.0.0-t151029012638.nupkg",
-        "CodeComb.CI.Runner.2.0.0-t151029012638.nupkg.sha512",
+        "CodeComb.CI.Runner.2.0.0-t151029044638.nupkg",
+        "CodeComb.CI.Runner.2.0.0-t151029044638.nupkg.sha512",
         "CodeComb.CI.Runner.nuspec",
         "lib/dnx451/CodeComb.CI.Runner.dll",
         "lib/dnx451/CodeComb.CI.Runner.xml",

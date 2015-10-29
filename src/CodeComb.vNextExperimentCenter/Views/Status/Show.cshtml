@@ -1,0 +1,9 @@
+﻿@model Status
+@{ 
+    ViewBag.Title = $"#{Model.Id} - 运行状态";
+}
+
+<div class="col-md-8 col-sm-12 col-md-offset-2">
+    <h2>@ViewBag.Title</h2>
+    <pre>@Model.Output</pre>
+</div>

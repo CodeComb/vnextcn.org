@@ -59,10 +59,10 @@ namespace CodeComb.vNextExperimentCenter.Hub
         public async Task RefreshNodeInfo()
         {
             client.Timeout = new TimeSpan(0, 0, 10);
-            var response = await client.GetAsync("/common/getnodeinfo");
+            var response = await client.GetAsync("/api/common/GetNodeInfo");
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                Console.Error.WriteLine($"{Alias} 连接失败");
+                Console.Error.WriteLine($"{Alias} 连接失败 " + response.StatusCode);
                 return;
             }
             var result = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
@@ -91,9 +91,10 @@ namespace CodeComb.vNextExperimentCenter.Hub
                 }
                 else
                 {
+                    if (LostConnectionCount > 0)
+                        RefreshNodeInfo();
                     LostConnectionCount = 0;
                     Console.WriteLine($"{Alias} 心跳测试 200 OK");
-                    RefreshNodeInfo();
                 }
             }
            catch
@@ -106,16 +107,14 @@ namespace CodeComb.vNextExperimentCenter.Hub
         public async Task<bool> SendJudgeTask(long id, byte[] user, byte[] problem, string nuget)
         {
             client.Timeout = new TimeSpan(0, 10, 0);
-            using (var content = new MultipartFormDataContent("Upload----" + DateTime.Now.ToString()))
+            using (var content = new MultipartFormDataContent("Upload----" + DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss")))
             {
                 content.Add(new StreamContent(new MemoryStream(user)), "user", "user.zip");
                 content.Add(new StreamContent(new MemoryStream(problem)), "problem", "problem.zip");
-                content.Add(new FormUrlEncodedContent(new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("id", id.ToString()),
-                    new KeyValuePair<string, string>("nuget", nuget)
-                }));
+                content.Add(new StringContent(id.ToString()), "id");
+                content.Add(new StringContent(nuget), "nuget");
                 var result = await client.PostAsync("/api/judge/new", content);
+                Console.WriteLine($"{Alias} 成功接收任务#{id}");
                 if (result.StatusCode == System.Net.HttpStatusCode.OK)
                     return true;
                 else

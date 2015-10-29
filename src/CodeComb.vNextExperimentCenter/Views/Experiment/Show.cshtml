@@ -4,7 +4,7 @@
 }
 <div id="submit-area" class="dialog hide">
 	<h2>提交程序</h2>
-	<form asp-action="Submit" asp-controller="Experiment" asp-route-id="@Model.Id">
+	<form asp-action="Submit" asp-controller="Experiment" asp-route-id="@Model.Id" enctype="multipart/form-data" method="post">
 		<table class="detail-table">
 			<tr>
 				<td class="row-title">打包文件(.zip)</td>

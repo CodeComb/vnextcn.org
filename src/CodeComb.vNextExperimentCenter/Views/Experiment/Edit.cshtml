@@ -51,6 +51,18 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="row-title">NuGet Feeds</td>
+                        <td>
+                            <textarea class="textbox" asp-for="NuGet" style="width: calc(100% - 10px);height:240px;"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">难度</td>
+                        <td>
+                            <input type="range" min="1" max="10" step="1" asp-for="Difficulty" />
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="row-title">测试程序</td>
                         <td>
                             <input type="file" name="TestArchive" />
@@ -63,6 +75,8 @@
                         </td>
                     </tr>
                 </table>
+                <br/>
+                <input type="submit" value="保存" class="btn btn-default" />
             </form>
 		</div>
 		<div class="grid_3 sidebar">

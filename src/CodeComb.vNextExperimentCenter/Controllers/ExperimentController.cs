@@ -76,7 +76,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             DB.Statuses.Add(Status);
             DB.SaveChanges();
             
-            NodeProvider.GetFreeNode().SendJudgeTask(Status.Id, Status.Archive, exp.TestArchive, Status.NuGet + "\r\n" + exp.NuGet);
+            await NodeProvider.GetFreeNode().SendJudgeTask(Status.Id, Status.Archive, exp.TestArchive, Status.NuGet + "\r\n" + exp.NuGet);
 
             return RedirectToAction("Show", "Status", new { id = Status.Id });
         }
@@ -97,6 +97,39 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 });
 
             return View(exp);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(long id, IFormFile TestArchive, IFormFile AnswerArchive, Problem Model)
+        {
+            var exp = DB.Problems
+               .Where(x => x.Id == id)
+               .SingleOrDefault();
+
+            if (exp == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+
+            exp.Title = Model.Title;
+            exp.Namespace = Model.Namespace;
+            exp.NuGet = Model.NuGet;
+            exp.OS = Model.OS;
+            exp.TimeLimit = Model.TimeLimit;
+            exp.TestArchive = await TestArchive.ReadAllBytesAsync();
+            exp.AnswerArchive = await AnswerArchive.ReadAllBytesAsync();
+            exp.Difficulty = Model.Difficulty;
+            exp.Version = Model.Version;
+            DB.SaveChanges();
+            return Prompt(x =>
+            {
+                x.Title = "修改成功";
+                x.Details = "该实验已保存成功！";
+            });
         }
     }
 }

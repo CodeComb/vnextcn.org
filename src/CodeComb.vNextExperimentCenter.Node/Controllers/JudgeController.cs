@@ -22,21 +22,27 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
         {
             var identifier = id;
             var directory = Path.GetTempPath() + $@"/vec/{identifier}/";
+            Console.WriteLine("工作路径 "+ Path.GetTempPath() + $@"/vec/{identifier}/");
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
             user.SaveAs(directory + $@"/{identifier}.zip");
-            Unzip.ExtractAll(directory + $@"/{identifier}.zip", directory, true);
+            Console.WriteLine("用户程序保存成功 " + directory + $@"/{identifier}.zip");
+            Unzip.ExtractAll(directory + $@"/{identifier}.zip", directory + "/user/", true);
+            Console.WriteLine("用户程序解压成功 " + directory + "/user");
             var tempDirectory = Path.GetTempPath() + "/vec/";
             if (!Directory.Exists(tempDirectory))
                 Directory.CreateDirectory(tempDirectory);
             if (!Directory.Exists(tempDirectory + identifier))
                 Directory.CreateDirectory(tempDirectory + identifier);
             problem.SaveAs(tempDirectory + identifier + "/" + identifier + ".zip");
-            Unzip.ExtractAll(tempDirectory + identifier + "/" + identifier + ".zip", tempDirectory + identifier + "/", true);
-            CopyDirectory(FindRoot(tempDirectory + identifier), Configuration["JudgePool"] + "/" + identifier);
-            CopyDirectory(FindProject(directory), Configuration["JudgePool"] + "/" + identifier + "/src/web");
+            Console.WriteLine("测试程序保存成功 " + tempDirectory + identifier + "/" + identifier + ".zip");
+            Unzip.ExtractAll(tempDirectory + identifier + "/" + identifier + ".zip", tempDirectory + identifier + "/experiment/", true);
+            Console.WriteLine("测试程序解压成功 " + tempDirectory + identifier + "/experiment/");
+            CopyDirectory(FindRoot(tempDirectory + identifier + "/experiment"), Configuration["JudgePool"] + "/" + identifier);
+            CopyDirectory(FindProject(directory + "/user"), Configuration["JudgePool"] + "/" + identifier + "/src/web");
+            if (nuget == null) nuget = "";
             System.IO.File.WriteAllText(Configuration["JudgePool"] + "/" + identifier + "/Nuget.config", GenerateNuGetConfig(nuget.Split('\n')));
-            Runner.PushTask(directory, identifier);
+            Runner.PushTask(Configuration["JudgePool"] + "/" + identifier, identifier);
             return "ok";
         }
 

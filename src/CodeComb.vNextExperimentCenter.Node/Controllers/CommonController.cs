@@ -20,7 +20,7 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
         {
             var ret = new
             {
-                MaxThread = Convert.ToInt32(Configuration["Node:MaxThread"]),
+                MaxThread = Runner.MaxThreads,
                 Platform = OS.Current.ToString(),
                 CurrentThread = Runner.TaskQueue.Count
             };
