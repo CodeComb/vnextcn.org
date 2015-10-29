@@ -30,6 +30,7 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
         [HttpGet]
         public string HeartBeat()
         {
+            Console.WriteLine($"收到心跳测试请求，当前队列任务数：{Runner.TaskQueue.Count}");
             return "ok";
         }
     }
