@@ -22,6 +22,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [FromServices]
         public AesCrypto Aes { get; set; }
         
+        [FromServices]
         public new CodeComb.AspNet.Extensions.SmartUser.SmartUser<User, long> User { get; set; }
     }
 }
