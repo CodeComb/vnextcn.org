@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Data.Entity;
 using CodeComb.vNextExperimentCenter.Models;
+using CodeComb.vNextExperimentCenter.Hub;
 
 namespace CodeComb.vNextExperimentCenter
 {

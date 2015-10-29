@@ -28,7 +28,19 @@ namespace CodeComb.vNextExperimentCenter.Hub
         public int LostConnectionCount { get; set; } = 0;
         public string PrivateKey { get; set; }
         public string OS { get; set; }
-        public HttpClient client;
+        private Timer Timer { get; set; }
+        public HttpClient client
+        {
+            get
+            {
+                var ret = new HttpClient();
+                ret.BaseAddress = new Uri($"http://{Server}:{Port}");
+                ret.DefaultRequestHeaders.Accept.Clear();
+                ret.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                ret.DefaultRequestHeaders.Add("private-key", PrivateKey);
+                return ret;
+            }
+        }
         public NodeStatus Status
         {
             get
@@ -46,6 +58,7 @@ namespace CodeComb.vNextExperimentCenter.Hub
 
         public async Task RefreshNodeInfo()
         {
+            client.Timeout = new TimeSpan(0, 0, 10);
             var response = await client.GetAsync("/common/getnodeinfo");
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
@@ -56,36 +69,43 @@ namespace CodeComb.vNextExperimentCenter.Hub
             MaxThread = result.MaxThread;
             CurrentThread = result.CurrentThread;
             OS = result.Platform;
-            var timer = new Timer(x => { HeartBeat(); }, null, 0, 1000 * 15);
         }
 
-        public async Task Init()
+        public void Init()
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri($"http://{Server}:{Port}");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add("private-key", PrivateKey);
-            await RefreshNodeInfo();
+            Console.WriteLine($"正在初始化{Alias}");
+            Timer = new Timer(x => { HeartBeat(); }, null, 0, 1000 * 15);
+            RefreshNodeInfo();
         }
 
         public async Task HeartBeat()
         {
-            var response = await client.GetAsync("/api/common/heartbeat");
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            client.Timeout = new TimeSpan(0, 0, 3);
+            try
+            {
+                var response = await client.GetAsync("/api/common/heartbeat");
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    LostConnectionCount++;
+                    Console.Error.WriteLine($"{Alias} 心跳测试失败第{LostConnectionCount}次");
+                }
+                else
+                {
+                    LostConnectionCount = 0;
+                    Console.WriteLine($"{Alias} 心跳测试 200 OK");
+                    RefreshNodeInfo();
+                }
+            }
+           catch
             {
                 LostConnectionCount++;
                 Console.Error.WriteLine($"{Alias} 心跳测试失败第{LostConnectionCount}次");
-            }
-            else
-            {
-                LostConnectionCount = 0;
-                Console.WriteLine($"{Alias} 心跳测试 200 OK");
             }
         }
 
         public async Task<bool> SendJudgeTask(long id, byte[] user, byte[] problem, string nuget)
         {
+            client.Timeout = new TimeSpan(0, 10, 0);
             using (var content = new MultipartFormDataContent("Upload----" + DateTime.Now.ToString()))
             {
                 content.Add(new StreamContent(new MemoryStream(user)), "user", "user.zip");

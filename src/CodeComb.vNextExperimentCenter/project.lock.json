@@ -22,7 +22,7 @@
           "lib/dnx451/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151028235032": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151029001629": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-15969",
@@ -42,7 +42,7 @@
           "lib/dnx451/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -60,10 +60,10 @@
           "lib/dnx451/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151028235338"
+          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -78,7 +78,7 @@
           "lib/dnx451/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151028235338": {
+      "CodeComb.CI.Runner/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -2145,7 +2145,7 @@
           "lib/dnxcore50/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151028235032": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151029001629": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-15969",
@@ -2159,7 +2159,7 @@
           "lib/dotnet5.4/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -2171,10 +2171,10 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151028235338"
+          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
         },
         "compile": {
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
@@ -2183,7 +2183,7 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151028235338": {
+      "CodeComb.CI.Runner/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -5108,7 +5108,7 @@
           "lib/dnx451/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151028235032": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151029001629": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-15969",
@@ -5128,7 +5128,7 @@
           "lib/dnx451/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -5146,10 +5146,10 @@
           "lib/dnx451/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151028235338"
+          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -5164,7 +5164,7 @@
           "lib/dnx451/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151028235338": {
+      "CodeComb.CI.Runner/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -7250,7 +7250,7 @@
           "lib/dnx451/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151028235032": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151029001629": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-15969",
@@ -7270,7 +7270,7 @@
           "lib/dnx451/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -7288,10 +7288,10 @@
           "lib/dnx451/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151028235338"
+          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -7306,7 +7306,7 @@
           "lib/dnx451/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151028235338": {
+      "CodeComb.CI.Runner/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -9386,7 +9386,7 @@
           "lib/dnxcore50/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151028235032": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151029001629": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-15969",
@@ -9400,7 +9400,7 @@
           "lib/dotnet5.4/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -9412,10 +9412,10 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151028235338"
+          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
         },
         "compile": {
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
@@ -9424,7 +9424,7 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151028235338": {
+      "CodeComb.CI.Runner/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -11473,7 +11473,7 @@
           "lib/DNXCore50/System.Runtime.Extensions.dll": {}
         }
       },
-      "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23323": {
+      "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23427": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.10",
@@ -11481,7 +11481,7 @@
           "System.Runtime": "4.0.20",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23323",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23427",
           "System.Text.Encoding": "4.0.0",
           "System.Text.Encoding.Extensions": "4.0.0"
         },
@@ -11489,7 +11489,7 @@
           "ref/dotnet/_._": {}
         },
         "runtime": {
-          "runtimes/win7/lib/dotnet/System.Security.Cryptography.Algorithms.dll": {}
+          "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.Algorithms.dll": {}
         }
       },
       "runtime.win7.System.Security.Cryptography.Encoding/4.0.0-beta-23427": {
@@ -12925,7 +12925,7 @@
           "lib/dnxcore50/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151028235032": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151029001629": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-15969",
@@ -12939,7 +12939,7 @@
           "lib/dotnet5.4/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.CI.Extractor/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400"
@@ -12951,10 +12951,10 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.dll": {}
         }
       },
-      "CodeComb.CI.Extractor.Zip/2.0.0-t151028235338": {
+      "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
-          "CodeComb.CI.Extractor": "2.0.0-t151028235338"
+          "CodeComb.CI.Extractor": "2.0.0-t151029012638"
         },
         "compile": {
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
@@ -12963,7 +12963,7 @@
           "lib/dnxcore50/CodeComb.CI.Extractor.Zip.dll": {}
         }
       },
-      "CodeComb.CI.Runner/2.0.0-t151028235338": {
+      "CodeComb.CI.Runner/2.0.0-t151029012638": {
         "type": "package",
         "dependencies": {
           "CodeComb.Package": "2.0.0-t151028234400",
@@ -15012,7 +15012,7 @@
           "lib/DNXCore50/System.Runtime.Extensions.dll": {}
         }
       },
-      "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23323": {
+      "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23427": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.10",
@@ -15020,7 +15020,7 @@
           "System.Runtime": "4.0.20",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23323",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23427",
           "System.Text.Encoding": "4.0.0",
           "System.Text.Encoding.Extensions": "4.0.0"
         },
@@ -15028,7 +15028,7 @@
           "ref/dotnet/_._": {}
         },
         "runtime": {
-          "runtimes/win7/lib/dotnet/System.Security.Cryptography.Algorithms.dll": {}
+          "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.Algorithms.dll": {}
         }
       },
       "runtime.win7.System.Security.Cryptography.Encoding/4.0.0-beta-23427": {
@@ -16469,12 +16469,12 @@
         "lib/dnxcore50/CodeComb.AspNet.AntiXSS.xml"
       ]
     },
-    "CodeComb.AspNet.Extensions/2.0.0-t151028235032": {
+    "CodeComb.AspNet.Extensions/2.0.0-t151029001629": {
       "type": "package",
-      "sha512": "o3RrRpL25LpABRABSUPMa7QGyfwdxWA/1fm4V50D8lpPvSbLJToqmt3FIP5aKbU6zGWLsKCknfPU1QUjKy0p7Q==",
+      "sha512": "Nu0TAf+Djk4mNIU1mQ7yjEty3+to4bAtLnKAx+DcCgQYA6+9aboCs+FkdBGWYbiiNaBPTbUluAkuPjnN62EQpA==",
       "files": [
-        "CodeComb.AspNet.Extensions.2.0.0-t151028235032.nupkg",
-        "CodeComb.AspNet.Extensions.2.0.0-t151028235032.nupkg.sha512",
+        "CodeComb.AspNet.Extensions.2.0.0-t151029001629.nupkg",
+        "CodeComb.AspNet.Extensions.2.0.0-t151029001629.nupkg.sha512",
         "CodeComb.AspNet.Extensions.nuspec",
         "lib/dnx451/CodeComb.AspNet.Extensions.dll",
         "lib/dnx451/CodeComb.AspNet.Extensions.xml",
@@ -16482,12 +16482,12 @@
         "lib/dotnet5.4/CodeComb.AspNet.Extensions.xml"
       ]
     },
-    "CodeComb.CI.Extractor/2.0.0-t151028235338": {
+    "CodeComb.CI.Extractor/2.0.0-t151029012638": {
       "type": "package",
-      "sha512": "/JRkWEOCuPP5cJHMZKOzvXLsLR3oikeXlE1zVc5E5WfcxTCTqrTVnm3mZ+Ev0FwO63MF6c67Y2TN/6CvJyfQZA==",
+      "sha512": "AMII6opVMu9usWo+WbKTXZRX/b/qrzR62qsG3yxcZM73uAmvQqybKbBBy7IJRfr5KFa1fMzKXfcoflTwuM4t3g==",
       "files": [
-        "CodeComb.CI.Extractor.2.0.0-t151028235338.nupkg",
-        "CodeComb.CI.Extractor.2.0.0-t151028235338.nupkg.sha512",
+        "CodeComb.CI.Extractor.2.0.0-t151029012638.nupkg",
+        "CodeComb.CI.Extractor.2.0.0-t151029012638.nupkg.sha512",
         "CodeComb.CI.Extractor.nuspec",
         "lib/dnx451/CodeComb.CI.Extractor.dll",
         "lib/dnx451/CodeComb.CI.Extractor.xml",
@@ -16495,12 +16495,12 @@
         "lib/dnxcore50/CodeComb.CI.Extractor.xml"
       ]
     },
-    "CodeComb.CI.Extractor.Zip/2.0.0-t151028235338": {
+    "CodeComb.CI.Extractor.Zip/2.0.0-t151029012638": {
       "type": "package",
-      "sha512": "CNiDblNb7OgKWH/g6/NCD3VtYaUHv5mK9vyH55tBVr9cMu2OFVHi6ETYf4DhooVyenlXwNEYSnqXbuV8PNjsoA==",
+      "sha512": "pInwnbYZMI9GI9rXgG2bXLJlHqWEo8/Kit1aNeOD4vZgVzIP1qSKLtyRvlUWrClffzaZ5roI4X7g0eTUOCEFTg==",
       "files": [
-        "CodeComb.CI.Extractor.Zip.2.0.0-t151028235338.nupkg",
-        "CodeComb.CI.Extractor.Zip.2.0.0-t151028235338.nupkg.sha512",
+        "CodeComb.CI.Extractor.Zip.2.0.0-t151029012638.nupkg",
+        "CodeComb.CI.Extractor.Zip.2.0.0-t151029012638.nupkg.sha512",
         "CodeComb.CI.Extractor.Zip.nuspec",
         "lib/dnx451/CodeComb.CI.Extractor.Zip.dll",
         "lib/dnx451/CodeComb.CI.Extractor.Zip.xml",
@@ -16508,12 +16508,12 @@
         "lib/dnxcore50/CodeComb.CI.Extractor.Zip.xml"
       ]
     },
-    "CodeComb.CI.Runner/2.0.0-t151028235338": {
+    "CodeComb.CI.Runner/2.0.0-t151029012638": {
       "type": "package",
-      "sha512": "iJZ4bE3yWEQ/cxlhIeL0WZ5/QYd5B8JKzTb0r7xdgy0VpEvGxQKl5xh/b1GG0ASgXB4gI99UxNGF7X7RdULFCA==",
+      "sha512": "RwbzmfwHT1tVsaBKG9cvqLtMBkj1eIVhECvn2vfgFj9JRUZ3w0/tVdxN2rsP+1CTmqLC7WsU3VHtdz/YDZF5cA==",
       "files": [
-        "CodeComb.CI.Runner.2.0.0-t151028235338.nupkg",
-        "CodeComb.CI.Runner.2.0.0-t151028235338.nupkg.sha512",
+        "CodeComb.CI.Runner.2.0.0-t151029012638.nupkg",
+        "CodeComb.CI.Runner.2.0.0-t151029012638.nupkg.sha512",
         "CodeComb.CI.Runner.nuspec",
         "lib/dnx451/CodeComb.CI.Runner.dll",
         "lib/dnx451/CodeComb.CI.Runner.xml",
@@ -18313,16 +18313,17 @@
         "runtimes/win8-aot/lib/netcore50/System.Runtime.Extensions.dll"
       ]
     },
-    "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23323": {
+    "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23427": {
       "type": "package",
       "serviceable": true,
-      "sha512": "3u5AyKOdEVSOAoe+rb5wCuv8793+Zr0SDWZrHRvp/yNQw3HA8xMJLHbzOsrlu6MIOeob583r7QsXPjS8x1IL8Q==",
+      "sha512": "wtnGTqvKrVpIjQmnNuSf6HhwiBhdFTSK1UBckQq/28kqvocNdtjEqqVEILYtljlWEa3T5Yr4OriLrRsMXouSbg==",
       "files": [
         "ref/dotnet/_._",
-        "runtime.win7.System.Security.Cryptography.Algorithms.4.0.0-beta-23323.nupkg",
-        "runtime.win7.System.Security.Cryptography.Algorithms.4.0.0-beta-23323.nupkg.sha512",
+        "runtime.win7.System.Security.Cryptography.Algorithms.4.0.0-beta-23427.nupkg",
+        "runtime.win7.System.Security.Cryptography.Algorithms.4.0.0-beta-23427.nupkg.sha512",
         "runtime.win7.System.Security.Cryptography.Algorithms.nuspec",
-        "runtimes/win7/lib/dotnet/System.Security.Cryptography.Algorithms.dll"
+        "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.Algorithms.dll",
+        "runtimes/win7/lib/net/_._"
       ]
     },
     "runtime.win7.System.Security.Cryptography.Encoding/4.0.0-beta-23427": {

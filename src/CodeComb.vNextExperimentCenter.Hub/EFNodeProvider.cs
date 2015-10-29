@@ -24,10 +24,11 @@ namespace CodeComb.vNextExperimentCenter.Hub
                     CurrentThread = 0,
                     MaxThread = 0,
                     PrivateKey = x.PrivateKey,
-                    LostConnectionCount = 65536
+                    LostConnectionCount = 1,
+                    Alias = x.Alias
                 };
-                Nodes.Add(y);
                 y.Init();
+                Nodes.Add(y);
             }
         }
 

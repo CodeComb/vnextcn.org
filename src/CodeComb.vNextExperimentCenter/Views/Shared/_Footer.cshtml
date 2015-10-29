@@ -6,8 +6,13 @@
                 <div class="col-sm-6 col-md-4">
                     <!-- start widget -->
                     <div class="widget">
-                        <h4 class="title">Recent Posts</h4>
-                        <div class="content recent-post"></div>
+                        <h4 class="title">服务器可用度</h4>
+                        <div class="content recent-post">
+                            @foreach(CodeComb.vNextExperimentCenter.Hub.Node x in ViewBag.Nodes)
+                            { 
+                                <p>@x.Alias @x.Status (@x.LostConnectionCount)</p>
+                            }
+                        </div>
                     </div>
                     <!-- end widget -->
                 </div>

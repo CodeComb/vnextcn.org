@@ -7,33 +7,66 @@
 		<div class="grid_9">
 			<h2 class="exp-title">@Model.Title</h2>
 			<h3 class="exp-sub-title">编辑实验</h3>
-            <table class="detail-table">
-                <tr>
-                    <td class="row-title">实验名称</td>
-                    <td>
-                        <input type="text" class="textbox" name="Title" value="=@Model.Title" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="row-title">实验内容</td>
-                    <td>
-                        <textarea class="textbox" name="Description" style="width: 100%;"></textarea>
-                    </td>
-                </tr>
-            </table>
+            <form asp-action="Edit" asp-controller="Experiment" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+                <table class="detail-table">
+                    <tr>
+                        <td class="row-title">实验名称</td>
+                        <td>
+                            <input type="text" class="textbox" name="Title" asp-for="Title" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">实验内容</td>
+                        <td>
+                            <textarea class="textbox" asp-for="Description" style="width: calc(100% - 10px);height:240px;"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">运行时间限制（毫秒）</td>
+                        <td>
+                            <input type="text" class="textbox" asp-for="TimeLimit" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">运行平台</td>
+                        <td>
+                            <select asp-for="OS">
+                                @foreach (var x in Enum.GetNames(typeof(OSType)))
+                                {
+                                    <option value="@x">@x</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">运行时</td>
+                        <td>
+                            <input type="text" class="textbox" asp-for="Version" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">命名空间</td>
+                        <td>
+                            <input type="text" class="textbox" asp-for="Namespace" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">测试程序</td>
+                        <td>
+                            <input type="file" name="TestArchive" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">标准程序</td>
+                        <td>
+                            <input type="file" name="AnswerArchive" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
 		</div>
 		<div class="grid_3 sidebar">
 			<h3 class="header">操作</h3>
-			@if (User.IsSignedIn())
-			{
-				<p><a href="javascript:$('#submit-area').removeClass('hide')"><i class="fa fa-angle-double-right"></i> 提交程序</a></p>
-			}
-			<p><a asp-action="Index" asp-controller="Status" asp-route-eid="@Model.Id"><i class="fa fa-angle-double-right"></i> 评测记录</a></p>
-			<p><a asp-action="Index" asp-controller="Forum" asp-route-experiment="@Model.Id"><i class="fa fa-angle-double-right"></i> 讨论该题</a></p>
-			@if (User.AnyRoles("Master, Root"))
-			{
-				<p><a asp-action="Edit" asp-controller="Experiment" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 编辑题目</a></p>
-			}
 		</div>
 	</div>
 </div>

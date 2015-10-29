@@ -47,8 +47,18 @@
 			<h3 class="exp-sub-title">实验内容</h3>
 			@Html.Sanitize(Html.Marked(Model.Description).ToString())
 		</div>
-		<div class="grid_3 sidebar">
-			<h3 class="header">操作</h3>
-		</div>
+        <div class="grid_3 sidebar">
+            <h3 class="header">操作</h3>
+            @if (User.IsSignedIn())
+            {
+                <p><a href="javascript:$('#submit-area').removeClass('hide')"><i class="fa fa-angle-double-right"></i> 提交程序</a></p>
+            }
+            <p><a asp-action="Index" asp-controller="Status" asp-route-eid="@Model.Id"><i class="fa fa-angle-double-right"></i> 评测记录</a></p>
+            <p><a asp-action="Index" asp-controller="Forum" asp-route-experiment="@Model.Id"><i class="fa fa-angle-double-right"></i> 讨论该题</a></p>
+            @if (User.AnyRoles("Master, Root"))
+            {
+                <p><a asp-action="Edit" asp-controller="Experiment" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 编辑题目</a></p>
+            }
+        </div>
 	</div>
 </div>

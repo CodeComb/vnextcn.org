@@ -24,5 +24,10 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         
         [FromServices]
         public new CodeComb.AspNet.Extensions.SmartUser.SmartUser<User, long> User { get; set; }
+
+        public override void Prepare()
+        {
+            ViewBag.Nodes = NodeProvider.Nodes;
+        }
     }
 }
