@@ -15,5 +15,14 @@ namespace CodeComb.vNextExperimentCenter.Models
         public string AvatarContentType { get; set; }
 
         public DateTime RegisteryTime { get; set; }
+
+        [MaxLength(512)]
+        public string Motto { get; set; }
+
+        [MaxLength(128)]
+        public string Organization { get; set; }
+
+        [MaxLength(128)]
+        public string WebSite { get; set; }
     }
 }

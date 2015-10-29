@@ -31,10 +31,31 @@
                         <td class="row-title">Email</td>
                         <td>@Model.Email.Replace("@", "#")</td>
                     </tr>
+                    @if (!string.IsNullOrEmpty(Model.Organization))
+                    {
+                        <tr>
+                            <td class="row-title">组织</td>
+                            <td>@Model.Organization</td>
+                        </tr>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.WebSite))
+                    {
+                        <tr>
+                            <td class="row-title">网站</td>
+                            <td><a href="@Model.WebSite" target="_blank">@Model.WebSite</a></td>
+                        </tr>
+                    }
                     <tr>
                         <td class="row-title">注册时间</td>
                         <td>@Model.RegisteryTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
                     </tr>
+                    @if (!string.IsNullOrEmpty(Model.Motto))
+                    {
+                        <tr>
+                            <td class="row-title">个性签名</td>
+                            <td>@Model.Motto</td>
+                        </tr>
+                    }
                 </table>
             </div>
             <h3 class="exp-sub-title">提交频率</h3>
@@ -42,17 +63,6 @@
                  开发中
              </div>
         </div>
-        <div class="grid_3">
-            <p class="center"><img class="sidebar-avatar" src="~/Account/Avatar/@Model.Id" style="width: 100%;" /></p>
-            <p class="center"><a asp-controller="Account" asp-action="Show" asp-route-id="@Model.Id">@await Html.ColorUserNameAsync(Model, "sidebar-username")</a></p>
-            <div class="sidebar-nobg">
-                <p><a asp-controller="Account" asp-action="Show" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> TA的资料</a></p>
-                @if (User.IsSignedIn() && (User.AnyRoles("Root, Master") || User.Current.Id == Model.Id))
-                {
-                    <p><a asp-controller="Account" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 编辑个人资料</a></p>
-                    <p><a asp-controller="Account" asp-action="Password" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 修改密码</a></p>
-                }
-            </div>
-        </div>
+        @Html.Partial("Sidebar")
     </div>
 </div>

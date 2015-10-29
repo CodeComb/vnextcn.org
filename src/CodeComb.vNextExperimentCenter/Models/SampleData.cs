@@ -20,7 +20,7 @@ namespace CodeComb.vNextExperimentCenter.Models
 				await RoleManager.CreateAsync(new IdentityRole<long> { Name = "Member" });
 				await RoleManager.CreateAsync(new IdentityRole<long> { Name = "Banned" });
 				
-				var user = new User { UserName = "root", Email = "1@1234.sh" };
+				var user = new User { UserName = "root", Email = "1@1234.sh", Organization = "Code Comb Co,. Ltd.", WebSite = "http://1234.sh" };
 				await UserManager.CreateAsync(user, "123456");
 				await UserManager.AddToRoleAsync(user, "Root");
 				
@@ -29,7 +29,7 @@ namespace CodeComb.vNextExperimentCenter.Models
 					Title = "编写Hello World网站",
 					OS = OSType.CrossPlatform,
 					Version = "beta8",
-					Description = "编写一个vNext网站程序，仅输出Hello World",
+					Description = "编写一个vNext网站程序，仅输出`Hello World!`",
 					TimeLimit = 10000,
 					CheckPassed = true,
 					Difficulty = 0,
