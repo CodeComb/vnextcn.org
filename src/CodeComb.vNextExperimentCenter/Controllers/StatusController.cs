@@ -21,7 +21,11 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [Route("Status/{id:long}")]
         public IActionResult Show(long id)
         {
-            var status = DB.Statuses.Where(x => x.Id == id).SingleOrDefault();
+            var status = DB.Statuses
+                .Include(x => x.User)
+                .Include(x => x.Problem)
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
             if (status == null)
                 return Prompt(x =>
                 {

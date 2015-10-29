@@ -5,12 +5,12 @@
 @foreach(var x in Model)
 {
     <tr>
-        <td>@x.Result</td>
-        <td></td>
-        <td>@x.TimeUsage</td>
-        <td>@x.MemoryUsage</td>
-        <td>@x.Problem.Title</td>
-        <td>@x.User.UserName</td>
-        <td>@x.Time</td>
+        <td class="center"><a asp-action="Show" asp-controller="Status" asp-route-id="@x.Id">@Html.ColorStatus(x.Result)</a></td>
+        <td class="center"></td>
+        <td class="center">@x.TimeUsage</td>
+        <td class="center">@x.MemoryUsage</td>
+        <td class="status-experiment"><a asp-action="Show" asp-controller="Experiment" asp-route-id="@x.ProblemId">E@(x.Problem.Id) @x.Problem.Title</a></td>
+        <td class="right status-author"><a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@await Html.ColorUserNameAsync(x.User)</a></td>
+        <td class="center">@x.Time</td>
     </tr>
 }

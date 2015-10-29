@@ -120,8 +120,10 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             exp.NuGet = Model.NuGet;
             exp.OS = Model.OS;
             exp.TimeLimit = Model.TimeLimit;
-            exp.TestArchive = await TestArchive.ReadAllBytesAsync();
-            exp.AnswerArchive = await AnswerArchive.ReadAllBytesAsync();
+            if (TestArchive != null)
+                exp.TestArchive = await TestArchive.ReadAllBytesAsync();
+            if (AnswerArchive != null)
+                exp.AnswerArchive = await AnswerArchive.ReadAllBytesAsync();
             exp.Difficulty = Model.Difficulty;
             exp.Version = Model.Version;
             DB.SaveChanges();

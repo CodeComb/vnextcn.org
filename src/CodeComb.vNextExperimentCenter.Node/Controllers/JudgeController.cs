@@ -40,8 +40,10 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
             Console.WriteLine("测试程序解压成功 " + tempDirectory + identifier + "/experiment/");
             CopyDirectory(FindRoot(tempDirectory + identifier + "/experiment"), Configuration["JudgePool"] + "/" + identifier);
             CopyDirectory(FindProject(directory + "/user"), Configuration["JudgePool"] + "/" + identifier + "/src/web");
+            Console.WriteLine($"生成评测目录 {Configuration["JudgePool"] + "/" + identifier}");
             if (nuget == null) nuget = "";
             System.IO.File.WriteAllText(Configuration["JudgePool"] + "/" + identifier + "/Nuget.config", GenerateNuGetConfig(nuget.Split('\n')));
+            Console.WriteLine($"生成NuGet.config {Configuration["JudgePool"] + "/" + identifier + "/Nuget.config"}");
             Runner.PushTask(Configuration["JudgePool"] + "/" + identifier, identifier);
             return "ok";
         }

@@ -3,7 +3,41 @@
     ViewBag.Title = $"#{Model.Id} - 运行状态";
 }
 
-<div class="col-md-8 col-sm-12 col-md-offset-2">
-    <h2>@ViewBag.Title</h2>
-    <pre>@Model.Output</pre>
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <h3 class="exp-sub-title">运行摘要</h3>
+            <table class="detail-table">
+                <tr class="detail-table-header">
+                    <td>实验</td>
+                    <td>运行时长(min)</td>
+                    <td>占用空间(MiB)</td>
+                    <td>提交时间</td>
+                    <td>运行结果</td>
+                </tr>
+                <tr>
+                    <td><a asp-action="Show" asp-controller="Experiment" asp-route-id="@Model.ProblemId">E@(Model.ProblemId) @Model.Problem.Title</a></td>
+                    <td>@(Model.TimeUsage / 60) 分钟</td>
+                    <td>@(Model.MemoryUsage / 1024 / 1024) MiB</td>
+                    <td>@Model.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td>@Html.ColorStatus(Model.Result)</td>
+                </tr>
+            </table>
+            <h3 class="exp-sub-title">运行输出</h3>
+            <div class="pre-outer">
+                <pre>@Model.Output</pre>
+            </div>
+        </div>
+        <div class="grid_3">
+            <p class="center"><img class="sidebar-avatar" src="~/Account/Avatar/@Model.UserId" style="width: 100%;" /></p>
+            <p class="center"><a asp-controller="Account" asp-action="Show" asp-route-id="@Model.UserId">@await Html.ColorUserNameAsync(Model.User, "sidebar-username")</a></p>
+            <div class="sidebar-nobg">
+                <p><a href="javascript:;"><i class="fa fa-angle-double-right"></i> 重新运行</a></p>
+                <p><a asp-action="Index" asp-controller="Status"><i class="fa fa-angle-double-right"></i> 返回状态列表</a></p>
+                <p><a asp-action="Show" asp-controller="Experiment" asp-route-id="@Model.ProblemId"><i class="fa fa-angle-double-right"></i> 返回实验#@Model.ProblemId</a></p>
+                <p><a asp-action="Index" asp-controller="Forum" asp-route-experiment="@Model.Id"><i class="fa fa-angle-double-right"></i> 讨论该实验</a></p>
+            </div>
+         </div>
+    </div>
 </div>

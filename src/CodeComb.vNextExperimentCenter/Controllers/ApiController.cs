@@ -11,7 +11,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!DB.Nodes.Any(x => x.PrivateKey == context.HttpContext.Request.Headers["PrivateKey"].ToString()))
+            var pk = context.HttpContext.Request.Headers["PrivateKey"].ToString();
+            if (DB.Nodes.Where(x => x.PrivateKey == pk).Count() == 0)
             {
                 context.Result = new ChallengeResult();
                 return;
@@ -21,7 +22,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
 
         public override Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            if (!DB.Nodes.Any(x => x.PrivateKey == context.HttpContext.Request.Headers["PrivateKey"].ToString()))
+            var pk = context.HttpContext.Request.Headers["PrivateKey"].ToString();
+            if (DB.Nodes.Where(x => x.PrivateKey == pk).Count() == 0)
             {
                 context.Result = new ChallengeResult();
                 return Task.FromResult(403);

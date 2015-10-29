@@ -1,0 +1,20 @@
+﻿{
+  "title": "CodeComb.CI.Extractor.Zip",
+  "version": "2.0.0-*",
+  "description": "ASP.Net vNext CI Library",
+  "copyright": "Harbin Code Comb Technology Co.,Ltd",
+  "authors": [ "AmamiyaYuuko" ],
+  "tags": [ "Ffmpeg" ,"vNext", "CI" ],
+  "iconUrl": "http://www.1234.sh/images/logo.png",
+  "projectUrl": "https://github.com/CodeComb/ContinuousIntegration",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "CodeComb.CI.Extractor": "2.0.0-*"
+  },
+
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": { }
+  }
+}

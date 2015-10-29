@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -24,8 +25,6 @@ namespace CodeComb.vNextExperimentCenter.Node
                 {
                     client = new HttpClient();
                     client.BaseAddress = new Uri($"http://{Configuration["Server"]}:{Configuration["Port"]}");
-                    client.DefaultRequestHeaders.Accept.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     client.DefaultRequestHeaders.Add("private-key", Configuration["PrivateKey"]);
                 }
                 return client;
@@ -47,39 +46,75 @@ namespace CodeComb.vNextExperimentCenter.Node
         private void Task_OnBuildSuccessful(object sender, CI.Runner.EventArgs.BuildSuccessfulArgs args)
         {
             var task = sender as CI.Runner.Task;
-            client.PostAsync("/api/Judge/Successful", new FormUrlEncodedContent(new List<KeyValuePair<string, string>>
+            Client.PostAsync("/api/Judge/Successful", new FormUrlEncodedContent(new Dictionary<string, string>
             {
-                new KeyValuePair<string, string> ("id", task.Identifier.ToString())
+                { "id", task.Identifier.ToString() },
+                { "Output", task.Output }
             })).Wait();
+            cacheStr.Remove((long)task.Identifier);
+            cacheTime.Remove((long)task.Identifier);
+            GC.Collect();
         }
 
         private void Task_OnTimeLimitExceeded(object sender, CI.Runner.EventArgs.TimeLimitExceededArgs args)
         {
             var task = sender as CI.Runner.Task;
-            client.PostAsync("/api/Judge/TimeLimitExceeded", new FormUrlEncodedContent(new List<KeyValuePair<string, string>>
+            Client.PostAsync("/api/Judge/TimeLimitExceeded", new FormUrlEncodedContent(new Dictionary<string, string>
             {
-                new KeyValuePair<string, string> ("id", task.Identifier.ToString())
+                { "id", task.Identifier.ToString() },
+                { "Output", task.Output }
             })).Wait();
+            cacheStr.Remove((long)task.Identifier);
+            cacheTime.Remove((long)task.Identifier);
+            GC.Collect();
         }
 
         private void Task_OnBuiledFailed(object sender, CI.Runner.EventArgs.BuildFailedArgs args)
         {
             var task = sender as CI.Runner.Task;
-            client.PostAsync("/api/Judge/Failed", new FormUrlEncodedContent(new List<KeyValuePair<string, string>>
+            Client.PostAsync("/api/Judge/Failed", new FormUrlEncodedContent(new Dictionary<string, string>
             {
-                new KeyValuePair<string, string> ("id", task.Identifier.ToString())
+                { "id", task.Identifier.ToString() },
+                { "Output", task.Output }
             })).Wait();
+            cacheStr.Remove((long)task.Identifier);
+            cacheTime.Remove((long)task.Identifier);
+            GC.Collect();
         }
+
+        private Dictionary<long, string> cacheStr = new Dictionary<long, string>();
+        private Dictionary<long, DateTime> cacheTime = new Dictionary<long, DateTime>();
 
         private void Task_OnOutputReceived(object sender, CI.Runner.EventArgs.OutputReceivedEventArgs args)
         {
             var task = sender as CI.Runner.Task;
-            client.PostAsync("/api/Judge/Output", new FormUrlEncodedContent(new List<KeyValuePair<string, string>>
+            var id = (long)task.Identifier;
+            if (!cacheStr.Keys.Contains(id))
+                cacheStr[id] = args.Output;
+            if (!cacheTime.Keys.Contains(id))
+                cacheTime[id] = DateTime.Now;
+            cacheStr[id] += args.Output;
+            Task.Factory.StartNew(async () =>
             {
-                new KeyValuePair<string, string> ("id", task.Identifier.ToString()),
-                new KeyValuePair<string, string> ("text", args.Output),
-            })).Wait();
-            Console.WriteLine("向服务器反馈输出文本");
+                Thread.Sleep(2000);
+                if (cacheTime[id].AddSeconds(2) > DateTime.Now)
+                {
+                    return;
+                }
+                else
+                {
+                    cacheTime[id] = DateTime.Now;
+                    var tmp = cacheStr[id];
+                    cacheStr[id] = "";
+
+                    var result = await Client.PostAsync("/api/Judge/Output", new FormUrlEncodedContent(new Dictionary<string, string>
+                    {
+                        { "id", id.ToString() },
+                        { "text", tmp }
+                    }));
+                    Console.WriteLine($"向服务器反馈输出文本 {result.StatusCode}");
+                }
+            });
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
@@ -87,7 +122,7 @@ namespace CodeComb.vNextExperimentCenter.Node
             loggerFactory.MinimumLevel = LogLevel.Warning;
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
-            
+
             app.UseMvc();
         }
     }
