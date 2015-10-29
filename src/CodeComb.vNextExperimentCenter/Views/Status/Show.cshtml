@@ -1,6 +1,6 @@
 ﻿@model Status
 @{ 
-    ViewBag.Title = $"#{Model.Id} - 运行状态";
+    ViewBag.Title = $"运行状态 - #{Model.Id}";
 }
 
 <div class="container">
@@ -8,25 +8,29 @@
         <div class="grid_9">
             <h2 class="exp-title">@ViewBag.Title</h2>
             <h3 class="exp-sub-title">运行摘要</h3>
-            <table class="detail-table">
-                <tr class="detail-table-header">
-                    <td>实验</td>
-                    <td>运行时长(min)</td>
-                    <td>占用空间(MiB)</td>
-                    <td>提交时间</td>
-                    <td>运行结果</td>
-                </tr>
-                <tr>
-                    <td><a asp-action="Show" asp-controller="Experiment" asp-route-id="@Model.ProblemId">E@(Model.ProblemId) @Model.Problem.Title</a></td>
-                    <td>@(Model.TimeUsage / 60) 分钟</td>
-                    <td>@(Model.MemoryUsage / 1024 / 1024) MiB</td>
-                    <td>@Model.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
-                    <td>@Html.ColorStatus(Model.Result)</td>
-                </tr>
-            </table>
+            <div class="cont-outer">
+                <table class="detail-table">
+                    <tr class="detail-table-header">
+                        <td>实验</td>
+                        <td>运行时长</td>
+                        <td>占用空间</td>
+                        <td>提交时间</td>
+                        <td>运行结果</td>
+                    </tr>
+                    <tr>
+                        <td><a asp-action="Show" asp-controller="Experiment" asp-route-id="@Model.ProblemId">E@(Model.ProblemId) @Model.Problem.Title</a></td>
+                        <td>@(Model.TimeUsage / 60) 分钟</td>
+                        <td>@(Model.MemoryUsage / 1024 / 1024) MiB</td>
+                        <td>@Model.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        <td>@Html.ColorStatus(Model.Result)</td>
+                    </tr>
+                </table>
+            </div>
             <h3 class="exp-sub-title">运行输出</h3>
-            <div class="pre-outer">
-                <pre>@Model.Output</pre>
+            <div class="cont-outer">
+                <div class="pre-outer">
+                    <pre>@Model.Output</pre>
+                </div>
             </div>
         </div>
         <div class="grid_3">

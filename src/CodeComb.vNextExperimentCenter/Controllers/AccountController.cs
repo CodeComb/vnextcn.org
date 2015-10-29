@@ -138,5 +138,20 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 x.HideBack = true;
             });
         }
+
+        public IActionResult Show(long id)
+        {
+            var user = DB.Users.Where(x => x.Id == id).SingleOrDefault();
+
+            if (user == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+
+            return View(user);
+        }
     }
 }

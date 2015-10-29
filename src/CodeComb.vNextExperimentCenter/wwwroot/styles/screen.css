@@ -2075,3 +2075,17 @@ pre {
     max-width: 180px;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
+
+.detail-table.no-border td {
+    padding: 3px 10px;
+    border: none;
+}
+
+.no-border .row-title {
+    background: none;
+    font-weight: bold;
+}
+
+.cont-outer {
+    padding: 0 15px 15px 15px;
+}

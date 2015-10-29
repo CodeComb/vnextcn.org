@@ -1,0 +1,58 @@
+﻿@model User
+@{ 
+    ViewBag.Title = Model.UserName;
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <h3 class="exp-sub-title">基本资料</h3>
+            <div class="cont-outer">
+                <table class="detail-table no-border">
+                    <tr>
+                        <td class="row-title">UID</td>
+                        <td>@Model.Id</td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">用户名</td>
+                        <td>@await Html.ColorUserNameAsync(Model)</td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">用户组</td>
+                        <td>
+                            @foreach (var x in await User.Manager.GetRolesAsync(Model))
+                            {
+                                <span>@x</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">Email</td>
+                        <td>@Model.Email.Replace("@", "#")</td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">注册时间</td>
+                        <td>@Model.RegisteryTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    </tr>
+                </table>
+            </div>
+            <h3 class="exp-sub-title">提交频率</h3>
+             <div class="cont-outer">
+                 开发中
+             </div>
+        </div>
+        <div class="grid_3">
+            <p class="center"><img class="sidebar-avatar" src="~/Account/Avatar/@Model.Id" style="width: 100%;" /></p>
+            <p class="center"><a asp-controller="Account" asp-action="Show" asp-route-id="@Model.Id">@await Html.ColorUserNameAsync(Model, "sidebar-username")</a></p>
+            <div class="sidebar-nobg">
+                <p><a asp-controller="Account" asp-action="Show" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> TA的资料</a></p>
+                @if (User.IsSignedIn() && (User.AnyRoles("Root, Master") || User.Current.Id == Model.Id))
+                {
+                    <p><a asp-controller="Account" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 编辑个人资料</a></p>
+                    <p><a asp-controller="Account" asp-action="Password" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 修改密码</a></p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

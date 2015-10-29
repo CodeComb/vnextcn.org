@@ -30,22 +30,26 @@
 		<div class="grid_9">
 			<h2 class="exp-title">@Model.Title</h2>
 			<h3 class="exp-sub-title">运行限制</h3>
-			<table class="detail-table">
-				<tr class="detail-table-header">
-					<td>时间限制</td>
-					<td>命名空间</td>
-					<td>运行时</td>
-					<td>OS</td>
-				</tr>
-				<tr>
-					<td>@Model.TimeLimit ms</td>
-					<td>@Model.Namespace</td>
-					<td>@Model.Version</td>
-					<td>@Model.OS</td>
-				</tr>
-			</table>
+            <div class="cont-outer">
+                <table class="detail-table">
+                    <tr class="detail-table-header">
+                        <td>时间限制</td>
+                        <td>命名空间</td>
+                        <td>运行时</td>
+                        <td>OS</td>
+                    </tr>
+                    <tr>
+                        <td>@Model.TimeLimit ms</td>
+                        <td>@Model.Namespace</td>
+                        <td>@Model.Version</td>
+                        <td>@Model.OS</td>
+                    </tr>
+                </table>
+            </div>
 			<h3 class="exp-sub-title">实验内容</h3>
-			@Html.Sanitize(Html.Marked(Model.Description).ToString())
+			<div class="cont-outer">
+                @Html.Sanitize(Html.Marked(Model.Description).ToString())
+            </div>
 		</div>
         <div class="grid_3 sidebar">
             <h3 class="header">操作</h3>

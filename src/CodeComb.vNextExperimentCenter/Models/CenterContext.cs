@@ -21,6 +21,11 @@ namespace CodeComb.vNextExperimentCenter.Models
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<User>(e => 
+            {
+                e.HasIndex(x => x.RegisteryTime);
+            });
+
             builder.Entity<Problem>(e =>
             {
                 e.HasIndex(x => x.Title);
