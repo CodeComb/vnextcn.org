@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text;
 using System.IO;
 using System.Diagnostics;
 using CodeComb.Package;
@@ -58,15 +59,39 @@ namespace CodeComb.CI.Runner
                 RedirectStandardInput = true,
                 WorkingDirectory = WorkingDirectory
             };
+
+            var sysenv = Environment.GetEnvironmentVariables();
+
+            foreach(dynamic ev in sysenv)
+            {
+#if DNXCORE50
+                if (Process.StartInfo.Environment[ev.Key] != null)
+                    Process.StartInfo.Environment[ev.Key] = Process.StartInfo.Environment[ev.Key].TrimEnd(' ').TrimEnd(';') + ";" + ev.Value;
+                else
+                    Process.StartInfo.Environment.Add(ev.Key, ev.Value);
+#else
+                if (Process.StartInfo.EnvironmentVariables[ev.Key] != null)
+                    Process.StartInfo.EnvironmentVariables[ev.Key] = Process.StartInfo.EnvironmentVariables[ev.Key].TrimEnd(' ').TrimEnd(';') + ";" + ev.Value;
+                else
+                    Process.StartInfo.EnvironmentVariables.Add(ev.Key, ev.Value);
+#endif
+            }
+
             if (provider.AdditionalEnvironmentVariables == null)
                 provider.AdditionalEnvironmentVariables = new Dictionary<string, string>();
                     
             foreach (var ev in provider.AdditionalEnvironmentVariables)
             {
 #if DNXCORE50
-                Process.StartInfo.Environment.Add(ev.Key, ev.Value);
+                if (Process.StartInfo.Environment[ev.Key] != null)
+                    Process.StartInfo.Environment[ev.Key] = Process.StartInfo.Environment[ev.Key].TrimEnd(' ').TrimEnd(';') + ";" + ev.Value;
+                else
+                    Process.StartInfo.Environment.Add(ev.Key, ev.Value);
 #else
-                Process.StartInfo.EnvironmentVariables.Add(ev.Key, ev.Value);
+                if (Process.StartInfo.EnvironmentVariables[ev.Key] != null)
+                    Process.StartInfo.EnvironmentVariables[ev.Key] = Process.StartInfo.EnvironmentVariables[ev.Key].TrimEnd(' ').TrimEnd(';') + ";" + ev.Value;
+                else
+                    Process.StartInfo.EnvironmentVariables.Add(ev.Key, ev.Value);
 #endif
             }
         }

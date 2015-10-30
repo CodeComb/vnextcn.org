@@ -33,8 +33,9 @@ namespace CodeComb.vNextExperimentCenter.Models
 					TimeLimit = 10000,
 					CheckPassed = true,
 					Difficulty = 0,
-					Namespace = "HelloWorld"
-				});
+					Namespace = "HelloWorld",
+                    NuGet = "https://www.myget.org/F/codecomb-beta8/api/v3/index.json"
+                });
 
                 DB.Nodes.Add(new Hub.Models.Node
                 {
