@@ -6,19 +6,18 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>4f98867c-7966-4afe-b3b4-f2051e7e9684</ProjectGuid>
-    <RootNamespace>CodeComb.vNextExperimentCenter.Node</RootNamespace>
+    <ProjectGuid>9e712b16-4914-4bc5-b730-026cc8b3d9a4</ProjectGuid>
+    <RootNamespace>CodeComb.CI.Runner</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">..\..\artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">..\..\artifacts\bin\$(MSBuildProjectName)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
-    <DevelopmentServerPort>55030</DevelopmentServerPort>
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.targets" Condition="'$(VSToolsPath)' != ''" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties project_1json__JSONSchema="http://json.schemastore.org/project-1.0.0-beta8" />
+      <UserProperties project_1json__JSONSchema="http://json.schemastore.org/project" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

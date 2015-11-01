@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
-using System.Net.Http.Headers;
+using System.IO;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace CodeComb.vNextExperimentCenter.Node
 {
@@ -33,62 +34,65 @@ namespace CodeComb.vNextExperimentCenter.Node
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddConfiguration(out Configuration);
+            var _services = services.BuildServiceProvider();
+            var appEnv = _services.GetRequiredService<IApplicationEnvironment>();
+            var env = _services.GetRequiredService<IHostingEnvironment>();
+            var builder = new ConfigurationBuilder()
+                 .AddJsonFile(Path.Combine(appEnv.ApplicationBasePath, $"config.json"))
+                 .AddJsonFile(Path.Combine(appEnv.ApplicationBasePath, $"config.testing.json"), optional: true)
+                 .AddEnvironmentVariables();
+            Configuration = builder.Build();
+            services.AddInstance(Configuration);
             services.AddMvc();
-            services.AddDefaultCIRunner(Convert.ToInt32(Configuration["MaxThread"]));
-
-            CI.Runner.Task.OnOutputReceived += Task_OnOutputReceived;
-            CI.Runner.Task.OnBuiledFailed += Task_OnBuiledFailed;
-            CI.Runner.Task.OnTimeLimitExceeded += Task_OnTimeLimitExceeded;
-            CI.Runner.Task.OnBuildSuccessful += Task_OnBuildSuccessful;
+            services.AddCIRunner(Convert.ToInt32(Configuration["MaxThread"]));
         }
 
         private void Task_OnBuildSuccessful(object sender, CI.Runner.EventArgs.BuildSuccessfulArgs args)
         {
-            var task = sender as CI.Runner.Task;
+            var task = sender as CI.Runner.CITask;
             Client.PostAsync("/api/Judge/Successful", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", task.Identifier.ToString() },
                 { "Output", task.Output }
             })).Wait();
-            cacheStr.Remove((long)task.Identifier);
-            cacheTime.Remove((long)task.Identifier);
+            cacheStr.Remove(task.Identifier);
+            cacheTime.Remove(task.Identifier);
             GC.Collect();
         }
 
         private void Task_OnTimeLimitExceeded(object sender, CI.Runner.EventArgs.TimeLimitExceededArgs args)
         {
-            var task = sender as CI.Runner.Task;
+            var task = sender as CI.Runner.CITask;
             Client.PostAsync("/api/Judge/TimeLimitExceeded", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", task.Identifier.ToString() },
                 { "Output", task.Output }
             })).Wait();
-            cacheStr.Remove((long)task.Identifier);
-            cacheTime.Remove((long)task.Identifier);
+            cacheStr.Remove(task.Identifier);
+            cacheTime.Remove(task.Identifier);
             GC.Collect();
         }
 
         private void Task_OnBuiledFailed(object sender, CI.Runner.EventArgs.BuildFailedArgs args)
         {
-            var task = sender as CI.Runner.Task;
+            var task = sender as CI.Runner.CITask;
             Client.PostAsync("/api/Judge/Failed", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", task.Identifier.ToString() },
                 { "Output", task.Output }
             })).Wait();
-            cacheStr.Remove((long)task.Identifier);
-            cacheTime.Remove((long)task.Identifier);
+            cacheStr.Remove(task.Identifier);
+            cacheTime.Remove(task.Identifier);
             GC.Collect();
         }
 
-        private Dictionary<long, string> cacheStr = new Dictionary<long, string>();
-        private Dictionary<long, DateTime> cacheTime = new Dictionary<long, DateTime>();
+        public Dictionary<string, string> cacheStr = new Dictionary<string, string>();
+        public Dictionary<string, DateTime> cacheTime = new Dictionary<string, DateTime>();
 
         private void Task_OnOutputReceived(object sender, CI.Runner.EventArgs.OutputReceivedEventArgs args)
         {
-            var task = sender as CI.Runner.Task;
-            var id = (long)task.Identifier;
+            var task = sender as CI.Runner.CITask;
+            var id = task.Identifier;
             if (!cacheStr.Keys.Contains(id))
                 cacheStr[id] = args.Output;
             if (!cacheTime.Keys.Contains(id))
@@ -121,9 +125,13 @@ namespace CodeComb.vNextExperimentCenter.Node
         {
             loggerFactory.MinimumLevel = LogLevel.Warning;
             loggerFactory.AddConsole();
-            loggerFactory.AddDebug();
 
             app.UseMvc();
+
+            CI.Runner.CITask.OnOutputReceived += Task_OnOutputReceived;
+            CI.Runner.CITask.OnBuiledFailed += Task_OnBuiledFailed;
+            CI.Runner.CITask.OnTimeLimitExceeded += Task_OnTimeLimitExceeded;
+            CI.Runner.CITask.OnBuildSuccessful += Task_OnBuildSuccessful;
         }
     }
 }

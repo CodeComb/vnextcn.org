@@ -1,0 +1,36 @@
+﻿{
+  "title": "CodeComb.CI.Runner",
+  "version": "2.0.0-*",
+  "description": "ASP.Net vNext CI Library",
+  "copyright": "Harbin Code Comb Technology Co.,Ltd",
+  "authors": [ "AmamiyaYuuko" ],
+  "tags": [ "Ffmpeg" ,"vNext", "CI" ],
+  "iconUrl": "http://www.1234.sh/images/logo.png",
+  "projectUrl": "https://github.com/CodeComb/ContinuousIntegration",
+  "licenseUrl": "",
+
+  "dependencies": {
+  },
+
+  "frameworks": {
+    "net451": { 
+      "dependencies": {
+        "Microsoft.Extensions.DependencyInjection": "1.0.0-*"
+      }
+    },
+    "dotnet5.4": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-*",
+        "System.Collections": "4.0.11-*",
+        "System.Linq": "4.0.1-*",
+        "System.Runtime": "4.0.21-*",
+        "System.Threading": "4.0.11-*",
+        "System.Threading.Timer": "4.0.1-*",
+        "System.IO": "4.0.11-*",
+        "System.Security.SecureString": "4.0.0-*",
+        "System.Diagnostics.Process": "4.0.0-*",
+        "Microsoft.Extensions.DependencyInjection": "1.0.0-*"
+      }
+    }
+  }
+}

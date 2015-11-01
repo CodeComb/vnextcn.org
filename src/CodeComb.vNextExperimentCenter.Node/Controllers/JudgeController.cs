@@ -7,15 +7,28 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.Configuration;
 using CodeComb.CI.Runner;
-using CodeComb.Package;
+//using CodeComb.Package;
 
 namespace CodeComb.vNextExperimentCenter.Node.Controllers
 {
     [Route("api/judge/[action]")]
     public class JudgeController : BaseController
     {
+        private string FindDirectory(string path)
+        {
+            string[] files;
+            files = Directory.GetFiles(path, "build.cmd", SearchOption.AllDirectories);
+            //if (OS.Current == OSType.Windows)
+            //    files = Directory.GetFiles(path, "build.cmd", SearchOption.AllDirectories);
+            //else
+            //    files = Directory.GetFiles(path, "build.sh", SearchOption.AllDirectories);
+            if (files.Count() == 0)
+                throw new FileNotFoundException();
+            return Path.GetDirectoryName(files.First());
+        }
+
         [FromServices]
-        public ICIRunner Runner { get; set; }
+        public CIRunner Runner { get; set; }
 
         [HttpPost]
         public string New(long id, IFormFile user, IFormFile problem, string nuget)
@@ -23,8 +36,9 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
             var identifier = id;
             var directory = Path.GetTempPath() + $@"/vec/{identifier}/";
             Console.WriteLine("工作路径 "+ Path.GetTempPath() + $@"/vec/{identifier}/");
-            if (!Directory.Exists(directory))
-                Directory.CreateDirectory(directory);
+            if (Directory.Exists(directory))
+                Directory.Delete(directory, true);
+            Directory.CreateDirectory(directory);
             user.SaveAs(directory + $@"/{identifier}.zip");
             Console.WriteLine("用户程序保存成功 " + directory + $@"/{identifier}.zip");
             Unzip.ExtractAll(directory + $@"/{identifier}.zip", directory + "/user/", true);
@@ -44,7 +58,10 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
             if (nuget == null) nuget = "";
             System.IO.File.WriteAllText(Configuration["JudgePool"] + "/" + identifier + "/Nuget.config", GenerateNuGetConfig(nuget.Split('\n')));
             Console.WriteLine($"生成NuGet.config {Configuration["JudgePool"] + "/" + identifier + "/Nuget.config"}");
-            Runner.PushTask(Configuration["JudgePool"] + "/" + identifier, identifier);
+            Runner.WaitingTasks.Enqueue(new CITask (Configuration["JudgePool"] + "/" + identifier, Runner.MaxTimeLimit)
+            {
+                Identifier = identifier.ToString()
+            });
             return "ok";
         }
 
@@ -76,10 +93,11 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
         private string FindRoot(string path)
         {
             string patten;
-            if (OS.Current == OSType.Windows)
-                patten = "build.cmd";
-            else
-                patten = "build.sh";
+            patten = "build.cmd";
+            //if (OS.Current == OSType.Windows)
+            //    patten = "build.cmd";
+            //else
+            //    patten = "build.sh";
             var tmp = Directory.GetFiles(path, patten, SearchOption.AllDirectories);
             var target = tmp.FirstOrDefault();
             if (string.IsNullOrEmpty(target))
