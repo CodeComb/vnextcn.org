@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Http;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Framework.Configuration;
 using CodeComb.CI.Runner;
 //using CodeComb.Package;
 

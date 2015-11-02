@@ -7,10 +7,10 @@ using System.Net.Http;
 using System.IO;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.Logging;
+using Microsoft.Framework.Configuration;
+using Microsoft.Dnx.Runtime;
 
 namespace CodeComb.vNextExperimentCenter.Node
 {

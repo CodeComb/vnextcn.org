@@ -3,12 +3,12 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Microsoft.AspNet.Mvc": "6.0.0-*",
-    "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
-    "Microsoft.Extensions.Logging": "1.0.0-*",
-    "Microsoft.Extensions.Logging.Console": "1.0.0-*",
-    "Microsoft.Extensions.Configuration": "1.0.0-*",
-    "CodeComb.CI.Runner": "2.0.0-*"
+    "Microsoft.AspNet.Mvc": "6.0.0-beta8",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8",
+    "Microsoft.Framework.Logging": "1.0.0-beta8",
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta8",
+    "Microsoft.Framework.Configuration": "1.0.0-beta8",
+    "CodeComb.CI.Runner": "2.0.0-beta8"
   },
 
   "commands": {
@@ -24,10 +24,10 @@
     },
     "dnxcore50": {
       "dependencies": {
-        "System.IO": "4.0.11-*",
-        "System.IO.FileSystem": "4.0.1-*",
-        "System.IO.Compression": "4.0.1-*",
-        "System.Net.Http": "4.0.1-*"
+        "System.IO": "4.0.11-beta-23409",
+        "System.IO.FileSystem": "4.0.1-beta-23409",
+        "System.IO.Compression": "4.0.1-beta-23409",
+        "System.Net.Http": "4.0.1-beta-23409"
       }
     }
   },

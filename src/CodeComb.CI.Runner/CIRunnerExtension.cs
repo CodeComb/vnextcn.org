@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CodeComb.CI.Runner;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace Microsoft.Framework.DependencyInjection
 {
     public static class CIRunnerExtension
     {

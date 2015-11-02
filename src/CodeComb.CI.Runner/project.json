@@ -1,6 +1,6 @@
 ﻿{
   "title": "CodeComb.CI.Runner",
-  "version": "2.0.0-*",
+  "version": "2.0.0-beta8",
   "description": "ASP.Net vNext CI Library",
   "copyright": "Harbin Code Comb Technology Co.,Ltd",
   "authors": [ "AmamiyaYuuko" ],
@@ -15,21 +15,21 @@
   "frameworks": {
     "net451": { 
       "dependencies": {
-        "Microsoft.Extensions.DependencyInjection": "1.0.0-*"
+        "Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
       }
     },
     "dotnet5.4": {
       "dependencies": {
-        "Microsoft.CSharp": "4.0.1-*",
-        "System.Collections": "4.0.11-*",
-        "System.Linq": "4.0.1-*",
-        "System.Runtime": "4.0.21-*",
-        "System.Threading": "4.0.11-*",
-        "System.Threading.Timer": "4.0.1-*",
-        "System.IO": "4.0.11-*",
-        "System.Security.SecureString": "4.0.0-*",
-        "System.Diagnostics.Process": "4.0.0-*",
-        "Microsoft.Extensions.DependencyInjection": "1.0.0-*"
+        "Microsoft.CSharp": "4.0.1-beta-23409",
+        "System.Collections": "4.0.11-beta-23409",
+        "System.Linq": "4.0.1-beta-23409",
+        "System.Runtime": "4.0.21-beta-23409",
+        "System.Threading": "4.0.11-beta-23409",
+        "System.Threading.Timer": "4.0.1-beta-23409",
+        "System.IO": "4.0.11-beta-23409",
+        "System.Security.SecureString": "4.0.0-beta-23409",
+        "System.Diagnostics.Process": "4.0.0-beta-23409",
+        "Microsoft.Framework.DependencyInjection": "1.0.0-beta-23409"
       }
     }
   }
