@@ -86,8 +86,10 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 .Include(x => x.Details)
                 .Where(x => x.Id == id)
                 .Single();
+
             status.Accepted = status.Details.Where(x => x.Result == Models.TestCaseResult.Pass).Count();
             status.Total = status.Details.Where(x => x.Result != Models.TestCaseResult.Skip).Count();
+            status.TimeUsage = Convert.ToInt64(status.Details.Sum(x => x.Time) * 1000);
             DB.SaveChanges();
 
             return "ok";
