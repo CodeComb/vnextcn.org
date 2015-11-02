@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Data.Entity;
 
 namespace CodeComb.vNextExperimentCenter.Controllers
 {
@@ -79,6 +81,15 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             };
             DB.StatusDetails.Add(statusDetail);
             DB.SaveChanges();
+
+            var status = DB.Statuses
+                .Include(x => x.Details)
+                .Where(x => x.Id == id)
+                .Single();
+            status.Accepted = status.Details.Where(x => x.Result == Models.TestCaseResult.Pass).Count();
+            status.Total = status.Details.Where(x => x.Result != Models.TestCaseResult.Skip).Count();
+            DB.SaveChanges();
+
             return "ok";
         }
     }
