@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Filters;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Framework.Configuration;
 
 namespace CodeComb.vNextExperimentCenter.Node.Controllers
 {

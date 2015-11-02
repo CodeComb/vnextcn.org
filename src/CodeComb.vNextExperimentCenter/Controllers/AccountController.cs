@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Http;
+using Microsoft.AspNet.Authorization;
 using CodeComb.vNextExperimentCenter.Models;
 
 namespace CodeComb.vNextExperimentCenter.Controllers
@@ -137,6 +140,109 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 x.RedirectUrl = Url.Link("default", new { controller = "Account", Action = "Login" });
                 x.HideBack = true;
             });
+        }
+
+        [Route("Account/{id:long}")]
+        public IActionResult Show(long id)
+        {
+            var user = DB.Users.Where(x => x.Id == id).SingleOrDefault();
+            if (user == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+
+            return View(user);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Edit(long id)
+        {
+            var user = DB.Users.Where(x => x.Id == id).SingleOrDefault();
+            if (user == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            var roles = await UserManager.GetRolesAsync(user);
+            if (roles.Contains("Root") && !User.IsInRole("Root"))
+                return Prompt(x =>
+                {
+                    x.Title = "没有权限";
+                    x.Details = "您的权限不足以编辑该用户，请使用更高权限帐号执行本操作。";
+                    x.StatusCode = 403;
+                });
+            if (User.Current.Id != id && !User.AnyRoles("Root, Master"))
+                return Prompt(x =>
+                {
+                    x.Title = "没有权限";
+                    x.Details = "您的权限不足以编辑该用户，请使用更高权限帐号执行本操作。";
+                    x.StatusCode = 403;
+                });
+            return View(user);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(long id, IFormFile avatar, User Model)
+        {
+            var user = DB.Users.Where(x => x.Id == id).SingleOrDefault();
+            if (user == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            var roles = await UserManager.GetRolesAsync(user);
+            if (roles.Contains("Root") && !User.IsInRole("Root"))
+                return Prompt(x =>
+                {
+                    x.Title = "没有权限";
+                    x.Details = "您的权限不足以编辑该用户，请使用更高权限帐号执行本操作。";
+                    x.StatusCode = 403;
+                });
+            if (User.Current.Id != id && !User.AnyRoles("Root, Master"))
+                return Prompt(x =>
+                {
+                    x.Title = "没有权限";
+                    x.Details = "您的权限不足以编辑该用户，请使用更高权限帐号执行本操作。";
+                    x.StatusCode = 403;
+                });
+            if (avatar != null)
+            {
+                user.Avatar = await avatar.ReadAllBytesAsync();
+                user.AvatarContentType = avatar.ContentType;
+            }
+            user.Motto = Model.Motto;
+            user.WebSite = Model.WebSite;
+            user.Organization = Model.Organization;
+            DB.SaveChanges();
+            return Prompt(x =>
+            {
+                x.Title = "修改成功";
+                x.Details = "用户资料已经保存成功！";
+            });
+        }
+
+        [HttpGet]
+        public IActionResult Avatar(long id)
+        {
+            var user = DB.Users.Where(x => x.Id == id).SingleOrDefault();
+            if (user == null || user.Avatar == null)
+            {
+                return File(System.IO.File.ReadAllBytes(WebRoot + "/images/NoAvatar.png"), "image/x-png");
+            }
+            else
+            {
+                return File(user.Avatar, user.AvatarContentType);
+            }
         }
     }
 }

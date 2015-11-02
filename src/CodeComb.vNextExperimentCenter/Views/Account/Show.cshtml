@@ -1,0 +1,68 @@
+﻿@model User
+@{ 
+    ViewBag.Title = Model.UserName;
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <h3 class="exp-sub-title">基本资料</h3>
+            <div class="cont-outer">
+                <table class="detail-table no-border">
+                    <tr>
+                        <td class="row-title">UID</td>
+                        <td>@Model.Id</td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">用户名</td>
+                        <td>@await Html.ColorUserNameAsync(Model)</td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">用户组</td>
+                        <td>
+                            @foreach (var x in await User.Manager.GetRolesAsync(Model))
+                            {
+                                <span>@x</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">Email</td>
+                        <td>@Model.Email.Replace("@", "#")</td>
+                    </tr>
+                    @if (!string.IsNullOrEmpty(Model.Organization))
+                    {
+                        <tr>
+                            <td class="row-title">组织</td>
+                            <td>@Model.Organization</td>
+                        </tr>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.WebSite))
+                    {
+                        <tr>
+                            <td class="row-title">网站</td>
+                            <td><a href="@Model.WebSite" target="_blank">@Model.WebSite</a></td>
+                        </tr>
+                    }
+                    <tr>
+                        <td class="row-title">注册时间</td>
+                        <td>@Model.RegisteryTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    </tr>
+                    @if (!string.IsNullOrEmpty(Model.Motto))
+                    {
+                        <tr>
+                            <td class="row-title">个性签名</td>
+                            <td>@Model.Motto</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <h3 class="exp-sub-title">提交频率</h3>
+             <div class="cont-outer">
+                 开发中
+             </div>
+        </div>
+        @Html.Partial("Sidebar")
+    </div>
+</div>

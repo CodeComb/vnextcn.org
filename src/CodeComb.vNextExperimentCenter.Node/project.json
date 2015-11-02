@@ -1,18 +1,14 @@
-﻿{
+{
   "webroot": "wwwroot",
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Microsoft.AspNet.Mvc": "6.0.0-*",
-    "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
-    "Microsoft.Extensions.Logging": "1.0.0-*",
-    "Microsoft.Extensions.Logging.Console": "1.0.0-*",
-    "Microsoft.Extensions.Logging.Debug": "1.0.0-*",
-    "EntityFramework.InMemory": "7.0.0-*",
-    "CodeComb.AspNet.Extensions": "2.0.0-*",
-    "CodeComb.CI.Extractor.Zip": "2.0.0-*",
-    "CodeComb.CI.Runner": "2.0.0-*",
-    "CodeComb.Package": "2.0.0-*"
+    "Microsoft.AspNet.Mvc": "6.0.0-beta8",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta8",
+    "Microsoft.Framework.Logging": "1.0.0-beta8",
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta8",
+    "Microsoft.Framework.Configuration": "1.0.0-beta8",
+    "CodeComb.CI.Runner": "2.0.0-beta8"
   },
 
   "commands": {
@@ -20,8 +16,20 @@
   },
 
   "frameworks": {
-    "dnx451": { },
-    "dnxcore50": { }
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.IO.Compression": "4.0.0.0",
+        "System.Net.Http": "4.0.0.0"
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "System.IO": "4.0.11-beta-23409",
+        "System.IO.FileSystem": "4.0.1-beta-23409",
+        "System.IO.Compression": "4.0.1-beta-23409",
+        "System.Net.Http": "4.0.1-beta-23409"
+      }
+    }
   },
 
   "exclude": [

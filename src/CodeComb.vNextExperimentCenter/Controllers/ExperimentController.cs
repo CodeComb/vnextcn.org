@@ -71,7 +71,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 Time = DateTime.Now,
                 Result = StatusResult.Queued,
                 ProblemId = id,
-                Archive = await file.ReadAllBytesAsync()
+                Archive = await file.ReadAllBytesAsync(),
+                MemoryUsage = file.Length / 1024
             };
             DB.Statuses.Add(Status);
             DB.SaveChanges();
@@ -120,8 +121,10 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             exp.NuGet = Model.NuGet;
             exp.OS = Model.OS;
             exp.TimeLimit = Model.TimeLimit;
-            exp.TestArchive = await TestArchive.ReadAllBytesAsync();
-            exp.AnswerArchive = await AnswerArchive.ReadAllBytesAsync();
+            if (TestArchive != null)
+                exp.TestArchive = await TestArchive.ReadAllBytesAsync();
+            if (AnswerArchive != null)
+                exp.AnswerArchive = await AnswerArchive.ReadAllBytesAsync();
             exp.Difficulty = Model.Difficulty;
             exp.Version = Model.Version;
             DB.SaveChanges();

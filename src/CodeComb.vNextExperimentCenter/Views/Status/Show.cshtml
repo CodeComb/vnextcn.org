@@ -1,9 +1,83 @@
 ﻿@model Status
 @{ 
-    ViewBag.Title = $"#{Model.Id} - 运行状态";
+    ViewBag.Title = $"运行状态 - #{Model.Id}";
 }
 
-<div class="col-md-8 col-sm-12 col-md-offset-2">
-    <h2>@ViewBag.Title</h2>
-    <pre>@Model.Output</pre>
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <h3 class="exp-sub-title">运行摘要</h3>
+            <div class="cont-outer">
+                <table class="detail-table">
+                    <tr class="detail-table-header">
+                        <td>实验</td>
+                        <td>运行时长</td>
+                        <td>代码长度</td>
+                        <td>提交时间</td>
+                        @if (Model.Details.Count > 0)
+                        {
+                            <td>错误数</td>
+                        }
+                        <td>运行结果</td>
+                    </tr>
+                    <tr>
+                        <td><a asp-action="Show" asp-controller="Experiment" asp-route-id="@Model.ProblemId">E@(Model.ProblemId) @Model.Problem.Title</a></td>
+                        <td>@(Model.Details.Sum(x => x.Time))  s</td>
+                        <td>@(Model.MemoryUsage) KiB</td>
+                        <td>@Model.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        @if (Model.Details.Count > 0)
+                        {
+                            <td>@Model.Details.Where(x => x.Result == TestCaseResult.Fail).Count()</td>
+                        }
+                        <td>@Html.ColorStatus(Model.Result)</td>
+                    </tr>
+                </table>
+            </div>
+            @if (Model.Details.Count > 0)
+            {
+                <h3 class="exp-sub-title">测试用例</h3>
+                <div class="cont-outer">
+                    <table class="table no-shadow">
+                        <thead>
+                            <tr>
+                                <th>用例</th>
+                                <th>方法</th>
+                                <th>时间</th>
+                                <th>结果</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var x in Model.Details)
+                            {
+                                <tr>
+                                    <td>@x.Title</td>
+                                    <td>@x.Method</td>
+                                    <td>@x.Time s</td>
+                                    <td>@x.Result</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            <h3 class="exp-sub-title">运行输出</h3>
+            <div class="cont-outer">
+                <div class="pre-outer">
+                    <pre>@Model.Output</pre>
+                </div>
+            </div>
+        </div>
+        <div class="grid_3">
+            <p class="center"><img class="sidebar-avatar" src="~/Account/Avatar/@Model.UserId" style="width: 100%;" /></p>
+            <p class="center"><a asp-controller="Account" asp-action="Show" asp-route-id="@Model.UserId">@await Html.ColorUserNameAsync(Model.User, "sidebar-username")</a></p>
+            <div class="sidebar-nobg">
+                <p><a href="javascript:$('#frmRerun').submit();"><i class="fa fa-angle-double-right"></i> 重新运行</a></p>
+                <form asp-action="Rerun" asp-controller="Status" asp-route-id="@Model.Id" method="post" id="frmRerun"></form>
+                <p><a asp-action="Index" asp-controller="Status"><i class="fa fa-angle-double-right"></i> 返回状态列表</a></p>
+                <p><a asp-action="Show" asp-controller="Experiment" asp-route-id="@Model.ProblemId"><i class="fa fa-angle-double-right"></i> 返回实验#@Model.ProblemId</a></p>
+                <p><a asp-action="Index" asp-controller="Forum" asp-route-experiment="@Model.Id"><i class="fa fa-angle-double-right"></i> 讨论该实验</a></p>
+            </div>
+         </div>
+    </div>
 </div>

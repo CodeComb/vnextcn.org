@@ -1,0 +1,13 @@
+﻿@model User
+<div class="grid_3">
+    <p class="center"><img class="sidebar-avatar" src="~/Account/Avatar/@Model.Id" style="width: 100%;" /></p>
+    <p class="center"><a asp-controller="Account" asp-action="Show" asp-route-id="@Model.Id">@await Html.ColorUserNameAsync(Model, "sidebar-username")</a></p>
+    <div class="sidebar-nobg">
+        <p><a asp-controller="Account" asp-action="Show" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> TA的资料</a></p>
+        @if (User.IsSignedIn() && (User.AnyRoles("Root, Master") || User.Current.Id == Model.Id))
+        {
+            <p><a asp-controller="Account" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 编辑个人资料</a></p>
+            <p><a asp-controller="Account" asp-action="Password" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 修改密码</a></p>
+        }
+    </div>
+</div>

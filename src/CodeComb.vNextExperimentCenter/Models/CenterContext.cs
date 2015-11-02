@@ -16,10 +16,16 @@ namespace CodeComb.vNextExperimentCenter.Models
         public DbSet<Blob> Blobs { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Node> Nodes { get; set; }
+        public DbSet<StatusDetail> StatusDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<User>(e => 
+            {
+                e.HasIndex(x => x.RegisteryTime);
+            });
 
             builder.Entity<Problem>(e =>
             {
