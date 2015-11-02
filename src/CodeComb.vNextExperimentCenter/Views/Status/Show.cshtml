@@ -23,12 +23,12 @@
                     </tr>
                     <tr>
                         <td><a asp-action="Show" asp-controller="Experiment" asp-route-id="@Model.ProblemId">E@(Model.ProblemId) @Model.Problem.Title</a></td>
-                        <td>@Model.Details.Sum(x => x.Time)  s</td>
+                        <td>@(Model.Details.Sum(x => x.Time))  s</td>
                         <td>@(Model.MemoryUsage) KiB</td>
                         <td>@Model.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
                         @if (Model.Details.Count > 0)
                         {
-                            <td>@Model.Details.Where(x => x.Result == TestCaseResult.Fail)</td>
+                            <td>@Model.Details.Where(x => x.Result == TestCaseResult.Fail).Count()</td>
                         }
                         <td>@Html.ColorStatus(Model.Result)</td>
                     </tr>
