@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Framework.Configuration;
-//using CodeComb.Package;
+using CodeComb.Package;
 using CodeComb.CI.Runner;
 
 namespace CodeComb.vNextExperimentCenter.Node.Controllers
@@ -21,8 +21,7 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
             var ret = new
             {
                 MaxThread = Runner.MaxThreads,
-                //Platform = OS.Current.ToString(),
-                Platform = "Windows",
+                Platform = OS.Current.ToString(),
                 CurrentThread = Runner.CurrentTasks.Count
             };
             return new ObjectResult(ret);

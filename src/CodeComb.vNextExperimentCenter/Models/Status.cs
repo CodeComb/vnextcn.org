@@ -27,5 +27,6 @@ namespace CodeComb.vNextExperimentCenter.Models
         public long MemoryUsage { get; set; }
         public string Output { get; set; }
         public string NuGet { get; set; }
+        public virtual ICollection<StatusDetail> Details { get; set; } = new List<StatusDetail>();
     }
 }

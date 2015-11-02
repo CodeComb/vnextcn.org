@@ -53,7 +53,8 @@ namespace CodeComb.vNextExperimentCenter.Node
             Client.PostAsync("/api/Judge/Successful", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", task.Identifier.ToString() },
-                { "Output", task.Output }
+                { "Output", task.Output },
+                { "TimeUsage", task.UserProcessorTime.TotalMilliseconds.ToString() }
             })).Wait();
             cacheStr.Remove(task.Identifier);
             cacheTime.Remove(task.Identifier);
@@ -66,7 +67,8 @@ namespace CodeComb.vNextExperimentCenter.Node
             Client.PostAsync("/api/Judge/TimeLimitExceeded", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", task.Identifier.ToString() },
-                { "Output", task.Output }
+                { "Output", task.Output },
+                { "TimeUsage", task.UserProcessorTime.TotalMilliseconds.ToString() }
             })).Wait();
             cacheStr.Remove(task.Identifier);
             cacheTime.Remove(task.Identifier);
@@ -79,7 +81,8 @@ namespace CodeComb.vNextExperimentCenter.Node
             Client.PostAsync("/api/Judge/Failed", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", task.Identifier.ToString() },
-                { "Output", task.Output }
+                { "Output", task.Output },
+                { "TimeUsage", task.UserProcessorTime.TotalMilliseconds.ToString() }
             })).Wait();
             cacheStr.Remove(task.Identifier);
             cacheTime.Remove(task.Identifier);
@@ -132,6 +135,32 @@ namespace CodeComb.vNextExperimentCenter.Node
             CI.Runner.CITask.OnBuiledFailed += Task_OnBuiledFailed;
             CI.Runner.CITask.OnTimeLimitExceeded += Task_OnTimeLimitExceeded;
             CI.Runner.CITask.OnBuildSuccessful += Task_OnBuildSuccessful;
+            CI.Runner.CITask.OnBeginBuilding += CITask_OnBeginBuilding;
+            CI.Runner.CITask.OnTestCaseFound += CITask_OnTestCaseFound;
+        }
+
+        private void CITask_OnTestCaseFound(object sender, CI.Runner.EventArgs.TestCaseArgs args)
+        {
+            var task = sender as CI.Runner.CITask;
+            Client.PostAsync("/api/Judge/PushTestCase", new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                { "id", task.Identifier.ToString() },
+                { "time", args.Time.ToString() },
+                { "result", args.Result },
+                { "title", args.Title },
+                { "method", args.Method }
+            })).Wait();
+            GC.Collect();
+        }
+
+        private void CITask_OnBeginBuilding(object sender, CI.Runner.EventArgs.BeginBuildingArgs args)
+        {
+            var task = sender as CI.Runner.CITask;
+            Client.PostAsync("/api/Judge/BeginBuilding", new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                { "id", task.Identifier.ToString() }
+            })).Wait();
+            GC.Collect();
         }
     }
 }

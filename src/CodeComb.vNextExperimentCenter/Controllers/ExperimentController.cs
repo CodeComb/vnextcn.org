@@ -71,7 +71,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 Time = DateTime.Now,
                 Result = StatusResult.Queued,
                 ProblemId = id,
-                Archive = await file.ReadAllBytesAsync()
+                Archive = await file.ReadAllBytesAsync(),
+                MemoryUsage = file.Length / 1024
             };
             DB.Statuses.Add(Status);
             DB.SaveChanges();

@@ -7,7 +7,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Http;
 using Microsoft.Framework.Configuration;
 using CodeComb.CI.Runner;
-//using CodeComb.Package;
+using CodeComb.Package;
 
 namespace CodeComb.vNextExperimentCenter.Node.Controllers
 {
@@ -35,9 +35,15 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
         {
             var identifier = id;
             var directory = Path.GetTempPath() + $@"/vec/{identifier}/";
+            if (OS.Current == OSType.Windows)
+                directory = directory.Replace('/', '\\');
+            else
+                directory = directory.Replace('\\', '/');
+            directory = directory.Replace(@"\\", @"\");
+            directory = directory.Replace(@"//", @"/");
             Console.WriteLine("工作路径 "+ Path.GetTempPath() + $@"/vec/{identifier}/");
             if (Directory.Exists(directory))
-                Directory.Delete(directory, true);
+                Directory.Delete(directory.TrimEnd('\\').TrimEnd('/'), true);
             Directory.CreateDirectory(directory);
             user.SaveAs(directory + $@"/{identifier}.zip");
             Console.WriteLine("用户程序保存成功 " + directory + $@"/{identifier}.zip");
@@ -94,10 +100,10 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
         {
             string patten;
             patten = "build.cmd";
-            //if (OS.Current == OSType.Windows)
-            //    patten = "build.cmd";
-            //else
-            //    patten = "build.sh";
+            if (OS.Current == OSType.Windows)
+                patten = "build.cmd";
+            else
+                patten = "build.sh";
             var tmp = Directory.GetFiles(path, patten, SearchOption.AllDirectories);
             var target = tmp.FirstOrDefault();
             if (string.IsNullOrEmpty(target))

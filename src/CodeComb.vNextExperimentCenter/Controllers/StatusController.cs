@@ -24,6 +24,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             var status = DB.Statuses
                 .Include(x => x.User)
                 .Include(x => x.Problem)
+                .Include(x => x.Details)
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
             if (status == null)
@@ -40,6 +41,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         {
             var status = DB.Statuses
                 .Include(x => x.Problem)
+                .Include(x => x.Details)
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
             if (status == null)
@@ -58,8 +60,9 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 });
             status.Result = Models.StatusResult.Queued;
             status.Output = "";
-            status.MemoryUsage = 0;
             status.TimeUsage = 0;
+            foreach (var x in status.Details)
+                DB.StatusDetails.Remove(x);
             DB.SaveChanges();
             await NodeProvider.GetFreeNode().SendJudgeTask(status.Id, status.Archive, status.Problem.TestArchive, status.NuGet + "\r\n" + status.Problem.NuGet);
             return Prompt(x =>

@@ -2089,3 +2089,7 @@ pre {
 .cont-outer {
     padding: 0 15px 15px 15px;
 }
+
+.no-shadow {
+    box-shadow: none;
+}

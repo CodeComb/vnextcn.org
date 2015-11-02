@@ -10,15 +10,13 @@
   "licenseUrl": "",
 
   "dependencies": {
+    "Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
+    "CodeComb.Package": "2.0.0-beta8-2"
   },
 
   "frameworks": {
-    "net451": { 
-      "dependencies": {
-        "Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
-      }
-    },
-    "dotnet5.4": {
+    "dnx451": { },
+    "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23409",
         "System.Collections": "4.0.11-beta-23409",
@@ -29,7 +27,13 @@
         "System.IO": "4.0.11-beta-23409",
         "System.Security.SecureString": "4.0.0-beta-23409",
         "System.Diagnostics.Process": "4.0.0-beta-23409",
-        "Microsoft.Framework.DependencyInjection": "1.0.0-beta-23409"
+        "System.Xml.XPath.XDocument": "4.0.1-beta-23409",
+        "System.Xml.XmlDocument": "4.0.1-beta-23409",
+        "System.Xml.XDocument": "4.0.11-beta-23409",
+        "System.Xml.ReaderWriter": "4.0.11-beta-23409",
+        "System.Xml.XPath.XmlDocument": "4.0.1-beta-23409",
+        "System.Xml.XPath": "4.0.1-beta-23409",
+        "System.Xml.XmlSerializer": "4.0.11-beta-23409"
       }
     }
   }
