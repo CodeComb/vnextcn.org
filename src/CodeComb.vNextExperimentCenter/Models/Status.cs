@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeComb.vNextExperimentCenter.Models
 {
+    public enum StatusType
+    {
+        Experiment,
+        Project
+    }
+
     public enum StatusResult
     {
         Queued,
@@ -16,19 +23,42 @@ namespace CodeComb.vNextExperimentCenter.Models
     public class Status
     {
         public long Id { get; set; }
+
+        [ForeignKey("User")]
         public long UserId { get; set; }
+
         public virtual User User { get; set; }
-        public long ProblemId { get; set; }
-        public Problem Problem { get; set; }
+
+        [ForeignKey("Experiment")]
+        public long? ExperimentId { get; set; }
+
+        public virtual Experiment Experiment { get; set; }
+
+        [ForeignKey("Project")]
+        public Guid? ProjectId { get; set; }
+        
+        public virtual Project Project { get; set; }
+
         public byte[] Archive { get; set; }
+
         public StatusResult Result { get; set; }
+
         public DateTime Time { get; set; }
+
         public long TimeUsage { get; set; }
+
         public long MemoryUsage { get; set; }
+
         public string Output { get; set; }
+
         public string NuGet { get; set; }
+
         public int Accepted { get; set; }
+
         public int Total { get; set; }
+
+        public StatusType Type { get; set; }
+
         public virtual ICollection<StatusDetail> Details { get; set; } = new List<StatusDetail>();
     }
 }

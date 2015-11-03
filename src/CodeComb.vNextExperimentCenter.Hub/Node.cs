@@ -104,6 +104,21 @@ namespace CodeComb.vNextExperimentCenter.Hub
             }
         }
 
+        public async Task<bool> SendCIBuildTask(long id, string ZipUrl, string AdditionalEnvironmentVariables)
+        {
+            var result = await client.PostAsync("/api/judge/newci", new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                { "id", id.ToString() },
+                { "ZipUrl", ZipUrl.ToString() },
+                { "AdditionalEnvironmentVariables", AdditionalEnvironmentVariables }
+            }));
+            Console.WriteLine($"{Alias} 成功接收任务#{id}");
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                return true;
+            else
+                return false;
+        }
+
         public async Task<bool> SendJudgeTask(long id, byte[] user, byte[] problem, string nuget)
         {
             client.Timeout = new TimeSpan(0, 10, 0);
@@ -113,7 +128,7 @@ namespace CodeComb.vNextExperimentCenter.Hub
                 content.Add(new StreamContent(new MemoryStream(problem)), "problem", "problem.zip");
                 content.Add(new StringContent(id.ToString()), "id");
                 content.Add(new StringContent(nuget), "nuget");
-                var result = await client.PostAsync("/api/judge/new", content);
+                var result = await client.PostAsync("/api/judge/newjudge", content);
                 Console.WriteLine($"{Alias} 成功接收任务#{id}");
                 if (result.StatusCode == System.Net.HttpStatusCode.OK)
                     return true;

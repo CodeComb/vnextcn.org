@@ -31,7 +31,7 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
         public CIRunner Runner { get; set; }
 
         [HttpPost]
-        public string New(long id, IFormFile user, IFormFile problem, string nuget)
+        public string NewJudge(long id, IFormFile user, IFormFile problem, string nuget)
         {
             var identifier = id;
             var directory = Path.GetTempPath() + $@"/vec/{identifier}/";

@@ -14,7 +14,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
     {
         public IActionResult Index()
         {
-            IEnumerable<Problem> ret = DB.Problems;
+            IEnumerable<Experiment> ret = DB.Experiments;
             if (!User.AnyRoles("Root, Manager"))
                 ret = ret.Where(x => x.CheckPassed);
             return AjaxPagedView(ret, ".lst-experiments", 100);
@@ -23,7 +23,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [Route("Experiment/{id:long}")]
         public IActionResult Show(long id)
         {
-            var exp = DB.Problems
+            var exp = DB.Experiments
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
             if (exp == null)
@@ -47,7 +47,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Submit(long id, IFormFile file, string nuget)
         {
-            var exp = DB.Problems
+            var exp = DB.Experiments
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
             if (exp == null)
@@ -70,9 +70,10 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 UserId = User.Current.Id,
                 Time = DateTime.Now,
                 Result = StatusResult.Queued,
-                ProblemId = id,
+                ExperimentId = id,
                 Archive = await file.ReadAllBytesAsync(),
-                MemoryUsage = file.Length / 1024
+                MemoryUsage = file.Length / 1024,
+                
             };
             DB.Statuses.Add(Status);
             DB.SaveChanges();
@@ -85,7 +86,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [AnyRoles("Root, Master")]
         public IActionResult Edit(long id)
         {
-            var exp = DB.Problems
+            var exp = DB.Experiments
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
 
@@ -102,9 +103,9 @@ namespace CodeComb.vNextExperimentCenter.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, IFormFile TestArchive, IFormFile AnswerArchive, Problem Model)
+        public async Task<IActionResult> Edit(long id, IFormFile TestArchive, IFormFile AnswerArchive, Experiment Model)
         {
-            var exp = DB.Problems
+            var exp = DB.Experiments
                .Where(x => x.Id == id)
                .SingleOrDefault();
 

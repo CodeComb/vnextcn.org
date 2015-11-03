@@ -11,23 +11,37 @@ namespace CodeComb.vNextExperimentCenter.Models
 {
     public class CenterContext : IdentityDbContext<User, IdentityRole<long>, long>, INodeDbContext
     {
-        public DbSet<Problem> Problems { get; set; }
+        public DbSet<Experiment> Experiments { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Blob> Blobs { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Node> Nodes { get; set; }
         public DbSet<StatusDetail> StatusDetails { get; set; }
+        public DbSet<Contest> Contests { get; set; }
+        public DbSet<ContestExperiment> ContestExperiments { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<CISet> CISets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<ContestExperiment>(e =>
+            {
+                e.HasKey(x => new { x.ContestId, x.ExperimentId });
+            });
+
+            builder.Entity<Project>(e => 
+            {
+                e.HasIndex(x => x.PRI);
+            });
 
             builder.Entity<User>(e => 
             {
                 e.HasIndex(x => x.RegisteryTime);
             });
 
-            builder.Entity<Problem>(e =>
+            builder.Entity<Experiment>(e =>
             {
                 e.HasIndex(x => x.Title);
                 e.HasIndex(x => x.CheckPassed);
@@ -38,6 +52,7 @@ namespace CodeComb.vNextExperimentCenter.Models
             {
                 e.HasIndex(x => x.Time);
                 e.HasIndex(x => x.Result);
+                e.HasIndex(x => x.Type);
             });
 
             builder.Entity<Blob>(e =>

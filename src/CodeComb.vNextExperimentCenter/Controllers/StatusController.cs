@@ -12,7 +12,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         public IActionResult Index()
         {
             var ret = DB.Statuses
-                .Include(x => x.Problem)
+                .Include(x => x.Experiment)
+                .Include(x => x.Project)
                 .Include(x => x.User)
                 .OrderByDescending(x => x.Time);
             return AjaxPagedView(ret, ".lst-statuses");
@@ -23,8 +24,10 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         {
             var status = DB.Statuses
                 .Include(x => x.User)
-                .Include(x => x.Problem)
+                .Include(x => x.Experiment)
                 .Include(x => x.Details)
+                .Include(x => x.Project)
+                .Include(x => x.User)
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
             if (status == null)
@@ -40,8 +43,9 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         public async Task<IActionResult> Rerun(long id)
         {
             var status = DB.Statuses
-                .Include(x => x.Problem)
+                .Include(x => x.Experiment)
                 .Include(x => x.Details)
+                .Include(x => x.Project)
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
             if (status == null)
@@ -64,7 +68,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             foreach (var x in status.Details)
                 DB.StatusDetails.Remove(x);
             DB.SaveChanges();
-            await NodeProvider.GetFreeNode().SendJudgeTask(status.Id, status.Archive, status.Problem.TestArchive, status.NuGet + "\r\n" + status.Problem.NuGet);
+            await NodeProvider.GetFreeNode().SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
             return Prompt(x =>
             {
                 x.Title = "重新运行指令已下达";

@@ -24,8 +24,8 @@ namespace CodeComb.vNextExperimentCenter.Models
 				await UserManager.CreateAsync(user, "123456");
 				await UserManager.AddToRoleAsync(user, "Root");
 				
-				DB.Problems.Add(new Problem
-				{
+				DB.Experiments.Add(new Experiment
+                {
 					Title = "编写Hello World网站",
 					OS = OSType.CrossPlatform,
 					Version = "beta8",
