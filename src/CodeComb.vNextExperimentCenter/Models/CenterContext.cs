@@ -26,6 +26,12 @@ namespace CodeComb.vNextExperimentCenter.Models
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<Contest>(e => 
+            {
+                e.HasKey(x => x.Begin);
+                e.HasKey(x => x.End);
+            });
+
             builder.Entity<ContestExperiment>(e =>
             {
                 e.HasKey(x => new { x.ContestId, x.ExperimentId });

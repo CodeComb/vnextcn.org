@@ -22,6 +22,8 @@ namespace CodeComb.vNextExperimentCenter.Models
 
         public string Description { get; set; }
 
+        public long CompetitorCount { get; set; }
+
         public virtual ICollection<ContestExperiment> Experiments { get; set; } = new List<ContestExperiment>();
     }
 }
