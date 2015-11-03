@@ -11,12 +11,12 @@ namespace CodeComb.vNextExperimentCenter.Models
         [ForeignKey("Experiment")]
         public long ExperimentId { get; set; }
 
-        public Experiment Experiment { get; set; }
+        public virtual Experiment Experiment { get; set; }
 
         [ForeignKey("Contest")]
         public string ContestId { get; set; }
 
-        public Contest Contest { get; set; }
+        public virtual Contest Contest { get; set; }
 
         public int Point { get; set; }
     }
