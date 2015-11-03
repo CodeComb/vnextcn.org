@@ -17,5 +17,7 @@ namespace CodeComb.vNextExperimentCenter.Models
         public string ContestId { get; set; }
 
         public Contest Contest { get; set; }
+
+        public int Point { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Data.Entity;
 using CodeComb.vNextExperimentCenter.Models;
 using CodeComb.vNextExperimentCenter.Hub;
 
@@ -14,9 +15,12 @@ namespace CodeComb.vNextExperimentCenter.Controllers
     {
         public IActionResult Index()
         {
-            IEnumerable<Experiment> ret = DB.Experiments;
-            if (!User.AnyRoles("Root, Manager"))
-                ret = ret.Where(x => x.CheckPassed);
+            IEnumerable<Experiment> ret = DB.Experiments
+                .Include(x => x.Contests)
+                .ThenInclude(x => x.Contest);
+            if (!User.AnyRoles("Root, Master"))
+                ret = ret.Where(x => x.CheckPassed)
+                    .Where(x => x.Contests.Count == 0 || x.Contests.Max(y => y.Contest.End) > DateTime.Now); // 隐藏比赛题目
             return AjaxPagedView(ret, ".lst-experiments", 100);
         }
         
@@ -24,6 +28,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         public IActionResult Show(long id)
         {
             var exp = DB.Experiments
+                .Include(x => x.Contests)
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
             if (exp == null)
@@ -35,6 +40,13 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 });
             if (!User.AnyRoles("Root, Master") && exp.CheckPassed == false)
                 return Prompt(x => 
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            if (!User.AnyRoles("Root, Master") && exp.Contests.Count > 0 && exp.Contests.Max(y => y.Contest.End) > DateTime.Now)
+                return Prompt(x =>
                 {
                     x.Title = "资源没有找到";
                     x.Details = "您请求的资源没有找到，请返回重试！";
@@ -64,7 +76,13 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
-                
+            if (!User.AnyRoles("Root, Master") && exp.Contests.Count > 0 && exp.Contests.Max(y => y.Contest.End) > DateTime.Now)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
             var Status = new Status
             {
                 UserId = User.Current.Id,

@@ -50,5 +50,7 @@ namespace CodeComb.vNextExperimentCenter.Models
         public string NuGet { get; set; }
         
         public OSType OS { get; set; }
+
+        public virtual ICollection<ContestExperiment> Contests { get; set; } = new List<ContestExperiment>();
     }
 }
