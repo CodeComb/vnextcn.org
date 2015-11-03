@@ -7,6 +7,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeComb.vNextExperimentCenter.Models
 {
+    public enum ContestStatus
+    {
+        Pending,
+        Live,
+        Done
+    }
+
     public class Contest
     {
         [MaxLength(64)]
@@ -22,6 +29,20 @@ namespace CodeComb.vNextExperimentCenter.Models
         public string Description { get; set; }
 
         public long CompetitorCount { get; set; }
+
+        [NotMapped]
+        public ContestStatus Status
+        {
+            get
+            {
+                if (DateTime.Now < Begin)
+                    return ContestStatus.Pending;
+                else if (DateTime.Now < End)
+                    return ContestStatus.Live;
+                else
+                    return ContestStatus.Done;
+            }
+        }
 
         public virtual ICollection<ContestExperiment> Experiments { get; set; } = new List<ContestExperiment>();
     }

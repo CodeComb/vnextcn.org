@@ -11,7 +11,7 @@
                 @foreach (Contest x in ViewBag.InProgress)
                 {
                     <div class="block red">
-                        <h2>@x.Title</h2>
+                        <h2><a asp-action="Show" asp-controller="Contest" asp-route-id="@x.Id">@x.Title</a></h2>
                         <p class="small"><span>时间: @x.Begin.ToString("yyyy-MM-dd HH:mm:ss") ~ @x.End.ToString("yyyy-MM-dd HH:mm:ss")</span></p>
                         @Html.Sanitize(Html.Marked(x.Description).ToString())
                     </div>
@@ -21,7 +21,7 @@
                     if (DateTime.Now < x.Begin)
                     {
                         <div class="block blue">
-                            <h2>@x.Title</h2>
+                            <h2><a asp-action="Show" asp-controller="Contest" asp-route-id="@x.Id">@x.Title</a></h2>
                             <p class="small"><span>时间: @x.Begin.ToString("yyyy-MM-dd HH:mm:ss") ~ @x.End.ToString("yyyy-MM-dd HH:mm:ss")</span></p>
                             @Html.Sanitize(Html.Marked(x.Description).ToString())
                         </div>
@@ -29,7 +29,7 @@
                     else
                     {
                         <div class="block">
-                            <h2>@x.Title</h2>
+                            <h2><a asp-action="Show" asp-controller="Contest" asp-route-id="@x.Id">@x.Title</a></h2>
                             <p class="small"><span>时间: @x.Begin.ToString("yyyy-MM-dd HH:mm:ss") ~ @x.End.ToString("yyyy-MM-dd HH:mm:ss")</span></p>
                             @Html.Sanitize(Html.Marked(x.Description).ToString())
                         </div>

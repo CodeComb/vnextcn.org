@@ -1,0 +1,80 @@
+﻿@model Contest
+@{ 
+    ViewBag.Title = Model.Title;
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <h3 class="exp-sub-title">基本信息</h3>
+            <div class="cont-outer">
+                <table class="detail-table no-border">
+                    <tr>
+                        <td class="row-title">开始时间</td>
+                        <td>@Model.Begin.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">结束时间</td>
+                        <td>@Model.End.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">题量</td>
+                        <td>@Model.Experiments.Count</td>
+                    </tr>
+                    @if (Model.Status > ContestStatus.Pending)
+                    {
+                        <tr>
+                            <td class="row-title">参赛人数</td>
+                            <td>@Model.CompetitorCount</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <h3 class="exp-sub-title">比赛简介</h3>
+            <div class="cont-outer">
+                @Html.Sanitize(Html.Marked(Model.Description).ToString())
+            </div>
+            @if (Model.Status > ContestStatus.Pending || User.AnyRoles("Root, Master"))
+            {
+                <h3 class="exp-sub-title">比赛题目</h3>
+                <div class="cont-outer">
+                    <table class="table no-shadow">
+                        <thead>
+                            <tr>
+                                @if (User.IsSignedIn())
+                                {
+                                    <th>Flag</th>
+                                }
+                                <th>题号</th>
+                                <th>题目</th>
+                                <th>分值</th>
+                                <th>平均分</th>
+                                <th>通过数</th>
+                                <th>提交数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(ContestStatistics x in ViewBag.Statistics)
+                            {
+                                <tr>
+                                    @if (User.IsSignedIn())
+                                    { 
+                                        <td>@x.Flag</td>
+                                    }
+                                    <td>@x.Number</td>
+                                    <td><a asp-action="Show" asp-controller="Experiment" asp-route-id="@x.ExperimentId">@x.Title</a></td>
+                                    <td>@x.Point</td>
+                                    <td>@x.Average.ToString("0.00")</td>
+                                    <td>@x.Accepted</td>
+                                    <td>@x.Submitted</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>            
+            }
+        </div>
+        @Html.Partial("Sidebar")
+    </div>
+</div>

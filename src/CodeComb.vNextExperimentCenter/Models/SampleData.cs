@@ -56,7 +56,6 @@ namespace CodeComb.vNextExperimentCenter.Models
                     TestArchive = File.ReadAllBytes(env.ApplicationBasePath + "/Setup/HelloWorld.zip"),
                     AnswerArchive = File.ReadAllBytes(env.ApplicationBasePath + "/Setup/HelloWorldAnswer.zip")
                 });
-                DB.SaveChanges();
 
                 // 添加运行节点
                 DB.Nodes.Add(new Hub.Models.Node
@@ -66,7 +65,6 @@ namespace CodeComb.vNextExperimentCenter.Models
                     Server = "localhost",
                     Port = 6070
                 });
-                DB.SaveChanges();
 
                 // 添加比赛
                 DB.Contests.Add(new Contest
@@ -81,8 +79,10 @@ namespace CodeComb.vNextExperimentCenter.Models
                 DB.ContestExperiments.Add(new ContestExperiment
                 {
                     ContestId = "vnext-china-test-round-1",
-                    ExperimentId = 1
+                    ExperimentId = 1,
+                    Point = 500
                 });
+
 				DB.SaveChanges();
 			}
 		}
