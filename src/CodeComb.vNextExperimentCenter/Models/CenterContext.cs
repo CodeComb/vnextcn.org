@@ -28,12 +28,13 @@ namespace CodeComb.vNextExperimentCenter.Models
 
             builder.Entity<Contest>(e => 
             {
-                e.HasKey(x => x.Begin);
-                e.HasKey(x => x.End);
+                e.HasIndex(x => x.Begin);
+                e.HasIndex(x => x.End);
             });
 
             builder.Entity<ContestExperiment>(e =>
             {
+                e.HasIndex(x => x.Point);
                 e.HasKey(x => new { x.ContestId, x.ExperimentId });
             });
 

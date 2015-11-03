@@ -20,7 +20,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 .ThenInclude(x => x.Contest);
             if (!User.AnyRoles("Root, Master"))
                 ret = ret.Where(x => x.CheckPassed)
-                    .Where(x => x.Contests.Count == 0 || x.Contests.Max(y => y.Contest.End) > DateTime.Now); // 隐藏比赛题目
+                    .Where(x => x.Contests.Count == 0 || x.Contests.Max(y => y.Contest.End) <= DateTime.Now); // 隐藏比赛题目
             return AjaxPagedView(ret, ".lst-experiments", 100);
         }
         
@@ -29,6 +29,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         {
             var exp = DB.Experiments
                 .Include(x => x.Contests)
+                .ThenInclude(x => x.Contest)
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
             if (exp == null)

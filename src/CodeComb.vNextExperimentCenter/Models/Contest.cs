@@ -9,7 +9,6 @@ namespace CodeComb.vNextExperimentCenter.Models
 {
     public class Contest
     {
-        [Key]
         [MaxLength(64)]
         public string Id { get; set; }
 

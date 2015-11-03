@@ -2107,3 +2107,43 @@ pre {
     font-weight: bold;
 	text-shadow: 0 1px 0 #000;	
 }
+
+.pager-outer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pager-outer li a{
+    color: #fff;
+}
+
+.pager-item, .pager-item:visited, .pager-item:active {
+    background-color: #e0e0e0;
+    transition: background 0.2s linear, color 0.2s linear;
+    float: left;
+    font-size: 18px;
+    padding: 3px 10px;
+    margin-right: 1px;
+}
+
+.pager-item a, .pager-item:visited a, .pager-item:active a {
+    color: #222!important;
+}
+
+.pager {
+    padding: 20px 0;
+}
+
+.pager-item.active, .pager-item:hover {
+    background-color: rgb(255, 87, 34);
+}
+
+.pager-item.active a, .pager-item:hover a {
+    color: #fff!important;
+	text-shadow: 0 1px 0 #000;	
+}
+
+.clear {
+    clear: both;
+}

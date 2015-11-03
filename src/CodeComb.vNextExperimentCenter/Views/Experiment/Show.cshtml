@@ -58,7 +58,10 @@
                 <p><a href="javascript:$('#submit-area').removeClass('hide')"><i class="fa fa-angle-double-right"></i> 提交程序</a></p>
             }
             <p><a asp-action="Index" asp-controller="Status" asp-route-eid="@Model.Id"><i class="fa fa-angle-double-right"></i> 评测记录</a></p>
-            <p><a asp-action="Index" asp-controller="Forum" asp-route-experiment="@Model.Id"><i class="fa fa-angle-double-right"></i> 讨论该实验</a></p>
+            @if (Model.Contests.Count == 0 || Model.Contests.Max(x => x.Contest.End) < DateTime.Now)
+            {
+                <p><a asp-action="Index" asp-controller="Forum" asp-route-experiment="@Model.Id"><i class="fa fa-angle-double-right"></i> 讨论该实验</a></p>
+            }
             @if (User.AnyRoles("Master, Root"))
             {
                 <p><a asp-action="Edit" asp-controller="Experiment" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 编辑题目</a></p>

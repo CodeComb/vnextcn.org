@@ -15,7 +15,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 .OrderBy(x => x.End)
                 .ToList();
 
-            return View();
+            return PagedView(DB.Contests.Where(x => x.End <= DateTime.Now || DateTime.Now <= x.Begin).OrderByDescending(x => x.Begin), 5);
         }
     }
 }
