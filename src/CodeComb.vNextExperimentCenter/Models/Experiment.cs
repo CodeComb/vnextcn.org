@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeComb.vNextExperimentCenter.Models
 {
-    public enum ProblemType
+    public enum ExperimentType
     {
         Develop,
         Test
@@ -22,7 +22,7 @@ namespace CodeComb.vNextExperimentCenter.Models
         CrossPlatform
     }
     
-    public class Problem
+    public class Experiment
     {
         public long Id { get; set; }
 
