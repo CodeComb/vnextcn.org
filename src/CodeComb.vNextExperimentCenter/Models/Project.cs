@@ -16,6 +16,8 @@ namespace CodeComb.vNextExperimentCenter.Models
 
         public string VersionRule { get; set; }
 
+        public int CurrentVersion { get; set; }
+
         public string AdditionalEnvironmentVariables { get; set; }
 
         public string NuGetPrivateKey { get; set; }
