@@ -13,5 +13,7 @@
     @if (User.AnyRoles("Root, Master"))
     {
         <p><a asp-action="Edit" asp-controller="Contest" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 比赛设置</a></p>
+        <p><a asp-action="Experiment" asp-controller="Contest" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 题目设置</a></p>
+        <p><a asp-action="Rerun" asp-controller="Contest" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 重测比赛</a></p>
     }
 </div>
