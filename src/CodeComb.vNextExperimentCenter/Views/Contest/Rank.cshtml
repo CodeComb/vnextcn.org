@@ -1,0 +1,70 @@
+﻿@model Contest
+@{ 
+    ViewBag.Title = "排名 - " + Model.Title;
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <table class="table table-rank">
+                <colgroup>
+                    <col style="width: 56px" />
+                    <col style="width: 110px" />
+                    <col style="width: 60px" />
+                    <col style="width: 60px" />
+                    @foreach (ContestProblem x in ViewBag.Experiments)
+                    {
+                        <col />
+                    }
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="center">头像</th>
+                        <th>选手</th>
+                        <th class="center">(Pts)</th>
+                        <th class="center">(ms)</th>
+                        @foreach(ContestProblem x in ViewBag.Experiments)
+                        { 
+                            <th class="center">@x.Number</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(ContestRank x in ViewBag.Rank)
+                    {
+                        <tr>
+                            <td class="center rank-avatar-td"><a asp-action="Show" asp-controller="Account" asp-route-id="x.User.Id"><img src="@Url.Link("default", new { controller="Account", action="Avatar", id =x.User.Id })" class="rank-avatar" /></a></td>
+                            <td><a asp-action="Show" asp-controller="Account" asp-route-id="x.User.Id">@await Html.ColorUserNameAsync(x.User)</a></td>
+                            <td class="center">@x.Point</td>
+                            <td class="center">@x.Time</td>
+                            @foreach (ContestProblem y in ViewBag.Experiments)
+                            {
+                                if (x.Details[y.Number] != null)
+                                {
+                                    if (x.Details[y.Number].Point == y.Point)
+                                    {
+                                        <td class="rank-green center">@x.Details[y.Number].Point</td>
+                                    }
+                                    else if (x.Details[y.Number].Point > 0)
+                                    {
+                                        <td class="rank-orange center">@x.Details[y.Number].Point</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="rank-red center">@x.Details[y.Number].Point</td>
+                                    }
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @Html.Partial("Sidebar")
+    </div>
+</div>

@@ -36,7 +36,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.StatusCode = 404;
                 });
             var statistics = new List<ContestStatistics>();
-            char number = 'A';
+            var number = 'A';
             foreach (var x in ret.Experiments.OrderBy(y => y.Point))
             {
                 var s = new ContestStatistics
@@ -50,7 +50,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 };
                 try
                 {
-                    s.Average = DB.Statuses.Where(y => y.Time >= ret.Begin && y.Time < ret.End).Average(y => y.Accepted * x.Point / y.Total);
+                    s.Average = DB.Statuses.Where(y => y.Time >= ret.Begin && y.Time < ret.End).Average(y => y.Total > 0 ? (y.Accepted * x.Point / y.Total) : 0);
                 }
                 catch
                 {
@@ -63,11 +63,72 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     else if (last.Result == StatusResult.Successful)
                         s.Flag = "Successful";
                     else
-                        s.Flag = Convert.ToInt32(last.Accepted * x.Point / last.Total).ToString();
+                    {
+                        if (last.Total == 0)
+                            s.Flag = "0";
+                        else
+                            s.Flag = Convert.ToInt32(last.Accepted * x.Point / last.Total).ToString();
+                    }
                 }
                 statistics.Add(s);
             }
             ViewBag.Statistics = statistics;
+            return View(ret);
+        }
+
+        [Route("Contest/{id}/Rank")]
+        public IActionResult Rank(string id)
+        {
+            var ret = DB.Contests
+                .Include(x => x.Experiments)
+                .ThenInclude(x => x.Experiment)
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (ret == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            var exps = new List<ContestProblem>();
+            var number = 'A';
+            foreach(var x in ret.Experiments.OrderBy(x => x.Point))
+            {
+                exps.Add(new ContestProblem
+                {
+                    Id = x.ExperimentId,
+                    Number = number++,
+                    Point = x.Point,
+                    Title = x.Experiment.Title
+                });
+            }
+            ViewBag.Experiments = exps;
+            var statuses = DB.Statuses
+                .Include(x => x.User)
+                .Where(x => x.Time >= ret.Begin && x.Time < ret.End && x.ExperimentId != null)
+                .ToList();
+            var rank = new List<ContestRank>();
+            foreach(var x in statuses.DistinctBy(x => x.UserId))
+            {
+                var rankitem = new ContestRank();
+                rankitem.User = x.User;
+                foreach(var y in exps)
+                {
+                    var last = statuses.Where(z => z.UserId == x.UserId && z.ExperimentId == y.Id).LastOrDefault();
+                    if (last != null)
+                    {
+                        rankitem.Details[y.Number] = new ContestRankDetail
+                        {
+                            Point =  last.Total == 0 ? 0 : last.Accepted * y.Point / last.Total,
+                            TimeUsage = last.TimeUsage
+                        }; 
+                    }
+                }
+                rank.Add(rankitem);
+            }
+            rank = rank.OrderByDescending(x => x.Point).ThenBy(x => x.Time).ToList();
+            ViewBag.Rank = rank;
             return View(ret);
         }
     }

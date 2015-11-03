@@ -2147,3 +2147,31 @@ pre {
 .clear {
     clear: both;
 }
+
+.table-rank tbody tr td {
+    line-height: 31px;
+}
+
+.rank-avatar
+{
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    padding: 4px;
+}
+
+.rank-avatar-td {
+    padding: 0!important;
+}
+
+.rank-red {
+    background-color:#f2dede;
+}
+
+.rank-green {
+     background-color:#dff0d8;
+}
+
+.rank-orange {
+    background-color:rgb(255, 233, 201);
+}
