@@ -63,17 +63,70 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.StatusCode = 400;
                 });
             status.Result = Models.StatusResult.Queued;
-            status.Output = "";
+            status.WindowsResult = Models.StatusResult.Queued;
+            status.LinuxResult = Models.StatusResult.Queued;
+            status.OsxResult = Models.StatusResult.Queued;
+            status.WindowsOutput = "";
+            status.LinuxOutput = "";
+            status.OsxOutput = "";
             status.TimeUsage = 0;
             foreach (var x in status.Details)
                 DB.StatusDetails.Remove(x);
             DB.SaveChanges();
-            await NodeProvider.GetFreeNode().SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
+
+            if (status.RunWithLinux)
+            {
+                var node = NodeProvider.GetFreeNode(Package.OSType.Linux);
+                if (node == null)
+                    status.LinuxResult = Models.StatusResult.Ignored;
+                else
+                    await node.SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
+            }
+            if (status.RunWithWindows)
+            {
+                var node = NodeProvider.GetFreeNode(Package.OSType.Windows);
+                if (node == null)
+                    status.WindowsResult = Models.StatusResult.Ignored;
+                else
+                    await node.SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
+            }
+            if (status.RunWithOsx)
+            {
+                var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
+                if (node == null)
+                    status.OsxResult = Models.StatusResult.Ignored;
+                else
+                    await node.SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
+            }
+            DB.SaveChanges();
+
             return Prompt(x =>
             {
                 x.Title = "重新运行指令已下达";
-                x.Details = "该任务已经加入待运行队列中，稍后即将开始重新运行！";
+                x.Details = "该任务已经加入等待队列中，稍后即将开始重新运行！";
             });
+        }
+        
+        [HttpGet]
+        public IActionResult Output(long id, Package.OSType os)
+        {
+            var status = DB.Statuses
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+
+            if (status == null)
+                return Content("Not found.");
+
+            switch (os)
+            {
+                case Package.OSType.Linux:
+                    return Content(status.LinuxOutput);
+                case Package.OSType.OSX:
+                    return Content(status.OsxOutput);
+                case Package.OSType.Windows:
+                    return Content(status.WindowsOutput);
+                default: return Content("Not found.");
+            }
         }
     }
 }

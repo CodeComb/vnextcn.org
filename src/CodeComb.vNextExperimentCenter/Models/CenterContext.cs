@@ -60,6 +60,17 @@ namespace CodeComb.vNextExperimentCenter.Models
                 e.HasIndex(x => x.Time);
                 e.HasIndex(x => x.Result);
                 e.HasIndex(x => x.Type);
+                e.HasIndex(x => x.RunWithLinux);
+                e.HasIndex(x => x.RunWithOsx);
+                e.HasIndex(x => x.RunWithLinux);
+                e.HasIndex(x => x.LinuxResult);
+                e.HasIndex(x => x.OsxResult);
+                e.HasIndex(x => x.WindowsResult);
+            });
+
+            builder.Entity<StatusDetail>(e =>
+            {
+                e.HasIndex(x => x.OS);
             });
 
             builder.Entity<Blob>(e =>

@@ -91,13 +91,68 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 Result = StatusResult.Queued,
                 ExperimentId = id,
                 Archive = await file.ReadAllBytesAsync(),
-                MemoryUsage = file.Length / 1024,
-                
+                MemoryUsage = file.Length / 1024
             };
+
+            switch(exp.OS)
+            {
+                case OSType.CrossPlatform:
+                    Status.RunWithLinux = true;
+                    Status.RunWithOsx = true;
+                    Status.RunWithWindows = true;
+                    break;
+                case OSType.Random:
+                    switch (NodeProvider.GetFreeNode().OS)
+                    {
+                        case Package.OSType.Linux:
+                            Status.RunWithLinux = true;
+                            break;
+                        case Package.OSType.OSX:
+                            Status.RunWithOsx = true;
+                            break;
+                        case Package.OSType.Windows:
+                            Status.RunWithWindows = true;
+                            break;
+                    }
+                    break;
+                case OSType.Linux:
+                    Status.RunWithLinux = true;
+                    break;
+                case OSType.OSX:
+                    Status.RunWithOsx = true;
+                    break;
+                case OSType.Windows:
+                    Status.RunWithWindows = true;
+                    break;
+            }
+
             DB.Statuses.Add(Status);
             DB.SaveChanges();
-            
-            await NodeProvider.GetFreeNode().SendJudgeTask(Status.Id, Status.Archive, exp.TestArchive, Status.NuGet + "\r\n" + exp.NuGet);
+
+            if (Status.RunWithLinux)
+            {
+                var node = NodeProvider.GetFreeNode(Package.OSType.Linux);
+                if (node == null)
+                    Status.LinuxResult = Models.StatusResult.Ignored;
+                else
+                    await node.SendJudgeTask(Status.Id, Status.Archive, Status.Experiment.TestArchive, Status.NuGet + "\r\n" + Status.Experiment.NuGet);
+            }
+            if (Status.RunWithWindows)
+            {
+                var node = NodeProvider.GetFreeNode(Package.OSType.Windows);
+                if (node == null)
+                    Status.WindowsResult = Models.StatusResult.Ignored;
+                else
+                    await node.SendJudgeTask(Status.Id, Status.Archive, Status.Experiment.TestArchive, Status.NuGet + "\r\n" + Status.Experiment.NuGet);
+            }
+            if (Status.RunWithOsx)
+            {
+                var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
+                if (node == null)
+                    Status.OsxResult = Models.StatusResult.Ignored;
+                else
+                    await node.SendJudgeTask(Status.Id, Status.Archive, Status.Experiment.TestArchive, Status.NuGet + "\r\n" + Status.Experiment.NuGet);
+            }
 
             return RedirectToAction("Show", "Status", new { id = Status.Id });
         }

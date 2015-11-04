@@ -72,8 +72,22 @@
             }
             <h3 class="exp-sub-title">运行输出</h3>
             <div class="cont-outer">
+                <div class="status-os-outer">
+                    @if (Model.RunWithWindows)
+                    {
+                        <a href="javascript:;" class="status-os-item" data-os="Windows"><i class="fa fa-windows"></i> Windows</a>
+                    }
+                    @if (Model.RunWithLinux)
+                    {
+                        <a href="javascript:;" class="status-os-item" data-os="Linux"><i class="fa fa-linux"></i> Linux</a>
+                    }
+                    @if (Model.RunWithOsx)
+                    {
+                        <a href="javascript:;" class="status-os-item" data-os="OSX"><i class="fa fa-apple"></i> Mac OS X</a>
+                    }
+                </div>
                 <div class="pre-outer">
-                    <pre>@Model.Output</pre>
+                    <pre id="console-output"></pre>
                 </div>
             </div>
         </div>
@@ -97,3 +111,28 @@
          </div>
     </div>
 </div>
+<script>
+    var CurrentOS;
+    if ($('.status-os-item').length > 0)
+    {
+        $('.status-os-item').removeClass('active');
+        $('.status-os-item').first().addClass('active');
+        CurrentOS = $('.status-os-item').first().attr('data-os');
+        LoadOutput();
+    }
+
+    $('.status-os-item').click(function () {
+        $('.status-os-item').removeClass('active');
+        $(this).addClass('active');
+        CurrentOS = $(this).attr('data-os');
+        LoadOutput();
+    });
+
+    function LoadOutput()
+    {
+        $.get('@Url.Link("default", new { id = Model.Id, action="Output", controller="Status" })', { os: CurrentOS }, function (data) 
+        {
+            $('#console-output').text(data);
+        });
+    }
+</script>

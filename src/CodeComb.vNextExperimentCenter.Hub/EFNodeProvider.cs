@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CodeComb.Package;
 using CodeComb.vNextExperimentCenter.Hub.Models;
 
 namespace CodeComb.vNextExperimentCenter.Hub
@@ -37,6 +38,11 @@ namespace CodeComb.vNextExperimentCenter.Hub
         public Node GetFreeNode()
         {
             return Nodes.Where(x => x.Status != NodeStatus.Lost).OrderBy(x => x.Status).FirstOrDefault();
+        }
+
+        public Node GetFreeNode(OSType OS)
+        {
+            return Nodes.Where(x => x.Status != NodeStatus.Lost && x.OS == OS).OrderBy(x => x.Status).FirstOrDefault();
         }
     }
 }
