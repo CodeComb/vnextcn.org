@@ -40,7 +40,7 @@
                             <td class="center">@x.Time</td>
                             @foreach (ContestProblem y in ViewBag.Experiments)
                             {
-                                if (x.Details[y.Number] != null)
+                                if (x.Details.Keys.Contains(y.Number))
                                 {
                                     if (x.Details[y.Number].Point == y.Point)
                                     {

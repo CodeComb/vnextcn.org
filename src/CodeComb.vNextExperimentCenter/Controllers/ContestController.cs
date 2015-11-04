@@ -131,5 +131,122 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             ViewBag.Rank = rank;
             return View(ret);
         }
+
+        [HttpGet]
+        [AnyRoles("Root, Master")]
+        [Route("Contest/{id}/Edit")]
+        public IActionResult Edit(string id)
+        {
+            var ret = DB.Contests
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (ret == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            return View(ret);
+        }
+
+        [HttpPost]
+        [AnyRoles("Root, Master")]
+        [Route("Contest/{id}/Edit")]
+        public IActionResult Edit(string id, Contest Model)
+        {
+            var ret = DB.Contests
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (ret == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            ret.Description = Model.Description;
+            ret.Begin = Model.Begin;
+            ret.End = Model.End;
+            ret.Title = Model.Title;
+            DB.SaveChanges();
+            return Prompt(x =>
+            {
+                x.Title = "修改成功";
+                x.Details = "比赛信息已经修改成功！";
+            });
+        }
+
+        [HttpGet]
+        [AnyRoles("Root, Master")]
+        [Route("Contest/{id}/Experiment")]
+        public IActionResult Experiment(string id)
+        {
+            var ret = DB.Contests
+               .Include(x => x.Experiments)
+               .ThenInclude(x => x.Experiment)
+               .Where(x => x.Id == id)
+               .SingleOrDefault();
+            if (ret == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            return View(ret);
+        }
+
+        [HttpPost]
+        [AnyRoles("Root, Master")]
+        [Route("Contest/{id}/Experiment/Delete")]
+        public IActionResult DeleteExperiment(string id, long eid)
+        {
+            var exp = DB.ContestExperiments
+                .Where(x => x.ContestId == id && x.ExperimentId == eid)
+                .SingleOrDefault();
+            if (exp == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            DB.ContestExperiments.Remove(exp);
+            DB.SaveChanges();
+            return RedirectToAction("Experiment", "Contest", new { id = id });
+        }
+
+        [HttpPost]
+        [AnyRoles("Root, Master")]
+        [Route("Contest/{id}/Experiment/Add")]
+        public IActionResult AddExperiment(string id, long ExperimentId, int Point)
+        {
+            var ret = DB.Contests
+               .Where(x => x.Id == id)
+               .SingleOrDefault();
+            if (ret == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            if (DB.ContestExperiments.Where(x => x.ExperimentId == ExperimentId && x.ContestId == id).Count() > 0)
+                return Prompt(x =>
+                {
+                    x.Title = "添加失败";
+                    x.Details = "本次比赛中已经包含了该题目，请勿重复添加！";
+                    x.StatusCode = 400;
+                });
+            DB.ContestExperiments.Add(new ContestExperiment
+            {
+                ContestId = id,
+                ExperimentId = ExperimentId,
+                Point = Point
+            });
+            DB.SaveChanges();
+            return RedirectToAction("Experiment", "Contest", new { id = id });
+        }
     }
 }

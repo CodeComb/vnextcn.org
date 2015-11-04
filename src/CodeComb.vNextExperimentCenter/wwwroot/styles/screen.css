@@ -2148,6 +2148,10 @@ pre {
     clear: both;
 }
 
+.table-rank {
+    table-layout: fixed;
+}
+
 .table-rank tbody tr td {
     line-height: 31px;
 }
