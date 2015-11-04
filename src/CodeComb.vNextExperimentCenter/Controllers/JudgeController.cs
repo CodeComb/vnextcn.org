@@ -46,11 +46,14 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             {
                 case OSType.Windows:
                     status.WindowsResult = Models.StatusResult.Building;
+                    status.WindowsResult = Models.StatusResult.Building;
                     break;
                 case OSType.OSX:
                     status.OsxResult = Models.StatusResult.Building;
+                    status.OsxResult = Models.StatusResult.Building;
                     break;
                 case OSType.Linux:
+                    status.LinuxResult = Models.StatusResult.Building;
                     status.LinuxResult = Models.StatusResult.Building;
                     break;
             }
@@ -68,12 +71,15 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             {
                 case OSType.Windows:
                     status.WindowsOutput = Output;
+                    status.WindowsResult = Models.StatusResult.Failed;
                     break;
                 case OSType.OSX:
                     status.OsxOutput = Output;
+                    status.OsxResult = Models.StatusResult.Failed;
                     break;
                 case OSType.Linux:
                     status.LinuxOutput = Output;
+                    status.LinuxResult = Models.StatusResult.Failed;
                     break;
             }
             status.Result = status.GenerateResult();
@@ -91,12 +97,15 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             {
                 case OSType.Windows:
                     status.WindowsOutput = Output;
+                    status.WindowsResult = Models.StatusResult.Successful;
                     break;
                 case OSType.OSX:
                     status.OsxOutput = Output;
+                    status.OsxResult = Models.StatusResult.Successful;
                     break;
                 case OSType.Linux:
                     status.LinuxOutput = Output;
+                    status.LinuxResult = Models.StatusResult.Successful;
                     break;
             }
             status.Result = status.GenerateResult();
@@ -115,12 +124,15 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             {
                 case OSType.Windows:
                     status.WindowsOutput = Output;
+                    status.WindowsResult = Models.StatusResult.Failed;
                     break;
                 case OSType.OSX:
                     status.OsxOutput = Output;
+                    status.OsxResult = Models.StatusResult.Failed;
                     break;
                 case OSType.Linux:
                     status.LinuxOutput = Output;
+                    status.LinuxResult = Models.StatusResult.Failed;
                     break;
             }
             status.Result = status.GenerateResult();

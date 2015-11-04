@@ -53,6 +53,7 @@
                                 <th>用例</th>
                                 <th>方法</th>
                                 <th>时间</th>
+                                <th>系统</th>
                                 <th>结果</th>
                             </tr>
                         </thead>
@@ -63,6 +64,22 @@
                                     <td>@x.Title</td>
                                     <td>@x.Method</td>
                                     <td>@x.Time s</td>
+                                    <td>
+                                        @if (x.OS == CodeComb.Package.OSType.Linux)
+                                        {
+                                            <i class="fa fa-linux"></i>
+                                        }
+                                        else if (x.OS == CodeComb.Package.OSType.OSX)
+                                        {
+                                            <i class="fa fa-apple"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-windows"></i>
+                                        }
+
+                                        @x.OS
+                                    </td>
                                     <td>@x.Result</td>
                                 </tr>
                             }
@@ -73,15 +90,15 @@
             <h3 class="exp-sub-title">运行输出</h3>
             <div class="cont-outer">
                 <div class="status-os-outer">
-                    @if (Model.RunWithWindows)
+                    @if (Model.RunWithWindows && Model.WindowsResult != StatusResult.Ignored)
                     {
                         <a href="javascript:;" class="status-os-item" data-os="Windows"><i class="fa fa-windows"></i> Windows</a>
                     }
-                    @if (Model.RunWithLinux)
+                    @if (Model.RunWithLinux && Model.LinuxResult != StatusResult.Ignored)
                     {
                         <a href="javascript:;" class="status-os-item" data-os="Linux"><i class="fa fa-linux"></i> Linux</a>
                     }
-                    @if (Model.RunWithOsx)
+                    @if (Model.RunWithOsx && Model.OsxResult != StatusResult.Ignored)
                     {
                         <a href="javascript:;" class="status-os-item" data-os="OSX"><i class="fa fa-apple"></i> Mac OS X</a>
                     }

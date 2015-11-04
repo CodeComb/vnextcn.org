@@ -26,7 +26,11 @@
                                 <td>@x.Alias</td>
                                 <td>@x.Status</td>
                                 <td>
-                                    @if (x.OS == CodeComb.Package.OSType.Linux)
+                                    @if (x.Status == CodeComb.vNextExperimentCenter.Hub.NodeStatus.Lost)
+                                    {
+                                        <i class="fa fa-chevron-circle-down"></i>
+                                    }
+                                    else if (x.OS == CodeComb.Package.OSType.Linux)
                                     { 
                                         <i class="fa fa-linux"></i>
                                     }

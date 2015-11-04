@@ -90,7 +90,7 @@ namespace CodeComb.vNextExperimentCenter.Models
             {
                 return StatusResult.Building;
             }
-            else if (this.WindowsResult == StatusResult.Queued || this.LinuxResult == StatusResult.Queued || this.OsxResult == StatusResult.Queued)
+            else if (this.WindowsResult == StatusResult.Queued && this.LinuxResult == StatusResult.Queued && this.OsxResult == StatusResult.Queued)
             {
                 return StatusResult.Queued;
             }

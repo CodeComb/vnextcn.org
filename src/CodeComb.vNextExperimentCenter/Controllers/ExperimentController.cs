@@ -100,29 +100,38 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     Status.RunWithLinux = true;
                     Status.RunWithOsx = true;
                     Status.RunWithWindows = true;
+                    Status.LinuxResult = StatusResult.Queued;
+                    Status.OsxResult = StatusResult.Queued;
+                    Status.WindowsResult = StatusResult.Queued;
                     break;
                 case OSType.Random:
                     switch (NodeProvider.GetFreeNode().OS)
                     {
                         case Package.OSType.Linux:
                             Status.RunWithLinux = true;
+                            Status.LinuxResult = StatusResult.Queued;
                             break;
                         case Package.OSType.OSX:
                             Status.RunWithOsx = true;
+                            Status.OsxResult = StatusResult.Queued;
                             break;
                         case Package.OSType.Windows:
                             Status.RunWithWindows = true;
+                            Status.WindowsResult = StatusResult.Queued;
                             break;
                     }
                     break;
                 case OSType.Linux:
                     Status.RunWithLinux = true;
+                    Status.LinuxResult = StatusResult.Queued;
                     break;
                 case OSType.OSX:
                     Status.RunWithOsx = true;
+                    Status.OsxResult = StatusResult.Queued;
                     break;
                 case OSType.Windows:
                     Status.RunWithWindows = true;
+                    Status.WindowsResult = StatusResult.Queued;
                     break;
             }
 
@@ -153,6 +162,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 else
                     await node.SendJudgeTask(Status.Id, Status.Archive, Status.Experiment.TestArchive, Status.NuGet + "\r\n" + Status.Experiment.NuGet);
             }
+            DB.SaveChanges();
 
             return RedirectToAction("Show", "Status", new { id = Status.Id });
         }
