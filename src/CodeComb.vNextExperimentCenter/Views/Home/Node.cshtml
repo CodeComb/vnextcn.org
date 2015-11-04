@@ -29,20 +29,23 @@
                                     @if (x.Status == CodeComb.vNextExperimentCenter.Hub.NodeStatus.Lost)
                                     {
                                         <i class="fa fa-chevron-circle-down"></i>
+                                        @("Unknown")
                                     }
                                     else if (x.OS == CodeComb.Package.OSType.Linux)
                                     { 
                                         <i class="fa fa-linux"></i>
+                                        @(x.OS)
                                     }
                                     else if (x.OS == CodeComb.Package.OSType.OSX)
                                     {
                                         <i class="fa fa-apple"></i>
+                                        @(x.OS)
                                     }
                                     else
                                     {
                                         <i class="fa fa-windows"></i>
+                                        @(x.OS)
                                     }
-                                    @(x.OS)
                                 </td>
                                 <td>@x.CurrentThread</td>
                                 <td>@x.MaxThread</td>

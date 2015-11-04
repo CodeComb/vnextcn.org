@@ -88,6 +88,8 @@ namespace CodeComb.vNextExperimentCenter.Hub
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
                     LostConnectionCount++;
+                    this.MaxThread = 0;
+                    this.CurrentThread = 0;
                     Console.Error.WriteLine($"{Alias} 心跳测试失败第{LostConnectionCount}次");
                 }
                 else
