@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CodeComb.Package;
 
 namespace CodeComb.vNextExperimentCenter.Hub
 {
@@ -9,5 +10,6 @@ namespace CodeComb.vNextExperimentCenter.Hub
     {
         IList<Node> Nodes { get; set; }
         Node GetFreeNode();
+        Node GetFreeNode(OSType OS);
     }
 }
