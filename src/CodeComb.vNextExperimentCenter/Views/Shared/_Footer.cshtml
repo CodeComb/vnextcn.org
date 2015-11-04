@@ -6,11 +6,26 @@
                 <div class="col-sm-6 col-md-4">
                     <!-- start widget -->
                     <div class="widget">
-                        <h4 class="title">服务器可用度</h4>
+                        <h4 class="title"><a asp-action="Node" asp-controller="Home">服务器可用度</a></h4>
                         <div class="content recent-post">
                             @foreach(CodeComb.vNextExperimentCenter.Hub.Node x in ViewBag.Nodes)
                             { 
-                                <p>@x.Alias @x.Status (@x.LostConnectionCount)</p>
+                                <p>
+                                    @if (x.OS == CodeComb.Package.OSType.Linux)
+                                    {
+                                        <i class="fa fa-linux"></i>
+                                    }
+                                    else if (x.OS == CodeComb.Package.OSType.OSX)
+                                    {
+                                        <i class="fa fa-apple"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-windows"></i>
+                                    }
+
+                                    @x.Alias (@x.Status)
+                                </p>
                             }
                         </div>
                     </div>

@@ -12,5 +12,10 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         {
             return View();
         }
+
+        public IActionResult Node()
+        {
+            return View(NodeProvider.Nodes);
+        }
     }
 }
