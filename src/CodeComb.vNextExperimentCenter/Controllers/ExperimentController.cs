@@ -162,6 +162,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 else
                     await node.SendJudgeTask(Status.Id, Status.Archive, Status.Experiment.TestArchive, Status.NuGet + "\r\n" + Status.Experiment.NuGet);
             }
+            Status.Result = Status.GenerateResult();
             DB.SaveChanges();
 
             return RedirectToAction("Show", "Status", new { id = Status.Id });

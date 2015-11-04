@@ -38,7 +38,6 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         public string BeginBuilding(long id, [FromHeader(Name = "private-key")]string PrivateKey)
         {
             var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
-            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
             var status = DB.Statuses.Where(x => x.Id == id).Single();
             if (status.Result == Models.StatusResult.Queued)
                 status.Result = Models.StatusResult.Building;
