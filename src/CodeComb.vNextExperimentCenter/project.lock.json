@@ -178,6 +178,7 @@
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
+          "CodeComb.Package": "2.0.0",
           "EntityFramework.Relational": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "1.0.0",
           "Newtonsoft.Json": "7.0.1"
@@ -2301,6 +2302,7 @@
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
+          "CodeComb.Package": "2.0.0",
           "EntityFramework.Relational": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "1.0.0",
           "Newtonsoft.Json": "7.0.1",
@@ -5256,6 +5258,7 @@
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
+          "CodeComb.Package": "2.0.0",
           "EntityFramework.Relational": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "1.0.0",
           "Newtonsoft.Json": "7.0.1"
@@ -7381,6 +7384,7 @@
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
+          "CodeComb.Package": "2.0.0",
           "EntityFramework.Relational": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "1.0.0",
           "Newtonsoft.Json": "7.0.1"
@@ -9517,6 +9521,7 @@
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
+          "CodeComb.Package": "2.0.0",
           "EntityFramework.Relational": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "1.0.0",
           "Newtonsoft.Json": "7.0.1",
@@ -13066,6 +13071,7 @@
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
+          "CodeComb.Package": "2.0.0",
           "EntityFramework.Relational": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "1.0.0",
           "Newtonsoft.Json": "7.0.1",

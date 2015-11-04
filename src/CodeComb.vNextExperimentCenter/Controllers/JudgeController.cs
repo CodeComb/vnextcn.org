@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
+using CodeComb.Package;
 
 namespace CodeComb.vNextExperimentCenter.Controllers
 {
@@ -12,12 +13,23 @@ namespace CodeComb.vNextExperimentCenter.Controllers
     public class JudgeController : BaseController
     {
         [HttpPost]
-        public string Output(long id, string text)
+        public string Output(long id, string text, [FromHeader(Name = "private-key")]string PrivateKey)
         {
+            var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
             var status = DB.Statuses.Where(x => x.Id == id).Single();
-            status.Output += text;
-            if (status.Result == Models.StatusResult.Queued)
-                status.Result = Models.StatusResult.Building;
+            switch(node.OS)
+            {
+                case OSType.Windows:
+                    status.WindowsOutput += text;
+                    break;
+                case OSType.OSX:
+                    status.OsxOutput += text;
+                    break;
+                case OSType.Linux:
+                    status.LinuxOutput += text;
+                    break;
+            }
+            status.Result = status.GenerateResult();
             var result = DB.SaveChanges();
             return "ok";
         }
@@ -25,33 +37,69 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [HttpPost]
         public string BeginBuilding(long id, [FromHeader(Name = "private-key")]string PrivateKey)
         {
-            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single())].CurrentThread--;
+            var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
+            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
             var status = DB.Statuses.Where(x => x.Id == id).Single();
-            status.Result = Models.StatusResult.Building;
+            if (status.Result == Models.StatusResult.Queued)
+                status.Result = Models.StatusResult.Building;
+            switch (node.OS)
+            {
+                case OSType.Windows:
+                    status.WindowsResult = Models.StatusResult.Building;
+                    break;
+                case OSType.OSX:
+                    status.OsxResult = Models.StatusResult.Building;
+                    break;
+                case OSType.Linux:
+                    status.LinuxResult = Models.StatusResult.Building;
+                    break;
+            }
             DB.SaveChanges();
             return "ok";
         }
 
         [HttpPost]
-        public string Failed(long id, [FromHeader(Name = "private-key")]string PrivateKey, string Output, int TimeUsage)
+        public string Failed(long id, [FromHeader(Name = "private-key")]string PrivateKey, string Output)
         {
-            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single())].CurrentThread--;
+            var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
+            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
             var status = DB.Statuses.Where(x => x.Id == id).Single();
-            status.Result = Models.StatusResult.Failed;
-            status.Output = Output;
-            status.TimeUsage = TimeUsage;
+            switch (node.OS)
+            {
+                case OSType.Windows:
+                    status.WindowsOutput = Output;
+                    break;
+                case OSType.OSX:
+                    status.OsxOutput = Output;
+                    break;
+                case OSType.Linux:
+                    status.LinuxOutput = Output;
+                    break;
+            }
+            status.Result = status.GenerateResult();
             DB.SaveChanges();
             return "ok";
         }
 
         [HttpPost]
-        public string Successful(long id, [FromHeader(Name = "private-key")]string PrivateKey, string Output, int TimeUsage)
+        public string Successful(long id, [FromHeader(Name = "private-key")]string PrivateKey, string Output)
         {
-            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single())].CurrentThread--;
+            var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
+            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
             var status = DB.Statuses.Where(x => x.Id == id).Single();
-            status.Result = Models.StatusResult.Successful;
-            status.Output = Output;
-            status.TimeUsage = TimeUsage;
+            switch (node.OS)
+            {
+                case OSType.Windows:
+                    status.WindowsOutput = Output;
+                    break;
+                case OSType.OSX:
+                    status.OsxOutput = Output;
+                    break;
+                case OSType.Linux:
+                    status.LinuxOutput = Output;
+                    break;
+            }
+            status.Result = status.GenerateResult();
             DB.SaveChanges();
             return "ok";
         }
@@ -59,11 +107,23 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [HttpPost]
         public string TimeLimitExceeded(long id, [FromHeader(Name = "private-key")]string PrivateKey, string Output, int TimeUsage)
         {
-            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single())].CurrentThread--;
+            var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
+            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
             var status = DB.Statuses.Where(x => x.Id == id).Single();
             status.Result = Models.StatusResult.Failed;
-            status.Output = Output;
-            status.TimeUsage = TimeUsage;
+            switch (node.OS)
+            {
+                case OSType.Windows:
+                    status.WindowsOutput = Output;
+                    break;
+                case OSType.OSX:
+                    status.OsxOutput = Output;
+                    break;
+                case OSType.Linux:
+                    status.LinuxOutput = Output;
+                    break;
+            }
+            status.Result = status.GenerateResult();
             DB.SaveChanges();
             return "ok";
         }
@@ -71,13 +131,15 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [HttpPost]
         public string PushTestCase(long id, string title, Models.TestCaseResult result, float time, string method, [FromHeader(Name = "private-key")]string PrivateKey)
         {
+            var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
             var statusDetail = new Models.StatusDetail
             {
                 Result = result,
                 StatusId = id,
                 Time = time,
                 Title = title,
-                Method = method
+                Method = method,
+                OS = node.OS
             };
             DB.StatusDetails.Add(statusDetail);
             DB.SaveChanges();
@@ -91,7 +153,6 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             status.Total = status.Details.Where(x => x.Result != Models.TestCaseResult.Skip).Count();
             status.TimeUsage = Convert.ToInt64(status.Details.Sum(x => x.Time) * 1000);
             DB.SaveChanges();
-
             return "ok";
         }
     }

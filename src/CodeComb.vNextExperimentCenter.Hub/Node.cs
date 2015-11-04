@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.IO;
 using Newtonsoft.Json;
+using CodeComb.Package;
 
 namespace CodeComb.vNextExperimentCenter.Hub
 {
@@ -27,7 +28,7 @@ namespace CodeComb.vNextExperimentCenter.Hub
         public int CurrentThread { get; set; }
         public int LostConnectionCount { get; set; } = 0;
         public string PrivateKey { get; set; }
-        public string OS { get; set; }
+        public OSType OS { get; set; }
         private Timer Timer { get; set; }
         public HttpClient client
         {
@@ -68,7 +69,7 @@ namespace CodeComb.vNextExperimentCenter.Hub
             var result = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
             MaxThread = result.MaxThread;
             CurrentThread = result.CurrentThread;
-            OS = result.Platform;
+            OS = (OSType)Enum.Parse(typeof(OSType), result.Platform.ToString());
         }
 
         public void Init()

@@ -68,6 +68,11 @@ namespace CodeComb.vNextExperimentCenter.Models
                 e.HasIndex(x => x.WindowsResult);
             });
 
+            builder.Entity<StatusDetail>(e =>
+            {
+                e.HasIndex(x => x.OS);
+            });
+
             builder.Entity<Blob>(e =>
             {
                 e.HasIndex(x => x.Time);

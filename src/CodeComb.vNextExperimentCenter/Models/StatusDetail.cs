@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using CodeComb.Package;
 
 namespace CodeComb.vNextExperimentCenter.Models
 {
@@ -22,6 +23,8 @@ namespace CodeComb.vNextExperimentCenter.Models
         public string Method { get; set; }
 
         public TestCaseResult Result { get; set; }
+
+        public Package.OSType OS { get; set; }
 
         [ForeignKey("Status")]
         public long StatusId { get; set; }

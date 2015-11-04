@@ -19,7 +19,8 @@ namespace CodeComb.vNextExperimentCenter.Models
         OSX,
         Windows,
         Linux,
-        CrossPlatform
+        CrossPlatform,
+        Random
     }
     
     public class Experiment

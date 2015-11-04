@@ -63,11 +63,17 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.StatusCode = 400;
                 });
             status.Result = Models.StatusResult.Queued;
-            status.Output = "";
+            status.WindowsResult = Models.StatusResult.Queued;
+            status.LinuxResult = Models.StatusResult.Queued;
+            status.OsxResult = Models.StatusResult.Queued;
+            status.WindowsOutput = "";
+            status.LinuxOutput = "";
+            status.OsxOutput = "";
             status.TimeUsage = 0;
             foreach (var x in status.Details)
                 DB.StatusDetails.Remove(x);
             DB.SaveChanges();
+            // TODO: 根据Status要求分配节点并更新Ignored
             await NodeProvider.GetFreeNode().SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
             return Prompt(x =>
             {
