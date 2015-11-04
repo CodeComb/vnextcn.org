@@ -103,8 +103,30 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             return Prompt(x =>
             {
                 x.Title = "重新运行指令已下达";
-                x.Details = "该任务已经加入待运行队列中，稍后即将开始重新运行！";
+                x.Details = "该任务已经加入等待队列中，稍后即将开始重新运行！";
             });
+        }
+        
+        [HttpGet]
+        public IActionResult Output(long id, Package.OSType os)
+        {
+            var status = DB.Statuses
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+
+            if (status == null)
+                return Content("Not found.");
+
+            switch (os)
+            {
+                case Package.OSType.Linux:
+                    return Content(status.LinuxOutput);
+                case Package.OSType.OSX:
+                    return Content(status.OsxOutput);
+                case Package.OSType.Windows:
+                    return Content(status.WindowsOutput);
+                default: return Content("Not found.");
+            }
         }
     }
 }

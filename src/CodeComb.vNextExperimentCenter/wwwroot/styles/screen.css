@@ -2063,6 +2063,9 @@ pre {
 .pre-outer {
     padding: 15px;
     background-color: rgb(245,245,245);
+    border-top: 5px solid #55acee;
+    height: 480px;
+    overflow: auto;
 }
 
 .sidebar-username {
@@ -2178,4 +2181,28 @@ pre {
 
 .rank-orange {
     background-color:rgb(255, 233, 201);
+}
+
+.status-os-outer {
+    height: 30px;
+}
+
+.status-os-item {
+    transition: all 0.2s linear;
+    color: #222;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 30px!important;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.status-os-item:hover {
+    background-color: rgb(245,245,245);
+    color: #55acee;
+}
+
+.status-os-item.active {
+    background-color: #55acee;
+    color: #fff;
 }
