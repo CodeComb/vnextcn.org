@@ -258,7 +258,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         }
 
         [HttpGet]
-        [Route("CI/{id}/{os}Badge.svg")]
+        [Route("CI/{id}/{os}/Badge.svg")]
         public IActionResult Badge(Guid id, Package.OSType os, [FromServices] IHostingEnvironment env)
         {
             var status = DB.Statuses
