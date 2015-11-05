@@ -12,11 +12,14 @@ namespace CodeComb.vNextExperimentCenter.Controllers
     [Authorize]
     public class CIController : BaseController
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var ownedSets = (await UserManager.GetClaimsAsync(User.Current))
+                .Where(x => x.Type == "Owned CI set")
+                .Select(x => x.Value);
             var ret = DB.CISets
                 .Include(x => x.Projects)
-                .Where(x => x.UserId == User.Current.Id)
+                .Where(x => ownedSets.Contains(x.Id.ToString()))
                 .OrderByDescending(x => x.LastBuildingTime);
             return View(ret);
         }
