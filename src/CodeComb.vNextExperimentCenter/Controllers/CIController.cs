@@ -68,6 +68,10 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
+            var ciset = DB.CISets
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            ciset.LastBuildingTime = DateTime.Now;
             var status = new Status
             {
                 ProjectId = project.Id,
@@ -122,7 +126,15 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 .Include(x => x.Projects)
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
-            foreach(var x in ciset.Projects.OrderBy(x => x.PRI))
+            if (ciset == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            ciset.LastBuildingTime = DateTime.Now;
+            foreach (var x in ciset.Projects.OrderBy(x => x.PRI))
             {
                 var status = new Status
                 {
