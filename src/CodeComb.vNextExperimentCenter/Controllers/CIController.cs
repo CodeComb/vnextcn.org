@@ -112,6 +112,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 else
                     status.WindowsResult = StatusResult.Ignored;
             }
+            status.Result = status.GenerateResult();
             project.CurrentVersion++;
             DB.SaveChanges();
             return RedirectToAction("Show", "CI", new { id = id });
@@ -119,6 +120,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("CI/Set/Build/All")]
         [Route("CI/Set/Build/All/{id:Guid}")]
         [AnyRolesOrClaims("Root, Master", "Owned CI set")]
         public async Task<IActionResult> BuildAll(Guid id)
@@ -178,6 +180,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                         status.WindowsResult = StatusResult.Ignored;
                 }
                 x.CurrentVersion++;
+                status.Result = status.GenerateResult();
                 DB.SaveChanges();
             }
             return RedirectToAction("Show", "CI", new { id = ciset.Id });

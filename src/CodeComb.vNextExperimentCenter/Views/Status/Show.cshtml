@@ -87,26 +87,29 @@
                     </table>
                 </div>
             }
-            <h3 class="exp-sub-title">运行输出</h3>
-            <div class="cont-outer">
-                <div class="status-os-outer">
-                    @if (Model.RunWithWindows && Model.WindowsResult != StatusResult.Ignored)
-                    {
-                        <a href="javascript:;" class="status-os-item" data-os="Windows"><i class="fa fa-windows"></i> Windows</a>
-                    }
-                    @if (Model.RunWithLinux && Model.LinuxResult != StatusResult.Ignored)
-                    {
-                        <a href="javascript:;" class="status-os-item" data-os="Linux"><i class="fa fa-linux"></i> Linux</a>
-                    }
-                    @if (Model.RunWithOsx && Model.OsxResult != StatusResult.Ignored)
-                    {
-                        <a href="javascript:;" class="status-os-item" data-os="OSX"><i class="fa fa-apple"></i> Mac OS X</a>
-                    }
+            @if (Model.Result != StatusResult.Ignored)
+            { 
+                <h3 class="exp-sub-title">运行输出</h3>
+                <div class="cont-outer">
+                    <div class="status-os-outer">
+                        @if (Model.RunWithWindows && Model.WindowsResult != StatusResult.Ignored)
+                        {
+                            <a href="javascript:;" class="status-os-item" data-os="Windows"><i class="fa fa-windows"></i> Windows</a>
+                        }
+                        @if (Model.RunWithLinux && Model.LinuxResult != StatusResult.Ignored)
+                        {
+                            <a href="javascript:;" class="status-os-item" data-os="Linux"><i class="fa fa-linux"></i> Linux</a>
+                        }
+                        @if (Model.RunWithOsx && Model.OsxResult != StatusResult.Ignored)
+                        {
+                            <a href="javascript:;" class="status-os-item" data-os="OSX"><i class="fa fa-apple"></i> Mac OS X</a>
+                        }
+                    </div>
+                    <div class="pre-outer">
+                        <pre id="console-output"></pre>
+                    </div>
                 </div>
-                <div class="pre-outer">
-                    <pre id="console-output"></pre>
-                </div>
-            </div>
+            }
         </div>
         <div class="grid_3">
             <p class="center"><img class="sidebar-avatar" src="~/Account/Avatar/@Model.UserId" style="width: 100%;" /></p>
