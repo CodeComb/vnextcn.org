@@ -77,7 +77,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 ProjectId = project.Id,
                 Type = StatusType.Project,
                 UserId = User.Current.Id,
-                Result = StatusResult.Queued
+                Result = StatusResult.Queued,
+                Time = DateTime.Now
             };
             DB.Statuses.Add(status);
             DB.SaveChanges();
@@ -141,7 +142,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     ProjectId = x.Id,
                     Type = StatusType.Project,
                     UserId = User.Current.Id,
-                    Result = StatusResult.Queued
+                    Result = StatusResult.Queued,
+                    Time = DateTime.Now
                 };
                 DB.Statuses.Add(status);
                 DB.SaveChanges();
