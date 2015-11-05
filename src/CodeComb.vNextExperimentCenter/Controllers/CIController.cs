@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
 using Microsoft.AspNet.Authorization;
+using CodeComb.Package;
 using CodeComb.vNextExperimentCenter.Models;
+using CodeComb.vNextExperimentCenter.ViewModels;
 
 namespace CodeComb.vNextExperimentCenter.Controllers
 {
@@ -104,6 +107,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 else
                     status.WindowsResult = StatusResult.Ignored;
             }
+            project.CurrentVersion++;
             DB.SaveChanges();
             return RedirectToAction("Show", "CI", new { id = id });
         }
@@ -159,6 +163,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     else
                         status.WindowsResult = StatusResult.Ignored;
                 }
+                x.CurrentVersion++;
                 DB.SaveChanges();
             }
             return RedirectToAction("Show", "CI", new { id = ciset.Id });
@@ -225,7 +230,52 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
+            var ret = new List<CIProject>();
+            foreach(var x in ciset.Projects)
+            {
+                var y = DB.Statuses
+                    .Where(z => z.ProjectId == x.Id)
+                    .OrderByDescending(z => z.Time)
+                    .FirstOrDefault();
+                ret.Add(new CIProject(x, y));
+            }
+            ViewBag.Projects = ret;
             return View(ciset);
+        }
+
+        [HttpGet]
+        [Route("CI/{id}/Badge.svg")]
+        public IActionResult Badge(Guid id, [FromServices] IHostingEnvironment env)
+        {
+            var status = DB.Statuses
+                .Where(x => x.ProjectId == id)
+                .OrderByDescending(x => x.Time)
+                .FirstOrDefault();
+            if (status == null)
+                return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/build-queued.svg"), "image/svg+xml");
+            else
+                return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/build-{status.Result.ToString().ToLower()}.svg"), "image/svg+xml");
+        }
+
+        [HttpGet]
+        [Route("CI/{id}/{os}Badge.svg")]
+        public IActionResult Badge(Guid id, Package.OSType os, [FromServices] IHostingEnvironment env)
+        {
+            var status = DB.Statuses
+                .Where(x => x.ProjectId == id)
+                .OrderByDescending(x => x.Time)
+                .FirstOrDefault();
+            if (status == null)
+                return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/{os.ToString().ToLower()}-queued.svg"), "image/svg+xml");
+            else
+            {
+                if (os == Package.OSType.Windows)
+                    return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/windows-{status.WindowsResult.ToString().ToLower()}.svg"), "image/svg+xml");
+                else if (os == Package.OSType.OSX)
+                    return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/osx-{status.OsxResult.ToString().ToLower()}.svg"), "image/svg+xml");
+                else
+                    return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/linux-{status.LinuxResult.ToString().ToLower()}.svg"), "image/svg+xml");
+            }
         }
     }
 }

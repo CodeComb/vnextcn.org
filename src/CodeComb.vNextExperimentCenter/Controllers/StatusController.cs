@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
 
 namespace CodeComb.vNextExperimentCenter.Controllers
@@ -127,6 +128,36 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     return Content(status.WindowsOutput);
                 default: return Content("Not found.");
             }
+        }
+
+        [HttpGet]
+        [Route("Status/{id}/Badge.svg")]
+        public IActionResult Badge(long id, [FromServices] IHostingEnvironment env)
+        {
+            var status = DB.Statuses
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (status == null)
+                return new HttpNotFoundResult();
+            var path = $"{env.WebRootPath}/images/build-{status.Result.ToString().ToLower()}.svg";
+            return File(System.IO.File.ReadAllBytes(path), "image/svg+xml");
+        }
+
+        [HttpGet]
+        [Route("Status/{id}/{os}/Badge.svg")]
+        public IActionResult Badge(long id, Package.OSType os, [FromServices] IHostingEnvironment env)
+        {
+            var status = DB.Statuses
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (status == null)
+                return new HttpNotFoundResult();
+            if (os == Package.OSType.Linux)
+                return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/linux-{status.LinuxResult.ToString().ToLower()}.svg"), "image/svg+xml");
+            else if (os == Package.OSType.OSX)
+                return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/osx-{status.OsxResult.ToString().ToLower()}.svg"), "image/svg+xml");
+            else
+                return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/windows-{status.WindowsResult.ToString().ToLower()}.svg"), "image/svg+xml");
         }
     }
 }

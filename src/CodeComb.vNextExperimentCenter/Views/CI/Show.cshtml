@@ -1,0 +1,56 @@
+﻿@model CISet
+@{ 
+    ViewBag.Title = Model.Title;
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <h3 class="exp-sub-title">项目构建状态</h3>
+            <div class="cont-outer">
+                <table class="table no-shadow">
+                    <thead>
+                        <tr>
+                            <th>项目名称</th>
+                            <th>构建状态</th>
+                            <th>构建时间</th>
+                            <th>最新版本</th>
+                            @if (User.AnyRolesOrClaims("Root, Master", "Owned CI set", Model.Id.ToString()))
+                            {
+                                <th>操作</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var x in Model.Projects)
+                        {
+                            <tr>
+                                <td>@x.Alias</td>
+                                <td>
+                                    <img src="@Url.Action("Badge", "CI", new { id = x.Id })" />
+
+                                    @if (x.RunWithWindows)
+                                    {
+                                        <img src="@Url.Action("Badge", "CI", new { id = x.Id, os = CodeComb.Package.OSType.Windows })" />
+                                    }
+
+                                    @if (x.RunWithLinux)
+                                    {
+                                        <img src="@Url.Action("Badge", "CI", new { id = x.Id, os = CodeComb.Package.OSType.Linux })" />
+                                    }
+
+                                    @if (x.RunWithOsx)
+                                    {
+                                        <img src="@Url.Action("Badge", "CI", new { id = x.Id, os = CodeComb.Package.OSType.OSX })" />
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @Html.Partial("Sidebar")
+    </div>
+</div>
