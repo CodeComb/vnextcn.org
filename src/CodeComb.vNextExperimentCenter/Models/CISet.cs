@@ -17,6 +17,10 @@ namespace CodeComb.vNextExperimentCenter.Models
 
         public string Title { get; set; }
 
+        public DateTime? LastBuildingTime { get; set; }
+
+        public DateTime CreationTime { get; set; }
+
         public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
     }
 }
