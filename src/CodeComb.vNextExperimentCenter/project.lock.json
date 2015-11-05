@@ -22,7 +22,7 @@
           "lib/dnx451/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151105033526": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151105072720": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15934",
@@ -2052,7 +2052,7 @@
           "lib/dnxcore50/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151105033526": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151105072720": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15934",
@@ -4872,7 +4872,7 @@
           "lib/dnx451/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151105033526": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151105072720": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15934",
@@ -6921,7 +6921,7 @@
           "lib/dnx451/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151105033526": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151105072720": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15934",
@@ -8964,7 +8964,7 @@
           "lib/dnxcore50/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151105033526": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151105072720": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15934",
@@ -12388,7 +12388,7 @@
           "lib/dnxcore50/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-t151105033526": {
+      "CodeComb.AspNet.Extensions/2.0.0-t151105072720": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15934",
@@ -15817,12 +15817,12 @@
         "lib/dnxcore50/CodeComb.AspNet.AntiXSS.xml"
       ]
     },
-    "CodeComb.AspNet.Extensions/2.0.0-t151105033526": {
+    "CodeComb.AspNet.Extensions/2.0.0-t151105072720": {
       "type": "package",
-      "sha512": "v7CFlDLpx71MReLIKkzFK+ZfK/u3dBfCVTsu+dfJxdm7CSM8B/sSRZcTOojLHTUNZK6coDHnrTQ6c+Eo3KBg9Q==",
+      "sha512": "ee8rfsSm75hMUmNp3Jy4uIeyhwWR6pCyZpUK8ZQ2vZ8sfcxXuP4H6yNUxnSjvvDKVKTwXORNSAM9FMATcBq2zg==",
       "files": [
-        "CodeComb.AspNet.Extensions.2.0.0-t151105033526.nupkg",
-        "CodeComb.AspNet.Extensions.2.0.0-t151105033526.nupkg.sha512",
+        "CodeComb.AspNet.Extensions.2.0.0-t151105072720.nupkg",
+        "CodeComb.AspNet.Extensions.2.0.0-t151105072720.nupkg.sha512",
         "CodeComb.AspNet.Extensions.nuspec",
         "lib/dnx451/CodeComb.AspNet.Extensions.dll",
         "lib/dnx451/CodeComb.AspNet.Extensions.xml",
