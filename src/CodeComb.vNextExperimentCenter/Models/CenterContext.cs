@@ -21,10 +21,31 @@ namespace CodeComb.vNextExperimentCenter.Models
         public DbSet<ContestExperiment> ContestExperiments { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<CISet> CISets { get; set; }
+        public DbSet<Forum> Forums { get; set; }
+        public DbSet<Topic> Topics { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<Topic>(e => 
+            {
+                e.HasIndex(x => x.IsTop);
+                e.HasIndex(x => x.CreationTime);
+                e.HasIndex(x => x.LastReplyTime);
+            });
+
+            builder.Entity<Post>(e => 
+            {
+                e.HasIndex(x => x.Time);
+            });
+
+            builder.Entity<Forum>(e =>
+            {
+                e.Property(x => x.ParentId).IsRequired(false);
+                e.HasIndex(x => x.PRI);
+            });
 
             builder.Entity<Contest>(e => 
             {
