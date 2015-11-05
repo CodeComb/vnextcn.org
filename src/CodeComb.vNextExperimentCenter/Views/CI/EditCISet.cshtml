@@ -1,0 +1,22 @@
+﻿@model CISet
+@{ 
+    ViewBag.Title = "编辑项目集合 - " + Model.Title;
+}
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 col-md-offset-2">
+        <div class="card card-single card-error">
+            <div class="error-block-inner">
+                <h3>编辑项目集合</h3>
+                <p>目前您只能修改项目集合的名称。</p>
+                <form method="post" asp-action="EditCISet" asp-controller="CI" asp-route-id="Model.Id">
+                    <p>
+                        <span class="texthold">集合名称</span>
+                        <input type="text" class="textbox w-3" name="Title" asp-for="Title" />
+                    </p>
+                    <input type="submit" value="保存修改" class="btn btn-default ripple home-link" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

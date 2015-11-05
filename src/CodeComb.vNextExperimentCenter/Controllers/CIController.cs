@@ -53,8 +53,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         }
 
         [HttpPost]
-        [Route("CI/Set/Build/{id:Guid}")]
         [ValidateAntiForgeryToken]
+        [Route("CI/Set/Build/{id:Guid}")]
         [AnyRolesOrClaims("Root, Master", "Owned CI set")]
         public async Task<IActionResult> Build(Guid id, Guid pid)
         {
@@ -113,8 +113,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         }
 
         [HttpPost]
-        [Route("CI/Set/Build/All/{id:Guid}")]
         [ValidateAntiForgeryToken]
+        [Route("CI/Set/Build/All/{id:Guid}")]
         [AnyRolesOrClaims("Root, Master", "Owned CI set")]
         public async Task<IActionResult> BuildAll(Guid id)
         {
@@ -230,16 +230,6 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
-            var ret = new List<CIProject>();
-            foreach(var x in ciset.Projects)
-            {
-                var y = DB.Statuses
-                    .Where(z => z.ProjectId == x.Id)
-                    .OrderByDescending(z => z.Time)
-                    .FirstOrDefault();
-                ret.Add(new CIProject(x, y));
-            }
-            ViewBag.Projects = ret;
             return View(ciset);
         }
 
@@ -259,7 +249,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
 
         [HttpGet]
         [Route("CI/{id}/{os}/Badge.svg")]
-        public IActionResult Badge(Guid id, Package.OSType os, [FromServices] IHostingEnvironment env)
+        public IActionResult BadgeWithOS(Guid id, Package.OSType os, [FromServices] IHostingEnvironment env)
         {
             var status = DB.Statuses
                 .Where(x => x.ProjectId == id)

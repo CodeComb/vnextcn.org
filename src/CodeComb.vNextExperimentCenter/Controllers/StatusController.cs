@@ -145,7 +145,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
 
         [HttpGet]
         [Route("Status/{id}/{os}/Badge.svg")]
-        public IActionResult Badge(long id, Package.OSType os, [FromServices] IHostingEnvironment env)
+        public IActionResult BadgeWithOS(long id, Package.OSType os, [FromServices] IHostingEnvironment env)
         {
             var status = DB.Statuses
                 .Where(x => x.Id == id)

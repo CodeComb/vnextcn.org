@@ -14,8 +14,8 @@
                         <tr>
                             <th>项目名称</th>
                             <th>构建状态</th>
-                            <th>构建时间</th>
                             <th>最新版本</th>
+                            <th>构建顺序</th>
                             @if (User.AnyRolesOrClaims("Root, Master", "Owned CI set", Model.Id.ToString()))
                             {
                                 <th>操作</th>
@@ -23,28 +23,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var x in Model.Projects)
+                        @foreach(var x in Model.Projects.OrderBy(x => x.PRI))
                         {
                             <tr>
                                 <td>@x.Alias</td>
                                 <td>
                                     <img src="@Url.Action("Badge", "CI", new { id = x.Id })" />
-
-                                    @if (x.RunWithWindows)
-                                    {
-                                        <img src="@Url.Action("Badge", "CI", new { id = x.Id, os = CodeComb.Package.OSType.Windows })" />
-                                    }
-
-                                    @if (x.RunWithLinux)
-                                    {
-                                        <img src="@Url.Action("Badge", "CI", new { id = x.Id, os = CodeComb.Package.OSType.Linux })" />
-                                    }
-
-                                    @if (x.RunWithOsx)
-                                    {
-                                        <img src="@Url.Action("Badge", "CI", new { id = x.Id, os = CodeComb.Package.OSType.OSX })" />
-                                    }
                                 </td>
+                                <td>@string.Format(x.VersionRule, x.CurrentVersion)</td>
+                                <td>@x.PRI</td>
+                                @if (User.AnyRolesOrClaims("Root, Master", "Owned CI set", Model.Id.ToString()))
+                                {
+                                    <td>
+                                        <a href="javascript:Build('@x.Id');"><i class="fa fa-play"></i> 构建</a>                                        
+                                        &nbsp;&nbsp;
+                                        <a asp-action="EditProject" asp-controller="CI" asp-route-id="@Model.Id" asp-route-pid="@x.Id"><i class="fa fa-cog"></i> 编辑</a>
+                                    </td>
+                                }
                             </tr>
                         }
                     </tbody>
@@ -54,3 +49,11 @@
         @Html.Partial("Sidebar")
     </div>
 </div>
+<form asp-action="Build" asp-controller="CI" method="post" id="frmBuild" asp-route-id="@Model.Id"><input type="hidden" name="pid" id="projectId" /></form>
+<script>
+    function Build(pid)
+    {
+        $('#projectId').val(pid);
+        $('#frmBuild').submit();
+    }
+</script>

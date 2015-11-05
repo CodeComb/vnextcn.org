@@ -26,9 +26,13 @@ namespace CodeComb.vNextExperimentCenter.Models
 				var user = new User { UserName = "root", Email = "1@1234.sh", Organization = "Code Comb Co,. Ltd.", WebSite = "http://1234.sh" };
 				await UserManager.CreateAsync(user, "123456");
 				await UserManager.AddToRoleAsync(user, "Root");
-				
+
+                var user2 = new User { UserName = "user", Email = "911574351@qq.com", Organization = "Code Comb Co,. Ltd.", WebSite = "http://1234.sh" };
+                await UserManager.CreateAsync(user2, "123456");
+                await UserManager.AddToRoleAsync(user, "Member");
+
                 // 添加Hello World实验
-				DB.Experiments.Add(new Experiment
+                DB.Experiments.Add(new Experiment
                 {
 					Title = "编写Hello World网站",
 					OS = OSType.CrossPlatform,
@@ -83,8 +87,57 @@ namespace CodeComb.vNextExperimentCenter.Models
                     Point = 500
                 });
 
-				DB.SaveChanges();
-			}
-		}
+                // 添加项目
+                var ciset = new CISet
+                {
+                    Title = "Code Comb vNext Libraries",
+                    CreationTime = DateTime.Now,
+                    LastBuildingTime = null
+                };
+                DB.CISets.Add(ciset);
+                DB.Projects.Add(new Project
+                {
+                    CurrentVersion = 10000,
+                    AdditionalEnvironmentVariables = "{ }",
+                    PRI = 0,
+                    RunWithLinux = true,
+                    RunWithOsx = true,
+                    RunWithWindows = true,
+                    CISetId = ciset.Id,
+                    ZipUrl = "https://github.com/CodeComb/vnextcn.org/archive/dev.zip",
+                    VersionRule = "2.0.0-rc2-{0}",
+                    Alias = "vnextcn.org"
+                });
+                DB.Projects.Add(new Project
+                {
+                    CurrentVersion = 10000,
+                    AdditionalEnvironmentVariables = "{ }",
+                    PRI = 0,
+                    RunWithLinux = true,
+                    RunWithOsx = true,
+                    RunWithWindows = true,
+                    CISetId = ciset.Id,
+                    ZipUrl = "https://github.com/CodeComb/Extensions/archive/dev.zip",
+                    VersionRule = "2.0.0-rc2-{0}",
+                    Alias = "CodeComb.AspNet.Extensions"
+                });
+                DB.Projects.Add(new Project
+                {
+                    CurrentVersion = 10000,
+                    AdditionalEnvironmentVariables = "{ }",
+                    PRI = 0,
+                    RunWithLinux = true,
+                    RunWithOsx = true,
+                    RunWithWindows = true,
+                    CISetId = ciset.Id,
+                    ZipUrl = "https://github.com/CodeComb/Aes/archive/dev.zip",
+                    VersionRule = "2.0.0-rc2-{0}",
+                    Alias = "CodeComb.Security.Aes"
+                });
+
+                DB.SaveChanges();
+                await UserManager.AddClaimAsync(user, new System.Security.Claims.Claim("Owned CI set", ciset.Id.ToString()));
+            }
+        }
 	}
 }
