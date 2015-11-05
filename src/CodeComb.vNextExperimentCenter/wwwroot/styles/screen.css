@@ -2049,6 +2049,10 @@ pre {
 }
 
 .status-failed {
+    color:#4d7aff!important;
+}
+
+.status-ignored {
     color:#49a932!important;
 }
 

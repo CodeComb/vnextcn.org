@@ -18,20 +18,37 @@
                 <div class="block-outer">
                     @foreach (var x in Model)
                     {
-                        <div class="block blue">
-                            <h2>@x.Title</h2>
-                            <table class="detail-table">
+                        <div class="block yellow">
+                            <h2><a asp-action="Show" asp-controller="CI" asp-route-id="@x.Id">@x.Title</a></h2>
+                            <table class="detail-table no-border">
                                 <tr>
-                                    <td>项目数</td>
-                                    <td>创建日期</td>
-                                    <td>上次构建时间</td>
+                                    <td class="row-title">项目数</td>
+                                    <td>@x.Projects.Count</td>
                                 </tr>
                                 <tr>
-                                    <td>@x.Projects.Count</td>
+                                    <td class="row-title">创建日期</td>
                                     <td>@x.CreationTime.ToString("yyyy-MM-dd")</td>
+                                </tr>
+                                <tr>
+                                    <td class="row-title">上次构建时间</td>
                                     <td>@(x.LastBuildingTime == null ? "N/A" : x.LastBuildingTime.Value.ToString("yyyy-MM-dd HH:mm:ss"))</td>
                                 </tr>
                             </table>
+                            <br />
+                            <p>
+                                <a asp-action="Show" asp-controller="CI" asp-route-id="@x.Id" class="btn btn-default">
+                                    <i class="fa fa-file-text-o"></i>
+                                    查看集合
+                                </a>
+                                <a href="javascript:;" class="btn btn-default">
+                                    <i class="fa fa-play"></i>
+                                    开始构建
+                                </a>
+                                <a asp-action="EditCISet" asp-controller="CI" asp-route-id="@x.Id" class="btn btn-default">
+                                    <i class="fa fa-cog"></i>
+                                    编辑集合
+                                </a>
+                            </p>
                         </div>
                     }
                 </div>

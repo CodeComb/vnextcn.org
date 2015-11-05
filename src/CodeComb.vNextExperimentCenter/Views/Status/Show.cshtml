@@ -147,7 +147,7 @@
 
     function LoadOutput()
     {
-        $.get('@Url.Link("default", new { id = Model.Id, action="Output", controller="Status" })', { os: CurrentOS }, function (data) 
+        $.get('@Url.Action("Output", "Status", new { id = Model.Id })', { os: CurrentOS }, function (data) 
         {
             $('#console-output').text(data);
         });

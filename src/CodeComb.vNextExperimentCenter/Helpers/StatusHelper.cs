@@ -21,6 +21,8 @@ namespace Microsoft.AspNet.Mvc.Rendering
                     return new HtmlString("<span class=\"status-failed\">Failed</span>");
                 case StatusResult.Successful:
                     return new HtmlString("<span class=\"status-successful\">Successful</span>");
+                case StatusResult.Ignored:
+                    return new HtmlString("<span class=\"status-ignored\">Ignored</span>");
                 default:
                     return new HtmlString("<span>Unknown</span>");
             }

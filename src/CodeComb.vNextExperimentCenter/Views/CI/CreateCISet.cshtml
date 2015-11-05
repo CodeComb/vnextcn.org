@@ -1,0 +1,21 @@
+﻿@{ 
+    ViewBag.Title = "创建项目集合";
+}
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 col-md-offset-2">
+        <div class="card card-single card-error">
+            <div class="error-block-inner">
+                <h3>创建项目集合</h3>
+                <p>创建一个项目集合，并向集合中添加项目，设置项目构建的优先级及发布方式等。</p>
+                <form method="post" asp-action="CreateCISet" asp-controller="CI">
+                    <p>
+                        <span class="texthold">集合名称</span>
+                        <input type="text" class="textbox w-3" name="Title" />
+                    </p>
+                    <input type="submit" value="创建项目集合" class="btn btn-default ripple home-link" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

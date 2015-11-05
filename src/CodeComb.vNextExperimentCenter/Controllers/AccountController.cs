@@ -24,14 +24,14 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         {
             var result = await SignInManager.PasswordSignInAsync(username, password, remember, false);
             if (result.Succeeded)
-                return Redirect(Referer ?? Url.Link("defailt", new { controller = "Home", action = "Index" }));
+                return Redirect(Referer ?? Url.Action("Index", "Home"));
             else
                 return Prompt(x =>
                 {
                     x.Title = "登录失败";
                     x.Details = "请检查用户名密码是否正确后返回上一页重试！";
                     x.RedirectText = "忘记密码";
-                    x.RedirectUrl = Url.Link("default", new { controller = "Home", action = "Index" });
+                    x.RedirectUrl = Url.Action("Index", "Home");
                     x.StatusCode = 403;
                 });
         }
@@ -57,7 +57,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             
             // 发送激活信
             var aes_email = Aes.Encrypt(email);
-            var url = Url.Link("default", new { controller = "Account", action = "RegisterDetail", key = aes_email });
+            var url = Url.Action("RegisterDetail", "Account");
             await Mail.SendEmailAsync(email, "vNext China 新用户注册验证信", $@"<html>
             <head></head>
             <body>
@@ -117,7 +117,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.Title = "注册成功";
                     x.Details = "现在您可以使用这个帐号登录vNext China了！";
                     x.RedirectText = "现在登录";
-                    x.RedirectUrl = Url.Link("default", new { controller = "Account", Action = "Login" });
+                    x.RedirectUrl = Url.Action("Login", "Account");
                 });
             else return Prompt(x =>
             {
@@ -137,7 +137,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 x.Title = "您已注销";
                 x.Details = "您已成功注销了登录状态。";
                 x.RedirectText = "重新登录";
-                x.RedirectUrl = Url.Link("default", new { controller = "Account", Action = "Login" });
+                x.RedirectUrl = Url.Action("Login", "Account");
                 x.HideBack = true;
             });
         }
