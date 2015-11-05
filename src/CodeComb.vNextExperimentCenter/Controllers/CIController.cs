@@ -106,7 +106,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         }
 
         [HttpGet]
-        [Route("CI/Set/Edit/{id}")]
+        [Route("CI/Set/Edit/{id:Guid}")]
         [ClaimOrRolesAuthorize("Root, Master", "Owned CI set")]
         public IActionResult EditCISet(Guid id)
         {
