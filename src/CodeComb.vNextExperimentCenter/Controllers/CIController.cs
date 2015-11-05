@@ -31,12 +31,12 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [HttpPost]
         [Route("CI/Set/Create")]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateCISet(CISet Model)
+        public async Task<IActionResult> CreateCISet(CISet Model)
         {
-            Model.UserId = User.Current.Id;
             Model.CreationTime = DateTime.Now;
             DB.CISets.Add(Model);
             DB.SaveChanges();
+            await UserManager.AddClaimAsync(User.Current, new System.Security.Claims.Claim("Owned CI set", Model.Id.ToString()));
             return Prompt(x =>
             {
                 x.Title = "创建成功";
@@ -49,6 +49,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [HttpPost]
         [Route("CI/Set/Build/All")]
         [ValidateAntiForgeryToken]
+        [ClaimOrRolesAuthorize("Root, Master", "Owned CI set")]
         public async Task<IActionResult> BuildAll(Guid id)
         {
             var ciset = DB.CISets
@@ -99,6 +100,25 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 DB.SaveChanges();
             }
             return RedirectToAction("Show", "CI", new { id = ciset.Id });
+        }
+
+        [HttpGet]
+        [Route("CI/Set/Edit/{id}")]
+        [ClaimOrRolesAuthorize("Root, Master", "Owned CI set")]
+        public IActionResult EditCISet(Guid id)
+        {
+            var ciset = DB.CISets
+                .Include(x => x.Projects)
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (ciset == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            return View(ciset);
         }
     }
 }

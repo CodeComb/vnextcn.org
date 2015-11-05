@@ -10,11 +10,6 @@ namespace CodeComb.vNextExperimentCenter.Models
     {
         public Guid Id { get; set; }
 
-        [ForeignKey("User")]
-        public long UserId { get; set; }
-
-        public virtual User User { get; set; }
-
         public string Title { get; set; }
 
         public DateTime? LastBuildingTime { get; set; }
