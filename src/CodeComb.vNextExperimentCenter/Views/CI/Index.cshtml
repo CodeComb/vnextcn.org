@@ -40,7 +40,7 @@
                                     <i class="fa fa-file-text-o"></i>
                                     查看集合
                                 </a>
-                                <a href="javascript:;" class="btn btn-default">
+                                <a href="javascript:BuildAll('@x.Id');" class="btn btn-default">
                                     <i class="fa fa-play"></i>
                                     开始构建
                                 </a>
@@ -56,3 +56,11 @@
         </div>
     </div>
 </div>
+<form asp-action="BuildAll" asp-controller="CI" method="post" id="frmBuildAll"><input type="hidden" id="CISetId" /></form>
+<script>
+    function BuildAll(id)
+    {
+        $('#CISetId').val(id);
+        $('#frmBuildAll').submit();
+    }
+</script>

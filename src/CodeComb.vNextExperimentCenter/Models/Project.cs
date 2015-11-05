@@ -26,6 +26,12 @@ namespace CodeComb.vNextExperimentCenter.Models
 
         public int PRI { get; set; }
 
+        public bool RunWithOsx { get; set; }
+
+        public bool RunWithLinux { get; set; }
+
+        public bool RunWithWindows { get; set; }
+
         [ForeignKey("CISet")]
         public Guid CISetId { get; set; }
 
