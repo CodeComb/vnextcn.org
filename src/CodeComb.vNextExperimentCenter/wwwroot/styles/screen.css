@@ -2279,6 +2279,7 @@ pre {
     line-height: 32px;
     height: 32px;
     color: #888;
+    text-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
 .table-topic-visit {
