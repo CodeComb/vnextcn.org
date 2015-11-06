@@ -9,47 +9,49 @@
             @foreach(var x in Model)
             {
                 <h2 class="exp-sub-title">@x.Title</h2>
-                <table class="table table-forums">
-                    <colgroup>
-                        <col />
-                        <col style="width: 7%;min-width: 60px" />
-                        <col style="width: 7%;min-width: 60px" />
-                        <col style="width: 270px" />
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th>论坛</th>
-                            <th class="center">主题</th>
-                            <th class="center">回复</th>
-                            <th>最后回复</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (var y in x.SubForums)
-                    {
-                        <tr>
-                            <td>
-                                <h4><a asp-action="Show" asp-controller="Forum" asp-route-id="@y.Id">@y.Title</a></h4>
-                                <p>@y.Description</p>
-                            </td>
-                            <td class="table-forums-single-line center">@y.TopicCount</td>
-                            <td class="table-forums-single-line center">@y.PostCount</td>
-                            <td>
-                                @if (y.LastPost != null)
-                                {
-                                    <img src="@Url.Action("Avatar", "Account", new { id = y.LastPost.UserId })" class="table-forums-avatar" />
-                                    <a asp-action="Topic" asp-controller="Forum" asp-route-id="@y.LastPost.Id"><span class="table-forums-micro-title gray">@y.LastPost.FiltedContent</span></a>
-                                    <div class="table-forums-micro-title"><a asp-action="Show" asp-controller="Account" asp-route-id="@y.LastPost.UserId">@await Html.ColorUserNameAsync(y.LastPost.User)</a> <span class="table-forums-lastrep-time">@@@y.LastPost.Time.ToString("yyyy:MM:dd HH:mm")</span></div>
-                                }
-                                else
-                                {
-                                    <span class="table-forums-noreply">暂无回复</span>
-                                }
-                            </td>
-                        </tr>
-                    }
-                    </tbody>
-                </table>
+                <div class="cont-outer">
+                    <table class="table table-forums">
+                        <colgroup>
+                            <col />
+                            <col class="hide-when-narrow" style="width: 7%;min-width: 60px" />
+                            <col class="hide-when-narrow" style="width: 7%;min-width: 60px" />
+                            <col class="hide-when-narrow" style="width: 270px" />
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>论坛</th>
+                                <th class="center hide-when-narrow">主题</th>
+                                <th class="center hide-when-narrow">回复</th>
+                                <th class="hide-when-narrow">最后回复</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var y in x.SubForums)
+                            {
+                                <tr>
+                                    <td>
+                                        <h4><a asp-action="Show" asp-controller="Forum" asp-route-id="@y.Id">@y.Title</a></h4>
+                                        <p>@y.Description</p>
+                                    </td>
+                                    <td class="hide-when-narrow center">@y.TopicCount</td>
+                                    <td class="hide-when-narrow center">@y.PostCount</td>
+                                    <td class="hide-when-narrow">
+                                        @if (y.LastPost != null)
+                                        {
+                                            <img src="@Url.Action("Avatar", "Account", new { id = y.LastPost.UserId })" class="table-forums-avatar" />
+                                            <a asp-action="Topic" asp-controller="Forum" asp-route-id="@y.LastPost.Id"><span class="table-forums-micro-title gray">@y.LastPost.FiltedContent</span></a>
+                                            <div class="table-forums-micro-title"><a asp-action="Show" asp-controller="Account" asp-route-id="@y.LastPost.UserId">@await Html.ColorUserNameAsync(y.LastPost.User)</a> <span class="table-forums-lastrep-time">@@@y.LastPost.Time.ToString("yyyy:MM:dd HH:mm")</span></div>
+                                        }
+                                        else
+                                        {
+                                            <span class="table-forums-noreply">暂无回复</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             }
         </div>
     </div>

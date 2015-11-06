@@ -10,19 +10,19 @@
         {
             if (x.Total != x.Accepted)
             {
-                <td class="center status-has-error">@(x.Total - x.Accepted)</td>
+                <td class="center status-has-error hide-when-narrow">@(x.Total - x.Accepted)</td>
             }
             else
             {
-                <td class="center status-accepted">@(x.Total - x.Accepted)</td>
+                <td class="center status-accepted hide-when-narrow">@(x.Total - x.Accepted)</td>
             }
         }
         else
         {
-            <td class="center">N/A</td>
+            <td class="center hide-when-narrow">N/A</td>
         }
-        <td class="center">@x.TimeUsage</td>
-        <td class="center">@x.MemoryUsage</td>
+        <td class="center hide-when-narrow">@x.TimeUsage</td>
+        <td class="center hide-when-narrow">@x.MemoryUsage</td>
         <td class="status-project">
             @if (x.Type == StatusType.Experiment)
             {
@@ -34,6 +34,6 @@
             }
         </td>
         <td class="right status-author"><a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@await Html.ColorUserNameAsync(x.User)</a></td>
-        <td class="center">@x.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
+        <td class="center hide-when-narrow">@x.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
     </tr>
 }

@@ -153,7 +153,9 @@ namespace CodeComb.vNextExperimentCenter.Models
                     Id = "asp-net-5",
                     Title = "ASP.Net 5",
                     ParentId = "vnext",
-                    Description = "ASP.Net 5、MVC、Web Pages等技术交流"
+                    Description = "ASP.Net 5、MVC、Web Pages等技术交流",
+                    PostCount = 1,
+                    TopicCount = 1
                 };
                 var subform2 = new Forum
                 {

@@ -1603,6 +1603,9 @@ pre {
   }
 }
 @media (max-width: 500px) {
+    .hide-when-narrow{
+        display: none;
+    }
   .pagination .page-number {
     display: none;
   }
@@ -1612,6 +1615,9 @@ pre {
   }
 }
 @media (max-width: 361px) {
+        .hide-when-narrow{
+        display: none;
+    }
   .pagination .newer-posts,
   .pagination .older-posts {
     position: relative;
@@ -1621,6 +1627,9 @@ pre {
 }
 
 @media (max-width:775px) {
+        .hide-when-narrow{
+        display: none;
+    }
     .cont-wrap {
         width: 100%;
     }
