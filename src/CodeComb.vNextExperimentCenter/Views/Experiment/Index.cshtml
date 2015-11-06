@@ -6,15 +6,17 @@
 	<div class="cont-wrap">
 		<div class="grid_9">
 			<table class="table">
-				@if (User.IsSignedIn())
-				{
-					<col style="width:7%;text-align:center" />
-				}
-				<col />
-				<col style="width:7%" />
-				<col style="width:7%" />
-				<col style="width:7%" />
-				<col style="width:7%" />
+                <colgroup>
+                    @if (User.IsSignedIn())
+                    {
+                        <col style="width:7%;text-align:center" />
+                    }
+                    <col />
+                    <col style="width:7%" />
+                    <col style="width:7%" />
+                    <col style="width:7%" />
+                    <col style="width:7%" />
+                </colgroup>
 				<thead>
 					<tr>
 						@if (User.IsSignedIn())

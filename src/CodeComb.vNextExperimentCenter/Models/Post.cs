@@ -18,6 +18,18 @@ namespace CodeComb.vNextExperimentCenter.Models
 
         public string Content { get; set; }
 
+        [NotMapped]
+        public string FiltedContent
+        {
+            get
+            {
+                var ret = Helpers.RemoveHtml.Remove(Marked.Marked.Parse(Content));
+                if (ret.Length > 100)
+                    ret = ret.Substring(0, 100);
+                return ret;
+            }
+        }
+
         public DateTime Time { get; set; }
 
         [ForeignKey("Parent")]

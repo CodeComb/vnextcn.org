@@ -88,7 +88,10 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         {
             var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
             NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
-            var status = DB.Statuses.Where(x => x.Id == id).Single();
+            var status = DB.Statuses
+                .Include(x => x.Experiment)
+                .Where(x => x.Id == id)
+                .Single();
             switch (node.OS)
             {
                 case OSType.Windows:
@@ -102,6 +105,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     break;
             }
             status.Result = status.GenerateResult();
+            if (status.ExperimentId.HasValue)
+                status.Experiment.Accepted++;
             DB.SaveChanges();
             return "ok";
         }

@@ -25,5 +25,14 @@ namespace CodeComb.vNextExperimentCenter.Models
         public virtual ICollection<Forum> SubForums { get; set; }
 
         public int PRI { get; set; }
+
+        public string Description { get; set; }
+
+        public long TopicCount { get; set; }
+
+        public long PostCount { get; set; }
+
+        [NotMapped]
+        public virtual Post LastPost { get; set; }
     }
 }

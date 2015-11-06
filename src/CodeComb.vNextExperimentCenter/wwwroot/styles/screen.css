@@ -1867,6 +1867,7 @@ pre {
     border-spacing: 0;
     border-collapse: collapse;
     box-shadow: 0 0 10px rgba(0,0,0,.2);
+    vertical-align:top;
 }	
 
 .table th {
@@ -2213,4 +2214,48 @@ pre {
 
 .table-overflow-outer {
     overflow-x: auto;
+}
+
+.table-forums {
+    margin-bottom: 40px;
+}
+
+.table-forums tbody tr td h4, .table-forums tbody tr td p {
+    margin-bottom: 5px;
+}
+
+
+.table-forums>tbody>tr>td
+{
+    padding:8px;
+    line-height:1.42857143;
+    border-top:1px solid #ddd;
+    vertical-align: central!important;
+}
+
+.table-forums-avatar {
+    width: 51px;
+    height: 51px;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    float: left;
+    margin-right: 10px;
+}
+
+.table-forums-micro-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    float: left;
+    width: 191px;
+    display: block;
+    height: 25px;
+    line-height: 25px;
+}
+
+.table-forums-micro-title.gray {
+    color: #888;
+}
+
+.table-forums-noreply {
+    color: #888
 }

@@ -63,6 +63,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.Details = "该任务还没有运行或正在运行，在该状态下不能执行重新运行的操作！";
                     x.StatusCode = 400;
                 });
+            if (status.ExperimentId.HasValue)
+                status.Experiment.Submitted++;
             status.Result = Models.StatusResult.Queued;
             if (status.RunWithWindows)
                 status.WindowsResult = Models.StatusResult.Queued;

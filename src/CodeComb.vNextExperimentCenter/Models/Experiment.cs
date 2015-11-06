@@ -52,6 +52,22 @@ namespace CodeComb.vNextExperimentCenter.Models
         
         public OSType OS { get; set; }
 
+        public int Accepted { get; set; }
+
+        public int Submitted { get; set; }
+
+        [NotMapped]
+        public int ACRatio
+        {
+            get
+            {
+                if (Submitted == 0)
+                    return 0;
+                else
+                    return Accepted * 100 / Submitted;
+            }
+        }
+
         public virtual ICollection<ContestExperiment> Contests { get; set; } = new List<ContestExperiment>();
     }
 }

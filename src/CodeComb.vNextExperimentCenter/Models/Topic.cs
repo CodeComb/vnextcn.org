@@ -29,6 +29,11 @@ namespace CodeComb.vNextExperimentCenter.Models
 
         public bool IsTop { get; set; }
 
+        [ForeignKey("User")]
+        public long UserId { get; set; }
+
+        public virtual User User { get; set; }
+
         public virtual ICollection<Post> Posts { get; set; }
     }
 }

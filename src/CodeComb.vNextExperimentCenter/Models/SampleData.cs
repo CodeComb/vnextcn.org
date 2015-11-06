@@ -135,6 +135,74 @@ namespace CodeComb.vNextExperimentCenter.Models
                     Alias = "CodeComb.Security.Aes"
                 });
 
+                // 添加论坛
+                var parentForum = new Forum
+                {
+                    Id = "vnext",
+                    Title = "vNext交流",
+                    PRI = 1
+                };
+                var parentForum2 = new Forum
+                {
+                    Id = "vnext-cn",
+                    Title = "vNext China",
+                    PRI = 0
+                };
+                var subform = new Forum
+                {
+                    Id = "asp-net-5",
+                    Title = "ASP.Net 5",
+                    ParentId = "vnext",
+                    Description = "ASP.Net 5、MVC、Web Pages等技术交流"
+                };
+                var subform2 = new Forum
+                {
+                    Id = "dot-net-core",
+                    Title = ".Net Core",
+                    ParentId = "vnext",
+                    Description = ".Net Core、CoreFx、CoreCLR等技术讨论"
+                };
+                var subform3 = new Forum
+                {
+                    Id = "feedback",
+                    Title = "错误反馈",
+                    ParentId = "vnext-cn",
+                    Description = "vNext China使用时发生的错误请在本版块反馈",
+                    PRI = 1
+                };
+                var subform4 = new Forum
+                {
+                    Id = "announcements",
+                    Title = "公告板",
+                    ParentId = "vnext-cn",
+                    Description = "vNext CN 公告栏",
+                    PRI = 0,
+                    IsReadOnly = true
+                };
+                DB.Forums.Add(parentForum);
+                DB.Forums.Add(parentForum2);
+                DB.Forums.Add(subform);
+                DB.Forums.Add(subform2);
+                DB.Forums.Add(subform3);
+                DB.Forums.Add(subform4);
+                var topic = new Topic
+                {
+                    Title = "Test",
+                    Content = "## My first topic\r\nHi, I'm Amamiya Yuuko",
+                    CreationTime = DateTime.Now,
+                    ForumId = "asp-net-5",
+                    UserId = user.Id
+                };
+                DB.Topics.Add(topic);
+                var post = new Post
+                {
+                    Content = "## My first topic\r\nHi, I'm Amamiya Yuuko",
+                    Time = DateTime.Now,
+                    TopicId = topic.Id,
+                    UserId = user.Id
+                };
+                DB.Posts.Add(post);
+
                 DB.SaveChanges();
                 await UserManager.AddClaimAsync(user, new System.Security.Claims.Claim("Owned CI set", ciset.Id.ToString()));
             }
