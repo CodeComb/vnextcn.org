@@ -17,7 +17,7 @@ namespace Microsoft.AspNet.Mvc.Rendering
             if (await UserManager.IsInRoleAsync(user, "Root") || await UserManager.IsInRoleAsync(user, "Master"))
                 return new HtmlString($"<{tag} class=\"{@class} user-master\">{user.UserName}</{tag}>");
             else
-                return new HtmlString($"<{tag} class=\"{@class}\">{user.UserName}</{tag}>");
+                return new HtmlString($"<{tag} class=\"{@class} user-member\">{user.UserName}</{tag}>");
         }
     }
 }

@@ -2074,6 +2074,10 @@ pre {
     color: red;
 }
 
+.user-member {
+    color: #1d76c7;
+}
+
 .pre-outer {
     padding: 15px;
     background-color: rgb(245,245,245);
