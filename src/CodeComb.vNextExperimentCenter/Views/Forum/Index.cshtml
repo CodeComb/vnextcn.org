@@ -8,7 +8,7 @@
         <div class="grid_12">
             @foreach(var x in Model)
             {
-                <h2 class="exp-sub-title">@x.Title</h2>
+                <h2 class="forum-title">@x.Title</h2>
                 <div class="cont-outer">
                     <table class="table table-forums">
                         <colgroup>
@@ -21,7 +21,7 @@
                             <tr>
                                 <th>论坛</th>
                                 <th class="center hide-when-narrow">主题</th>
-                                <th class="center hide-when-narrow">回复</th>
+                                <th class="center hide-when-narrow">帖子</th>
                                 <th class="hide-when-narrow">最后回复</th>
                             </tr>
                         </thead>
@@ -34,7 +34,7 @@
                                         <p>@y.Description</p>
                                     </td>
                                     <td class="hide-when-narrow center">@y.TopicCount</td>
-                                    <td class="hide-when-narrow center">@y.PostCount</td>
+                                    <td class="hide-when-narrow center">@(y.PostCount + y.TopicCount)</td>
                                     <td class="hide-when-narrow">
                                         @if (y.LastPost != null)
                                         {

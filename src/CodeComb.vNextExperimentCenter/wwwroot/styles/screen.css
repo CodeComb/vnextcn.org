@@ -2230,7 +2230,7 @@ pre {
 }
 
 .table-forums {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .table-forums tbody tr td h4, .table-forums tbody tr td p {
@@ -2314,4 +2314,10 @@ pre {
 .topic-time {
     font-size: 10px;
     color: #aaa;
+}
+
+.forum-title {
+  border-left: 7px solid #ffdf00;
+  padding: 2px 10px;
+  margin: 0 0 20px 0;
 }
