@@ -304,7 +304,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             return View(ciset);
         }
 
-        [HttpGet]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("CI/Set/{id:Guid}/Project/Add")]
         [AnyRolesOrClaims("Root, Master", "Owned CI set")]
         public IActionResult AddProject(Guid id, Project Model)
@@ -329,6 +330,34 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 x.RedirectText = "返回项目列表";
                 x.RedirectUrl = Url.Action("Show", "CI", new { id = id });
             });
+        }
+
+        [HttpGet]
+        [Route("CI/Set/{id:Guid}/Project/{pid:Guid}/Edit")]
+        [AnyRolesOrClaims("Root, Master", "Owned CI set")]
+        public IActionResult EditProject(Guid id, Guid pid)
+        {
+            var ciset = DB.CISets
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (ciset == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            var project = DB.Projects
+                .Where(x => x.CISetId == id && x.Id == pid)
+                .SingleOrDefault();
+            if (project == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            return View(project);
         }
     }
 }
