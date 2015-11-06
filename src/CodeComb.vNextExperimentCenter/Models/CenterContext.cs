@@ -34,6 +34,7 @@ namespace CodeComb.vNextExperimentCenter.Models
                 e.HasIndex(x => x.IsTop);
                 e.HasIndex(x => x.CreationTime);
                 e.HasIndex(x => x.LastReplyTime);
+                e.HasIndex(x => x.IsAnnouncement);
             });
 
             builder.Entity<Post>(e => 

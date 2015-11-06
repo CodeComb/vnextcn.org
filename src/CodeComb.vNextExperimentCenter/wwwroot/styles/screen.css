@@ -2266,6 +2266,47 @@ pre {
     color: #888;
 }
 
-.table-forums-noreply, .table-forums-lastrep-time {
+.table-forums-noreply, .table-forums-lastrep-time, .table-topic-post {
     color: #888
+}
+
+.topic-icon {
+    font-size: 20px;
+    line-height: 32px;
+    height: 32px;
+    color: #888;
+}
+
+.table-topic-visit {
+    color: #bbb;
+}
+
+.topic-announcements {
+    border-bottom: 5px solid #f0f0f0;
+}
+
+.table-topic tr {
+    min-height: 70px;
+}
+
+.table-topic-last-post {
+    zoom: 0.61;
+}
+
+.topic-label {
+    padding: 2px 4px;
+    margin: 0 5px;
+    background-color: #bdc3c7;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.topic-label.purple {
+    background-color: #b455b6;
+}
+
+.topic-time {
+    font-size: 10px;
+    color: #aaa;
 }

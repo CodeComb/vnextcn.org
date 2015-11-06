@@ -195,7 +195,17 @@ namespace CodeComb.vNextExperimentCenter.Models
                     ForumId = "asp-net-5",
                     UserId = user.Id
                 };
+                var topic2 = new Topic
+                {
+                    Title = "Announce test",
+                    Content = "## My first topic\r\nHi, I'm Amamiya Yuuko",
+                    CreationTime = DateTime.Now,
+                    ForumId = "asp-net-5",
+                    UserId = user.Id,
+                    IsAnnouncement = true
+                };
                 DB.Topics.Add(topic);
+                DB.Topics.Add(topic2);
                 var post = new Post
                 {
                     Content = "## My first topic\r\nHi, I'm Amamiya Yuuko",

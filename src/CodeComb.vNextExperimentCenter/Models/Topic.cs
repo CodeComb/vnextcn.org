@@ -23,16 +23,23 @@ namespace CodeComb.vNextExperimentCenter.Models
 
         public bool IsLocked { get; set; }
 
+        public long Visit { get; set; }
+
         public DateTime CreationTime { get; set; }
 
         public DateTime LastReplyTime { get; set; }
 
         public bool IsTop { get; set; }
 
+        public bool IsAnnouncement { get; set; }
+
         [ForeignKey("User")]
         public long UserId { get; set; }
 
         public virtual User User { get; set; }
+
+        [NotMapped]
+        public virtual Post LastPost { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
     }
