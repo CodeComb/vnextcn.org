@@ -2210,3 +2210,7 @@ pre {
     background-color: #55acee;
     color: #fff;
 }
+
+.table-overflow-outer {
+    overflow-x: auto;
+}

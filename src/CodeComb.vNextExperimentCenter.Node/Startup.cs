@@ -50,7 +50,7 @@ namespace CodeComb.vNextExperimentCenter.Node
         private void Task_OnBuildSuccessful(object sender, CI.Runner.EventArgs.BuildSuccessfulArgs args)
         {
             var task = sender as CI.Runner.CITask;
-            Client.PostAsync("/api/Judge/Successful", new FormUrlEncodedContent(new Dictionary<string, string>
+            Client.PostAsync("/api/Runner/Successful", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", task.Identifier.ToString() },
                 { "Output", task.Output },
@@ -64,7 +64,7 @@ namespace CodeComb.vNextExperimentCenter.Node
         private void Task_OnTimeLimitExceeded(object sender, CI.Runner.EventArgs.TimeLimitExceededArgs args)
         {
             var task = sender as CI.Runner.CITask;
-            Client.PostAsync("/api/Judge/TimeLimitExceeded", new FormUrlEncodedContent(new Dictionary<string, string>
+            Client.PostAsync("/api/Runner/TimeLimitExceeded", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", task.Identifier.ToString() },
                 { "Output", task.Output },
@@ -78,11 +78,10 @@ namespace CodeComb.vNextExperimentCenter.Node
         private void Task_OnBuiledFailed(object sender, CI.Runner.EventArgs.BuildFailedArgs args)
         {
             var task = sender as CI.Runner.CITask;
-            Client.PostAsync("/api/Judge/Failed", new FormUrlEncodedContent(new Dictionary<string, string>
+            Client.PostAsync("/api/Runner/Failed", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", task.Identifier.ToString() },
-                { "Output", task.Output },
-                { "TimeUsage", task.UserProcessorTime.TotalMilliseconds.ToString() }
+                { "Output", task.Output }
             })).Wait();
             cacheStr.Remove(task.Identifier);
             cacheTime.Remove(task.Identifier);
@@ -114,7 +113,7 @@ namespace CodeComb.vNextExperimentCenter.Node
                     var tmp = cacheStr[id];
                     cacheStr[id] = "";
 
-                    var result = await Client.PostAsync("/api/Judge/Output", new FormUrlEncodedContent(new Dictionary<string, string>
+                    var result = await Client.PostAsync("/api/Runner/Output", new FormUrlEncodedContent(new Dictionary<string, string>
                     {
                         { "id", id.ToString() },
                         { "text", tmp }
@@ -132,7 +131,7 @@ namespace CodeComb.vNextExperimentCenter.Node
             app.UseMvc();
 
             CI.Runner.CITask.OnOutputReceived += Task_OnOutputReceived;
-            CI.Runner.CITask.OnBuiledFailed += Task_OnBuiledFailed;
+            CI.Runner.CITask.OnBuildFailed += Task_OnBuiledFailed;
             CI.Runner.CITask.OnTimeLimitExceeded += Task_OnTimeLimitExceeded;
             CI.Runner.CITask.OnBuildSuccessful += Task_OnBuildSuccessful;
             CI.Runner.CITask.OnBeginBuilding += CITask_OnBeginBuilding;
@@ -142,7 +141,7 @@ namespace CodeComb.vNextExperimentCenter.Node
         private void CITask_OnTestCaseFound(object sender, CI.Runner.EventArgs.TestCaseArgs args)
         {
             var task = sender as CI.Runner.CITask;
-            Client.PostAsync("/api/Judge/PushTestCase", new FormUrlEncodedContent(new Dictionary<string, string>
+            Client.PostAsync("/api/Runner/PushTestCase", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", task.Identifier.ToString() },
                 { "time", args.Time.ToString() },
@@ -156,7 +155,7 @@ namespace CodeComb.vNextExperimentCenter.Node
         private void CITask_OnBeginBuilding(object sender, CI.Runner.EventArgs.BeginBuildingArgs args)
         {
             var task = sender as CI.Runner.CITask;
-            Client.PostAsync("/api/Judge/BeginBuilding", new FormUrlEncodedContent(new Dictionary<string, string>
+            Client.PostAsync("/api/Runner/BeginBuilding", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", task.Identifier.ToString() }
             })).Wait();

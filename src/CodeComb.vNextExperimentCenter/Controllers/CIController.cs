@@ -56,7 +56,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [ValidateAntiForgeryToken]
         [Route("CI/Set/Build/{id:Guid}")]
         [AnyRolesOrClaims("Root, Master", "Owned CI set")]
-        public async Task<IActionResult> Build(Guid id, Guid pid)
+        public IActionResult Build(Guid id, Guid pid)
         {
             var project = DB.Projects
                 .Where(x => x.CISetId == id && x.Id == pid)
@@ -88,7 +88,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 status.LinuxResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.Linux);
                 if (node != null)
-                    await node.SendCIBuildTask(status.Id, project.ZipUrl, project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, project.ZipUrl, project.AdditionalEnvironmentVariables);
                 else
                     status.LinuxResult = StatusResult.Ignored;
             }
@@ -98,17 +98,17 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 status.OsxResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
                 if (node != null)
-                    await node.SendCIBuildTask(status.Id, project.ZipUrl, project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, project.ZipUrl, project.AdditionalEnvironmentVariables);
                 else
                     status.OsxResult = StatusResult.Ignored;
             }
-            if (project.RunWithLinux)
+            if (project.RunWithWindows)
             {
                 status.RunWithWindows = true;
                 status.WindowsResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.Windows);
                 if (node != null)
-                    await node.SendCIBuildTask(status.Id, project.ZipUrl, project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, project.ZipUrl, project.AdditionalEnvironmentVariables);
                 else
                     status.WindowsResult = StatusResult.Ignored;
             }
@@ -123,7 +123,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         [Route("CI/Set/Build/All")]
         [Route("CI/Set/Build/All/{id:Guid}")]
         [AnyRolesOrClaims("Root, Master", "Owned CI set")]
-        public async Task<IActionResult> BuildAll(Guid id)
+        public IActionResult BuildAll(Guid id)
         {
             var ciset = DB.CISets
                 .Include(x => x.Projects)
@@ -155,7 +155,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     status.LinuxResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.Linux);
                     if (node != null)
-                        await node.SendCIBuildTask(status.Id, x.ZipUrl, x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, x.ZipUrl, x.AdditionalEnvironmentVariables);
                     else
                         status.LinuxResult = StatusResult.Ignored;
                 }
@@ -165,7 +165,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     status.OsxResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
                     if (node != null)
-                        await node.SendCIBuildTask(status.Id, x.ZipUrl, x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, x.ZipUrl, x.AdditionalEnvironmentVariables);
                     else
                         status.OsxResult = StatusResult.Ignored;
                 }
@@ -175,7 +175,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     status.WindowsResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.Windows);
                     if (node != null)
-                        await node.SendCIBuildTask(status.Id, x.ZipUrl, x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, x.ZipUrl, x.AdditionalEnvironmentVariables);
                     else
                         status.WindowsResult = StatusResult.Ignored;
                 }
@@ -321,6 +321,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.StatusCode = 404;
                 });
             Model.CISetId = id;
+            Model.Id = Guid.NewGuid();
             DB.Projects.Add(Model);
             DB.SaveChanges();
             return Prompt(x =>

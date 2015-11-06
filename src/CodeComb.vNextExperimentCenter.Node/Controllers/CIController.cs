@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using System.Net.Http;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Http;
 using Microsoft.Framework.Configuration;
+using Newtonsoft.Json;
 using CodeComb.CI.Runner;
 using CodeComb.Package;
 
 namespace CodeComb.vNextExperimentCenter.Node.Controllers
 {
-    [Route("api/judge/[action]")]
-    public class JudgeController : BaseController
+    [Route("api/ci/[action]")]
+    public class CIController : BaseController
     {
         private string FindDirectory(string path)
         {
             string[] files;
-            files = Directory.GetFiles(path, "build.cmd", SearchOption.AllDirectories);
-            //if (OS.Current == OSType.Windows)
-            //    files = Directory.GetFiles(path, "build.cmd", SearchOption.AllDirectories);
-            //else
-            //    files = Directory.GetFiles(path, "build.sh", SearchOption.AllDirectories);
+            if (OS.Current == OSType.Windows)
+                files = Directory.GetFiles(path, "build.cmd", SearchOption.AllDirectories);
+            else
+                files = Directory.GetFiles(path, "build.sh", SearchOption.AllDirectories);
             if (files.Count() == 0)
                 throw new FileNotFoundException();
             return Path.GetDirectoryName(files.First());
@@ -29,6 +30,56 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
 
         [FromServices]
         public CIRunner Runner { get; set; }
+
+        [HttpPost]
+        public async Task<string> NewCI(long id, string AdditionalEnvironmentVariables, string ZipUrl)
+        {
+            try
+            {
+                var identifier = id;
+                var path = Configuration["Pool"] + "/" + identifier + "/";
+
+                Startup.Client.PostAsync("/api/Runner/BeginBuilding", new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    { "id", identifier.ToString() }
+                }));
+
+                Startup.Client.PostAsync("/api/Runner/Output", new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    { "id", identifier.ToString() },
+                    { "text", "Downloading from " + ZipUrl + "\r\n" }
+                }));
+
+                await Download.DownloadAndExtractAll(ZipUrl, path);
+
+                Startup.Client.PostAsync("/api/Runner/Output", new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    { "id", identifier.ToString() },
+                    { "text", "Extracted\r\n" }
+                }));
+
+                path = FindDirectory(path);
+                var environmentvariables = new Dictionary<string, string>();
+                try
+                {
+                    environmentvariables = JsonConvert.DeserializeObject<Dictionary<string, string>>(AdditionalEnvironmentVariables);
+                }
+                catch { }
+                Runner.WaitingTasks.Enqueue(new CITask(path, Runner.MaxTimeLimit, environmentvariables)
+                {
+                    Identifier = identifier.ToString()
+                });
+            }
+            catch (Exception e)
+            {
+                Startup.Client.PostAsync("/api/Runner/Failed", new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    { "id", id.ToString() },
+                    { "Output", e.ToString() }
+                }));
+            }
+            return "ok";
+        }
 
         [HttpPost]
         public string NewJudge(long id, IFormFile user, IFormFile problem, string nuget)
@@ -58,13 +109,13 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
             Console.WriteLine("测试程序保存成功 " + tempDirectory + identifier + "/" + identifier + ".zip");
             Unzip.ExtractAll(tempDirectory + identifier + "/" + identifier + ".zip", tempDirectory + identifier + "/experiment/", true);
             Console.WriteLine("测试程序解压成功 " + tempDirectory + identifier + "/experiment/");
-            CopyDirectory(FindRoot(tempDirectory + identifier + "/experiment"), Configuration["JudgePool"] + "/" + identifier);
-            CopyDirectory(FindProject(directory + "/user"), Configuration["JudgePool"] + "/" + identifier + "/src/web");
-            Console.WriteLine($"生成评测目录 {Configuration["JudgePool"] + "/" + identifier}");
+            CopyDirectory(FindRoot(tempDirectory + identifier + "/experiment"), Configuration["Pool"] + "/" + identifier);
+            CopyDirectory(FindProject(directory + "/user"), Configuration["Pool"] + "/" + identifier + "/src/web");
+            Console.WriteLine($"生成评测目录 {Configuration["Pool"] + "/" + identifier}");
             if (nuget == null) nuget = "";
-            System.IO.File.WriteAllText(Configuration["JudgePool"] + "/" + identifier + "/Nuget.config", GenerateNuGetConfig(nuget.Split('\n')));
-            Console.WriteLine($"生成NuGet.config {Configuration["JudgePool"] + "/" + identifier + "/Nuget.config"}");
-            Runner.WaitingTasks.Enqueue(new CITask (Configuration["JudgePool"] + "/" + identifier, Runner.MaxTimeLimit)
+            System.IO.File.WriteAllText(Configuration["Pool"] + "/" + identifier + "/Nuget.config", GenerateNuGetConfig(nuget.Split('\n')));
+            Console.WriteLine($"生成NuGet.config {Configuration["Pool"] + "/" + identifier + "/Nuget.config"}");
+            Runner.WaitingTasks.Enqueue(new CITask (Configuration["Pool"] + "/" + identifier, Runner.MaxTimeLimit)
             {
                 Identifier = identifier.ToString()
             });

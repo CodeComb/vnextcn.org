@@ -18,7 +18,7 @@ namespace CodeComb.CI.Runner
                 CurrentTasks.Remove(sender as CITask);
             };
 
-            CITask.OnBuiledFailed += (sender, e) =>
+            CITask.OnBuildFailed += (sender, e) =>
             {
                 CurrentTasks.Remove(sender as CITask);
             };

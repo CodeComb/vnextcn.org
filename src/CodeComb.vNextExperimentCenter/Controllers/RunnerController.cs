@@ -9,8 +9,8 @@ using CodeComb.Package;
 
 namespace CodeComb.vNextExperimentCenter.Controllers
 {
-    [Route("api/judge/[action]")]
-    public class JudgeController : BaseController
+    [Route("api/runner/[action]")]
+    public class RunnerController : BaseController
     {
         [HttpPost]
         public string Output(long id, string text, [FromHeader(Name = "private-key")]string PrivateKey)
@@ -135,6 +135,16 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     break;
             }
             status.Result = status.GenerateResult();
+            DB.SaveChanges();
+            return "ok";
+        }
+
+        [HttpPost]
+        public string UpdateCodeLength(long id, long length, [FromHeader(Name = "private-key")]string PrivateKey)
+        {
+            var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
+            var status = DB.Statuses.Where(x => x.Id == id).Single();
+            status.MemoryUsage = length;
             DB.SaveChanges();
             return "ok";
         }

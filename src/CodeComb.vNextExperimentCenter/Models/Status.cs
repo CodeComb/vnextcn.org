@@ -84,6 +84,7 @@ namespace CodeComb.vNextExperimentCenter.Models
                 && (this.LinuxResult != Models.StatusResult.Building && this.LinuxResult != Models.StatusResult.Queued)
                 && (this.OsxResult != Models.StatusResult.Building && this.OsxResult != Models.StatusResult.Queued))
             {
+                Console.WriteLine((StatusResult)Math.Max(Math.Max((int)this.WindowsResult, (int)this.LinuxResult), (int)this.OsxResult));
                 return (StatusResult)Math.Max(Math.Max((int)this.WindowsResult, (int)this.LinuxResult), (int)this.OsxResult);
             }
             else if (this.WindowsResult == StatusResult.Building || this.LinuxResult == StatusResult.Building || this.OsxResult == StatusResult.Building)

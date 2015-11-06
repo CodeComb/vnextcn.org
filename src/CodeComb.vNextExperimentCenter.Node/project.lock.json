@@ -7,11 +7,11 @@
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
-          "CodeComb.Package": "2.0.0-beta8-2",
+          "CodeComb.Package": "2.0.0-beta8-3",
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-2": {
+      "CodeComb.Package/2.0.0-beta8-3": {
         "type": "package",
         "dependencies": {
           "Microsoft.Dnx.Runtime": "1.0.0-beta8",
@@ -1424,7 +1424,7 @@
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
-          "CodeComb.Package": "2.0.0-beta8-2",
+          "CodeComb.Package": "2.0.0-beta8-3",
           "Microsoft.CSharp": "4.0.1-beta-23409",
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
           "System.Collections": "4.0.11-beta-23409",
@@ -1444,7 +1444,7 @@
           "System.Xml.XPath.XmlDocument": "4.0.1-beta-23409"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-2": {
+      "CodeComb.Package/2.0.0-beta8-3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23409",
@@ -3720,11 +3720,11 @@
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
-          "CodeComb.Package": "2.0.0-beta8-2",
+          "CodeComb.Package": "2.0.0-beta8-3",
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-2": {
+      "CodeComb.Package/2.0.0-beta8-3": {
         "type": "package",
         "dependencies": {
           "Microsoft.Dnx.Runtime": "1.0.0-beta8",
@@ -5140,11 +5140,11 @@
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
         "dependencies": {
-          "CodeComb.Package": "2.0.0-beta8-2",
+          "CodeComb.Package": "2.0.0-beta8-3",
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-2": {
+      "CodeComb.Package/2.0.0-beta8-3": {
         "type": "package",
         "dependencies": {
           "Microsoft.Dnx.Runtime": "1.0.0-beta8",
@@ -6560,7 +6560,7 @@
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
-          "CodeComb.Package": "2.0.0-beta8-2",
+          "CodeComb.Package": "2.0.0-beta8-3",
           "Microsoft.CSharp": "4.0.1-beta-23409",
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
           "System.Collections": "4.0.11-beta-23409",
@@ -6580,7 +6580,7 @@
           "System.Xml.XPath.XmlDocument": "4.0.1-beta-23409"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-2": {
+      "CodeComb.Package/2.0.0-beta8-3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23409",
@@ -9329,7 +9329,7 @@
         "type": "project",
         "framework": "DNXCore,Version=v5.0",
         "dependencies": {
-          "CodeComb.Package": "2.0.0-beta8-2",
+          "CodeComb.Package": "2.0.0-beta8-3",
           "Microsoft.CSharp": "4.0.1-beta-23409",
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
           "System.Collections": "4.0.11-beta-23409",
@@ -9349,7 +9349,7 @@
           "System.Xml.XPath.XmlDocument": "4.0.1-beta-23409"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-2": {
+      "CodeComb.Package/2.0.0-beta8-3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23409",
@@ -12099,12 +12099,12 @@
       "type": "project",
       "path": "../CodeComb.CI.Runner/project.json"
     },
-    "CodeComb.Package/2.0.0-beta8-2": {
+    "CodeComb.Package/2.0.0-beta8-3": {
       "type": "package",
-      "sha512": "ongw2g3fV8FWjbUWh8awv5+pf8eX1pw1jSIlS04Nl+8KFVEv8avk8jk9qYWVLA080SkByqhoREnATsQFrnRANQ==",
+      "sha512": "+LTLj7DI7Y2LXmDhxqYp0ULwkXDK3tmECXEjEEs0zcAJpe8Eeic/x/STHyElf0fxfejKjVCVw8tmCxUY4PYaGA==",
       "files": [
-        "CodeComb.Package.2.0.0-beta8-2.nupkg",
-        "CodeComb.Package.2.0.0-beta8-2.nupkg.sha512",
+        "CodeComb.Package.2.0.0-beta8-3.nupkg",
+        "CodeComb.Package.2.0.0-beta8-3.nupkg.sha512",
         "CodeComb.Package.nuspec",
         "lib/dnx451/CodeComb.Package.dll",
         "lib/dnx451/CodeComb.Package.xml",
