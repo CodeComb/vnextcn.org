@@ -284,5 +284,51 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/linux-{status.LinuxResult.ToString().ToLower()}.svg"), "image/svg+xml");
             }
         }
+
+        [HttpGet]
+        [Route("CI/Set/{id:Guid}/Project/Add")]
+        [AnyRolesOrClaims("Root, Master", "Owned CI set")]
+        public IActionResult AddProject(Guid id)
+        {
+            var ciset = DB.CISets
+                .Include(x => x.Projects)
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (ciset == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            return View(ciset);
+        }
+
+        [HttpGet]
+        [Route("CI/Set/{id:Guid}/Project/Add")]
+        [AnyRolesOrClaims("Root, Master", "Owned CI set")]
+        public IActionResult AddProject(Guid id, Project Model)
+        {
+            var ciset = DB.CISets
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (ciset == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            Model.CISetId = id;
+            DB.Projects.Add(Model);
+            DB.SaveChanges();
+            return Prompt(x =>
+            {
+                x.Title = "添加成功";
+                x.Details = "项目已经成功添加至该集合中，您可以返回项目列表进行构建";
+                x.RedirectText = "返回项目列表";
+                x.RedirectUrl = Url.Action("Show", "CI", new { id = id });
+            });
+        }
     }
 }
