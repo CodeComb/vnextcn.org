@@ -39,7 +39,7 @@
                                     }
                                 </td>
                                 <td class="center">
-                                    <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@x.User.UserName</a>
+                                    <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@await Html.ColorUserNameAsync(x.User)</a>
                                     <br />
                                     <span class="topic-time">@x.CreationTime.ToString("yyyy-MM-dd HH:mm")</span>
                                 </td>
@@ -87,7 +87,7 @@
                                     }
                                 </td>
                                 <td class="center">
-                                    <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@x.User.UserName</a>
+                                    <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@await Html.ColorUserNameAsync(x.User)</a>
                                     <br />
                                     <span class="topic-time">@x.CreationTime.ToString("yyyy-MM-dd HH:mm")</span>
                                 </td>                                <td class="hide-when-narrow center">
