@@ -43,10 +43,12 @@ namespace CodeComb.CI.Runner
         public string Output { get; private set; }
         private string EntryDirectory { get; set; }
         private int MaxTimeLimit { get; set; }
-        public CITask(string workingDirectory, int maxTimeLimit, Dictionary<string, string> AdditionalEnvironmentVariables = null)
+        private string Version { get; set; }
+        public CITask(string workingDirectory, int maxTimeLimit, string version = null, Dictionary<string, string> AdditionalEnvironmentVariables = null)
         {
             try
             {
+                this.Version = version;
                 long length = 0;
                 foreach (var x in Directory.GetFiles(FindDirectory(workingDirectory), "*.*", SearchOption.AllDirectories))
                     length += ((new FileInfo(x)).Length / 1024);

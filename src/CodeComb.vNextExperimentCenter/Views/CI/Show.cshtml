@@ -26,7 +26,7 @@
                         @foreach(var x in Model.Projects.OrderBy(x => x.PRI))
                         {
                             <tr>
-                                <td>@x.Alias</td>
+                                <td><a asp-action="Project" asp-controller="CI" asp-route-id="@x.Id">@x.Alias</a></td>
                                 <td>
                                     <img src="@Url.Action("Badge", "CI", new { id = x.Id })" />
                                 </td>

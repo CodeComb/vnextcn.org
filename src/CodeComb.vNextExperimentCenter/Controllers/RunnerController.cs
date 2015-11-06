@@ -61,7 +61,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         }
 
         [HttpPost]
-        public string Failed(long id, [FromHeader(Name = "private-key")]string PrivateKey, string Output)
+        public string Failed(long id, [FromHeader(Name = "private-key")]string PrivateKey)
         {
             var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
             NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
@@ -69,15 +69,12 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             switch (node.OS)
             {
                 case OSType.Windows:
-                    status.WindowsOutput = Output;
                     status.WindowsResult = Models.StatusResult.Failed;
                     break;
                 case OSType.OSX:
-                    status.OsxOutput = Output;
                     status.OsxResult = Models.StatusResult.Failed;
                     break;
                 case OSType.Linux:
-                    status.LinuxOutput = Output;
                     status.LinuxResult = Models.StatusResult.Failed;
                     break;
             }
@@ -87,7 +84,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         }
 
         [HttpPost]
-        public string Successful(long id, [FromHeader(Name = "private-key")]string PrivateKey, string Output)
+        public string Successful(long id, [FromHeader(Name = "private-key")]string PrivateKey)
         {
             var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
             NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
@@ -95,15 +92,12 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             switch (node.OS)
             {
                 case OSType.Windows:
-                    status.WindowsOutput = Output;
                     status.WindowsResult = Models.StatusResult.Successful;
                     break;
                 case OSType.OSX:
-                    status.OsxOutput = Output;
                     status.OsxResult = Models.StatusResult.Successful;
                     break;
                 case OSType.Linux:
-                    status.LinuxOutput = Output;
                     status.LinuxResult = Models.StatusResult.Successful;
                     break;
             }
@@ -113,7 +107,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         }
 
         [HttpPost]
-        public string TimeLimitExceeded(long id, [FromHeader(Name = "private-key")]string PrivateKey, string Output, int TimeUsage)
+        public string TimeLimitExceeded(long id, [FromHeader(Name = "private-key")]string PrivateKey)
         {
             var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
             NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
@@ -122,15 +116,12 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             switch (node.OS)
             {
                 case OSType.Windows:
-                    status.WindowsOutput = Output;
                     status.WindowsResult = Models.StatusResult.Failed;
                     break;
                 case OSType.OSX:
-                    status.OsxOutput = Output;
                     status.OsxResult = Models.StatusResult.Failed;
                     break;
                 case OSType.Linux:
-                    status.LinuxOutput = Output;
                     status.LinuxResult = Models.StatusResult.Failed;
                     break;
             }

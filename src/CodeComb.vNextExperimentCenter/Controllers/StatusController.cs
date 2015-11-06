@@ -88,7 +88,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     if (status.ExperimentId.HasValue)
                         node.SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
                     else
-                        node.SendCIBuildTask(status.Id, status.Project.ZipUrl, status.Project.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, status.Project.ZipUrl, string.Format(status.Project.VersionRule, ++status.Project.CurrentVersion), status.Project.AdditionalEnvironmentVariables);
                 }
             }
             if (status.RunWithWindows)
@@ -101,7 +101,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     if (status.ExperimentId.HasValue)
                         node.SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
                     else
-                        node.SendCIBuildTask(status.Id, status.Project.ZipUrl, status.Project.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, status.Project.ZipUrl, string.Format(status.Project.VersionRule, ++status.Project.CurrentVersion), status.Project.AdditionalEnvironmentVariables);
                 }
             }
             if (status.RunWithOsx)
@@ -114,7 +114,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     if (status.ExperimentId.HasValue)
                         node.SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
                     else
-                        node.SendCIBuildTask(status.Id, status.Project.ZipUrl, status.Project.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, status.Project.ZipUrl, string.Format(status.Project.VersionRule, ++status.Project.CurrentVersion), status.Project.AdditionalEnvironmentVariables);
                 }
             }
             DB.SaveChanges();

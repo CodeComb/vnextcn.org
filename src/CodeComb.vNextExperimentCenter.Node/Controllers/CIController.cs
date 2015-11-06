@@ -32,7 +32,7 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
         public CIRunner Runner { get; set; }
 
         [HttpPost]
-        public async Task<string> NewCI(long id, string AdditionalEnvironmentVariables, string ZipUrl)
+        public async Task<string> NewCI(long id, string ZipUrl, string version = null, string AdditionalEnvironmentVariables = null)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace CodeComb.vNextExperimentCenter.Node.Controllers
                     environmentvariables = JsonConvert.DeserializeObject<Dictionary<string, string>>(AdditionalEnvironmentVariables);
                 }
                 catch { }
-                Runner.WaitingTasks.Enqueue(new CITask(path, Runner.MaxTimeLimit, environmentvariables)
+                Runner.WaitingTasks.Enqueue(new CITask(path, Runner.MaxTimeLimit, version, environmentvariables)
                 {
                     Identifier = identifier.ToString()
                 });

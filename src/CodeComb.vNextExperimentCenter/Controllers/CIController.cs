@@ -68,6 +68,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
+            project.CurrentVersion++;
             var ciset = DB.CISets
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
@@ -88,7 +89,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 status.LinuxResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.Linux);
                 if (node != null)
-                    node.SendCIBuildTask(status.Id, project.ZipUrl, project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, project.ZipUrl, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
                 else
                     status.LinuxResult = StatusResult.Ignored;
             }
@@ -98,7 +99,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 status.OsxResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
                 if (node != null)
-                    node.SendCIBuildTask(status.Id, project.ZipUrl, project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, project.ZipUrl, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
                 else
                     status.OsxResult = StatusResult.Ignored;
             }
@@ -108,12 +109,11 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 status.WindowsResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.Windows);
                 if (node != null)
-                    node.SendCIBuildTask(status.Id, project.ZipUrl, project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, project.ZipUrl, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
                 else
                     status.WindowsResult = StatusResult.Ignored;
             }
             status.Result = status.GenerateResult();
-            project.CurrentVersion++;
             DB.SaveChanges();
             return RedirectToAction("Show", "CI", new { id = id });
         }
@@ -139,6 +139,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             ciset.LastBuildingTime = DateTime.Now;
             foreach (var x in ciset.Projects.OrderBy(x => x.PRI))
             {
+                x.CurrentVersion++;
                 var status = new Status
                 {
                     ProjectId = x.Id,
@@ -155,7 +156,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     status.LinuxResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.Linux);
                     if (node != null)
-                        node.SendCIBuildTask(status.Id, x.ZipUrl, x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, x.ZipUrl, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
                     else
                         status.LinuxResult = StatusResult.Ignored;
                 }
@@ -165,7 +166,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     status.OsxResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
                     if (node != null)
-                        node.SendCIBuildTask(status.Id, x.ZipUrl, x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, x.ZipUrl, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
                     else
                         status.OsxResult = StatusResult.Ignored;
                 }
@@ -175,11 +176,10 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     status.WindowsResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.Windows);
                     if (node != null)
-                        node.SendCIBuildTask(status.Id, x.ZipUrl, x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, x.ZipUrl, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
                     else
                         status.WindowsResult = StatusResult.Ignored;
                 }
-                x.CurrentVersion++;
                 status.Result = status.GenerateResult();
                 DB.SaveChanges();
             }
@@ -233,6 +233,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             });
         }
 
+        [AllowAnonymous]
         [Route("CI/{id:Guid}")]
         public IActionResult Show(Guid id)
         {
@@ -417,6 +418,28 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                 x.RedirectText = "返回项目列表";
                 x.RedirectUrl = Url.Action("Show", "CI", new { id = id });
             });
+        }
+        
+        [AllowAnonymous]
+        [Route("CI/Project/{id}")]
+        public IActionResult Project(Guid id)
+        {
+            var project = DB.Projects
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (project == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            var status = DB.Statuses
+                .Where(x => x.ProjectId == id)
+                .OrderByDescending(x => x.Time)
+                .FirstOrDefault();
+            ViewBag.Status = status;
+            return View(project);
         }
     }
 }

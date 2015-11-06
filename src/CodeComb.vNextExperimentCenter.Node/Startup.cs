@@ -52,9 +52,7 @@ namespace CodeComb.vNextExperimentCenter.Node
             var task = sender as CI.Runner.CITask;
             Client.PostAsync("/api/Runner/Successful", new FormUrlEncodedContent(new Dictionary<string, string>
             {
-                { "id", task.Identifier.ToString() },
-                { "Output", task.Output },
-                { "TimeUsage", task.UserProcessorTime.TotalMilliseconds.ToString() }
+                { "id", task.Identifier.ToString() }
             })).Wait();
             cacheStr.Remove(task.Identifier);
             cacheTime.Remove(task.Identifier);
@@ -66,9 +64,7 @@ namespace CodeComb.vNextExperimentCenter.Node
             var task = sender as CI.Runner.CITask;
             Client.PostAsync("/api/Runner/TimeLimitExceeded", new FormUrlEncodedContent(new Dictionary<string, string>
             {
-                { "id", task.Identifier.ToString() },
-                { "Output", task.Output },
-                { "TimeUsage", task.UserProcessorTime.TotalMilliseconds.ToString() }
+                { "id", task.Identifier.ToString() }
             })).Wait();
             cacheStr.Remove(task.Identifier);
             cacheTime.Remove(task.Identifier);
@@ -80,8 +76,7 @@ namespace CodeComb.vNextExperimentCenter.Node
             var task = sender as CI.Runner.CITask;
             Client.PostAsync("/api/Runner/Failed", new FormUrlEncodedContent(new Dictionary<string, string>
             {
-                { "id", task.Identifier.ToString() },
-                { "Output", task.Output }
+                { "id", task.Identifier.ToString() }
             })).Wait();
             cacheStr.Remove(task.Identifier);
             cacheTime.Remove(task.Identifier);

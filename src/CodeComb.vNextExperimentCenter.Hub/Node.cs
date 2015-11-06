@@ -107,11 +107,12 @@ namespace CodeComb.vNextExperimentCenter.Hub
             }
         }
 
-        public async Task<bool> SendCIBuildTask(long id, string ZipUrl, string AdditionalEnvironmentVariables)
+        public async Task<bool> SendCIBuildTask(long id,  string ZipUrl, string Version, string AdditionalEnvironmentVariables)
         {
             var result = await client.PostAsync("/api/ci/newci", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", id.ToString() },
+                { "Version", Version },
                 { "ZipUrl", ZipUrl.ToString() },
                 { "AdditionalEnvironmentVariables", AdditionalEnvironmentVariables }
             }));
