@@ -39,7 +39,7 @@
                                 {
                                     <img src="@Url.Action("Avatar", "Account", new { id = y.LastPost.UserId })" class="table-forums-avatar" />
                                     <a asp-action="Topic" asp-controller="Forum" asp-route-id="@y.LastPost.Id"><span class="table-forums-micro-title gray">@y.LastPost.FiltedContent</span></a>
-                                    <a asp-action="Show" asp-controller="Account" asp-route-id="@y.LastPost.UserId">@await Html.ColorUserNameAsync(y.LastPost.User, "table-forums-micro-title")</a>
+                                    <div class="table-forums-micro-title"><a asp-action="Show" asp-controller="Account" asp-route-id="@y.LastPost.UserId">@await Html.ColorUserNameAsync(y.LastPost.User)</a> <span class="table-forums-lastrep-time">@@@y.LastPost.Time.ToString("yyyy:MM:dd HH:mm")</span></div>
                                 }
                                 else
                                 {

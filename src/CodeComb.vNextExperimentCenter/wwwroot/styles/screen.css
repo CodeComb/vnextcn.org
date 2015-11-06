@@ -2234,19 +2234,20 @@ pre {
 }
 
 .table-forums-avatar {
-    width: 51px;
-    height: 51px;
+    margin: 5px 0;
+    width: 41px;
+    height: 41px;
     border-radius: 50%;
     box-shadow: 0 0 3px rgba(0,0,0,0.2);
     float: left;
-    margin-right: 10px;
+    margin-right: 7px;
 }
 
 .table-forums-micro-title {
     text-overflow: ellipsis;
     overflow: hidden;
     float: left;
-    width: 191px;
+    width: 204px;
     display: block;
     height: 25px;
     line-height: 25px;
@@ -2256,6 +2257,6 @@ pre {
     color: #888;
 }
 
-.table-forums-noreply {
+.table-forums-noreply, .table-forums-lastrep-time {
     color: #888
 }
