@@ -124,13 +124,7 @@ var themeApp = {
 		return formatted_dt;
 	},
 	matrerialInput: function() {
-		$('input').blur(function() {
-			if($.trim(this.value).length > 0) {
-			    $(this).addClass('non-empty');
-			} else {
-				$(this).removeClass('non-empty');
-			}
-		});
+		
 	},
 	mailchimp:function() {
 		function IsEmail(email) {

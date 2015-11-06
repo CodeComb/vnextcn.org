@@ -357,7 +357,65 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
-            return View(project);
+            ViewBag.Project = project;
+            return View(ciset);
+        }
+
+        [HttpPost]
+        [Route("CI/Set/{id:Guid}/Project/{pid:Guid}/Edit")]
+        [AnyRolesOrClaims("Root, Master", "Owned CI set")]
+        public IActionResult EditProject(Guid id, Guid pid, 
+            string AdditionalEnvironmentVariables,
+            string Alias,
+            string NuGetHost,
+            string NuGetPrivateKey,
+            int PRI,
+            bool RunWithLinux,
+            bool RunWithWindows,
+            bool RunWithOsx,
+            string VersionRule,
+            string ZipUrl,
+            int CurrentVersion)
+        {
+            var ciset = DB.CISets
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (ciset == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            var project = DB.Projects
+                .Where(x => x.CISetId == id && x.Id == pid)
+                .SingleOrDefault();
+            if (project == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            project.AdditionalEnvironmentVariables = AdditionalEnvironmentVariables;
+            project.Alias = Alias;
+            project.CurrentVersion = CurrentVersion;
+            project.NuGetHost = NuGetHost;
+            project.NuGetPrivateKey = NuGetPrivateKey;
+            project.PRI = PRI;
+            project.RunWithLinux = RunWithLinux;
+            project.RunWithOsx = RunWithOsx;
+            project.RunWithWindows = RunWithWindows;
+            project.VersionRule = VersionRule;
+            project.ZipUrl = ZipUrl;
+            DB.SaveChanges();
+            return Prompt(x => 
+            {
+                x.Title = "修改成功";
+                x.Details = "项目信息已经修改成功！";
+                x.RedirectText = "返回项目列表";
+                x.RedirectUrl = Url.Action("Show", "CI", new { id = id });
+            });
         }
     }
 }
