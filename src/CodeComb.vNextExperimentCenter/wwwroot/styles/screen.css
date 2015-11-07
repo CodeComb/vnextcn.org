@@ -2423,3 +2423,7 @@ hr {
 td .comment-item:last-child {
     border-bottom: none;
 }
+
+.post-role {
+    margin-top: 12px!important;
+}

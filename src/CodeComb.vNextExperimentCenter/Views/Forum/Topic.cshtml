@@ -27,7 +27,7 @@
                                     <a asp-action="Show" asp-controller="Account" asp-route-id="@Topic.UserId" class="center">@await Html.ColorUserNameAsync(Topic.User)</a>
                                     <hr />
                                     <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = Topic.UserId })" /></p>
-                                    <p><span class="topic-label purple">@((await User.Manager.GetRolesAsync(Topic.User)).First())</span></p>
+                                    <p class="post-role"><span class="topic-label purple">@((await User.Manager.GetRolesAsync(Topic.User)).First())</span></p>
                                 </td>
                                 <td>
                                     @if (Topic.IsAnnouncement)
@@ -64,7 +64,7 @@
                                         <a asp-action="Show" asp-controller="Account" asp-route-id="@Topic.UserId" class="center">@await Html.ColorUserNameAsync(Topic.User)</a>
                                         <hr />
                                         <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = Topic.UserId })" /></p>
-                                        <p><span class="topic-label purple">@((await User.Manager.GetRolesAsync(Topic.User)).First())</span></p>
+                                        <p class="post-role"><span class="topic-label purple">@((await User.Manager.GetRolesAsync(Topic.User)).First())</span></p>
                                     </td>
                                     <td>
                                         @if (Topic.UserId == x.UserId)
