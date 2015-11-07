@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Post>
+@{ 
+    Topic Topic = ViewBag.Topic;
+    ViewBag.Title = Topic.Title;
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_12">
+            <h2 class="forum-title">@ViewBag.Title</h2>
+            <div class="cont-outer">
+                <div class="table-post-outer">
+                    <table class="table-post">
+                        <colgroup>
+                            <col style="width: 160px;" />
+                            <col />
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="center table-post-info">查看: @Topic.Visit | 回复: @ViewBag.PagerInfo.Count</th>
+                                <th>@Topic.Title</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="center">
+                                    <a asp-action="Show" asp-controller="Account" asp-route-id="@Topic.UserId" class="center">@await Html.ColorUserNameAsync(Topic.User)</a>
+                                    <hr />
+                                    <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = Topic.UserId })" /></p>
+                                    <p><span class="topic-label purple">@((await User.Manager.GetRolesAsync(Topic.User)).First())</span></p>
+                                </td>
+                                <td>
+                                    @if (Topic.IsAnnouncement)
+                                    {
+                                        <span class="topic-label purple">ANNOUNCEMENT</span>
+                                    }
+                                    @if (Topic.IsTop)
+                                    {
+                                        <span class="topic-label purple">TOP</span>
+                                    }
+                                    @if (User.IsSignedIn())
+                                    {
+                                        <a>回复</a>
+                                        @if (Topic.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
+                                        {
+                                            <a>编辑</a>
+                                            <a>删除</a>
+                                        }
+                                        @if (User.AnyRoles("Root, Master"))
+                                        {
+                                            <a>置顶/取消置顶</a>
+                                            <a>设置/取消公告</a>
+                                        }
+                                    }
+                                    <span class="table-post-time">发表于 @Topic.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                                    <hr />
+                                    @Html.Sanitize(Html.Marked(Topic.Content).ToString())
+                                </td>
+                            </tr>
+                            @foreach (var x in Model)
+                            {
+                                <tr>
+                                    <td class="center">
+                                        <a asp-action="Show" asp-controller="Account" asp-route-id="@Topic.UserId" class="center">@await Html.ColorUserNameAsync(Topic.User)</a>
+                                        <hr />
+                                        <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = Topic.UserId })" /></p>
+                                        <p><span class="topic-label purple">@((await User.Manager.GetRolesAsync(Topic.User)).First())</span></p>
+                                    </td>
+                                    <td>
+                                        @if (Topic.UserId == x.UserId)
+                                        {
+                                            <span class="topic-label">楼主</span>
+                                        }
+                                        @if (User.IsSignedIn())
+                                        {
+                                            <a>回复</a>
+                                            @if (x.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
+                                            {
+                                                <a>编辑</a>
+                                                <a>删除</a>
+                                            }
+                                        }
+                                        <span class="table-post-time">回复于 @x.Time.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                                        <hr />
+                                        @Html.Sanitize(Html.Marked(x.Content).ToString())
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <div class="pager-outer">
+                    @Html.MakePager()
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

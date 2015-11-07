@@ -32,7 +32,7 @@ namespace CodeComb.vNextExperimentCenter.Models
         public bool IsTop { get; set; }
 
         public bool IsAnnouncement { get; set; }
-
+        
         [ForeignKey("User")]
         public long UserId { get; set; }
 

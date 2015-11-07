@@ -37,6 +37,8 @@ namespace CodeComb.vNextExperimentCenter.Models
 
         public Post Parent { get; set; }
 
+        public virtual ICollection<Post> SubPosts { get; set; } = new List<Post>();
+
         [ForeignKey("User")]
         public long UserId { get; set; }
 

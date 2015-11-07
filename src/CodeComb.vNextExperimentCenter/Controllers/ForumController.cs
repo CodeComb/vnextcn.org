@@ -81,10 +81,25 @@ namespace CodeComb.vNextExperimentCenter.Controllers
         {
             var topic = DB.Topics
                 .Include(x => x.User)
-                .Include(x => x.Posts)
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (topic == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            var posts = DB.Posts
+                .Include(x => x.User)
+                .Include(x => x.SubPosts)
                 .ThenInclude(x => x.User)
-                .OrderByDescending(x => x.LastReplyTime);
-            return PagedView(topic, 10);
+                .Where(x => x.TopicId == id && x.ParentId == null)
+                .OrderBy(x => x.Time);
+            topic.Visit++;
+            DB.SaveChanges();
+            ViewBag.Topic = topic;
+            return PagedView(posts, 10);
         }
     }
 }

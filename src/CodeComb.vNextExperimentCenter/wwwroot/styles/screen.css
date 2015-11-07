@@ -2321,3 +2321,67 @@ pre {
   padding: 2px 10px;
   margin: 0 0 20px 0;
 }
+
+.post-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin-top: 10px;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    border-top: 1px dashed #ccc;
+    margin: 7px 0;
+}
+
+.table-post-outer {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.table-post {
+    width: 100%;
+    font-size: 14px;
+}
+
+.table-post tbody td {
+    vertical-align: top;
+    padding: 10px;
+}
+
+.table-post thead th {
+    padding: 10px;
+    background-color: #f3f3f3;
+}
+
+.table-post td:first-child, .table-post th:first-child {
+    background-color: #e8e8e8;
+}
+
+.table-post thead tr {
+    height: 40px;
+}
+
+.table-post thead th {
+    font-weight: normal;
+}
+
+.table-post tr td:first-child, .table-post tr th:first-child {
+    border-bottom: 5px solid #ccc;
+}
+
+.table-post tr td:last-child, .table-post tr th:last-child {
+    border-bottom: 5px solid #f0f0f0;
+}
+
+.table-post-info {
+    color: #888;
+}
+
+.table-post-time {
+    color: #888;
+    font-size: 14px;
+}
