@@ -75,6 +75,16 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             return PagedView(ret, 20);
         }
 
-
+        [Route("Forum/Topic")]
+        [Route("Forum/Topic/{p}")]
+        public IActionResult Topic (long id)
+        {
+            var topic = DB.Topics
+                .Include(x => x.User)
+                .Include(x => x.Posts)
+                .ThenInclude(x => x.User)
+                .OrderByDescending(x => x.LastReplyTime);
+            return PagedView(topic, 10);
+        }
     }
 }
