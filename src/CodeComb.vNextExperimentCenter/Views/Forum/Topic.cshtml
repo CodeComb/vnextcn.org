@@ -4,6 +4,23 @@
     ViewBag.Title = Topic.Title;
 }
 
+<div class="hidden" id="new-post-outer">
+    <div id="new-post" class="new-comment">
+        <p>发表回复</p>
+        <form asp-action="Post" asp-controller="Forum" asp-route-id="@Topic.Id" id="frmNewPost">
+            <input type="hidden" name="pid" id="new-post-pid" />
+            <div class="markdown-editor-outer">
+                <textarea class="textbox markdown-editor" name="Content"></textarea>
+                <div class="markdown-editor-bottom">
+                    <a href="javascript:$('#frmNewPost').submit()">发表回复</a>
+                    <a href="javascript:$('#new-post-outer').append($('#new-post'))">取消回复</a>
+                    支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <div class="container">
     <div class="cont-wrap">
         <div class="grid_12">
@@ -17,7 +34,7 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th class="center table-post-info">查看: @Topic.Visit | 回复: @ViewBag.PagerInfo.Count</th>
+                                <th class="center table-post-info">查看: @Topic.Visit | 回复: @ViewBag.Count</th>
                                 <th>@Topic.Title</th>
                             </tr>
                         </thead>
@@ -40,7 +57,6 @@
                                     }
                                     @if (User.IsSignedIn())
                                     {
-                                        <a>回复</a>
                                         @if (Topic.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
                                         {
                                             <a>编辑</a>
@@ -50,6 +66,7 @@
                                         {
                                             <a>置顶/取消置顶</a>
                                             <a>设置/取消公告</a>
+                                            <a>锁定/解锁</a>
                                         }
                                     }
                                     <span class="table-post-time">发表于 @Topic.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
@@ -59,7 +76,7 @@
                             </tr>
                             @foreach (var x in Model)
                             {
-                                <tr>
+                                <tr data-id="@x.Id">
                                     <td class="center">
                                         <a asp-action="Show" asp-controller="Account" asp-route-id="@Topic.UserId" class="center">@await Html.ColorUserNameAsync(Topic.User)</a>
                                         <hr />
@@ -73,7 +90,10 @@
                                         }
                                         @if (User.IsSignedIn())
                                         {
-                                            <a>回复</a>
+                                            @if (User.IsSignedIn() && (!Topic.IsLocked || User.AnyRoles("Root, Master")) && x.SubPosts.Count == 0)
+                                            {
+                                                <a href="javascript:Post('@x.Id')">回复</a>
+                                            }
                                             @if (x.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
                                             {
                                                 <a>编辑</a>
@@ -85,7 +105,12 @@
                                         @Html.Sanitize(Html.Marked(x.Content).ToString())
                                         @if (x.SubPosts.Count > 0)
                                         {
-                                            <h3 class="comment-header">楼中回复</h3>
+                                            <h3 class="comment-header">楼中楼回复 
+                                                @if (User.IsSignedIn() && (!Topic.IsLocked || User.AnyRoles("Root, Master")))
+                                                {
+                                                    <a href="javascript:Post('@x.Id')" class="add-comment">添加回复</a>
+                                                }
+                                            </h3>
                                             foreach (var y in x.SubPosts.OrderBy(z => z.Time))
                                             {
                                                 <div class="comment-item">
@@ -150,3 +175,10 @@
         </div>
     </div>
 </div>
+<script>
+    function Post(pid)
+    {
+        $('#new-post-pid').val(pid);
+        $('tr[data-id="' + pid + '"]').children('td').last().append($('#new-post'));
+    }
+</script>

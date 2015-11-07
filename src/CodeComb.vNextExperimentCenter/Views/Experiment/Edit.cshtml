@@ -18,7 +18,10 @@
                     <tr>
                         <td class="row-title">实验内容</td>
                         <td>
-                            <textarea class="textbox" asp-for="Description" style="width: calc(100% - 10px);height:240px;"></textarea>
+                            <div class="markdown-editor-outer">
+                                <textarea class="textbox markdown-editor" asp-for="Description"></textarea>
+                                <div class="markdown-editor-bottom">支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。</div>
+                            </div>
                         </td>
                     </tr>
                     <tr>

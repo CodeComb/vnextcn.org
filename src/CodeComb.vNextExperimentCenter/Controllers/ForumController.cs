@@ -93,6 +93,9 @@ namespace CodeComb.vNextExperimentCenter.Controllers
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
+            ViewBag.Count = DB.Posts
+                .Where(x => x.TopicId == id)
+                .Count();
             var posts = DB.Posts
                 .Include(x => x.User)
                 .Include(x => x.SubPosts)
@@ -107,6 +110,7 @@ namespace CodeComb.vNextExperimentCenter.Controllers
 
         [HttpPost]
         [Authorize]
+        [Route("Forum/Post")]
         [Route("Forum/Post/{id}")]
         [ValidateAntiForgeryToken]
         public IActionResult Post(long id, Guid? pid, string Content)
