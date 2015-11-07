@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<Topic>
+@{ 
+    Forum Forum = ViewBag.Forum;
+}
 
 <div class="container">
     <div class="cont-wrap">
@@ -115,6 +118,35 @@
                     @Html.MakePager()
                     <div class="clear"></div>
                 </div>
+                @if (User.IsSignedIn() && (!Forum.IsReadOnly || User.AnyRoles("Root, Master")))
+                {
+                    <br />
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>发表主题</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background:#fff!important">
+                                <td>
+                                    <form asp-action="Open" asp-controller="Forum" asp-route-id="@Forum.Id" method="post">
+                                        <input type="text" class="textbox w-3" name="Title" placeholder="主题标题" />
+                                        <hr />
+                                        <div class="markdown-editor-outer">
+                                            <textarea class="textbox markdown-editor" name="Content"></textarea>
+                                            <div class="markdown-editor-bottom">支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。</div>
+                                        </div>
+                                        <hr />
+                                        <p>
+                                            <input type="submit" class="btn btn-default" value="发表主题" />
+                                        </p>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
             </div>
         </div>
     </div>
