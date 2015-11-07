@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Authorization;
 using Microsoft.Data.Entity;
+using CodeComb.vNextExperimentCenter.Models;
 
 namespace CodeComb.vNextExperimentCenter.Controllers
 {
@@ -75,11 +78,11 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             return PagedView(ret, 20);
         }
 
-        [Route("Forum/Topic/{p}")]
-        [Route("Forum/Topic")]
+        [Route("Forum/Topic/{id:long}/{p:int?}")]
         public IActionResult Topic (long id)
         {
             var topic = DB.Topics
+                .Include(x => x.Forum)
                 .Include(x => x.User)
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
@@ -100,6 +103,55 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             DB.SaveChanges();
             ViewBag.Topic = topic;
             return PagedView(posts, 10);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("Forum/Post/{id}")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Post(long id, Guid? pid, string Content)
+        {
+            var topic = DB.Topics
+                .Include(x => x.Forum)
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (topic == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            if (topic.IsLocked && !User.AnyRoles("Root, Master"))
+                return Prompt(x =>
+                {
+                    x.Title = "权限不足";
+                    x.Details = "您没有权限在已经锁定的主题中发表回复";
+                    x.StatusCode = 500;
+                });
+            var p = new Post
+            {
+                Content = Content,
+                TopicId = id,
+                UserId = User.Current.Id,
+                Time = DateTime.Now
+            };
+            if (pid.HasValue)
+            {
+                var post = DB.Posts
+                    .Where(x => x.Id == pid.Value)
+                    .SingleOrDefault();
+                if (post != null)
+                    p.ParentId = post.Id;
+            }
+            topic.Forum.PostCount++;
+            DB.Posts.Add(p);
+            DB.SaveChanges();
+            return Prompt(x =>
+            {
+                x.Title = "发表成功";
+                x.Details = "您的回复已经成功发表！";
+            });
         }
     }
 }

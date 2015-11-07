@@ -51,7 +51,7 @@
                                         @if (x.LastPost != null)
                                         {
                                             <img src="@Url.Action("Avatar", "Account", new { id = x.LastPost.UserId })" class="table-forums-avatar" />
-                                            <a asp-action="Topic" asp-controller="Forum" asp-route-id="@x.LastPost.Id"><span class="table-forums-micro-title gray">@x.LastPost.FiltedContent</span></a>
+                                            <a asp-action="Topic" asp-controller="Forum" asp-route-id="@x.LastPost.TopicId"><span class="table-forums-micro-title gray">@x.LastPost.FiltedContent</span></a>
                                             <div class="table-forums-micro-title"><a asp-action="Show" asp-controller="Account" asp-route-id="@x.LastPost.UserId">@await Html.ColorUserNameAsync(x.LastPost.User)</a> <span class="table-forums-lastrep-time">@@@x.LastPost.Time.ToString("yyyy:MM:dd HH:mm")</span></div>
                                         }
                                         else
