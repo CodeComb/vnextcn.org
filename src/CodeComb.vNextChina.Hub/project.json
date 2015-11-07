@@ -1,0 +1,30 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "CodeComb.vNextChina.Hub Class Library",
+  "authors": [ "Yuuko" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "Microsoft.Extensions.DependencyInjection": "1.0.0-*",
+    "EntityFramework.Relational": "7.0.0-*",
+    "Newtonsoft.Json": "7.0.1",
+    "CodeComb.Package": "2.0.0-*"
+  },
+
+  "frameworks": {
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0.0"
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "System.Threading.Timer":"4.0.1-*",
+        "System.Net.Http": "4.0.1-*",
+        "System.Console": "4.0.0-*"
+      }
+    }
+  }
+}
