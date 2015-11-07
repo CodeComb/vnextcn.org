@@ -75,8 +75,8 @@ namespace CodeComb.vNextExperimentCenter.Controllers
             return PagedView(ret, 20);
         }
 
-        [Route("Forum/Topic")]
         [Route("Forum/Topic/{p}")]
+        [Route("Forum/Topic")]
         public IActionResult Topic (long id)
         {
             var topic = DB.Topics

@@ -214,6 +214,24 @@ namespace CodeComb.vNextExperimentCenter.Models
                     UserId = user.Id
                 };
                 DB.Posts.Add(post);
+                var post2 = new Post
+                {
+                    Content = "My first topic\r\nHi, I'm Amamiya Yuuko",
+                    Time = DateTime.Now,
+                    TopicId = topic.Id,
+                    UserId = user.Id,
+                    ParentId = post.Id
+                };
+                var post3 = new Post
+                {
+                    Content = "My first topic\r\nHi, I'm Amamiya Yuuko",
+                    Time = DateTime.Now,
+                    TopicId = topic.Id,
+                    UserId = user.Id,
+                    ParentId = post.Id
+                };
+                DB.Posts.Add(post2);
+                DB.Posts.Add(post3);
 
                 DB.SaveChanges();
                 await UserManager.AddClaimAsync(user, new System.Security.Claims.Claim("Owned CI set", ciset.Id.ToString()));
