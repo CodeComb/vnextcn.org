@@ -1897,7 +1897,11 @@ pre {
 
 .table tr {
 	background: #f0f0f0;
-	transition: all 0.3s linear;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -ms-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s;
 }
 
 .table tr:nth-child(odd) {
@@ -2011,7 +2015,7 @@ pre {
   transform: scale(1);
   opacity: 1;
   visibility: visible;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .dialog.hide {
@@ -2141,7 +2145,11 @@ pre {
 
 .pager-item, .pager-item:visited, .pager-item:active {
     background-color: #e0e0e0;
-    transition: background 0.2s linear, color 0.2s linear;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
     float: left;
     font-size: 18px;
     padding: 3px 10px;
@@ -2206,7 +2214,11 @@ pre {
 }
 
 .status-os-item {
-    transition: all 0.2s linear;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
     color: #222;
     padding-left: 10px;
     padding-right: 10px;
@@ -2480,7 +2492,11 @@ td .comment-item:last-child {
     border-radius: 5px;
     display: inline;
     visibility: visible;
-    transition: margin 0.2s linear, opacity 0.2s linear, visibility 0.2s linear;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
     z-index: 9999;
 }
 
@@ -2488,5 +2504,9 @@ td .comment-item:last-child {
         opacity: 0;
         margin-top: -15px;
         visibility: hidden;
-        transition: margin 0.2s linear, opacity 0.2s linear, visibility 0.2s linear;
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        transition: all 0.2s;
     }
