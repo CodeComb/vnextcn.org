@@ -30,7 +30,12 @@
                             {
                                 <tr>
                                     <td>
-                                        <h4><a asp-action="Show" asp-controller="Forum" asp-route-id="@y.Id">@y.Title</a></h4>
+                                        <h4><a asp-action="Show" asp-controller="Forum" asp-route-id="@y.Id">@y.Title</a> 
+                                        @if (y.TodayCount > 0)
+                                        {
+                                            <span class="forum-today-count">(今日: @y.TodayCount)</span>
+                                        }
+                                        </h4>
                                         <p>@y.Description</p>
                                     </td>
                                     <td class="hide-when-narrow center">@y.TopicCount</td>

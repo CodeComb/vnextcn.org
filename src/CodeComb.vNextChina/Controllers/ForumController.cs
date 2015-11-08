@@ -14,19 +14,31 @@ namespace CodeComb.vNextChina.Controllers
     {
         public IActionResult Index()
         {
+            var begin = DateTime.Today;
+            var end = DateTime.Today.AddDays(1);
             var ret = DB.Forums
                 .Include(x => x.SubForums)
                 .Where(x => x.SubForums.Count > 0 && x.ParentId == null)
                 .OrderBy(x => x.PRI)
                 .ToList();
             foreach (var x in ret)
+            {
                 foreach (var y in x.SubForums)
+                {
                     y.LastPost = DB.Posts
                         .Include(z => z.Topic)
                         .ThenInclude(z => z.User)
                         .Where(z => z.Topic.ForumId == y.Id)
                         .OrderByDescending(z => z.Time)
                         .FirstOrDefault();
+                    y.TodayCount = DB.Posts
+                        .Include(z => z.Topic)
+                        .Where(z => z.Topic.ForumId == y.Id && z.Time >= begin && z.Time < end)
+                        .Count() + DB.Topics
+                        .Where(z => z.ForumId == y.Id && z.CreationTime >= begin && z.CreationTime < end)
+                        .Count();
+                }
+            }
             return View(ret);
         }
 

@@ -2510,3 +2510,8 @@ td .comment-item:last-child {
         -o-transition: all 0.2s;
         transition: all 0.2s;
     }
+
+    .forum-today-count {
+        color: #888;
+        font-size: 12px;
+    }

@@ -33,6 +33,9 @@ namespace CodeComb.vNextChina.Models
         public long PostCount { get; set; }
 
         [NotMapped]
+        public long TodayCount { get; set; }
+
+        [NotMapped]
         public virtual Post LastPost { get; set; }
     }
 }
