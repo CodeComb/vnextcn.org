@@ -225,5 +225,23 @@ namespace CodeComb.vNextChina.Controllers
                 x.Details = "该实验已保存成功！";
             });
         }
+
+        [HttpGet]
+        [AnyRoles("Root, Master")]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AnyRoles("Root, Master")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(string Title)
+        {
+            var exp = new Experiment { Title = Title };
+            DB.Experiments.Add(exp);
+            DB.SaveChanges();
+            return RedirectToAction("Edit", "Experiment", new { id = exp.Id });
+        }
     }
 }

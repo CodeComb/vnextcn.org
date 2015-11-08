@@ -33,13 +33,22 @@
             </table>
             @Html.MakePager()
         </div>
-        <div class="grid_3 sidebar">
-            <h3 class="header">检索</h3>
-            <form method="get" asp-action="Index" asp-controller="Experiment">
-                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="number" placeholder="实验编号" value="@Context.Request.Query["Number"]" /></p>
-                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="title" placeholder="实验名称" value="@Context.Request.Query["Title"]" /></p>
-                <p><input type="submit" class="btn btn-default" value="过滤" /></p>
-            </form>
+        <div class="grid_3">
+            <div class="sidebar">
+                <h3 class="header">检索</h3>
+                <form method="get" asp-action="Index" asp-controller="Experiment">
+                    <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="number" placeholder="实验编号" value="@Context.Request.Query["Number"]" /></p>
+                    <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="title" placeholder="实验名称" value="@Context.Request.Query["Title"]" /></p>
+                    <p><input type="submit" class="btn btn-default" value="过滤" /></p>
+                </form>
+            </div>
+            @if (User.AnyRoles("Root, Master"))
+            {
+                <div class="sidebar">
+                    <h3 class="header">管理</h3>
+                    <p><a asp-action="Create" asp-controller="Experiment">创建实验</a></p>
+                </div>
+            }
         </div>
     </div>
 </div>

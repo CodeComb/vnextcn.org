@@ -29,6 +29,29 @@ namespace CodeComb.vNextChina.Controllers
             return PagedView(contests, 5);
         }
 
+        [HttpGet]
+        [AnyRoles("Root, Master")]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AnyRoles("Root, Master")]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(string Title)
+        {
+            var contest = new Contest
+            {
+                Begin = new DateTime(2099,1,1),
+                End = new DateTime(2099,1,2),
+                Title = Title
+            };
+            DB.Contests.Add(contest);
+            DB.SaveChanges();
+            return RedirectToAction("Edit", "Contest", new { id = contest.Id });
+        }
+
         [Route("Contest/{id}")]
         public IActionResult Show(string id)
         {

@@ -41,14 +41,23 @@
                 <div class="clear"></div>
             </div>
         </div>
-        <div class="grid_3 sidebar">
-            <h3 class="header">检索</h3>
-            <form>
-                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="title" placeholder="比赛名称" value="@Context.Request.Query["Title"]" /></p>
-                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="begin" placeholder="开始时间" value="@Context.Request.Query["Begin"]" /></p>
-                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="end" placeholder="结束时间" value="@Context.Request.Query["End"]" /></p>
-                <p><input type="submit" class="btn btn-default" value="过滤" /></p>
-            </form>
+        <div class="grid_3">
+            <div class="sidebar">
+                <h3 class="header">检索</h3>
+                <form>
+                    <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="title" placeholder="比赛名称" value="@Context.Request.Query["Title"]" /></p>
+                    <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="begin" placeholder="开始时间" value="@Context.Request.Query["Begin"]" /></p>
+                    <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="end" placeholder="结束时间" value="@Context.Request.Query["End"]" /></p>
+                    <p><input type="submit" class="btn btn-default" value="过滤" /></p>
+                </form>            
+            </div>
+            @if (User.AnyRoles("Root, Master"))
+            {
+                <div class="sidebar">
+                    <h3 class="header">管理</h3>
+                    <p><a asp-action="Create" asp-controller="Contest">创建比赛</a></p>
+                </div>
+            }
         </div>
     </div>
 </div>
