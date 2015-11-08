@@ -41,7 +41,7 @@ namespace CodeComb.vNextChina
             {
                 services.AddEntityFramework()
                     .AddDbContext<vNextChinaContext>(x => x.UseInMemoryDatabase())
-                    .AddSqlite();
+                    .AddInMemoryDatabase();
             }
             
             services.AddIdentity<User, IdentityRole<long>>(x => 
@@ -51,6 +51,7 @@ namespace CodeComb.vNextChina
                 x.Password.RequireLowercase = false;
                 x.Password.RequireNonLetterOrDigit = false;
                 x.Password.RequireUppercase = false;
+                x.User.AllowedUserNameCharacters = null;
             })
                 .AddEntityFrameworkStores<vNextChinaContext, long>()
                 .AddDefaultTokenProviders();
@@ -69,13 +70,13 @@ namespace CodeComb.vNextChina
             loggerFactory.MinimumLevel = LogLevel.Warning;
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
-            
+
             app.UseAutoAjax();
             app.UseIdentity();
             app.UseExceptionHandler("/Shared/Prompt");
             app.UseStaticFiles();
             app.UseMvc(x => x.MapRoute("default", "{controller=Home}/{action=Index}/{id?}"));
-            
+
             await SampleData.InitDB(app.ApplicationServices);
         }
     }

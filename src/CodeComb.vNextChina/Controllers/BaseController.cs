@@ -31,7 +31,7 @@ namespace CodeComb.vNextChina.Controllers
             ViewBag.Announcements = DB.Topics
                 .Where(x => x.IsAnnouncement)
                 .OrderByDescending(x => x.CreationTime)
-                .Take(6)
+                .Take(5)
                 .ToList();
         }
     }

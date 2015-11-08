@@ -2532,3 +2532,7 @@ select:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
+
+.sidebar a {
+    display: inline-block;
+}

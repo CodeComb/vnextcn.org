@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Data.Entity;
 
 namespace CodeComb.vNextChina.Models
 {
@@ -16,14 +17,15 @@ namespace CodeComb.vNextChina.Models
 			var UserManager = services.GetRequiredService<UserManager<User>> ();
 			var RoleManager = services.GetRequiredService<RoleManager<IdentityRole<long>>> ();
             var env = services.GetRequiredService<IApplicationEnvironment>();
-			if (DB.Database.EnsureCreated())
+            
+            if (DB.Database.EnsureCreated())
 			{
-				await RoleManager.CreateAsync(new IdentityRole<long> { Name = "Root" });
+                await RoleManager.CreateAsync(new IdentityRole<long> { Name = "Root" });
 				await RoleManager.CreateAsync(new IdentityRole<long> { Name = "Master" });
 				await RoleManager.CreateAsync(new IdentityRole<long> { Name = "Member" });
 				await RoleManager.CreateAsync(new IdentityRole<long> { Name = "Banned" });
 				
-				var user = new User { UserName = "root", Email = "1@1234.sh", Organization = "Code Comb Co,. Ltd.", WebSite = "http://1234.sh" };
+				var user = new User { UserName = "雨宫优子", Email = "1@1234.sh", Organization = "Code Comb Co,. Ltd.", WebSite = "http://1234.sh" };
 				await UserManager.CreateAsync(user, "123456");
 				await UserManager.AddToRoleAsync(user, "Root");
 
@@ -42,20 +44,6 @@ namespace CodeComb.vNextChina.Models
 					CheckPassed = true,
 					Difficulty = 0,
 					Namespace = "HelloWorld",
-                    NuGet = "https://www.myget.org/F/codecomb-beta8/api/v3/index.json",
-                    TestArchive = File.ReadAllBytes(env.ApplicationBasePath + "/Setup/HelloWorld.zip"),
-                    AnswerArchive = File.ReadAllBytes(env.ApplicationBasePath + "/Setup/HelloWorldAnswer.zip")
-                });
-                DB.Experiments.Add(new Experiment
-                {
-                    Title = "编写Hello World网站[备份]",
-                    OS = OSType.CrossPlatform,
-                    Version = "beta8",
-                    Description = "编写一个vNext网站程序，对于匹配到的任何路由均输出`Hello World!`",
-                    TimeLimit = 10000,
-                    CheckPassed = true,
-                    Difficulty = 0,
-                    Namespace = "HelloWorld",
                     NuGet = "https://www.myget.org/F/codecomb-beta8/api/v3/index.json",
                     TestArchive = File.ReadAllBytes(env.ApplicationBasePath + "/Setup/HelloWorld.zip"),
                     AnswerArchive = File.ReadAllBytes(env.ApplicationBasePath + "/Setup/HelloWorldAnswer.zip")
@@ -139,7 +127,7 @@ namespace CodeComb.vNextChina.Models
                 var parentForum = new Forum
                 {
                     Id = "vnext",
-                    Title = "vNext交流",
+                    Title = "vNext技术交流",
                     PRI = 1
                 };
                 var parentForum2 = new Forum
@@ -148,31 +136,63 @@ namespace CodeComb.vNextChina.Models
                     Title = "vNext China",
                     PRI = 0
                 };
-                var subform = new Forum
+                var subforum = new Forum
                 {
                     Id = "asp-net-5",
                     Title = "ASP.Net 5",
                     ParentId = "vnext",
                     Description = "ASP.Net 5、MVC、Web Pages等技术交流",
-                    PostCount = 1,
-                    TopicCount = 1
+                    PRI = 1
                 };
-                var subform2 = new Forum
+                var subforum2 = new Forum
                 {
                     Id = "dot-net-core",
                     Title = ".Net Core",
                     ParentId = "vnext",
-                    Description = ".Net Core、CoreFx、CoreCLR等技术讨论"
+                    Description = ".Net Core、CoreFx、CoreCLR等技术讨论",
+                    PRI = 0
                 };
-                var subform3 = new Forum
+                var subforum3 = new Forum
+                {
+                    Id = "cross-plat",
+                    Title = "跨平台开发",
+                    ParentId = "vnext",
+                    Description = "跨平台开发技术交流",
+                    PRI = 2
+                };
+                var subforum4 = new Forum
+                {
+                    Id = "mvc-6",
+                    Title = "MVC 6",
+                    ParentId = "vnext",
+                    Description = "MVC 6开发技术交流",
+                    PRI = 3
+                };
+                var subforum5 = new Forum
+                {
+                    Id = "ef-7",
+                    Title = "Entity Framework 7",
+                    ParentId = "vnext",
+                    Description = "Entity Framework 7 OR/M 技术交流",
+                    PRI = 4
+                };
+                var subforum6 = new Forum
+                {
+                    Id = "frameworks",
+                    Title = "其他框架交流",
+                    ParentId = "vnext",
+                    Description = "其他框架交流专区",
+                    PRI = 5
+                };
+                var subforum7 = new Forum
                 {
                     Id = "feedback",
-                    Title = "错误反馈",
+                    Title = "BUG反馈",
                     ParentId = "vnext-cn",
                     Description = "vNext China使用时发生的错误请在本版块反馈",
                     PRI = 1
                 };
-                var subform4 = new Forum
+                var subforum8 = new Forum
                 {
                     Id = "announcements",
                     Title = "公告板",
@@ -181,58 +201,26 @@ namespace CodeComb.vNextChina.Models
                     PRI = 0,
                     IsReadOnly = true
                 };
+                var subforum9 = new Forum
+                {
+                    Id = "suggestions",
+                    Title = "发展建议",
+                    ParentId = "vnext-cn",
+                    Description = "在该板块提出您对vNext China的宝贵意见",
+                    PRI = 2
+                };
                 DB.Forums.Add(parentForum);
                 DB.Forums.Add(parentForum2);
-                DB.Forums.Add(subform);
-                DB.Forums.Add(subform2);
-                DB.Forums.Add(subform3);
-                DB.Forums.Add(subform4);
-                var topic = new Topic
-                {
-                    Title = "Test",
-                    Content = "## My first topic\r\nHi, I'm Amamiya Yuuko",
-                    CreationTime = DateTime.Now,
-                    ForumId = "asp-net-5",
-                    UserId = user.Id
-                };
-                var topic2 = new Topic
-                {
-                    Title = "Announce test",
-                    Content = "## My first topic\r\nHi, I'm Amamiya Yuuko",
-                    CreationTime = DateTime.Now,
-                    ForumId = "asp-net-5",
-                    UserId = user.Id,
-                    IsAnnouncement = true
-                };
-                DB.Topics.Add(topic);
-                DB.Topics.Add(topic2);
-                var post = new Post
-                {
-                    Content = "## My first topic\r\nHi, I'm Amamiya Yuuko",
-                    Time = DateTime.Now,
-                    TopicId = topic.Id,
-                    UserId = user.Id
-                };
-                DB.Posts.Add(post);
-                var post2 = new Post
-                {
-                    Content = "My first topic\r\nHi, I'm Amamiya Yuuko",
-                    Time = DateTime.Now,
-                    TopicId = topic.Id,
-                    UserId = user.Id,
-                    ParentId = post.Id
-                };
-                var post3 = new Post
-                {
-                    Content = "My first topic\r\nHi, I'm Amamiya Yuuko",
-                    Time = DateTime.Now,
-                    TopicId = topic.Id,
-                    UserId = user.Id,
-                    ParentId = post.Id
-                };
-                DB.Posts.Add(post2);
-                DB.Posts.Add(post3);
-
+                DB.SaveChanges();
+                DB.Forums.Add(subforum);
+                DB.Forums.Add(subforum2);
+                DB.Forums.Add(subforum3);
+                DB.Forums.Add(subforum4);
+                DB.Forums.Add(subforum5);
+                DB.Forums.Add(subforum6);
+                DB.Forums.Add(subforum7);
+                DB.Forums.Add(subforum8);
+                DB.Forums.Add(subforum9);
                 DB.SaveChanges();
                 await UserManager.AddClaimAsync(user, new System.Security.Claims.Claim("Owned CI set", ciset.Id.ToString()));
             }
