@@ -56,36 +56,57 @@
             <div class="cont-wrap">
                 <div class="grid_9">
                     <h2 class="header">近期比赛</h2>
+                    
                     <div class="block-outer">
-                        <div class="block blue">
-                            <h2>vNext Test Round #1</h2>
-                            <p class="small"><span>2015-10-30 10:00 ~ 2015-10-30 12:00</span></p>
-                            <p>123456</p>
-                        </div>
-                        <div class="block yellow">
-                            <h2>vNext Test Round #1</h2>
-                            <p class="small"><span>2015-10-30 10:00 ~ 2015-10-30 12:00</span></p>
-                            <p>123456</p>
-                        </div>
-                        <div class="block red">
-                            <h2>vNext Test Round #1</h2>
-                            <p class="small"><span>2015-10-30 10:00 ~ 2015-10-30 12:00</span></p>
-                            <p>123456</p>
-                        </div>
-                        <div class="block green">
-                            <h2>vNext Test Round #1</h2>
-                            <p class="small"><span>2015-10-30 10:00 ~ 2015-10-30 12:00</span></p>
-                            <p>123456</p>
-                        </div>
-                        <div class="block">
-                            <h2>vNext Test Round #1</h2>
-                            <p class="small"><span>2015-10-30 10:00 ~ 2015-10-30 12:00</span></p>
-                            <p>123456</p>
-                        </div>
+                        @foreach (Contest x in ViewBag.Contests)
+                        {
+                            @if (x.Status == ContestStatus.Pending)
+                            { 
+                            <div class="block blue">
+                                <h2>@x.Title</h2>
+                                <p class="small"><span>@x.Begin.ToString("yyyy-MM-dd HH:mm") ~ @x.End.ToString("yyyy-MM-dd HH:mm")</span></p>
+                                @Html.Sanitize(Html.Marked(x.Description).ToString())
+                            </div>
+                            }
+                            else if (x.Status == ContestStatus.Live)
+                            {
+                                <div class="block red">
+                                    <h2>@x.Title</h2>
+                                    <p class="small"><span>@x.Begin.ToString("yyyy-MM-dd HH:mm") ~ @x.End.ToString("yyyy-MM-dd HH:mm")</span></p>
+                                    @Html.Sanitize(Html.Marked(x.Description).ToString())
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="block">
+                                    <h2>@x.Title</h2>
+                                    <p class="small"><span>@x.Begin.ToString("yyyy-MM-dd HH:mm") ~ @x.End.ToString("yyyy-MM-dd HH:mm")</span></p>
+                                    @Html.Sanitize(Html.Marked(x.Description).ToString())
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
-                <div class="grid_3 sidebar">
-                    <h2 class="header">推荐资料</h2>
+                <div class="grid_3">
+                    <div class="sidebar">
+                        <h3 class="header">讨论节点</h3>
+                        @foreach(Forum x in ViewBag.Forums)
+                        {
+                            <p>@x.Title</p>
+                            @foreach(var y in x.SubForums.OrderBy(z => z.PRI))
+                            {
+                                <a asp-action="Show" asp-controller="Forum" asp-route-id="@y.Id">@y.Title</a>
+                            }
+                        }
+                    </div>
+                    <div class="sidebar">
+                        <h3 class="header">链接</h3>
+                        <ul>
+                            <li><a href="https://github.com/aspnet">ASP.Net GitHub</a></li>
+                            <li><a href="https://github.com/dotnet">.Net Foundation</a></li>
+                            <li><a href="http://asp.net/vnext">vNext 官方网站</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
