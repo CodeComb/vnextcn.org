@@ -19,10 +19,8 @@ namespace CodeComb.vNextChina
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            // 调试用
             var _serv = services.BuildServiceProvider();
             var appRoot = _serv.GetRequiredService<IApplicationEnvironment>().ApplicationBasePath;
-            
             
             IConfiguration Configuration;
             services.AddConfiguration(out Configuration);
