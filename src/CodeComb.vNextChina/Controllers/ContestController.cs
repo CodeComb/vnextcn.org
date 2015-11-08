@@ -20,7 +20,7 @@ namespace CodeComb.vNextChina.Controllers
             IEnumerable<Contest> contests = DB.Contests
                 .Where(x => x.End <= DateTime.Now || DateTime.Now <= x.Begin)
                 .OrderByDescending(x => x.Begin);
-            if (string.IsNullOrEmpty(Title))
+            if (!string.IsNullOrEmpty(Title))
                 contests = contests.Where(x => x.Title.Contains(Title) || Title.Contains(x.Title));
             if (Begin.HasValue)
                 contests = contests.Where(x => x.Begin >= Begin.Value);

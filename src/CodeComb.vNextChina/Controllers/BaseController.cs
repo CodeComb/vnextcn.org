@@ -28,6 +28,11 @@ namespace CodeComb.vNextChina.Controllers
         public override void Prepare()
         {
             ViewBag.Nodes = NodeProvider.Nodes;
+            ViewBag.Announcements = DB.Topics
+                .Where(x => x.IsAnnouncement)
+                .OrderByDescending(x => x.CreationTime)
+                .Take(6)
+                .ToList();
         }
     }
 }
