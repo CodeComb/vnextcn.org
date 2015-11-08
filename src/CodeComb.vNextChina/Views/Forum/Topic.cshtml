@@ -12,7 +12,7 @@
             <div class="markdown-editor-outer">
                 <textarea class="textbox markdown-editor" name="Content"></textarea>
                 <div class="markdown-editor-bottom">
-                    <a href="javascript:$('#frmNewPost').submit()">发表回复</a>
+                    <a href="javascript:NewPost()">发表回复</a>
                     <a href="javascript:$('#new-post-outer').append($('#new-post'))">取消回复</a>
                     支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。
                 </div>
@@ -38,7 +38,7 @@
                                 <th>@Topic.Title</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="lst-posts">
                             <tr>
                                 <td class="center">
                                     <a asp-action="Show" asp-controller="Account" asp-route-id="@Topic.UserId" class="center">@await Html.ColorUserNameAsync(Topic.User)</a>
@@ -162,14 +162,14 @@
                             <td></td>
                             <td>
                                 <p>发表回复</p>
-                                <form asp-action="Post" asp-controller="Forum" asp-route-id="@Topic.Id" method="post">
+                                <form asp-action="Post" asp-controller="Forum" asp-route-id="@Topic.Id" method="post" id="frmNewReply">
                                     <div class="markdown-editor-outer">
                                         <textarea class="textbox markdown-editor" name="Content"></textarea>
                                         <div class="markdown-editor-bottom">支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。</div>
                                     </div>
                                     <hr />
                                     <p>
-                                        <input type="submit" class="btn btn-default" value="回复" />
+                                        <input type="button" id="btnReply" class="btn btn-default" value="回复" />
                                     </p>
                                 </form>
                             </td>
@@ -217,5 +217,20 @@
         $('#new-post-pid').val(pid);
         $('tr[data-id="' + pid + '"]').children('td').last().append($('#new-post'));
     }
+
+    function NewPost()
+    {
+        popResult("正在发表回复...");
+        $('#new-post-outer').append($('#new-post'));
+        $.post($('#frmNewPost').attr('action'), $('#frmNewPost').serialize(), function (data) {
+            render.Post(data, function () { popResult('发表成功'); $('.markdown-editor').val(''); });
+        });
+    }
+    $("#btnReply").click(function () {
+        popResult("正在发表回复...");
+        $.post($('#frmNewReply').attr('action'), $('#frmNewReply').serialize(), function (data) {
+            render.Post(data, function () { popResult('发表成功'); $('.markdown-editor').val(''); });
+        });
+     });
     </script>
 }

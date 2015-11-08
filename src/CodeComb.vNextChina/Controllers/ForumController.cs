@@ -114,29 +114,25 @@ namespace CodeComb.vNextChina.Controllers
         [Route("Forum/Post")]
         [Route("Forum/Post/{id}")]
         [ValidateAntiForgeryToken]
-        public IActionResult Post(long id, Guid? pid, string Content)
+        public IActionResult Post(long id, Guid? pid, string content)
         {
             var topic = DB.Topics
                 .Include(x => x.Forum)
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
             if (topic == null)
-                return Prompt(x =>
-                {
-                    x.Title = "资源没有找到";
-                    x.Details = "您请求的资源没有找到，请返回重试！";
-                    x.StatusCode = 404;
-                });
+            {
+                Response.StatusCode = 404;
+                return Content("没有找到主题");
+            }
             if (topic.IsLocked && !User.AnyRoles("Root, Master"))
-                return Prompt(x =>
-                {
-                    x.Title = "权限不足";
-                    x.Details = "您没有权限在已经锁定的主题中发表回复";
-                    x.StatusCode = 500;
-                });
+            {
+                Response.StatusCode = 500;
+                return Content("权限不足");
+            }
             var p = new Post
             {
-                Content = Content,
+                Content = content,
                 TopicId = id,
                 UserId = User.Current.Id,
                 Time = DateTime.Now
@@ -153,11 +149,10 @@ namespace CodeComb.vNextChina.Controllers
             topic.Forum.PostCount++;
             DB.Posts.Add(p);
             DB.SaveChanges();
-            return Prompt(x =>
-            {
-                x.Title = "发表成功";
-                x.Details = "您的回复已经成功发表！";
-            });
+            if (pid.HasValue)
+                return Content(p.ParentId.ToString());
+            else
+                return Content(p.Id.ToString());
         }
 
         [HttpPost]
