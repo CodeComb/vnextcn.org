@@ -11,5 +11,6 @@ namespace CodeComb.vNextChina.Hub
         IList<Node> Nodes { get; set; }
         Node GetFreeNode();
         Node GetFreeNode(OSType OS);
+        void Abort(string identifier);
     }
 }

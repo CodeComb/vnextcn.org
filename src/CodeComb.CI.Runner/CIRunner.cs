@@ -40,6 +40,22 @@ namespace CodeComb.CI.Runner
             }, null, 0, 5000);
         }
 
+        public void Abort(string identifier)
+        {
+            if (IsInQueue(identifier))
+            {
+                WaitingTasks.Remove(WaitingTasks.Where(x => x.Identifier == identifier).Single());
+                GC.Collect();
+            }
+            else if (IsInBuilding(identifier))
+            {
+                var task = CurrentTasks.Where(x => x.Identifier == identifier).Single();
+                task.Kill();
+                CurrentTasks.Remove(task);
+                GC.Collect();
+            }
+        }
+
         public bool IsInQueue(string identifier)
         {
             return WaitingTasks.Any(x => x.Identifier == identifier);
@@ -58,7 +74,7 @@ namespace CodeComb.CI.Runner
         private Timer Timer { get; set; }
         public int MaxThreads { get; private set; }
         public int MaxTimeLimit { get; private set; }
-        public List<CITask> CurrentTasks { get; set; } = new List<CITask>();
-        public Queue<CITask> WaitingTasks { get; set; } = new Queue<CITask>();
+        public CIList CurrentTasks { get; set; } = new CIList();
+        public CIList WaitingTasks { get; set; } = new CIList();
     }
 }

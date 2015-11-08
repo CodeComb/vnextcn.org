@@ -119,6 +119,11 @@
             <div class="sidebar-nobg">
                 <p><a href="javascript:$('#frmRerun').submit();"><i class="fa fa-angle-double-right"></i> 重新运行</a></p>
                 <form asp-action="Rerun" asp-controller="Status" asp-route-id="@Model.Id" method="post" id="frmRerun"></form>
+                @if (Model.Result == StatusResult.Building)
+                {
+                    <p><a href="javascript:$('#frmAbort').submit();"><i class="fa fa-angle-double-right"></i> 停止运行</a></p>
+                    <form asp-action="Abort" asp-controller="Status" asp-route-id="@Model.Id" method="post" id="frmAbort"></form>
+                }
                 <p><a asp-action="Index" asp-controller="Status"><i class="fa fa-angle-double-right"></i> 返回状态列表</a></p>
                 @if (Model.Type == StatusType.Experiment)
                 {

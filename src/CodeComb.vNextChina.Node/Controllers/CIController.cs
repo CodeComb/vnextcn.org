@@ -196,5 +196,12 @@ namespace CodeComb.vNextChina.Node.Controllers
                 CopyDirectory(dirs[j].FullName, target.FullName + @"\" + dirs[j].Name);
             }
         }
+
+        [HttpPost]
+        public string Abort(string id)
+        {
+            Runner.Abort(id);
+            return "ok";
+        }
     }
 }

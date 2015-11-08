@@ -64,7 +64,6 @@ namespace CodeComb.vNextChina.Controllers
         public string Failed(long id, [FromHeader(Name = "private-key")]string PrivateKey)
         {
             var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
-            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
             var status = DB.Statuses.Where(x => x.Id == id).Single();
             switch (node.OS)
             {
@@ -87,7 +86,6 @@ namespace CodeComb.vNextChina.Controllers
         public string Successful(long id, [FromHeader(Name = "private-key")]string PrivateKey)
         {
             var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
-            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
             var status = DB.Statuses
                 .Include(x => x.Experiment)
                 .Where(x => x.Id == id)
@@ -115,7 +113,6 @@ namespace CodeComb.vNextChina.Controllers
         public string TimeLimitExceeded(long id, [FromHeader(Name = "private-key")]string PrivateKey)
         {
             var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
-            NodeProvider.Nodes[NodeProvider.Nodes.IndexOf(node)].CurrentThread--;
             var status = DB.Statuses.Where(x => x.Id == id).Single();
             status.Result = Models.StatusResult.Failed;
             switch (node.OS)

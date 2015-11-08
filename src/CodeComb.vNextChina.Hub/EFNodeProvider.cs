@@ -22,8 +22,6 @@ namespace CodeComb.vNextChina.Hub
                 {
                     Server = x.Server,
                     Port = x.Port,
-                    CurrentThread = 0,
-                    MaxThread = 0,
                     PrivateKey = x.PrivateKey,
                     LostConnectionCount = 1,
                     Alias = x.Alias
@@ -43,6 +41,12 @@ namespace CodeComb.vNextChina.Hub
         public Node GetFreeNode(OSType OS)
         {
             return Nodes.Where(x => x.Status != NodeStatus.Lost && x.OS == OS).OrderBy(x => x.Status).FirstOrDefault();
+        }
+
+        public void Abort(string Identifier)
+        {
+            foreach (var x in Nodes)
+                x.Abort(Identifier);
         }
     }
 }

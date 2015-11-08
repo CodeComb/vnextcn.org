@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
+using Microsoft.AspNet.Authorization;
 
 namespace CodeComb.vNextChina.Controllers
 {
@@ -41,6 +43,9 @@ namespace CodeComb.vNextChina.Controllers
             return View(status);
         }
         
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Rerun(long id)
         {
             var status = DB.Statuses
@@ -56,6 +61,15 @@ namespace CodeComb.vNextChina.Controllers
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
+            if (!User.AnyRoles("Root, Master") && User.Current.Id != status.UserId)
+            {
+                return Prompt(x =>
+                {
+                    x.Title = "权限不足";
+                    x.Details = "您无权重新运行该记录！";
+                    x.StatusCode = 404;
+                });
+            }
             if (status.Result == Models.StatusResult.Queued || status.Result == Models.StatusResult.Building)
                 return Prompt(x =>
                 {
@@ -178,6 +192,48 @@ namespace CodeComb.vNextChina.Controllers
                 return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/osx-{status.OsxResult.ToString().ToLower()}.svg"), "image/svg+xml");
             else
                 return File(System.IO.File.ReadAllBytes($"{env.WebRootPath}/images/windows-{status.WindowsResult.ToString().ToLower()}.svg"), "image/svg+xml");
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public IActionResult Abort (long id)
+        {
+            var status = DB.Statuses
+                .Include(x => x.Experiment)
+                .Include(x => x.Details)
+                .Include(x => x.Project)
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (status == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            if (!User.AnyRoles("Root, Master") && User.Current.Id != status.UserId)
+            {
+                return Prompt(x =>
+                {
+                    x.Title = "权限不足";
+                    x.Details = "您无权终止运行该记录！";
+                    x.StatusCode = 404;
+                });
+            }
+            if (status.LinuxResult == Models.StatusResult.Building)
+                status.LinuxResult = Models.StatusResult.Ignored;
+            if (status.WindowsResult == Models.StatusResult.Building)
+                status.WindowsResult = Models.StatusResult.Ignored;
+            if (status.OsxResult == Models.StatusResult.Building)
+                status.OsxResult = Models.StatusResult.Ignored;
+            status.Result = status.GenerateResult();
+            DB.SaveChanges();
+            return Prompt(x =>
+            {
+                x.Title = "已终止";
+                x.Details = "系统已经终止了这个运行任务";
+            });
         }
     }
 }

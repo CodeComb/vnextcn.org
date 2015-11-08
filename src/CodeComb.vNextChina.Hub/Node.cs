@@ -24,8 +24,8 @@ namespace CodeComb.vNextChina.Hub
         public string Alias { get; set; }
         public string Server { get; set; }
         public int Port { get; set; }
-        public int MaxThread { get; set; }
-        public int CurrentThread { get; set; }
+        public int MaxThread { get; private set; }
+        public int CurrentThread { get; private set; }
         public int LostConnectionCount { get; set; } = 0;
         public string PrivateKey { get; set; }
         public OSType OS { get; set; }
@@ -57,6 +57,15 @@ namespace CodeComb.vNextChina.Hub
             }
         }
 
+        public async Task Abort(string Identifier)
+        {
+            client.Timeout = new TimeSpan(0, 0, 10);
+            await client.PostAsync("/api/ci/Abort", new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                { "id", Identifier }
+            }));
+        }
+
         public async Task RefreshNodeInfo()
         {
             client.Timeout = new TimeSpan(0, 0, 10);
@@ -75,35 +84,21 @@ namespace CodeComb.vNextChina.Hub
         public void Init()
         {
             Console.WriteLine($"正在初始化{Alias}");
-            Timer = new Timer(x => { HeartBeat(); }, null, 0, 1000 * 15);
+            Timer = new Timer(x => { HeartBeat(); }, null, 0, 1000 * 10);
             RefreshNodeInfo();
         }
 
         public async Task HeartBeat()
         {
-            client.Timeout = new TimeSpan(0, 0, 3);
+            Console.Error.WriteLine($"{Alias} 心跳测试失败第{LostConnectionCount}次");
+            client.Timeout = new TimeSpan(0, 0, 10);
             try
             {
-                var response = await client.GetAsync("/api/common/heartbeat");
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                {
-                    LostConnectionCount++;
-                    this.MaxThread = 0;
-                    this.CurrentThread = 0;
-                    Console.Error.WriteLine($"{Alias} 心跳测试失败第{LostConnectionCount}次");
-                }
-                else
-                {
-                    if (LostConnectionCount > 0)
-                        RefreshNodeInfo();
-                    LostConnectionCount = 0;
-                    Console.WriteLine($"{Alias} 心跳测试 200 OK");
-                }
+                await RefreshNodeInfo();
             }
            catch
             {
                 LostConnectionCount++;
-                Console.Error.WriteLine($"{Alias} 心跳测试失败第{LostConnectionCount}次");
             }
         }
 
