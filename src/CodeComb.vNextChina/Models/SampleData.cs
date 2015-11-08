@@ -12,7 +12,7 @@ namespace CodeComb.vNextChina.Models
 	{
 		public static async Task InitDB(IServiceProvider services)
 		{
-			var DB = services.GetRequiredService<CenterContext> ();
+			var DB = services.GetRequiredService<vNextChinaContext> ();
 			var UserManager = services.GetRequiredService<UserManager<User>> ();
 			var RoleManager = services.GetRequiredService<RoleManager<IdentityRole<long>>> ();
             var env = services.GetRequiredService<IApplicationEnvironment>();

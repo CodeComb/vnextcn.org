@@ -25,22 +25,22 @@ namespace CodeComb.vNextChina
             IConfiguration Configuration;
             services.AddConfiguration(out Configuration);
 
-            if (Configuration["Database:Mode"] == "SQLite")
+            if (Configuration["Data:DefaultConnection:Mode"] == "SQLite")
             {
                 services.AddEntityFramework()
-                    .AddDbContext<CenterContext>(x => x.UseSqlite(Configuration["Database:ConnectionString"].Replace("{appRoot}", appRoot)))
+                    .AddDbContext<vNextChinaContext>(x => x.UseSqlite(Configuration["Data:DefaultConnection:ConnectionString"].Replace("{appRoot}", appRoot)))
                     .AddSqlite();
             }
-            else if (Configuration["Database:Mode"] == "SqlServer")
+            else if (Configuration["Data:DefaultConnection:Mode"] == "SqlServer")
             {
                 services.AddEntityFramework()
-                    .AddDbContext<CenterContext>(x => x.UseSqlServer(Configuration["Database:ConnectionString"]))
+                    .AddDbContext<vNextChinaContext>(x => x.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
                     .AddSqlServer();
             }
             else
             {
                 services.AddEntityFramework()
-                    .AddDbContext<CenterContext>(x => x.UseInMemoryDatabase())
+                    .AddDbContext<vNextChinaContext>(x => x.UseInMemoryDatabase())
                     .AddSqlite();
             }
             
@@ -52,7 +52,7 @@ namespace CodeComb.vNextChina
                 x.Password.RequireNonLetterOrDigit = false;
                 x.Password.RequireUppercase = false;
             })
-                .AddEntityFrameworkStores<CenterContext, long>()
+                .AddEntityFrameworkStores<vNextChinaContext, long>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
@@ -61,7 +61,7 @@ namespace CodeComb.vNextChina
             services.AddAntiXss();
             services.AddSmtpEmailSender("smtp.qq.com", 25, "vNext China", "911574351@qq.com", "911574351", "XXX");
             services.AddAesCrypto();
-            services.AddEFNodeProvider<CenterContext>();
+            services.AddEFNodeProvider<vNextChinaContext>();
         }
 
         public async void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)

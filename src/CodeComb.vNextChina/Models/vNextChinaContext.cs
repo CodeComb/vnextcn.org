@@ -9,7 +9,7 @@ using CodeComb.vNextChina.Hub.Models;
 
 namespace CodeComb.vNextChina.Models
 {
-    public class CenterContext : IdentityDbContext<User, IdentityRole<long>, long>, INodeDbContext
+    public class vNextChinaContext : IdentityDbContext<User, IdentityRole<long>, long>, INodeDbContext
     {
         public DbSet<Experiment> Experiments { get; set; }
         public DbSet<Status> Statuses { get; set; }

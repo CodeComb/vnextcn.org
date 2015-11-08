@@ -11,7 +11,7 @@ using CodeComb.vNextChina.Hub;
 
 namespace CodeComb.vNextChina.Controllers
 {
-    public class BaseController : BaseController<CenterContext, User, long>
+    public class BaseController : BaseController<vNextChinaContext, User, long>
     {
         [FromServices]
         public INodeProvider NodeProvider { get; set; }

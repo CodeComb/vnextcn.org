@@ -1,6 +1,8 @@
 ﻿{
-  "Database": {
-    "Mode": "SQLite",
-    "ConnectionString": "Data source={appRoot}/Database/vec.db"
+  "Data": {
+    "DefaultConnection": {
+      "Mode": "SQLite",
+      "ConnectionString": "Data source={appRoot}/Database/vec.db"
+    }
   }
 }
