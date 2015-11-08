@@ -11,13 +11,22 @@ namespace CodeComb.vNextChina.Controllers
 {
     public class ContestController : BaseController
     {
-        public IActionResult Index()
+        public IActionResult Index(string Title, DateTime? Begin, DateTime? End)
         {
             ViewBag.InProgress = DB.Contests
                 .Where(x => x.Begin <= DateTime.Now && DateTime.Now <= x.End)
                 .OrderBy(x => x.End)
                 .ToList();
-            return PagedView(DB.Contests.Where(x => x.End <= DateTime.Now || DateTime.Now <= x.Begin).OrderByDescending(x => x.Begin), 5);
+            IEnumerable<Contest> contests = DB.Contests
+                .Where(x => x.End <= DateTime.Now || DateTime.Now <= x.Begin)
+                .OrderByDescending(x => x.Begin);
+            if (string.IsNullOrEmpty(Title))
+                contests = contests.Where(x => x.Title.Contains(Title) || Title.Contains(x.Title));
+            if (Begin.HasValue)
+                contests = contests.Where(x => x.Begin >= Begin.Value);
+            if (End.HasValue)
+                contests = contests.Where(x => x.End <= End.Value);
+            return PagedView(contests, 5);
         }
 
         [Route("Contest/{id}")]
