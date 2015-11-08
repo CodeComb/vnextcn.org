@@ -31,8 +31,23 @@
             @Html.MakePager()
         </div>
         <div class="grid_3 sidebar">
-            <h2 class="header">检索</h2>
-            <form method="get" asp-action="Index" asp-controller="Status"></form>
+            <h3 class="header">检索</h3>
+            <form method="get" asp-action="Index" asp-controller="Status">
+                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="number" placeholder="记录号" value="@Context.Request.Query["Number"]" /></p>
+                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="username" placeholder="用户名" value="@Context.Request.Query["Username"]" /></p>
+                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="experiment" placeholder="实验名称" value="@Context.Request.Query["Experiment"]" /></p>
+                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="project" placeholder="项目名称" value="@Context.Request.Query["Project"]" /></p>
+                <p>
+                    <select name="Result">
+                        <option value="">运行结果</option>
+                        @foreach(var x in Enum.GetNames(typeof(StatusResult)))
+                        {
+                            <!option @(Context.Request.Query["Result"] == x ? "selected" : "")>@x</!option>
+                        }
+                    </select>
+                </p>
+                <p><input type="submit" class="btn btn-default" value="过滤" /></p>
+            </form>
         </div>
     </div>
 </div>

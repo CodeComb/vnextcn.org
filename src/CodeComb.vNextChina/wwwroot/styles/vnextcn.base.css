@@ -2515,3 +2515,20 @@ td .comment-item:last-child {
         color: #888;
         font-size: 12px;
     }
+
+select {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  height: 30px;
+}
+
+select[multiple],
+select[size] {
+  height: auto;
+}
+
+select:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}

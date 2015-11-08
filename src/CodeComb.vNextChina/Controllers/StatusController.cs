@@ -7,17 +7,40 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
 using Microsoft.AspNet.Authorization;
+using CodeComb.vNextChina.Models;
 
 namespace CodeComb.vNextChina.Controllers
 {
     public class StatusController : BaseController
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string Username, string Experiment, string Project, StatusResult? Result)
         {
-            var ret = DB.Statuses
+            IEnumerable<Status> ret = DB.Statuses
                 .Include(x => x.Experiment)
                 .Include(x => x.Project)
-                .Include(x => x.User)
+                .Include(x => x.User);
+            if (Result.HasValue)
+                ret = ret.Where(x => x.Result == Result.Value);
+            if (!string.IsNullOrEmpty(Username))
+            {
+                var user = await UserManager.FindByNameAsync(Username);
+                ret = ret.Where(x => x.UserId == user.Id);
+            }
+            if (!string.IsNullOrEmpty(Experiment))
+            {
+                var experimentIds = (from e in DB.Experiments
+                                     where e.Title.Contains(Experiment) || Experiment.Contains(e.Title)
+                                     select e.Id).ToList();
+                ret = ret.Where(x => x.ExperimentId != null && experimentIds.Contains(x.ExperimentId.Value));
+            }
+            if (!string.IsNullOrEmpty(Project))
+            {
+                var experimentIds = (from e in DB.Projects
+                                     where e.Alias.Contains(Project) || Experiment.Contains(e.Alias)
+                                     select e.Id).ToList();
+                ret = ret.Where(x => x.ProjectId != null && experimentIds.Contains(x.ProjectId.Value));
+            }
+            ret = ret
                 .OrderByDescending(x => x.Time);
             return AjaxPagedView(ret, ".lst-statuses");
         }

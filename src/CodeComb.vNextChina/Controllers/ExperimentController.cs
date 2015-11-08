@@ -13,7 +13,7 @@ namespace CodeComb.vNextChina.Controllers
 {
     public class ExperimentController : BaseController
     {
-        public IActionResult Index()
+        public IActionResult Index(string Title, long? number)
         {
             IEnumerable<Experiment> ret = DB.Experiments
                 .Include(x => x.Contests)
@@ -21,6 +21,10 @@ namespace CodeComb.vNextChina.Controllers
             if (!User.AnyRoles("Root, Master"))
                 ret = ret.Where(x => x.CheckPassed)
                     .Where(x => x.Contests.Count == 0 || x.Contests.Max(y => y.Contest.End) <= DateTime.Now); // 隐藏比赛题目
+            if (!string.IsNullOrEmpty(Title))
+                ret = ret.Where(x => x.Title.Contains(Title) || Title.Contains(x.Title));
+            if (number.HasValue)
+                ret = ret.Where(x => x.Id == number.Value);
             return AjaxPagedView(ret, ".lst-experiments", 100);
         }
         
