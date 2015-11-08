@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Authorization;
 using Microsoft.Data.Entity;
 using CodeComb.vNextChina.Models;
-using CodeComb.vNextChina.Hub;
 
 namespace CodeComb.vNextChina.Controllers
 {
@@ -61,6 +61,7 @@ namespace CodeComb.vNextChina.Controllers
         }
         
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Submit(long id, IFormFile file, string nuget)
         {
@@ -173,6 +174,7 @@ namespace CodeComb.vNextChina.Controllers
             return RedirectToAction("Show", "Status", new { id = Status.Id });
         }
 
+        [HttpGet]
         [AnyRoles("Root, Master")]
         public IActionResult Edit(long id)
         {
@@ -192,8 +194,9 @@ namespace CodeComb.vNextChina.Controllers
         }
 
         [HttpPost]
+        [AnyRoles("Root, Master")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, IFormFile TestArchive, IFormFile AnswerArchive, Experiment Model)
+        public async Task<IActionResult> Edit(long id, IFormFile TestArchive, IFormFile AnswerArchive, Experiment Model, bool IsChecked)
         {
             var exp = DB.Experiments
                .Where(x => x.Id == id)
@@ -211,6 +214,7 @@ namespace CodeComb.vNextChina.Controllers
             exp.Namespace = Model.Namespace;
             exp.NuGet = Model.NuGet;
             exp.OS = Model.OS;
+            exp.CheckPassed = IsChecked;
             exp.TimeLimit = Model.TimeLimit;
             if (TestArchive != null)
                 exp.TestArchive = await TestArchive.ReadAllBytesAsync();
