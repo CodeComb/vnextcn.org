@@ -63,7 +63,7 @@
                             @if (x.Status == ContestStatus.Pending)
                             { 
                             <div class="block blue">
-                                <h2>@x.Title</h2>
+                                <h2><a asp-action="Show" asp-controller="Contest" asp-route-id="@x.Id">@x.Title</a></h2>
                                 <p class="small"><span>@x.Begin.ToString("yyyy-MM-dd HH:mm") ~ @x.End.ToString("yyyy-MM-dd HH:mm")</span></p>
                                 @Html.Sanitize(Html.Marked(x.Description).ToString())
                             </div>
@@ -71,7 +71,7 @@
                             else if (x.Status == ContestStatus.Live)
                             {
                                 <div class="block red">
-                                    <h2>@x.Title</h2>
+                                    <h2><a asp-action="Show" asp-controller="Contest" asp-route-id="@x.Id">@x.Title</a></h2>
                                     <p class="small"><span>@x.Begin.ToString("yyyy-MM-dd HH:mm") ~ @x.End.ToString("yyyy-MM-dd HH:mm")</span></p>
                                     @Html.Sanitize(Html.Marked(x.Description).ToString())
                                 </div>
@@ -79,7 +79,7 @@
                             else
                             {
                                 <div class="block">
-                                    <h2>@x.Title</h2>
+                                    <h2><a asp-action="Show" asp-controller="Contest" asp-route-id="@x.Id">@x.Title</a></h2>
                                     <p class="small"><span>@x.Begin.ToString("yyyy-MM-dd HH:mm") ~ @x.End.ToString("yyyy-MM-dd HH:mm")</span></p>
                                     @Html.Sanitize(Html.Marked(x.Description).ToString())
                                 </div>

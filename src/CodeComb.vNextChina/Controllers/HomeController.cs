@@ -21,12 +21,12 @@ namespace CodeComb.vNextChina.Controllers
                 .OrderBy(x => x.End)
                 .ToList();
             if (contests.Count < 5)
-                contests.Union(DB.Contests
+                contests.InsertRange(contests.Count,DB.Contests
                 .Where(x => x.Begin > DateTime.Now)
                 .OrderBy(x => x.End)
                 .ToList());
             if (contests.Count < 5)
-                contests.Union(DB.Contests
+                contests.InsertRange(contests.Count, DB.Contests
                 .Where(x => x.End < DateTime.Now)
                 .OrderBy(x => x.End)
                 .ToList());
