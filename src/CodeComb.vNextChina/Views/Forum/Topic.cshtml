@@ -60,7 +60,7 @@
                                         @if (Topic.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
                                         {
                                             <a>编辑</a>
-                                            <a href="javascript:$('#frmRemovePost').submit()">删除</a>
+                                            <a href="javascript:$('#frmRemoveTopic').submit()">删除</a>
                                         }
                                         @if (User.AnyRoles("Root, Master"))
                                         {
