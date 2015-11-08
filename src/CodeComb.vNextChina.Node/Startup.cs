@@ -131,6 +131,17 @@ namespace CodeComb.vNextChina.Node
             CI.Runner.CITask.OnBuildSuccessful += Task_OnBuildSuccessful;
             CI.Runner.CITask.OnBeginBuilding += CITask_OnBeginBuilding;
             CI.Runner.CITask.OnTestCaseFound += CITask_OnTestCaseFound;
+            CI.Runner.CITask.OnCodeLengthCaculated += CITask_OnCodeLengthCaculated;
+        }
+
+        private void CITask_OnCodeLengthCaculated(object sender, CI.Runner.EventArgs.CodeLengthCaculatedArgs args)
+        {
+            var task = sender as CI.Runner.CITask;
+            Client.PostAsync("/api/Runner/UpdateCodeLength", new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                { "id", task.Identifier.ToString() },
+                { "length", args.Length.ToString() }
+            })).Wait();
         }
 
         private void CITask_OnTestCaseFound(object sender, CI.Runner.EventArgs.TestCaseArgs args)
