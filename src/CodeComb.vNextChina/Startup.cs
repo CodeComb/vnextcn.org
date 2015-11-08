@@ -26,16 +26,25 @@ namespace CodeComb.vNextChina
             
             IConfiguration Configuration;
             services.AddConfiguration(out Configuration);
-             
-            /*  
-            services.AddEntityFramework()
-                .AddDbContext<CenterContext>(x => x.UseSqlServer(Configuration["Database:ConnectionString"]))
-                .AddSqlServer();
-            */
-            
-            services.AddEntityFramework()
-                .AddDbContext<CenterContext>(x => x.UseSqlite(Configuration["Database:ConnectionString"].Replace("{appRoot}", appRoot)))
-                .AddSqlite();
+
+            if (Configuration["Database:Mode"] == "SQLite")
+            {
+                services.AddEntityFramework()
+                    .AddDbContext<CenterContext>(x => x.UseSqlite(Configuration["Database:ConnectionString"].Replace("{appRoot}", appRoot)))
+                    .AddSqlite();
+            }
+            else if (Configuration["Database:Mode"] == "SqlServer")
+            {
+                services.AddEntityFramework()
+                    .AddDbContext<CenterContext>(x => x.UseSqlServer(Configuration["Database:ConnectionString"]))
+                    .AddSqlServer();
+            }
+            else
+            {
+                services.AddEntityFramework()
+                    .AddDbContext<CenterContext>(x => x.UseInMemoryDatabase())
+                    .AddSqlite();
+            }
             
             services.AddIdentity<User, IdentityRole<long>>(x => 
             {
