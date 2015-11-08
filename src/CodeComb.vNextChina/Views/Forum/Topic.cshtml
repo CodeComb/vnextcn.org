@@ -59,7 +59,7 @@
                                     {
                                         @if (Topic.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
                                         {
-                                            <a>编辑</a>
+                                            <a href="javascript:EditTopic()">编辑</a>
                                             <a href="javascript:$('#frmRemoveTopic').submit()">删除</a>
                                         }
                                         @if (User.AnyRoles("Root, Master"))
@@ -71,7 +71,24 @@
                                     }
                                     <span class="table-post-time">发表于 @Topic.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
                                     <hr />
-                                    @Html.Sanitize(Html.Marked(Topic.Content).ToString())
+                                    <div class="topic-content">
+                                        @Html.Sanitize(Html.Marked(Topic.Content).ToString())
+                                    </div>
+                                    @if (Topic.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
+                                    {
+                                        <div class="topic-edit">
+                                            <form asp-action="EditTopic" asp-controller="Forum" asp-route-id="@Topic.Id" id="frmEditTopic">
+                                                <div class="markdown-editor-outer">
+                                                    <textarea class="textbox markdown-editor" id="txtEditTopic" name="Content">@Topic.Content</textarea>
+                                                    <div class="markdown-editor-bottom">
+                                                        <a href="javascript:EditTopicSubmit()">保存修改</a>
+                                                        <a href="javascript:CancelEditTopic()">取消编辑</a>
+                                                        支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    }
                                 </td>
                             </tr>
                             @foreach (var x in Model)
@@ -231,6 +248,28 @@
         $.post($('#frmNewReply').attr('action'), $('#frmNewReply').serialize(), function (data) {
             render.Post(data, function () { popResult('发表成功'); $('.markdown-editor').val(''); });
         });
-     });
+    });
+
+    function EditTopic()
+    {
+        $('.topic-content').hide();
+        $('.topic-edit').show();
+    }
+
+    function EditTopicSubmit() {
+        popResult("正在提交...");
+        $.post($('#frmEditTopic').attr('action'), $('#frmEditTopic').serialize(), function (data) {
+            $('.topic-content').html(data);
+            $('.topic-content').show();
+            $('.topic-edit').hide();
+            popResult("主题编辑成功");
+        });
+    }
+
+    function CancelEditTopic()
+    {
+        $('.topic-content').show();
+        $('.topic-edit').hide();
+    }
     </script>
 }

@@ -6,7 +6,6 @@ using Microsoft.AspNet.Mvc;
 using CodeComb.Net.EmailSender;
 using CodeComb.Security.Aes;
 using CodeComb.vNextChina.Models;
-using CodeComb.AspNet.Extensions;
 using CodeComb.vNextChina.Hub;
 
 namespace CodeComb.vNextChina.Controllers
@@ -23,7 +22,7 @@ namespace CodeComb.vNextChina.Controllers
         public AesCrypto Aes { get; set; }
         
         [FromServices]
-        public new CodeComb.AspNet.Extensions.SmartUser.SmartUser<User, long> User { get; set; }
+        public new AspNet.Extensions.SmartUser.SmartUser<User, long> User { get; set; }
 
         public override void Prepare()
         {

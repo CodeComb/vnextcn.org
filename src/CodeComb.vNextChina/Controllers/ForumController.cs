@@ -277,6 +277,34 @@ namespace CodeComb.vNextChina.Controllers
         }
 
         [HttpPost]
+        [Route("Forum/Topic/Edit")]
+        [Route("Forum/Topic/Edit/{id}")]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditTopic(long id, string content)
+        {
+            var topic = DB.Topics
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (topic == null)
+                return Prompt(x =>
+                {
+                    x.Title = "资源没有找到";
+                    x.Details = "您请求的资源没有找到，请返回重试！";
+                    x.StatusCode = 404;
+                });
+            if (topic.UserId != User.Current.Id && !User.AnyRoles("Root, Master"))
+                return Prompt(x =>
+                {
+                    x.Title = "权限不足";
+                    x.Details = "您没有权限删除该主题";
+                    x.StatusCode = 500;
+                });
+            topic.Content = content;
+            DB.SaveChanges();
+            return Content(Marked.Marked.Parse(content));
+        }
+
+        [HttpPost]
         [Route("Forum/Topic/Remove")]
         [Route("Forum/Topic/Remove/{id}")]
         [ValidateAntiForgeryToken]

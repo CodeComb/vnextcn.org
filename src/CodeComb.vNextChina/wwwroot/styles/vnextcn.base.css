@@ -2536,3 +2536,7 @@ select:focus {
 .sidebar a {
     display: inline-block;
 }
+
+.topic-edit {
+    display: none;
+}
