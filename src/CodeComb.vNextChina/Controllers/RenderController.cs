@@ -27,6 +27,15 @@ namespace CodeComb.vNextChina.Controllers
             }
             return View(post);
         }
+
+        public IActionResult PostContent(Guid id)
+        {
+            var post = DB.Posts
+                .Where(x => x.Id == id)
+                .Select(x => x.Content)
+                .SingleOrDefault();
+            return Content(post);
+        }
         #endregion
     }
 }

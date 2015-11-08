@@ -2537,6 +2537,6 @@ select:focus {
     display: inline-block;
 }
 
-.topic-edit {
+.topic-edit, .post-edit {
     display: none;
 }

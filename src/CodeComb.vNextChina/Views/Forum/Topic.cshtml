@@ -21,6 +21,22 @@
     </div>
 </div>
 
+<div class="hidden" id="edit-post-outer">
+    <div id="edit-post">
+        <form asp-action="EditPost" asp-controller="Forum" asp-route-id="@Topic.Id" id="frmEditPost">
+            <input type="hidden" name="pid" id="post-edit-id" />
+            <div class="markdown-editor-outer">
+                <textarea class="textbox markdown-editor" name="Content" id="txtEditPost"></textarea>
+                <div class="markdown-editor-bottom">
+                    <a href="javascript:EditPostSubmit()">保存修改</a>
+                    <a href="javascript:$('#edit-post-outer').append($('#edit-post'))">取消编辑</a>
+                    支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <div class="container">
     <div class="cont-wrap">
         <div class="grid_12">
@@ -113,13 +129,14 @@
                                             }
                                             @if (x.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
                                             {
-                                                <a>编辑</a>
+                                                <a href="javascript:EditPost('@x.Id')">编辑</a>
                                                 <a href="javascript:RemovePost('@x.Id')">删除</a>
                                             }
                                         }
                                         <span class="table-post-time">回复于 @x.Time.ToString("yyyy-MM-dd HH:mm:ss")</span>
                                         <hr />
-                                        @Html.Sanitize(Html.Marked(x.Content).ToString())
+                                        <div class="post-content">@Html.Sanitize(Html.Marked(x.Content).ToString())</div>
+                                        <div class="post-edit"></div>
                                         @if (x.SubPosts.Count > 0)
                                         {
                                             <h3 class="comment-header">
@@ -270,6 +287,29 @@
     {
         $('.topic-content').show();
         $('.topic-edit').hide();
+    }
+        
+    function EditPost(pid)
+    {
+        popResult("进入编辑回复...");
+        $('.post-content').hide();
+        $('.post-edit').show();
+        $('#post-edit-id').val(pid);
+        $.get('@Url.Action("PostContent", "Render")', { id: pid }, function (data) { 
+            $('#txtEditPost').val(data);
+            $('tr[data-id="' + pid + '"]').children('td').last().children('.post-edit').append($('#edit-post'));
+        });
+    }
+
+    function EditPostSubmit() {
+        popResult("正在提交...");
+        $.post($('#frmEditPost').attr('action'), $('#frmEditPost').serialize(), function (data) {
+            $('#edit-post-outer').append($('#edit-post'));
+            $('[data-id="' + $('#post-edit-id').val() + '"] .post-content').html(data);
+            $('.post-content').show();
+            $('.post-edit').hide();
+            popResult("回复编辑成功");
+        });
     }
     </script>
 }
