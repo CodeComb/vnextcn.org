@@ -162,9 +162,15 @@ namespace CodeComb.vNextChina.Controllers
             DB.Posts.Add(p);
             DB.SaveChanges();
             if (pid.HasValue)
+            {
+                vNextChinaHub.Clients.Group("Thread-" + thread.Id).OnPostChanged(p.ParentId);
                 return Content(p.ParentId.ToString());
+            }
             else
+            {
+                vNextChinaHub.Clients.Group("Thread-" + thread.Id).OnPostChanged(p.Id);
                 return Content(p.Id.ToString());
+            }
         }
 
         [HttpPost]
@@ -276,6 +282,7 @@ namespace CodeComb.vNextChina.Controllers
                 return "权限不足";
             DB.Posts.Remove(post);
             DB.SaveChanges();
+            vNextChinaHub.Clients.Group("Thread-" + post.ThreadId).OnPostRemoved(post.Id);
             return "回复已成功删除";
         }
 
@@ -304,6 +311,7 @@ namespace CodeComb.vNextChina.Controllers
                 });
             thread.Content = content;
             DB.SaveChanges();
+            vNextChinaHub.Clients.Group("Thread-" + thread.Id).OnThreadEdited(thread.Id);
             return Content(Marked.Marked.Parse(content));
         }
 
@@ -342,6 +350,7 @@ namespace CodeComb.vNextChina.Controllers
                 });
             post.Content = content;
             DB.SaveChanges();
+            vNextChinaHub.Clients.Group("Thread-" + thread.Id).OnPostChanged(post.Id);
             return Content(Marked.Marked.Parse(content));
         }
 

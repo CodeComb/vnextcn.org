@@ -49,6 +49,26 @@ hub.client.onThreadChanged = function (id) {
     });
 }
 
+hub.client.onThreadEdited = function (id) {
+    $.get('/render/threadcontent/' + id, {}, function (data) {
+        $('.thread-content').html(data);
+    });
+}
+
+hub.client.onPostRemoved = function (id) {
+    if ($('[data-id="' + id + '"]').length > 0)
+        $('[data-id="' + id + '"]').remove();
+}
+
+hub.client.onPostChanged = function (id) {
+    $.get('/render/post/' + id, {}, function (data) {
+        if ($('[data-id="' + id + '"]').length == 0)
+            $('.lst-posts').append(data);
+        else
+            $('[data-id="' + id + '"]').html($(data).html());
+    });
+}
+
 $.connection.hub.start(null, function () {
     if ($('.lst-statuses').length > 0) {
         hub.server.joinGroup("StatusList");
@@ -61,5 +81,8 @@ $.connection.hub.start(null, function () {
     }
     if ($('.thread-announcements').length > 0) {
         hub.server.joinGroup('Forum-' + id);
+    }
+    if ($('.thread-content').length > 0) {
+        hub.server.joinGroup('Thread-' + id);
     }
 });

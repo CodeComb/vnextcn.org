@@ -52,6 +52,18 @@ namespace CodeComb.vNextChina.Controllers
                 return Content("");
             return View(thread);
         }
+
+        public IActionResult ThreadContent(long id)
+        {
+            var thread = DB.Threads
+                .Where(x => x.Id == id)
+                .Select(x => x.Content)
+                .SingleOrDefault();
+            if (thread == null)
+                return Content("");
+            else
+                return Content(Marked.Marked.Parse(thread));
+        }
         #endregion
         #region Status
         public IActionResult Status(long id)
