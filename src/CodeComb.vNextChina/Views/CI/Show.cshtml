@@ -9,7 +9,7 @@
             <h2 class="exp-title">@ViewBag.Title</h2>
             <h3 class="exp-sub-title">项目构建状态</h3>
             <div class="cont-outer">
-                <table class="table no-shadow">
+                <table class="table no-shadow lst-ci">
                     <thead>
                         <tr>
                             <th>项目名称</th>
@@ -25,7 +25,7 @@
                     <tbody>
                         @foreach(var x in Model.Projects.OrderBy(x => x.PRI))
                         {
-                            <tr>
+                            <tr data-id="ci-@x.Id">
                                 <td><a asp-action="Project" asp-controller="CI" asp-route-id="@x.Id">@x.Alias</a></td>
                                 <td>
                                     <img src="@Url.Action("Badge", "CI", new { id = x.Id })" />

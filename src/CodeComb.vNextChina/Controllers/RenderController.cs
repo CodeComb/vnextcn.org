@@ -79,5 +79,16 @@ namespace CodeComb.vNextChina.Controllers
             return View(status);
         }
         #endregion
+        #region CI
+        public IActionResult CI(Guid id)
+        {
+            var project = DB.Projects
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (project == null)
+                return Content("");
+            return View(project);
+        }
+        #endregion
     }
 }

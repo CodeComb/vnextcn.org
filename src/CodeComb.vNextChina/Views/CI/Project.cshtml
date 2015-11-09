@@ -53,7 +53,7 @@
                             <a href="javascript:;" class="status-os-item" data-os="OSX"><i class="fa fa-apple"></i> Mac OS X</a>
                         }
                     </div>
-                    <div class="pre-outer">
+                    <div class="pre-outer project-building">
                         <pre id="console-output"></pre>
                     </div>
                 </div>
@@ -72,6 +72,7 @@
 </div>
 <form asp-action="Build" asp-controller="CI" asp-route-id="@Model.CISetId" id="frmBuild"></form>
 <script>
+    var id = @ViewBag.Status.Id;
     function Build()
     {
         $('#frmBuild').submit();

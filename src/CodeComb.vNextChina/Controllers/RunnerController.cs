@@ -59,6 +59,8 @@ namespace CodeComb.vNextChina.Controllers
             }
             DB.SaveChanges();
             vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
+            if (status.ProjectId.HasValue)
+                vNextChinaHub.Clients.Group("CI").OnStatusChanged(status.ProjectId.Value);
             vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusDetailChanged(status.Id);
             return "ok";
         }
@@ -83,6 +85,8 @@ namespace CodeComb.vNextChina.Controllers
             status.Result = status.GenerateResult();
             DB.SaveChanges();
             vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusDetailChanged(status.Id);
+            if (status.ProjectId.HasValue)
+                vNextChinaHub.Clients.Group("CI").OnStatusChanged(status.ProjectId.Value);
             return "ok";
         }
 
@@ -111,6 +115,8 @@ namespace CodeComb.vNextChina.Controllers
                 status.Experiment.Accepted++;
             DB.SaveChanges();
             vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
+            if (status.ProjectId.HasValue)
+                vNextChinaHub.Clients.Group("CI").OnStatusChanged(status.ProjectId.Value);
             return "ok";
         }
 
@@ -136,6 +142,8 @@ namespace CodeComb.vNextChina.Controllers
             DB.SaveChanges();
             vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
             vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusDetailChanged(status.Id);
+            if (status.ProjectId.HasValue)
+                vNextChinaHub.Clients.Group("CI").OnStatusChanged(status.ProjectId.Value);
             return "ok";
         }
 

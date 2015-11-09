@@ -9,15 +9,19 @@ hub.client.onStatusChanged = function (id) {
 };
 
 hub.client.onStatusDetailChanged = function (id) {
-    $.get('/render/statusdetail/' + id, {}, function (data) {
-        $('.status-detail').html(data);
-    });
+    if ($('.status-detail').length > 0) {
+        $.get('/render/statusdetail/' + id, {}, function (data) {
+            $('.status-detail').html(data);
+        });
+    }
 }
 
 hub.client.onStatusCasesChanged = function (id) {
-    $.get('/render/statuscases/' + id, {}, function (data) {
-        $('.test-cases').html($(data));
-    });
+    if ($('.test-cases').length > 0) {
+        $.get('/render/statuscases/' + id, {}, function (data) {
+            $('.test-cases').html($(data));
+        });
+    }
 }
 
 hub.client.onStatusOutputed = function (os, text) {
@@ -28,11 +32,22 @@ hub.client.onStatusOutputed = function (os, text) {
     }
 }
 
+hub.client.onCIResultChanged = function (id) {
+    if ($('[data-id="ci-' + id + '"]').length > 0) {
+        $.get('/render/ci/' + id, {}, function (data) {
+            $('[data-id="ci-' + id + '"]').html(data.html());
+        });
+    }
+}
+
 $.connection.hub.start(null, function () {
     if ($('.lst-statuses').length > 0) {
         hub.server.joinGroup("StatusList");
     }
-    if ($('.status-detail').length > 0) {
+    if ($('.status-detail').length > 0 || $('.project-building').length > 0) {
         hub.server.joinGroup("Status" + id);
+    }
+    if ($('.lst-ci').length > 0) {
+        hub.server.joinGroup("CI");
     }
 });
