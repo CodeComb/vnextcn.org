@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Data.Entity;
 using CodeComb.vNextChina.Models;
-using CodeComb.vNextChina.Hub;
+using CodeComb.vNextChina.Hubs;
 
 namespace CodeComb.vNextChina
 {
@@ -63,6 +63,7 @@ namespace CodeComb.vNextChina
             services.AddSmtpEmailSender("smtp.qq.com", 25, "vNext China", "911574351@qq.com", "911574351", "XXX");
             services.AddAesCrypto();
             services.AddEFNodeProvider<vNextChinaContext>();
+            services.AddSignalR();
         }
 
         public async void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
@@ -75,6 +76,7 @@ namespace CodeComb.vNextChina
             app.UseIdentity();
             app.UseExceptionHandler("/Shared/Prompt");
             app.UseStaticFiles();
+            app.UseSignalR();
             app.UseMvc(x => x.MapRoute("default", "{controller=Home}/{action=Index}/{id?}"));
 
             await SampleData.InitDB(app.ApplicationServices);

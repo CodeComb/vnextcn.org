@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 using CodeComb.Net.EmailSender;
 using CodeComb.Security.Aes;
 using CodeComb.vNextChina.Models;
 using CodeComb.vNextChina.Hub;
+using CodeComb.vNextChina.Hubs;
 
 namespace CodeComb.vNextChina.Controllers
 {
@@ -23,6 +27,9 @@ namespace CodeComb.vNextChina.Controllers
         
         [FromServices]
         public new AspNet.Extensions.SmartUser.SmartUser<User, long> User { get; set; }
+
+        [FromServices]
+        public IHubContext<vNextChinaHub> vNextChinaHub { get; set; }
 
         public override void Prepare()
         {
