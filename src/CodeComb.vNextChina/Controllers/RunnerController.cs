@@ -31,6 +31,7 @@ namespace CodeComb.vNextChina.Controllers
             }
             status.Result = status.GenerateResult();
             var result = DB.SaveChanges();
+            vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusOutputed(node.OS.ToString(), text);
             return "ok";
         }
 
@@ -57,6 +58,8 @@ namespace CodeComb.vNextChina.Controllers
                     break;
             }
             DB.SaveChanges();
+            vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
+            vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusDetailChanged(status.Id);
             return "ok";
         }
 
@@ -79,6 +82,7 @@ namespace CodeComb.vNextChina.Controllers
             }
             status.Result = status.GenerateResult();
             DB.SaveChanges();
+            vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusDetailChanged(status.Id);
             return "ok";
         }
 
@@ -106,6 +110,7 @@ namespace CodeComb.vNextChina.Controllers
             if (status.ExperimentId.HasValue)
                 status.Experiment.Accepted++;
             DB.SaveChanges();
+            vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
             return "ok";
         }
 
@@ -129,6 +134,8 @@ namespace CodeComb.vNextChina.Controllers
             }
             status.Result = status.GenerateResult();
             DB.SaveChanges();
+            vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
+            vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusDetailChanged(status.Id);
             return "ok";
         }
 
@@ -139,6 +146,8 @@ namespace CodeComb.vNextChina.Controllers
             var status = DB.Statuses.Where(x => x.Id == id).Single();
             status.MemoryUsage = length;
             DB.SaveChanges();
+            vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
+            vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusDetailChanged(status.Id);
             return "ok";
         }
 
@@ -167,6 +176,9 @@ namespace CodeComb.vNextChina.Controllers
             status.Total = status.Details.Where(x => x.Result != Models.TestCaseResult.Skip).Count();
             status.TimeUsage = Convert.ToInt64(status.Details.Sum(x => x.Time) * 1000);
             DB.SaveChanges();
+            vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
+            vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusDetailChanged(status.Id);
+            vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusCasesChanged(status.Id);
             return "ok";
         }
     }

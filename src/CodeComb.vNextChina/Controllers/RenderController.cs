@@ -50,6 +50,34 @@ namespace CodeComb.vNextChina.Controllers
                 return null;
             return View(status);
         }
+
+        public IActionResult StatusDetail(long id)
+        {
+            var status = DB.Statuses
+                .Include(x => x.User)
+                .Include(x => x.Project)
+                .Include(x => x.Experiment)
+                .Include(x => x.Details)
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (status == null)
+                return null;
+            return View(status);
+        }
+
+        public IActionResult StatusCases(long id)
+        {
+            var status = DB.Statuses
+                .Include(x => x.User)
+                .Include(x => x.Project)
+                .Include(x => x.Experiment)
+                .Include(x => x.Details)
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (status == null)
+                return null;
+            return View(status);
+        }
         #endregion
     }
 }

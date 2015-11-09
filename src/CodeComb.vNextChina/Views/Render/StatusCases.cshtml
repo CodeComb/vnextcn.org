@@ -1,0 +1,48 @@
+﻿@model Status
+@{ 
+    Layout = null;
+}
+
+<h3 class="exp-sub-title">测试用例</h3>
+<div class="cont-outer">
+    <div class="table-overflow-outer">
+        <table class="table no-shadow">
+            <thead>
+                <tr>
+                    <th>用例</th>
+                    <th>方法</th>
+                    <th>时间</th>
+                    <th>系统</th>
+                    <th>结果</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.Details)
+                {
+                    <tr>
+                        <td>@x.Title</td>
+                        <td>@x.Method</td>
+                        <td>@x.Time s</td>
+                        <td>
+                            @if (x.OS == CodeComb.Package.OSType.Linux)
+                            {
+                                <i class="fa fa-linux"></i>
+                            }
+                            else if (x.OS == CodeComb.Package.OSType.OSX)
+                            {
+                                <i class="fa fa-apple"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-windows"></i>
+                            }
+
+                            @x.OS
+                        </td>
+                        <td>@x.Result</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

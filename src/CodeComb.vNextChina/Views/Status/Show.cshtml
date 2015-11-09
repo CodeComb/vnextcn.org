@@ -1,5 +1,5 @@
 ﻿@model Status
-@{ 
+@{
     ViewBag.Title = $"运行状态 - #{Model.Id}";
 }
 
@@ -9,7 +9,7 @@
             <h2 class="exp-title">@ViewBag.Title</h2>
             <h3 class="exp-sub-title">运行摘要</h3>
             <div class="cont-outer">
-                <table class="detail-table">
+                <table class="detail-table status-detail">
                     <tr class="detail-table-header">
                         <td>项目</td>
                         <td>运行时长</td>
@@ -43,54 +43,56 @@
                     </tr>
                 </table>
             </div>
-            @if (Model.Details.Count > 0)
+            <div class="test-cases">
+                @if (Model.Details.Count > 0)
             {
-                <h3 class="exp-sub-title">测试用例</h3>
-                <div class="cont-outer">
-                    <div class="table-overflow-outer">
-                        <table class="table no-shadow">
-                            <thead>
-                                <tr>
-                                    <th>用例</th>
-                                    <th>方法</th>
-                                    <th>时间</th>
-                                    <th>系统</th>
-                                    <th>结果</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var x in Model.Details)
-                                {
+                    <h3 class="exp-sub-title">测试用例</h3>
+                    <div class="cont-outer">
+                        <div class="table-overflow-outer">
+                            <table class="table no-shadow">
+                                <thead>
                                     <tr>
-                                        <td>@x.Title</td>
-                                        <td>@x.Method</td>
-                                        <td>@x.Time s</td>
-                                        <td>
-                                            @if (x.OS == CodeComb.Package.OSType.Linux)
-                                            {
-                                                <i class="fa fa-linux"></i>
-                                            }
-                                            else if (x.OS == CodeComb.Package.OSType.OSX)
-                                            {
-                                                <i class="fa fa-apple"></i>
-                                            }
-                                            else
-                                            {
-                                                <i class="fa fa-windows"></i>
-                                            }
-
-                                            @x.OS
-                                        </td>
-                                        <td>@x.Result</td>
+                                        <th>用例</th>
+                                        <th>方法</th>
+                                        <th>时间</th>
+                                        <th>系统</th>
+                                        <th>结果</th>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach (var x in Model.Details)
+                                    {
+                                        <tr>
+                                            <td>@x.Title</td>
+                                            <td>@x.Method</td>
+                                            <td>@x.Time s</td>
+                                            <td>
+                                                @if (x.OS == CodeComb.Package.OSType.Linux)
+                                                {
+                                                    <i class="fa fa-linux"></i>
+                                                }
+                                                else if (x.OS == CodeComb.Package.OSType.OSX)
+                                                {
+                                                    <i class="fa fa-apple"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa fa-windows"></i>
+                                                }
+
+                                                @x.OS
+                                            </td>
+                                            <td>@x.Result</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
             @if (Model.Result != StatusResult.Ignored)
-            { 
+            {
                 <h3 class="exp-sub-title">运行输出</h3>
                 <div class="cont-outer">
                     <div class="status-os-outer">
@@ -135,10 +137,11 @@
                     <p><a asp-action="Project" asp-controller="CI" asp-route-id="@Model.ProjectId.Value"><i class="fa fa-angle-double-right"></i> 返回项目@(Model.Project.Alias)</a></p>
                 }
             </div>
-         </div>
+        </div>
     </div>
 </div>
 <script>
+    var id = @Model.Id;
     var CurrentOS;
     if ($('.status-os-item').length > 0)
     {
@@ -157,9 +160,10 @@
 
     function LoadOutput()
     {
-        $.get('@Url.Action("Output", "Status", new { id = Model.Id })', { os: CurrentOS }, function (data) 
+        $.get('@Url.Action("Output", "Status", new { id = Model.Id })', { os: CurrentOS }, function (data)
         {
             $('#console-output').text(data);
+            $('.pre-outer').scrollTop($('pre').height());
         });
     }
 </script>

@@ -90,15 +90,16 @@ namespace CodeComb.vNextChina.Hub
 
         public async Task HeartBeat()
         {
-            Console.Error.WriteLine($"{Alias} 心跳测试失败第{LostConnectionCount}次");
             client.Timeout = new TimeSpan(0, 0, 10);
             try
             {
                 await RefreshNodeInfo();
+                LostConnectionCount = 0;
             }
            catch
             {
                 LostConnectionCount++;
+                Console.Error.WriteLine($"{Alias} 心跳测试失败第{LostConnectionCount}次");
             }
         }
 

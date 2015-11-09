@@ -65,10 +65,7 @@ namespace CodeComb.vNextChina.Node.Controllers
                     environmentvariables = JsonConvert.DeserializeObject<Dictionary<string, string>>(AdditionalEnvironmentVariables);
                 }
                 catch { }
-                Runner.WaitingTasks.Enqueue(new CITask(path, Runner.MaxTimeLimit, version, environmentvariables)
-                {
-                    Identifier = identifier.ToString()
-                });
+                Runner.WaitingTasks.Enqueue(new CITask(identifier.ToString(), path, Runner.MaxTimeLimit, version, environmentvariables));
             }
             catch (Exception e)
             {
@@ -115,10 +112,7 @@ namespace CodeComb.vNextChina.Node.Controllers
             if (nuget == null) nuget = "";
             System.IO.File.WriteAllText(Configuration["Pool"] + "/" + identifier + "/Nuget.config", GenerateNuGetConfig(nuget.Split('\n')));
             Console.WriteLine($"生成NuGet.config {Configuration["Pool"] + "/" + identifier + "/Nuget.config"}");
-            Runner.WaitingTasks.Enqueue(new CITask (Configuration["Pool"] + "/" + identifier, Runner.MaxTimeLimit)
-            {
-                Identifier = identifier.ToString()
-            });
+            Runner.WaitingTasks.Enqueue(new CITask(identifier.ToString(), Configuration["Pool"] + "/" + identifier, Runner.MaxTimeLimit));
             return "ok";
         }
 

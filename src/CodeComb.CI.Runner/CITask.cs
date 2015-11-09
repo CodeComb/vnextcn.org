@@ -44,8 +44,9 @@ namespace CodeComb.CI.Runner
         private string EntryDirectory { get; set; }
         private int MaxTimeLimit { get; set; }
         private string Version { get; set; }
-        public CITask(string workingDirectory, int maxTimeLimit, string version = null, Dictionary<string, string> AdditionalEnvironmentVariables = null)
+        public CITask(string identifier, string workingDirectory, int maxTimeLimit, string version = null, Dictionary<string, string> AdditionalEnvironmentVariables = null)
         {
+            this.Identifier = identifier;
             try
             {
                 this.Version = version;

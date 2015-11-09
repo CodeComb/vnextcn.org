@@ -1,0 +1,36 @@
+﻿@model Status
+@{ 
+    Layout = null;
+}
+
+<tr class="detail-table-header">
+    <td>项目</td>
+    <td>运行时长</td>
+    <td>代码长度</td>
+    <td>提交时间</td>
+    @if (Model.Details.Count > 0)
+    {
+        <td>错误数</td>
+    }
+    <td>运行结果</td>
+</tr>
+<tr>
+    <td>
+        @if (Model.Type == StatusType.Experiment)
+        {
+            <a asp-action="Show" asp-controller="Experiment" asp-route-id="@Model.ExperimentId">E@(Model.ExperimentId) @Model.Experiment.Title</a>
+        }
+        else
+        {
+            <a asp-action="Project" asp-controller="CI" asp-route-id="@Model.ProjectId">@Model.User.UserName/@Model.Project.Alias</a>
+        }
+    </td>
+    <td>@(Model.Details.Sum(x => x.Time))  s</td>
+    <td>@(Model.MemoryUsage) KiB</td>
+    <td>@Model.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
+    @if (Model.Details.Count > 0)
+    {
+        <td>@Model.Details.Where(x => x.Result == TestCaseResult.Fail).Count()</td>
+    }
+    <td>@Html.ColorStatus(Model.Result)</td>
+</tr>
