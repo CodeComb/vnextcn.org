@@ -2,9 +2,9 @@
 @{ 
     Layout = null;
 }
-@foreach(var x in Model)
+@foreach (var x in Model)
 {
-    <tr>
+    <tr data-id="status-@x.Id">
         <td class="center"><a asp-action="Show" asp-controller="Status" asp-route-id="@x.Id">@Html.ColorStatus(x.Result)</a></td>
         @if (x.Total > 0)
         {

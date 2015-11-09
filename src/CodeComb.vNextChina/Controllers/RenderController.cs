@@ -37,5 +37,19 @@ namespace CodeComb.vNextChina.Controllers
             return Content(post);
         }
         #endregion
+        #region Status
+        public IActionResult Status(long id)
+        {
+            var status = DB.Statuses
+                .Include(x => x.User)
+                .Include(x => x.Project)
+                .Include(x => x.Experiment)
+                .Where(x => x.Id == id)
+                .SingleOrDefault();
+            if (status == null)
+                return null;
+            return View(status);
+        }
+        #endregion
     }
 }

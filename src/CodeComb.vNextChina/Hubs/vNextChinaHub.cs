@@ -8,5 +8,9 @@ namespace CodeComb.vNextChina.Hubs
 {
     public class vNextChinaHub : Microsoft.AspNet.SignalR.Hub
     {
+        public void JoinGroup(string name)
+        {
+            Groups.Add(Context.ConnectionId, name);
+        }
     }
 }

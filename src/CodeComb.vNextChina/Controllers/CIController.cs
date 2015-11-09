@@ -115,6 +115,7 @@ namespace CodeComb.vNextChina.Controllers
             }
             status.Result = status.GenerateResult();
             DB.SaveChanges();
+            vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
             return RedirectToAction("Show", "CI", new { id = id });
         }
 
@@ -182,6 +183,7 @@ namespace CodeComb.vNextChina.Controllers
                 }
                 status.Result = status.GenerateResult();
                 DB.SaveChanges();
+                vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
             }
             return RedirectToAction("Show", "CI", new { id = ciset.Id });
         }

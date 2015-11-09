@@ -170,7 +170,7 @@ namespace CodeComb.vNextChina.Controllers
             Status.Result = Status.GenerateResult();
             exp.Submitted++;
             DB.SaveChanges();
-
+            vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(Status.Id);
             return RedirectToAction("Show", "Status", new { id = Status.Id });
         }
 
