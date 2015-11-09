@@ -28,7 +28,7 @@ namespace CodeComb.vNextChina.Models
 
         public string Description { get; set; }
 
-        public long TopicCount { get; set; }
+        public long ThreadCount { get; set; }
 
         public long PostCount { get; set; }
 

@@ -26,15 +26,15 @@ namespace CodeComb.vNextChina.Controllers
                 foreach (var y in x.SubForums)
                 {
                     y.LastPost = DB.Posts
-                        .Include(z => z.Topic)
+                        .Include(z => z.Thread)
                         .ThenInclude(z => z.User)
-                        .Where(z => z.Topic.ForumId == y.Id)
+                        .Where(z => z.Thread.ForumId == y.Id)
                         .OrderByDescending(z => z.Time)
                         .FirstOrDefault();
                     y.TodayCount = DB.Posts
-                        .Include(z => z.Topic)
-                        .Where(z => z.Topic.ForumId == y.Id && z.Time >= begin && z.Time < end)
-                        .Count() + DB.Topics
+                        .Include(z => z.Thread)
+                        .Where(z => z.Thread.ForumId == y.Id && z.Time >= begin && z.Time < end)
+                        .Count() + DB.Threads
                         .Where(z => z.ForumId == y.Id && z.CreationTime >= begin && z.CreationTime < end)
                         .Count();
                 }
@@ -58,7 +58,7 @@ namespace CodeComb.vNextChina.Controllers
                 });
             ViewBag.Forum = forum;
             ViewBag.Title = forum.Title;
-            var ret = DB.Topics
+            var ret = DB.Threads
                 .Include(x => x.User)
                 .Include(x => x.Posts)
                 .Where(x => x.ForumId == id && !x.IsAnnouncement)
@@ -68,11 +68,11 @@ namespace CodeComb.vNextChina.Controllers
             {
                 x.LastPost = DB.Posts
                     .Include(y => y.User)
-                    .Where(y => y.TopicId == x.Id)
+                    .Where(y => y.ThreadId == x.Id)
                     .OrderByDescending(y => y.Time)
                     .FirstOrDefault();
             }
-            var announcements = DB.Topics
+            var announcements = DB.Threads
                 .Include(x => x.User)
                 .Include(x => x.Posts)
                 .Where(x => x.IsAnnouncement)
@@ -83,7 +83,7 @@ namespace CodeComb.vNextChina.Controllers
             {
                 x.LastPost = DB.Posts
                     .Include(y => y.User)
-                    .Where(y => y.TopicId == x.Id)
+                    .Where(y => y.ThreadId == x.Id)
                     .OrderByDescending(y => y.Time)
                     .FirstOrDefault();
             }
@@ -91,15 +91,15 @@ namespace CodeComb.vNextChina.Controllers
             return PagedView(ret, 20);
         }
 
-        [Route("Forum/Topic/{id:long}/{p:int?}")]
-        public IActionResult Topic (long id)
+        [Route("Forum/Thread/{id:long}/{p:int?}")]
+        public IActionResult Thread (long id)
         {
-            var topic = DB.Topics
+            var thread = DB.Threads
                 .Include(x => x.Forum)
                 .Include(x => x.User)
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
-            if (topic == null)
+            if (thread == null)
                 return Prompt(x =>
                 {
                     x.Title = "资源没有找到";
@@ -107,17 +107,17 @@ namespace CodeComb.vNextChina.Controllers
                     x.StatusCode = 404;
                 });
             ViewBag.Count = DB.Posts
-                .Where(x => x.TopicId == id)
+                .Where(x => x.ThreadId == id)
                 .Count();
             var posts = DB.Posts
                 .Include(x => x.User)
                 .Include(x => x.SubPosts)
                 .ThenInclude(x => x.User)
-                .Where(x => x.TopicId == id && x.ParentId == null)
+                .Where(x => x.ThreadId == id && x.ParentId == null)
                 .OrderBy(x => x.Time);
-            topic.Visit++;
+            thread.Visit++;
             DB.SaveChanges();
-            ViewBag.Topic = topic;
+            ViewBag.Thread = thread;
             return PagedView(posts, 10);
         }
 
@@ -128,16 +128,16 @@ namespace CodeComb.vNextChina.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Post(long id, Guid? pid, string content)
         {
-            var topic = DB.Topics
+            var thread = DB.Threads
                 .Include(x => x.Forum)
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
-            if (topic == null)
+            if (thread == null)
             {
                 Response.StatusCode = 404;
                 return Content("没有找到主题");
             }
-            if (topic.IsLocked && !User.AnyRoles("Root, Master"))
+            if (thread.IsLocked && !User.AnyRoles("Root, Master"))
             {
                 Response.StatusCode = 500;
                 return Content("权限不足");
@@ -145,7 +145,7 @@ namespace CodeComb.vNextChina.Controllers
             var p = new Post
             {
                 Content = content,
-                TopicId = id,
+                ThreadId = id,
                 UserId = User.Current.Id,
                 Time = DateTime.Now
             };
@@ -157,8 +157,8 @@ namespace CodeComb.vNextChina.Controllers
                 if (post != null)
                     p.ParentId = post.Id;
             }
-            topic.LastReplyTime = DateTime.Now;
-            topic.Forum.PostCount++;
+            thread.LastReplyTime = DateTime.Now;
+            thread.Forum.PostCount++;
             DB.Posts.Add(p);
             DB.SaveChanges();
             if (pid.HasValue)
@@ -168,7 +168,7 @@ namespace CodeComb.vNextChina.Controllers
         }
 
         [HttpPost]
-        [Route("Forum/Topic/Open")]
+        [Route("Forum/Thread/Open")]
         [Route("Forum/{id}/Open")]
         [ValidateAntiForgeryToken]
         public IActionResult Open(string id, string Title, string Content)
@@ -183,7 +183,7 @@ namespace CodeComb.vNextChina.Controllers
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
-            var topic = new Topic
+            var thread = new Thread
             {
                 Content = Content,
                 ForumId = id,
@@ -192,27 +192,29 @@ namespace CodeComb.vNextChina.Controllers
                 Title = Title,
                 UserId = User.Current.Id
             };
-            DB.Topics.Add(topic);
-            forum.TopicCount++;
+            DB.Threads.Add(thread);
+            forum.ThreadCount++;
             DB.SaveChanges();
-            return RedirectToAction("Topic", "Forum", new { id = topic.Id });
+            vNextChinaHub.Clients.Group("Forum-" + thread.ForumId).OnThreadChanged(thread.Id);
+            return RedirectToAction("Thread", "Forum", new { id = thread.Id });
         }
 
         [HttpPost]
         [AnyRoles("Root, Master")]
-        [Route("Forum/Topic/Top")]
-        [Route("Forum/Topic/Top/{id}")]
+        [Route("Forum/Thread/Top")]
+        [Route("Forum/Thread/Top/{id}")]
         [ValidateAntiForgeryToken]
         public string Top(long id)
         {
-            var topic = DB.Topics
+            var thread = DB.Threads
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
-            if (topic == null)
+            if (thread == null)
                 return "没有找到该主题";
-            topic.IsTop = !topic.IsTop;
+            thread.IsTop = !thread.IsTop;
             DB.SaveChanges();
-            if (topic.IsTop)
+            vNextChinaHub.Clients.Group("Forum-" + thread.ForumId).OnThreadChanged(thread.Id);
+            if (thread.IsTop)
                 return "已经将该主题置顶";
             else
                 return "已经取消该主题置顶";
@@ -220,19 +222,20 @@ namespace CodeComb.vNextChina.Controllers
 
         [HttpPost]
         [AnyRoles("Root, Master")]
-        [Route("Forum/Topic/Lock")]
-        [Route("Forum/Topic/Lock/{id}")]
+        [Route("Forum/Thread/Lock")]
+        [Route("Forum/Thread/Lock/{id}")]
         [ValidateAntiForgeryToken]
         public string Lock(long id)
         {
-            var topic = DB.Topics
+            var thread = DB.Threads
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
-            if (topic == null)
+            if (thread == null)
                 return "没有找到该主题";
-            topic.IsLocked = !topic.IsLocked;
+            thread.IsLocked = !thread.IsLocked;
             DB.SaveChanges();
-            if (topic.IsLocked)
+            vNextChinaHub.Clients.Group("Forum-" + thread.ForumId).OnThreadChanged(thread.Id);
+            if (thread.IsLocked)
                 return "已经将该主题锁定";
             else
                 return "已经取消该主题锁定";
@@ -240,19 +243,19 @@ namespace CodeComb.vNextChina.Controllers
 
         [HttpPost]
         [AnyRoles("Root, Master")]
-        [Route("Forum/Topic/Notice")]
-        [Route("Forum/Topic/Notice/{id}")]
+        [Route("Forum/Thread/Notice")]
+        [Route("Forum/Thread/Notice/{id}")]
         [ValidateAntiForgeryToken]
         public string Notice(long id)
         {
-            var topic = DB.Topics
+            var thread = DB.Threads
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
-            if (topic == null)
+            if (thread == null)
                 return "没有找到该主题";
-            topic.IsAnnouncement = !topic.IsAnnouncement;
+            thread.IsAnnouncement = !thread.IsAnnouncement;
             DB.SaveChanges();
-            if (topic.IsAnnouncement)
+            if (thread.IsAnnouncement)
                 return "已经将该主题设置为公告";
             else
                 return "该主题已不再是公告帖";
@@ -277,29 +280,29 @@ namespace CodeComb.vNextChina.Controllers
         }
 
         [HttpPost]
-        [Route("Forum/Topic/Edit")]
-        [Route("Forum/Topic/Edit/{id}")]
+        [Route("Forum/Thread/Edit")]
+        [Route("Forum/Thread/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public IActionResult EditTopic(long id, string content)
+        public IActionResult EditThread(long id, string content)
         {
-            var topic = DB.Topics
+            var thread = DB.Threads
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
-            if (topic == null)
+            if (thread == null)
                 return Prompt(x =>
                 {
                     x.Title = "资源没有找到";
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
-            if (topic.UserId != User.Current.Id && !User.AnyRoles("Root, Master"))
+            if (thread.UserId != User.Current.Id && !User.AnyRoles("Root, Master"))
                 return Prompt(x =>
                 {
                     x.Title = "权限不足";
                     x.Details = "您没有权限删除该主题";
                     x.StatusCode = 500;
                 });
-            topic.Content = content;
+            thread.Content = content;
             DB.SaveChanges();
             return Content(Marked.Marked.Parse(content));
         }
@@ -310,10 +313,10 @@ namespace CodeComb.vNextChina.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditPost(long id, Guid pid, string content)
         {
-            var topic = DB.Topics
+            var thread = DB.Threads
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
-            if (topic == null)
+            if (thread == null)
                 return Prompt(x =>
                 {
                     x.Title = "资源没有找到";
@@ -343,29 +346,29 @@ namespace CodeComb.vNextChina.Controllers
         }
 
         [HttpPost]
-        [Route("Forum/Topic/Remove")]
-        [Route("Forum/Topic/Remove/{id}")]
+        [Route("Forum/Thread/Remove")]
+        [Route("Forum/Thread/Remove/{id}")]
         [ValidateAntiForgeryToken]
-        public IActionResult RemoveTopic(long id)
+        public IActionResult RemoveThread(long id)
         {
-            var topic = DB.Topics
+            var thread = DB.Threads
                 .Where(x => x.Id == id)
                 .SingleOrDefault();
-            if (topic == null)
+            if (thread == null)
                 return Prompt(x =>
                 {
                     x.Title = "资源没有找到";
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
-            if (topic.UserId != User.Current.Id && !User.AnyRoles("Root, Master"))
+            if (thread.UserId != User.Current.Id && !User.AnyRoles("Root, Master"))
                 return Prompt(x =>
                 {
                     x.Title = "权限不足";
                     x.Details = "您没有权限删除该主题";
                     x.StatusCode = 500;
                 });
-            DB.Topics.Remove(topic);
+            DB.Threads.Remove(thread);
             DB.SaveChanges();
             return Prompt(x =>
             {

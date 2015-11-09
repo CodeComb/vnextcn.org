@@ -38,13 +38,13 @@
                                         </h4>
                                         <p>@y.Description</p>
                                     </td>
-                                    <td class="hide-when-narrow center">@y.TopicCount</td>
-                                    <td class="hide-when-narrow center">@(y.PostCount + y.TopicCount)</td>
+                                    <td class="hide-when-narrow center">@y.ThreadCount</td>
+                                    <td class="hide-when-narrow center">@(y.PostCount + y.ThreadCount)</td>
                                     <td class="hide-when-narrow">
                                         @if (y.LastPost != null)
                                         {
                                             <img src="@Url.Action("Avatar", "Account", new { id = y.LastPost.UserId })" class="table-forums-avatar" />
-                                            <a asp-action="Topic" asp-controller="Forum" asp-route-id="@y.LastPost.TopicId"><span class="table-forums-micro-title gray">@y.LastPost.FiltedContent</span></a>
+                                            <a asp-action="Thread" asp-controller="Forum" asp-route-id="@y.LastPost.ThreadId"><span class="table-forums-micro-title gray">@y.LastPost.FiltedContent</span></a>
                                             <div class="table-forums-micro-title"><a asp-action="Show" asp-controller="Account" asp-route-id="@y.LastPost.UserId">@await Html.ColorUserNameAsync(y.LastPost.User)</a> <span class="table-forums-lastrep-time">@@@y.LastPost.Time.ToString("yyyy:MM:dd HH:mm")</span></div>
                                         }
                                         else

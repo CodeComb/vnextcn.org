@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Topic>
+﻿@model IEnumerable<Thread>
 @{ 
     Forum Forum = ViewBag.Forum;
 }
@@ -8,7 +8,7 @@
         <div class="grid_12">
             <h2 class="forum-title">@ViewBag.Title</h2>
             <div class="cont-outer">
-                <table class="table table-topic">
+                <table class="table table-thread">
                     <colgroup>
                         <col class="hide-when-narrow" style="width: 50px" />
                         <col />
@@ -25,36 +25,36 @@
                             <th class="hide-when-narrow">最后回复</th>
                         </tr>
                     </thead>
-                    <tbody class="topic-announcements">
-                        @foreach (Topic x in ViewBag.Announcements)
+                    <tbody class="thread-announcements">
+                        @foreach (Thread x in ViewBag.Announcements)
                         {
-                            <tr>
-                                <td class="hide-when-narrow center"><i class="fa fa-volume-up topic-icon"></i></td>
+                            <tr data-id="thread-@x.Id">
+                                <td class="hide-when-narrow center"><i class="fa fa-volume-up thread-icon"></i></td>
                                 <td>
-                                    <a asp-action="Topic" asp-controller="Forum" asp-route-id="@x.Id">@x.Title</a>
+                                    <a asp-action="Thread" asp-controller="Forum" asp-route-id="@x.Id">@x.Title</a>
                                     @if (x.IsAnnouncement)
                                     { 
-                                        <span class="topic-label purple">ANNOUNCEMENT</span>
+                                        <span class="thread-label purple">ANNOUNCEMENT</span>
                                     }
                                     @if (x.IsLocked)
                                     {
-                                        <span class="topic-label">LOCKED</span>
+                                        <span class="thread-label">LOCKED</span>
                                     }
                                 </td>
                                 <td class="center">
                                     <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@await Html.ColorUserNameAsync(x.User)</a>
                                     <br />
-                                    <span class="topic-time">@x.CreationTime.ToString("yyyy-MM-dd HH:mm")</span>
+                                    <span class="thread-time">@x.CreationTime.ToString("yyyy-MM-dd HH:mm")</span>
                                 </td>
                                 <td class="hide-when-narrow center">
-                                    <span class="table-topic-post">@x.Posts.Count</span> / <span class="table-topic-visit">@x.Visit</span>
+                                    <span class="table-thread-post">@x.Posts.Count</span> / <span class="table-thread-visit">@x.Visit</span>
                                 </td>
                                 <td class="hide-when-narrow">
-                                    <div class="table-topic-last-post">
+                                    <div class="table-thread-last-post">
                                         @if (x.LastPost != null)
                                         {
                                             <img src="@Url.Action("Avatar", "Account", new { id = x.LastPost.UserId })" class="table-forums-avatar" />
-                                            <a asp-action="Topic" asp-controller="Forum" asp-route-id="@x.LastPost.TopicId"><span class="table-forums-micro-title gray">@x.LastPost.FiltedContent</span></a>
+                                            <a asp-action="Thread" asp-controller="Forum" asp-route-id="@x.LastPost.ThreadId"><span class="table-forums-micro-title gray">@x.LastPost.FiltedContent</span></a>
                                             <div class="table-forums-micro-title"><a asp-action="Show" asp-controller="Account" asp-route-id="@x.LastPost.UserId">@await Html.ColorUserNameAsync(x.LastPost.User)</a> <span class="table-forums-lastrep-time">@@@x.LastPost.Time.ToString("yyyy:MM:dd HH:mm")</span></div>
                                         }
                                         else
@@ -66,42 +66,43 @@
                             </tr>
                         }
                     </tbody>
-                    <tbody>
+                    <tbody class="lst-threads">
                         @foreach (var x in Model)
                         {
-                            <tr>
+                            <tr data-id="thread-@x.Id">
                                 @if (x.IsLocked)
                                 {
-                                    <td class="hide-when-narrow center"><i class="fa fa-lock topic-icon"></i></td>
+                                    <td class="hide-when-narrow center"><i class="fa fa-lock thread-icon"></i></td>
                                 }
                                 else
                                 {
-                                    <td class="hide-when-narrow center"><i class="fa fa-commenting-o topic-icon"></i></td>
+                                    <td class="hide-when-narrow center"><i class="fa fa-commenting-o thread-icon"></i></td>
                                 }
                                 <td>
-                                    <a asp-action="Topic" asp-controller="Forum" asp-route-id="@x.Id">@x.Title</a>
+                                    <a asp-action="Thread" asp-controller="Forum" asp-route-id="@x.Id">@x.Title</a>
                                     @if (x.IsTop)
                                     {
-                                        <span class="topic-label purple">TOP</span>
+                                        <span class="thread-label purple">TOP</span>
                                     }
                                     @if (x.IsLocked)
                                     {
-                                        <span class="topic-label">LOCKED</span>
+                                        <span class="thread-label">LOCKED</span>
                                     }
                                 </td>
                                 <td class="center">
                                     <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@await Html.ColorUserNameAsync(x.User)</a>
                                     <br />
-                                    <span class="topic-time">@x.CreationTime.ToString("yyyy-MM-dd HH:mm")</span>
-                                </td>                                <td class="hide-when-narrow center">
-                                    <span class="table-topic-post center">@x.Posts.Count</span> / <span class="table-topic-visit">@x.Visit</span>
+                                    <span class="thread-time">@x.CreationTime.ToString("yyyy-MM-dd HH:mm")</span>
+                                </td>
+                                <td class="hide-when-narrow center">
+                                    <span class="table-thread-post center">@x.Posts.Count</span> / <span class="table-thread-visit">@x.Visit</span>
                                 </td>
                                 <td class="hide-when-narrow">
-                                    <div class="table-topic-last-post">
+                                    <div class="table-thread-last-post">
                                         @if (x.LastPost != null)
                                         {
                                             <img src="@Url.Action("Avatar", "Account", new { id = x.LastPost.UserId })" class="table-forums-avatar" />
-                                            <a asp-action="Topic" asp-controller="Forum" asp-route-id="@x.LastPost.Id"><span class="table-forums-micro-title gray">@x.LastPost.FiltedContent</span></a>
+                                            <a asp-action="Thread" asp-controller="Forum" asp-route-id="@x.LastPost.Id"><span class="table-forums-micro-title gray">@x.LastPost.FiltedContent</span></a>
                                             <div class="table-forums-micro-title"><a asp-action="Show" asp-controller="Account" asp-route-id="@x.LastPost.UserId">@await Html.ColorUserNameAsync(x.LastPost.User)</a> <span class="table-forums-lastrep-time">@@@x.LastPost.Time.ToString("yyyy:MM:dd HH:mm")</span></div>
                                         }
                                         else
@@ -151,3 +152,6 @@
         </div>
     </div>
 </div>
+<script>
+    var id = '@Forum.Id';
+</script>

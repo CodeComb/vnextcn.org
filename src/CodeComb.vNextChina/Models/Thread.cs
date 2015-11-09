@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeComb.vNextChina.Models
 {
-    public class Topic
+    public class Thread
     {
         public long Id { get; set; }
 

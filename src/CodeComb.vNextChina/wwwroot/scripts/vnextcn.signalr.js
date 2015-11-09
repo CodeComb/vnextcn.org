@@ -40,6 +40,15 @@ hub.client.onCIResultChanged = function (id) {
     }
 }
 
+hub.client.onThreadChanged = function (id) {
+    $.get('/render/thread/' + id, {}, function (data) {
+        if ($('[data-id="thread-' + id + '"]').length == 0)
+            $('.lst-threads').prepend(data);
+        else
+            $('[data-id="thread-' + id + '"]').html($(data).html());
+    });
+}
+
 $.connection.hub.start(null, function () {
     if ($('.lst-statuses').length > 0) {
         hub.server.joinGroup("StatusList");
@@ -49,5 +58,8 @@ $.connection.hub.start(null, function () {
     }
     if ($('.lst-ci').length > 0) {
         hub.server.joinGroup("CI");
+    }
+    if ($('.thread-announcements').length > 0) {
+        hub.server.joinGroup('Forum-' + id);
     }
 });

@@ -2,24 +2,24 @@
 @{ 
     Layout = null;
     var x = Model;
-    var Topic = x.Topic;
+    var Thread = x.Thread;
 }
 
 <tr data-id="@x.Id">
     <td class="center">
-        <a asp-action="Show" asp-controller="Account" asp-route-id="@Topic.UserId" class="center">@await Html.ColorUserNameAsync(Topic.User)</a>
+        <a asp-action="Show" asp-controller="Account" asp-route-id="@Thread.UserId" class="center">@await Html.ColorUserNameAsync(Thread.User)</a>
         <hr />
-        <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = Topic.UserId })" /></p>
-        <p class="post-role"><span class="topic-label purple">@((await User.Manager.GetRolesAsync(Topic.User)).First())</span></p>
+        <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = Thread.UserId })" /></p>
+        <p class="post-role"><span class="thread-label purple">@((await User.Manager.GetRolesAsync(Thread.User)).First())</span></p>
     </td>
     <td>
-        @if (Topic.UserId == x.UserId)
+        @if (Thread.UserId == x.UserId)
         {
-            <span class="topic-label">楼主</span>
+            <span class="thread-label">楼主</span>
         }
         @if (User.IsSignedIn())
         {
-            @if (User.IsSignedIn() && (!Topic.IsLocked || User.AnyRoles("Root, Master")) && x.SubPosts.Count == 0)
+            @if (User.IsSignedIn() && (!Thread.IsLocked || User.AnyRoles("Root, Master")) && x.SubPosts.Count == 0)
             {
                 <a href="javascript:Post('@x.Id')">回复</a>
             }
@@ -36,7 +36,7 @@
         {
             <h3 class="comment-header">
                 楼中楼回复
-                @if (User.IsSignedIn() && (!Topic.IsLocked || User.AnyRoles("Root, Master")))
+                @if (User.IsSignedIn() && (!Thread.IsLocked || User.AnyRoles("Root, Master")))
                 {
                     <a href="javascript:Post('@x.Id')" class="add-comment">添加回复</a>
                 }
@@ -44,16 +44,16 @@
             foreach (var y in x.SubPosts.OrderBy(z => z.Time))
             {
                 <div class="comment-item" data-id="@y.Id">
-                    <img class="comment-avatar" src="@Url.Action("Avatar", "Account", new { id = Topic.UserId })" />
+                    <img class="comment-avatar" src="@Url.Action("Avatar", "Account", new { id = Thread.UserId })" />
                     <div class="comment-content">
                         <p>
                             @if ((await User.Manager.GetRolesAsync(y.User)).First() == "Root" || (await User.Manager.GetRolesAsync(y.User)).First() == "Master")
                             {
-                                <span class="topic-label purple">@((await User.Manager.GetRolesAsync(y.User)).First())</span>
+                                <span class="thread-label purple">@((await User.Manager.GetRolesAsync(y.User)).First())</span>
                             }
-                            else if (y.UserId == Topic.UserId)
+                            else if (y.UserId == Thread.UserId)
                             {
-                                <span class="topic-label">楼主</span>
+                                <span class="thread-label">楼主</span>
                             }
                             <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId" class="center">@await Html.ColorUserNameAsync(y.User)</a>
                             <span class="table-post-time">@@@y.Time.ToString("yyyy-MM-dd HH:mm:ss")</span>

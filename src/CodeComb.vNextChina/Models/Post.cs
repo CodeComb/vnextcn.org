@@ -11,10 +11,10 @@ namespace CodeComb.vNextChina.Models
     {
         public Guid Id { get; set; }
 
-        [ForeignKey("Topic")]
-        public long TopicId { get; set; }
+        [ForeignKey("Thread")]
+        public long ThreadId { get; set; }
         
-        public Topic Topic { get; set; }
+        public Thread Thread { get; set; }
 
         public string Content { get; set; }
 

@@ -34,7 +34,7 @@ namespace CodeComb.vNextChina.Controllers
         public override void Prepare()
         {
             ViewBag.Nodes = NodeProvider.Nodes;
-            ViewBag.Announcements = DB.Topics
+            ViewBag.Announcements = DB.Threads
                 .Where(x => x.IsAnnouncement)
                 .OrderByDescending(x => x.CreationTime)
                 .Take(5)

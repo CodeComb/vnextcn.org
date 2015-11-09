@@ -22,14 +22,14 @@ namespace CodeComb.vNextChina.Models
         public DbSet<Project> Projects { get; set; }
         public DbSet<CISet> CISets { get; set; }
         public DbSet<Forum> Forums { get; set; }
-        public DbSet<Topic> Topics { get; set; }
+        public DbSet<Thread> Threads { get; set; }
         public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Topic>(e => 
+            builder.Entity<Thread>(e => 
             {
                 e.HasIndex(x => x.IsTop);
                 e.HasIndex(x => x.CreationTime);

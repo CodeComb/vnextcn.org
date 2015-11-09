@@ -101,7 +101,7 @@ namespace CodeComb.vNextChina.Migrations
                     ParentId = table.Column<string>(nullable: true),
                     PostCount = table.Column<long>(nullable: false),
                     Title = table.Column<string>(nullable: true),
-                    TopicCount = table.Column<long>(nullable: false)
+                    ThreadCount = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -230,7 +230,7 @@ namespace CodeComb.vNextChina.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
             migrationBuilder.CreateTable(
-                name: "Topic",
+                name: "Thread",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
@@ -248,15 +248,15 @@ namespace CodeComb.vNextChina.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Topic", x => x.Id);
+                    table.PrimaryKey("PK_Thread", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Topic_Forum_ForumId",
+                        name: "FK_Thread_Forum_ForumId",
                         column: x => x.ForumId,
                         principalTable: "Forum",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Topic_User_UserId",
+                        name: "FK_Thread_User_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -402,7 +402,7 @@ namespace CodeComb.vNextChina.Migrations
                     Content = table.Column<string>(nullable: true),
                     ParentId = table.Column<Guid>(nullable: true),
                     Time = table.Column<DateTime>(nullable: false),
-                    TopicId = table.Column<long>(nullable: false),
+                    ThreadId = table.Column<long>(nullable: false),
                     UserId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
@@ -415,9 +415,9 @@ namespace CodeComb.vNextChina.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Post_Topic_TopicId",
-                        column: x => x.TopicId,
-                        principalTable: "Topic",
+                        name: "FK_Post_Thread_ThreadId",
+                        column: x => x.ThreadId,
+                        principalTable: "Thread",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -542,20 +542,20 @@ namespace CodeComb.vNextChina.Migrations
                 table: "Tag",
                 column: "Title");
             migrationBuilder.CreateIndex(
-                name: "IX_Topic_CreationTime",
-                table: "Topic",
+                name: "IX_Thread_CreationTime",
+                table: "Thread",
                 column: "CreationTime");
             migrationBuilder.CreateIndex(
-                name: "IX_Topic_IsAnnouncement",
-                table: "Topic",
+                name: "IX_Thread_IsAnnouncement",
+                table: "Thread",
                 column: "IsAnnouncement");
             migrationBuilder.CreateIndex(
-                name: "IX_Topic_IsTop",
-                table: "Topic",
+                name: "IX_Thread_IsTop",
+                table: "Thread",
                 column: "IsTop");
             migrationBuilder.CreateIndex(
-                name: "IX_Topic_LastReplyTime",
-                table: "Topic",
+                name: "IX_Thread_LastReplyTime",
+                table: "Thread",
                 column: "LastReplyTime");
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
@@ -588,7 +588,7 @@ namespace CodeComb.vNextChina.Migrations
             migrationBuilder.DropTable("AspNetUserLogins");
             migrationBuilder.DropTable("AspNetUserRoles");
             migrationBuilder.DropTable("Contest");
-            migrationBuilder.DropTable("Topic");
+            migrationBuilder.DropTable("Thread");
             migrationBuilder.DropTable("Status");
             migrationBuilder.DropTable("AspNetRoles");
             migrationBuilder.DropTable("Forum");

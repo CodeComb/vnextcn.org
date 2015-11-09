@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Post>
 @{
-    Topic Topic = ViewBag.Topic;
-    ViewBag.Title = Topic.Title;
+    Thread Thread = ViewBag.Thread;
+    ViewBag.Title = Thread.Title;
 }
 
 <div class="hidden" id="new-post-outer">
     <div id="new-post" class="new-comment">
         <p>发表回复</p>
-        <form asp-action="Post" asp-controller="Forum" asp-route-id="@Topic.Id" id="frmNewPost">
+        <form asp-action="Post" asp-controller="Forum" asp-route-id="@Thread.Id" id="frmNewPost">
             <input type="hidden" name="pid" id="new-post-pid" />
             <div class="markdown-editor-outer">
                 <textarea class="textbox markdown-editor" name="Content"></textarea>
@@ -23,7 +23,7 @@
 
 <div class="hidden" id="edit-post-outer">
     <div id="edit-post">
-        <form asp-action="EditPost" asp-controller="Forum" asp-route-id="@Topic.Id" id="frmEditPost">
+        <form asp-action="EditPost" asp-controller="Forum" asp-route-id="@Thread.Id" id="frmEditPost">
             <input type="hidden" name="pid" id="post-edit-id" />
             <div class="markdown-editor-outer">
                 <textarea class="textbox markdown-editor" name="Content" id="txtEditPost"></textarea>
@@ -50,33 +50,33 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th class="center table-post-info">查看: @Topic.Visit | 回复: @ViewBag.Count</th>
-                                <th>@Topic.Title</th>
+                                <th class="center table-post-info">查看: @Thread.Visit | 回复: @ViewBag.Count</th>
+                                <th>@Thread.Title</th>
                             </tr>
                         </thead>
                         <tbody class="lst-posts">
                             <tr>
                                 <td class="center">
-                                    <a asp-action="Show" asp-controller="Account" asp-route-id="@Topic.UserId" class="center">@await Html.ColorUserNameAsync(Topic.User)</a>
+                                    <a asp-action="Show" asp-controller="Account" asp-route-id="@Thread.UserId" class="center">@await Html.ColorUserNameAsync(Thread.User)</a>
                                     <hr />
-                                    <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = Topic.UserId })" /></p>
-                                    <p class="post-role"><span class="topic-label purple">@((await User.Manager.GetRolesAsync(Topic.User)).First())</span></p>
+                                    <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = Thread.UserId })" /></p>
+                                    <p class="post-role"><span class="thread-label purple">@((await User.Manager.GetRolesAsync(Thread.User)).First())</span></p>
                                 </td>
                                 <td>
-                                    @if (Topic.IsAnnouncement)
+                                    @if (Thread.IsAnnouncement)
                                     {
-                                        <span class="topic-label purple">ANNOUNCEMENT</span>
+                                        <span class="thread-label purple">ANNOUNCEMENT</span>
                                     }
-                                    @if (Topic.IsTop)
+                                    @if (Thread.IsTop)
                                     {
-                                        <span class="topic-label purple">TOP</span>
+                                        <span class="thread-label purple">TOP</span>
                                     }
                                     @if (User.IsSignedIn())
                                     {
-                                        @if (Topic.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
+                                        @if (Thread.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
                                         {
-                                            <a href="javascript:EditTopic()">编辑</a>
-                                            <a href="javascript:$('#frmRemoveTopic').submit()">删除</a>
+                                            <a href="javascript:EditThread()">编辑</a>
+                                            <a href="javascript:$('#frmRemoveThread').submit()">删除</a>
                                         }
                                         @if (User.AnyRoles("Root, Master"))
                                         {
@@ -85,20 +85,20 @@
                                             <a href="javascript:Lock()">锁定/解锁</a>
                                         }
                                     }
-                                    <span class="table-post-time">发表于 @Topic.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                                    <span class="table-post-time">发表于 @Thread.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
                                     <hr />
-                                    <div class="topic-content">
-                                        @Html.Sanitize(Html.Marked(Topic.Content).ToString())
+                                    <div class="thread-content">
+                                        @Html.Sanitize(Html.Marked(Thread.Content).ToString())
                                     </div>
-                                    @if (Topic.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
+                                    @if (Thread.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
                                     {
-                                        <div class="topic-edit">
-                                            <form asp-action="EditTopic" asp-controller="Forum" asp-route-id="@Topic.Id" id="frmEditTopic">
+                                        <div class="thread-edit">
+                                            <form asp-action="EditThread" asp-controller="Forum" asp-route-id="@Thread.Id" id="frmEditThread">
                                                 <div class="markdown-editor-outer">
-                                                    <textarea class="textbox markdown-editor" id="txtEditTopic" name="Content">@Topic.Content</textarea>
+                                                    <textarea class="textbox markdown-editor" id="txtEditThread" name="Content">@Thread.Content</textarea>
                                                     <div class="markdown-editor-bottom">
-                                                        <a href="javascript:EditTopicSubmit()">保存修改</a>
-                                                        <a href="javascript:CancelEditTopic()">取消编辑</a>
+                                                        <a href="javascript:EditThreadSubmit()">保存修改</a>
+                                                        <a href="javascript:CancelEditThread()">取消编辑</a>
                                                         支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。
                                                     </div>
                                                 </div>
@@ -111,19 +111,19 @@
                             {
                                 <tr data-id="@x.Id">
                                     <td class="center">
-                                        <a asp-action="Show" asp-controller="Account" asp-route-id="@Topic.UserId" class="center">@await Html.ColorUserNameAsync(Topic.User)</a>
+                                        <a asp-action="Show" asp-controller="Account" asp-route-id="@Thread.UserId" class="center">@await Html.ColorUserNameAsync(Thread.User)</a>
                                         <hr />
-                                        <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = Topic.UserId })" /></p>
-                                        <p class="post-role"><span class="topic-label purple">@((await User.Manager.GetRolesAsync(Topic.User)).First())</span></p>
+                                        <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = Thread.UserId })" /></p>
+                                        <p class="post-role"><span class="thread-label purple">@((await User.Manager.GetRolesAsync(Thread.User)).First())</span></p>
                                     </td>
                                     <td>
-                                        @if (Topic.UserId == x.UserId)
+                                        @if (Thread.UserId == x.UserId)
                                         {
-                                            <span class="topic-label">楼主</span>
+                                            <span class="thread-label">楼主</span>
                                         }
                                         @if (User.IsSignedIn())
                                         {
-                                            @if (User.IsSignedIn() && (!Topic.IsLocked || User.AnyRoles("Root, Master")) && x.SubPosts.Count == 0)
+                                            @if (User.IsSignedIn() && (!Thread.IsLocked || User.AnyRoles("Root, Master")) && x.SubPosts.Count == 0)
                                             {
                                                 <a href="javascript:Post('@x.Id')">回复</a>
                                             }
@@ -141,7 +141,7 @@
                                         {
                                             <h3 class="comment-header">
                                                 楼中楼回复
-                                                @if (User.IsSignedIn() && (!Topic.IsLocked || User.AnyRoles("Root, Master")))
+                                                @if (User.IsSignedIn() && (!Thread.IsLocked || User.AnyRoles("Root, Master")))
                                                 {
                                                     <a href="javascript:Post('@x.Id')" class="add-comment">添加回复</a>
                                                 }
@@ -149,16 +149,16 @@
                                             foreach (var y in x.SubPosts.OrderBy(z => z.Time))
                                             {
                                                 <div class="comment-item" data-id="@y.Id">
-                                                    <img class="comment-avatar" src="@Url.Action("Avatar", "Account", new { id = Topic.UserId })" />
+                                                    <img class="comment-avatar" src="@Url.Action("Avatar", "Account", new { id = Thread.UserId })" />
                                                     <div class="comment-content">
                                                         <p>
                                                             @if ((await User.Manager.GetRolesAsync(y.User)).First() == "Root" || (await User.Manager.GetRolesAsync(y.User)).First() == "Master")
                                                             {
-                                                                <span class="topic-label purple">@((await User.Manager.GetRolesAsync(y.User)).First())</span>
+                                                                <span class="thread-label purple">@((await User.Manager.GetRolesAsync(y.User)).First())</span>
                                                             }
-                                                            else if (y.UserId == Topic.UserId)
+                                                            else if (y.UserId == Thread.UserId)
                                                             {
-                                                                <span class="topic-label">楼主</span>
+                                                                <span class="thread-label">楼主</span>
                                                             }
                                                             <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId" class="center">@await Html.ColorUserNameAsync(y.User)</a>
                                                             <span class="table-post-time">@@@y.Time.ToString("yyyy-MM-dd HH:mm:ss")</span>
@@ -184,7 +184,7 @@
                     @Html.MakePager()
                     <div class="clear"></div>
                 </div>
-                @if (User.IsSignedIn() && (!Topic.IsLocked || User.AnyRoles("Root, Master")))
+                @if (User.IsSignedIn() && (!Thread.IsLocked || User.AnyRoles("Root, Master")))
                 {
                     <br />
                     <table class="table-post table-post-outer">
@@ -196,7 +196,7 @@
                             <td></td>
                             <td>
                                 <p>发表回复</p>
-                                <form asp-action="Post" asp-controller="Forum" asp-route-id="@Topic.Id" method="post" id="frmNewReply">
+                                <form asp-action="Post" asp-controller="Forum" asp-route-id="@Thread.Id" method="post" id="frmNewReply">
                                     <div class="markdown-editor-outer">
                                         <textarea class="textbox markdown-editor" name="Content"></textarea>
                                         <div class="markdown-editor-bottom">支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。</div>
@@ -216,9 +216,9 @@
 </div>
 @if (User.AnyRoles("Root, Master"))
 {
-    <form asp-action="Top" asp-controller="Forum" asp-route-id="@Topic.Id" id="frmTop"></form>
-    <form asp-action="Notice" asp-controller="Forum" asp-route-id="@Topic.Id" id="frmNotice"></form>
-    <form asp-action="Lock" asp-controller="Forum" asp-route-id="@Topic.Id" id="frmLock"></form>
+    <form asp-action="Top" asp-controller="Forum" asp-route-id="@Thread.Id" id="frmTop"></form>
+    <form asp-action="Notice" asp-controller="Forum" asp-route-id="@Thread.Id" id="frmNotice"></form>
+    <form asp-action="Lock" asp-controller="Forum" asp-route-id="@Thread.Id" id="frmLock"></form>
     <script>
         function Top() {
             $.post($('#frmTop').attr('action'), $('#frmTop').serialize(), function (result) { popResult(result); });
@@ -238,7 +238,7 @@
     <form asp-action="RemovePost" asp-controller="Forum" id="frmRemovePost">
         <input type="hidden" name="id" id="remove-post-id" />
     </form>
-    <form asp-action="RemoveTopic" asp-controller="Forum" asp-route-id="@Topic.Id" id="frmRemoveTopic"></form>
+    <form asp-action="RemoveThread" asp-controller="Forum" asp-route-id="@Thread.Id" id="frmRemoveThread"></form>
     <script>
         function RemovePost(id) {
             $('#remove-post-id').val(id);
@@ -267,26 +267,26 @@
         });
     });
 
-    function EditTopic()
+    function EditThread()
     {
-        $('.topic-content').hide();
-        $('.topic-edit').show();
+        $('.thread-content').hide();
+        $('.thread-edit').show();
     }
 
-    function EditTopicSubmit() {
+    function EditThreadSubmit() {
         popResult("正在提交...");
-        $.post($('#frmEditTopic').attr('action'), $('#frmEditTopic').serialize(), function (data) {
-            $('.topic-content').html(data);
-            $('.topic-content').show();
-            $('.topic-edit').hide();
+        $.post($('#frmEditThread').attr('action'), $('#frmEditThread').serialize(), function (data) {
+            $('.thread-content').html(data);
+            $('.thread-content').show();
+            $('.thread-edit').hide();
             popResult("主题编辑成功");
         });
     }
 
-    function CancelEditTopic()
+    function CancelEditThread()
     {
-        $('.topic-content').show();
-        $('.topic-edit').hide();
+        $('.thread-content').show();
+        $('.thread-edit').hide();
     }
         
     function EditPost(pid)

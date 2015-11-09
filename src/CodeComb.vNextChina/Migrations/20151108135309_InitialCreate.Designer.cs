@@ -175,7 +175,7 @@ namespace CodeComb.vNextChina.Migrations
                     b.Property<string>("Title")
                         .HasAnnotation("MaxLength", 128);
 
-                    b.Property<long>("TopicCount");
+                    b.Property<long>("ThreadCount");
 
                     b.HasKey("Id");
 
@@ -193,7 +193,7 @@ namespace CodeComb.vNextChina.Migrations
 
                     b.Property<DateTime>("Time");
 
-                    b.Property<long>("TopicId");
+                    b.Property<long>("ThreadId");
 
                     b.Property<long>("UserId");
 
@@ -343,7 +343,7 @@ namespace CodeComb.vNextChina.Migrations
                     b.HasIndex("Title");
                 });
 
-            modelBuilder.Entity("CodeComb.vNextChina.Models.Topic", b =>
+            modelBuilder.Entity("CodeComb.vNextChina.Models.Thread", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -551,9 +551,9 @@ namespace CodeComb.vNextChina.Migrations
                         .WithMany()
                         .HasForeignKey("ParentId");
 
-                    b.HasOne("CodeComb.vNextChina.Models.Topic")
+                    b.HasOne("CodeComb.vNextChina.Models.Thread")
                         .WithMany()
-                        .HasForeignKey("TopicId");
+                        .HasForeignKey("ThreadId");
 
                     b.HasOne("CodeComb.vNextChina.Models.User")
                         .WithMany()
@@ -596,7 +596,7 @@ namespace CodeComb.vNextChina.Migrations
                         .HasForeignKey("ParentId");
                 });
 
-            modelBuilder.Entity("CodeComb.vNextChina.Models.Topic", b =>
+            modelBuilder.Entity("CodeComb.vNextChina.Models.Thread", b =>
                 {
                     b.HasOne("CodeComb.vNextChina.Models.Forum")
                         .WithMany()
