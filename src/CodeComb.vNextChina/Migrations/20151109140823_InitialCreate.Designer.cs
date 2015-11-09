@@ -8,13 +8,14 @@ using CodeComb.vNextChina.Models;
 namespace CodeComb.vNextChina.Migrations
 {
     [DbContext(typeof(vNextChinaContext))]
-    [Migration("20151108135309_InitialCreate")]
+    [Migration("20151109140823_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-rc2-16288");
+                .HasAnnotation("ProductVersion", "7.0.0-rc2-16289")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("CodeComb.vNextChina.Hub.Models.Node", b =>
                 {
@@ -168,14 +169,15 @@ namespace CodeComb.vNextChina.Migrations
 
                     b.Property<int>("PRI");
 
-                    b.Property<string>("ParentId");
+                    b.Property<string>("ParentId")
+                        .HasAnnotation("MaxLength", 64);
 
                     b.Property<long>("PostCount");
 
+                    b.Property<long>("ThreadCount");
+
                     b.Property<string>("Title")
                         .HasAnnotation("MaxLength", 128);
-
-                    b.Property<long>("ThreadCount");
 
                     b.HasKey("Id");
 
@@ -191,9 +193,9 @@ namespace CodeComb.vNextChina.Migrations
 
                     b.Property<Guid?>("ParentId");
 
-                    b.Property<DateTime>("Time");
-
                     b.Property<long>("ThreadId");
+
+                    b.Property<DateTime>("Time");
 
                     b.Property<long>("UserId");
 

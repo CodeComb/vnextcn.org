@@ -20,17 +20,17 @@
           "lib/net451/CodeComb.Package.dll": {}
         }
       },
-      "EntityFramework.Core/7.0.0-rc2-16289": {
+      "EntityFramework.Core/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802",
           "Remotion.Linq": "2.0.1",
           "System.Collections.Immutable": "1.1.36"
         },
@@ -62,10 +62,10 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
-      "EntityFramework.Relational/7.0.0-rc2-16289": {
+      "EntityFramework.Relational/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
-          "EntityFramework.Core": "7.0.0-rc2-16289",
+          "EntityFramework.Core": "7.0.0-rc2-16290",
           "System.Diagnostics.DiagnosticSource": "4.0.0-beta-23506"
         },
         "frameworkAssemblies": [
@@ -96,7 +96,7 @@
           "lib/net45/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Primitives": "1.0.0-rc2-15839"
@@ -114,12 +114,12 @@
           "lib/net451/Microsoft.Extensions.Caching.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801"
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -188,10 +188,10 @@
           "lib/net451/Microsoft.Extensions.Configuration.Binder.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15788": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -206,7 +206,7 @@
           "lib/net451/Microsoft.Extensions.DependencyInjection.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15788": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -221,11 +221,11 @@
           "lib/net451/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging/1.0.0-rc2-15815": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -241,7 +241,7 @@
           "lib/net451/Microsoft.Extensions.Logging.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15815": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -256,12 +256,12 @@
           "lib/net451/Microsoft.Extensions.Logging.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15801": {
+      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15802": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc2-15822",
           "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc2-15822",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -383,17 +383,17 @@
           "lib/dotnet5.4/CodeComb.Package.dll": {}
         }
       },
-      "EntityFramework.Core/7.0.0-rc2-16289": {
+      "EntityFramework.Core/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802",
           "Remotion.Linq": "2.0.1",
           "System.Collections": "4.0.11-beta-23506",
           "System.Collections.Concurrent": "4.0.11-beta-23506",
@@ -421,10 +421,10 @@
           "lib/dotnet5.4/EntityFramework.Core.dll": {}
         }
       },
-      "EntityFramework.Relational/7.0.0-rc2-16289": {
+      "EntityFramework.Relational/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
-          "EntityFramework.Core": "7.0.0-rc2-16289",
+          "EntityFramework.Core": "7.0.0-rc2-16290",
           "Microsoft.CSharp": "4.0.1-beta-23506",
           "System.Data.Common": "4.0.1-beta-23506",
           "System.Diagnostics.DiagnosticSource": "4.0.0-beta-23506",
@@ -473,7 +473,7 @@
           "lib/dotnet5.4/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Primitives": "1.0.0-rc2-15839",
@@ -488,12 +488,12 @@
           "lib/dotnet5.4/Microsoft.Extensions.Caching.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802",
           "System.Linq": "4.0.1-beta-23506",
           "System.Threading": "4.0.11-beta-23506"
         },
@@ -550,10 +550,10 @@
           "lib/dotnet5.4/Microsoft.Extensions.Configuration.Binder.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15788": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
           "System.Collections": "4.0.11-beta-23506",
           "System.Collections.Concurrent": "4.0.11-beta-23506",
           "System.Threading": "4.0.11-beta-23506",
@@ -566,7 +566,7 @@
           "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15788": {
         "type": "package",
         "dependencies": {
           "System.ComponentModel": "4.0.1-beta-23506",
@@ -584,11 +584,11 @@
           "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging/1.0.0-rc2-15815": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815",
           "System.Collections": "4.0.11-beta-23506",
           "System.Collections.Concurrent": "4.0.11-beta-23506",
           "System.ComponentModel": "4.0.1-beta-23506",
@@ -603,7 +603,7 @@
           "lib/dotnet5.4/Microsoft.Extensions.Logging.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15815": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.11-beta-23506",
@@ -622,12 +622,12 @@
           "lib/dotnet5.4/Microsoft.Extensions.Logging.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15801": {
+      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15802": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc2-15822",
           "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc2-15822",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
           "System.ComponentModel": "4.0.1-beta-23506",
           "System.Diagnostics.Debug": "4.0.11-beta-23506",
           "System.Globalization": "4.0.11-beta-23506",
@@ -1248,17 +1248,17 @@
           "lib/net451/CodeComb.Package.dll": {}
         }
       },
-      "EntityFramework.Core/7.0.0-rc2-16289": {
+      "EntityFramework.Core/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802",
           "Remotion.Linq": "2.0.1",
           "System.Collections.Immutable": "1.1.36"
         },
@@ -1290,10 +1290,10 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
-      "EntityFramework.Relational/7.0.0-rc2-16289": {
+      "EntityFramework.Relational/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
-          "EntityFramework.Core": "7.0.0-rc2-16289",
+          "EntityFramework.Core": "7.0.0-rc2-16290",
           "System.Diagnostics.DiagnosticSource": "4.0.0-beta-23506"
         },
         "frameworkAssemblies": [
@@ -1324,7 +1324,7 @@
           "lib/net45/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Primitives": "1.0.0-rc2-15839"
@@ -1342,12 +1342,12 @@
           "lib/net451/Microsoft.Extensions.Caching.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801"
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1416,10 +1416,10 @@
           "lib/net451/Microsoft.Extensions.Configuration.Binder.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15788": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1434,7 +1434,7 @@
           "lib/net451/Microsoft.Extensions.DependencyInjection.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15788": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1449,11 +1449,11 @@
           "lib/net451/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging/1.0.0-rc2-15815": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1469,7 +1469,7 @@
           "lib/net451/Microsoft.Extensions.Logging.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15815": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1484,12 +1484,12 @@
           "lib/net451/Microsoft.Extensions.Logging.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15801": {
+      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15802": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc2-15822",
           "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc2-15822",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1606,17 +1606,17 @@
           "lib/net451/CodeComb.Package.dll": {}
         }
       },
-      "EntityFramework.Core/7.0.0-rc2-16289": {
+      "EntityFramework.Core/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802",
           "Remotion.Linq": "2.0.1",
           "System.Collections.Immutable": "1.1.36"
         },
@@ -1648,10 +1648,10 @@
           "lib/dnx451/EntityFramework.Core.dll": {}
         }
       },
-      "EntityFramework.Relational/7.0.0-rc2-16289": {
+      "EntityFramework.Relational/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
-          "EntityFramework.Core": "7.0.0-rc2-16289",
+          "EntityFramework.Core": "7.0.0-rc2-16290",
           "System.Diagnostics.DiagnosticSource": "4.0.0-beta-23506"
         },
         "frameworkAssemblies": [
@@ -1682,7 +1682,7 @@
           "lib/net45/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Primitives": "1.0.0-rc2-15839"
@@ -1700,12 +1700,12 @@
           "lib/net451/Microsoft.Extensions.Caching.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801"
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1774,10 +1774,10 @@
           "lib/net451/Microsoft.Extensions.Configuration.Binder.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15788": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1792,7 +1792,7 @@
           "lib/net451/Microsoft.Extensions.DependencyInjection.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15788": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1807,11 +1807,11 @@
           "lib/net451/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging/1.0.0-rc2-15815": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1827,7 +1827,7 @@
           "lib/net451/Microsoft.Extensions.Logging.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15815": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1842,12 +1842,12 @@
           "lib/net451/Microsoft.Extensions.Logging.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15801": {
+      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15802": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc2-15822",
           "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc2-15822",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1969,17 +1969,17 @@
           "lib/dotnet5.4/CodeComb.Package.dll": {}
         }
       },
-      "EntityFramework.Core/7.0.0-rc2-16289": {
+      "EntityFramework.Core/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802",
           "Remotion.Linq": "2.0.1",
           "System.Collections": "4.0.11-beta-23506",
           "System.Collections.Concurrent": "4.0.11-beta-23506",
@@ -2007,10 +2007,10 @@
           "lib/dotnet5.4/EntityFramework.Core.dll": {}
         }
       },
-      "EntityFramework.Relational/7.0.0-rc2-16289": {
+      "EntityFramework.Relational/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
-          "EntityFramework.Core": "7.0.0-rc2-16289",
+          "EntityFramework.Core": "7.0.0-rc2-16290",
           "Microsoft.CSharp": "4.0.1-beta-23506",
           "System.Data.Common": "4.0.1-beta-23506",
           "System.Diagnostics.DiagnosticSource": "4.0.0-beta-23506",
@@ -2059,7 +2059,7 @@
           "lib/dotnet5.4/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Primitives": "1.0.0-rc2-15839",
@@ -2074,12 +2074,12 @@
           "lib/dotnet5.4/Microsoft.Extensions.Caching.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802",
           "System.Linq": "4.0.1-beta-23506",
           "System.Threading": "4.0.11-beta-23506"
         },
@@ -2136,10 +2136,10 @@
           "lib/dotnet5.4/Microsoft.Extensions.Configuration.Binder.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15788": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
           "System.Collections": "4.0.11-beta-23506",
           "System.Collections.Concurrent": "4.0.11-beta-23506",
           "System.Threading": "4.0.11-beta-23506",
@@ -2152,7 +2152,7 @@
           "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15788": {
         "type": "package",
         "dependencies": {
           "System.ComponentModel": "4.0.1-beta-23506",
@@ -2170,11 +2170,11 @@
           "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging/1.0.0-rc2-15815": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815",
           "System.Collections": "4.0.11-beta-23506",
           "System.Collections.Concurrent": "4.0.11-beta-23506",
           "System.ComponentModel": "4.0.1-beta-23506",
@@ -2189,7 +2189,7 @@
           "lib/dotnet5.4/Microsoft.Extensions.Logging.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15815": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.11-beta-23506",
@@ -2208,12 +2208,12 @@
           "lib/dotnet5.4/Microsoft.Extensions.Logging.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15801": {
+      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15802": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc2-15822",
           "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc2-15822",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
           "System.ComponentModel": "4.0.1-beta-23506",
           "System.Diagnostics.Debug": "4.0.11-beta-23506",
           "System.Globalization": "4.0.11-beta-23506",
@@ -3152,17 +3152,17 @@
           "lib/dotnet5.4/CodeComb.Package.dll": {}
         }
       },
-      "EntityFramework.Core/7.0.0-rc2-16289": {
+      "EntityFramework.Core/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
           "Ix-Async": "1.2.5",
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802",
           "Remotion.Linq": "2.0.1",
           "System.Collections": "4.0.11-beta-23506",
           "System.Collections.Concurrent": "4.0.11-beta-23506",
@@ -3190,10 +3190,10 @@
           "lib/dotnet5.4/EntityFramework.Core.dll": {}
         }
       },
-      "EntityFramework.Relational/7.0.0-rc2-16289": {
+      "EntityFramework.Relational/7.0.0-rc2-16290": {
         "type": "package",
         "dependencies": {
-          "EntityFramework.Core": "7.0.0-rc2-16289",
+          "EntityFramework.Core": "7.0.0-rc2-16290",
           "Microsoft.CSharp": "4.0.1-beta-23506",
           "System.Data.Common": "4.0.1-beta-23506",
           "System.Diagnostics.DiagnosticSource": "4.0.0-beta-23506",
@@ -3242,7 +3242,7 @@
           "lib/dotnet5.4/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Primitives": "1.0.0-rc2-15839",
@@ -3257,12 +3257,12 @@
           "lib/dotnet5.4/Microsoft.Extensions.Caching.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15836": {
+      "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15837": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15836",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15801",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc2-15837",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc2-15802",
           "System.Linq": "4.0.1-beta-23506",
           "System.Threading": "4.0.11-beta-23506"
         },
@@ -3319,10 +3319,10 @@
           "lib/dotnet5.4/Microsoft.Extensions.Configuration.Binder.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15788": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
           "System.Collections": "4.0.11-beta-23506",
           "System.Collections.Concurrent": "4.0.11-beta-23506",
           "System.Threading": "4.0.11-beta-23506",
@@ -3335,7 +3335,7 @@
           "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.dll": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15787": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15788": {
         "type": "package",
         "dependencies": {
           "System.ComponentModel": "4.0.1-beta-23506",
@@ -3353,11 +3353,11 @@
           "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging/1.0.0-rc2-15815": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
-          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15814",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc2-15815",
           "System.Collections": "4.0.11-beta-23506",
           "System.Collections.Concurrent": "4.0.11-beta-23506",
           "System.ComponentModel": "4.0.1-beta-23506",
@@ -3372,7 +3372,7 @@
           "lib/dotnet5.4/Microsoft.Extensions.Logging.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15814": {
+      "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15815": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.11-beta-23506",
@@ -3391,12 +3391,12 @@
           "lib/dotnet5.4/Microsoft.Extensions.Logging.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15801": {
+      "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15802": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc2-15822",
           "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc2-15822",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15787",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-15788",
           "System.ComponentModel": "4.0.1-beta-23506",
           "System.Diagnostics.Debug": "4.0.11-beta-23506",
           "System.Globalization": "4.0.11-beta-23506",
@@ -4331,13 +4331,13 @@
         "lib/net46/CodeComb.Package.xml"
       ]
     },
-    "EntityFramework.Core/7.0.0-rc2-16289": {
+    "EntityFramework.Core/7.0.0-rc2-16290": {
       "type": "package",
       "serviceable": true,
-      "sha512": "gnOZwd40lqC5bXbNduELXRRR0y4x2Fjxl+U/UmeWtPOLiDx2lZboXrmXUbXNyBqvGi1jspJ2Ou83GoMhQlVWtg==",
+      "sha512": "VbABhCoNZjm4FntKE7x2WD6u1w32Nyi1wYzGYYgZ8+JYnLBHt5dCFf0KDSkGhg+EnOjgpeFM8+iQFbpf4lpZFg==",
       "files": [
-        "EntityFramework.Core.7.0.0-rc2-16289.nupkg",
-        "EntityFramework.Core.7.0.0-rc2-16289.nupkg.sha512",
+        "EntityFramework.Core.7.0.0-rc2-16290.nupkg",
+        "EntityFramework.Core.7.0.0-rc2-16290.nupkg.sha512",
         "EntityFramework.Core.nuspec",
         "lib/dnx451/EntityFramework.Core.dll",
         "lib/dnx451/EntityFramework.Core.xml",
@@ -4349,13 +4349,13 @@
         "lib/netcore50/EntityFramework.Core.xml"
       ]
     },
-    "EntityFramework.Relational/7.0.0-rc2-16289": {
+    "EntityFramework.Relational/7.0.0-rc2-16290": {
       "type": "package",
       "serviceable": true,
-      "sha512": "a/4kn0ppo7c5NPqp0hNz92U360+OX4oMZlQmikmCKV4p2YTNGEOYzR8i/cgMwCRX9EqxgmyE7jQUqxluqfAq9g==",
+      "sha512": "6s6Aof02sMGr5zpJdACwVBL9waZkHQfC8sY642IigFscuJwrkj86dkiyJsGFwBtCDXgHnwknjud/JBxIAhUwHw==",
       "files": [
-        "EntityFramework.Relational.7.0.0-rc2-16289.nupkg",
-        "EntityFramework.Relational.7.0.0-rc2-16289.nupkg.sha512",
+        "EntityFramework.Relational.7.0.0-rc2-16290.nupkg",
+        "EntityFramework.Relational.7.0.0-rc2-16290.nupkg.sha512",
         "EntityFramework.Relational.nuspec",
         "lib/dotnet5.4/EntityFramework.Relational.dll",
         "lib/dotnet5.4/EntityFramework.Relational.xml",
@@ -4430,10 +4430,10 @@
         "ref/xamarinmac20/_._"
       ]
     },
-    "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15836": {
+    "Microsoft.Extensions.Caching.Abstractions/1.0.0-rc2-15837": {
       "type": "package",
       "serviceable": true,
-      "sha512": "TdexWOybtiu1K+p/KyghNXVcM1qzjvHi/qePIZc64CP2es+6H4FOY2mVwIlbmfUPINGSbkxz8qCG4n3IoqY6Ww==",
+      "sha512": "/S28p8TgdB/f9Fo0BnCwCN7hs5kbg0dG+IPSAhaajLz8bhwKvO4OcN1+8FsfQkXXyxGZrHOqO2Ta5Ih2hLtMow==",
       "files": [
         "lib/dotnet5.4/Microsoft.Extensions.Caching.Abstractions.dll",
         "lib/dotnet5.4/Microsoft.Extensions.Caching.Abstractions.xml",
@@ -4441,15 +4441,15 @@
         "lib/net451/Microsoft.Extensions.Caching.Abstractions.xml",
         "lib/netcore50/Microsoft.Extensions.Caching.Abstractions.dll",
         "lib/netcore50/Microsoft.Extensions.Caching.Abstractions.xml",
-        "Microsoft.Extensions.Caching.Abstractions.1.0.0-rc2-15836.nupkg",
-        "Microsoft.Extensions.Caching.Abstractions.1.0.0-rc2-15836.nupkg.sha512",
+        "Microsoft.Extensions.Caching.Abstractions.1.0.0-rc2-15837.nupkg",
+        "Microsoft.Extensions.Caching.Abstractions.1.0.0-rc2-15837.nupkg.sha512",
         "Microsoft.Extensions.Caching.Abstractions.nuspec"
       ]
     },
-    "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15836": {
+    "Microsoft.Extensions.Caching.Memory/1.0.0-rc2-15837": {
       "type": "package",
       "serviceable": true,
-      "sha512": "WqaMAGNUItw6kTDchHrGolsARVG+mz0Gi6AfpEeAtyQs6Uy/8rHuwJRgQwWafLafCsHCBUI511Lo4vhPZblpag==",
+      "sha512": "ot6LD+HbCjtLx/7A+j/WfFuxAYD3rcM4c35mzRtkX3hJaj6rsjDiL5SDBq0ezpvtAuttU6/ra/sGmAyv9Ak+OQ==",
       "files": [
         "lib/dotnet5.4/Microsoft.Extensions.Caching.Memory.dll",
         "lib/dotnet5.4/Microsoft.Extensions.Caching.Memory.xml",
@@ -4457,8 +4457,8 @@
         "lib/net451/Microsoft.Extensions.Caching.Memory.xml",
         "lib/netcore50/Microsoft.Extensions.Caching.Memory.dll",
         "lib/netcore50/Microsoft.Extensions.Caching.Memory.xml",
-        "Microsoft.Extensions.Caching.Memory.1.0.0-rc2-15836.nupkg",
-        "Microsoft.Extensions.Caching.Memory.1.0.0-rc2-15836.nupkg.sha512",
+        "Microsoft.Extensions.Caching.Memory.1.0.0-rc2-15837.nupkg",
+        "Microsoft.Extensions.Caching.Memory.1.0.0-rc2-15837.nupkg.sha512",
         "Microsoft.Extensions.Caching.Memory.nuspec"
       ]
     },
@@ -4510,10 +4510,10 @@
         "Microsoft.Extensions.Configuration.Binder.nuspec"
       ]
     },
-    "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15787": {
+    "Microsoft.Extensions.DependencyInjection/1.0.0-rc2-15788": {
       "type": "package",
       "serviceable": true,
-      "sha512": "5kbxcJFaSHqylFMy4yrQrgLCTrfmtQOeambrWqmZVunKej2wYKB0Y1OTSzxi9R75OhD4Uh6T2YLabLRfFhmofw==",
+      "sha512": "YffzAse1hqyc3NXv72Iqv1sbd7SxGQ/VW8GzZhSUsHx6+FHmF9K8iLsUlZL/JGF5CCjV/6kcuOvS2b0QQ4wuaQ==",
       "files": [
         "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.dll",
         "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.xml",
@@ -4521,15 +4521,15 @@
         "lib/net451/Microsoft.Extensions.DependencyInjection.xml",
         "lib/netcore50/Microsoft.Extensions.DependencyInjection.dll",
         "lib/netcore50/Microsoft.Extensions.DependencyInjection.xml",
-        "Microsoft.Extensions.DependencyInjection.1.0.0-rc2-15787.nupkg",
-        "Microsoft.Extensions.DependencyInjection.1.0.0-rc2-15787.nupkg.sha512",
+        "Microsoft.Extensions.DependencyInjection.1.0.0-rc2-15788.nupkg",
+        "Microsoft.Extensions.DependencyInjection.1.0.0-rc2-15788.nupkg.sha512",
         "Microsoft.Extensions.DependencyInjection.nuspec"
       ]
     },
-    "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15787": {
+    "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc2-15788": {
       "type": "package",
       "serviceable": true,
-      "sha512": "cKd2TyxHk+nBjBRPkLrWuggiD+OSueVUlrDvrD1g41uZ0akfqxmXuQLSoLzdCK3SbOMnY8qyM9sV/HKtthDcOw==",
+      "sha512": "TIoZK7Mpd3W6ywUFBD/8BDI7Ls9ResoZpctagRypeuN5nWq8S0lvPeItAMJmvDaNCNDMhp3RPWA1Ilb2jvOWyA==",
       "files": [
         "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
         "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
@@ -4537,15 +4537,15 @@
         "lib/net451/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
         "lib/netcore50/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
         "lib/netcore50/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
-        "Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0-rc2-15787.nupkg",
-        "Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0-rc2-15787.nupkg.sha512",
+        "Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0-rc2-15788.nupkg",
+        "Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0-rc2-15788.nupkg.sha512",
         "Microsoft.Extensions.DependencyInjection.Abstractions.nuspec"
       ]
     },
-    "Microsoft.Extensions.Logging/1.0.0-rc2-15814": {
+    "Microsoft.Extensions.Logging/1.0.0-rc2-15815": {
       "type": "package",
       "serviceable": true,
-      "sha512": "0LnY/Ykf95j865hUeTnnZ6wEyNKqplO0i8NeVotZIyLoRjJmHFOQj4xO1MpIPWbhnB82ethEDEW4ANNMjTnQjg==",
+      "sha512": "cjocmexG/hq1s6ZMmyZUybhBNVkOjNeEZLj3VLj6ONtvZhEaXlIDEbLj0nw28ivoQ0sgHci2dyqC4clFzO/DMg==",
       "files": [
         "lib/dotnet5.4/Microsoft.Extensions.Logging.dll",
         "lib/dotnet5.4/Microsoft.Extensions.Logging.xml",
@@ -4553,15 +4553,15 @@
         "lib/net451/Microsoft.Extensions.Logging.xml",
         "lib/netcore50/Microsoft.Extensions.Logging.dll",
         "lib/netcore50/Microsoft.Extensions.Logging.xml",
-        "Microsoft.Extensions.Logging.1.0.0-rc2-15814.nupkg",
-        "Microsoft.Extensions.Logging.1.0.0-rc2-15814.nupkg.sha512",
+        "Microsoft.Extensions.Logging.1.0.0-rc2-15815.nupkg",
+        "Microsoft.Extensions.Logging.1.0.0-rc2-15815.nupkg.sha512",
         "Microsoft.Extensions.Logging.nuspec"
       ]
     },
-    "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15814": {
+    "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc2-15815": {
       "type": "package",
       "serviceable": true,
-      "sha512": "LoWtoJDDq3yZ5W6J+UuzDOmYHwwY3WmssPG93GzwsrxQr9JszCV336M4MZ384tb+ikSeMmm4RE3YqBr3ZcIb3g==",
+      "sha512": "PpbiwPl2Hxf+vaeC73RlMIoUYGmZTrmyn1ySiyJ9YtTTKVNhL/nJ0uNVxJxfS/LVXkeTanXqcYoahL9GtIKu4Q==",
       "files": [
         "lib/dotnet5.4/Microsoft.Extensions.Logging.Abstractions.dll",
         "lib/dotnet5.4/Microsoft.Extensions.Logging.Abstractions.xml",
@@ -4569,15 +4569,15 @@
         "lib/net451/Microsoft.Extensions.Logging.Abstractions.xml",
         "lib/netcore50/Microsoft.Extensions.Logging.Abstractions.dll",
         "lib/netcore50/Microsoft.Extensions.Logging.Abstractions.xml",
-        "Microsoft.Extensions.Logging.Abstractions.1.0.0-rc2-15814.nupkg",
-        "Microsoft.Extensions.Logging.Abstractions.1.0.0-rc2-15814.nupkg.sha512",
+        "Microsoft.Extensions.Logging.Abstractions.1.0.0-rc2-15815.nupkg",
+        "Microsoft.Extensions.Logging.Abstractions.1.0.0-rc2-15815.nupkg.sha512",
         "Microsoft.Extensions.Logging.Abstractions.nuspec"
       ]
     },
-    "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15801": {
+    "Microsoft.Extensions.OptionsModel/1.0.0-rc2-15802": {
       "type": "package",
       "serviceable": true,
-      "sha512": "5IVS82QgX2bcHhaSZlKrxghSWIQm+ehvtqDNlZPvYqK0w3ci9cAY6eR3aTsKpJlGfGPzV5kdwcQQfI3z3eoL3Q==",
+      "sha512": "iDgbhQ9MBy0igZiOKD+q10FnswGL52pJVKEt7HBxcj/iKLFij92iAwiEut0f+TRsx0QrSnC3oCSvvXkADWoV1g==",
       "files": [
         "lib/dotnet5.4/Microsoft.Extensions.OptionsModel.dll",
         "lib/dotnet5.4/Microsoft.Extensions.OptionsModel.xml",
@@ -4585,8 +4585,8 @@
         "lib/net451/Microsoft.Extensions.OptionsModel.xml",
         "lib/netcore50/Microsoft.Extensions.OptionsModel.dll",
         "lib/netcore50/Microsoft.Extensions.OptionsModel.xml",
-        "Microsoft.Extensions.OptionsModel.1.0.0-rc2-15801.nupkg",
-        "Microsoft.Extensions.OptionsModel.1.0.0-rc2-15801.nupkg.sha512",
+        "Microsoft.Extensions.OptionsModel.1.0.0-rc2-15802.nupkg",
+        "Microsoft.Extensions.OptionsModel.1.0.0-rc2-15802.nupkg.sha512",
         "Microsoft.Extensions.OptionsModel.nuspec"
       ]
     },

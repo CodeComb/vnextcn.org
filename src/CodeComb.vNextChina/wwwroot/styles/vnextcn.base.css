@@ -2540,3 +2540,7 @@ select:focus {
 .thread-edit, .post-edit {
     display: none;
 }
+
+img {
+    max-width: 100%;
+}

@@ -37,7 +37,7 @@ namespace CodeComb.vNextChina.Models
                 e.HasIndex(x => x.IsAnnouncement);
             });
 
-            builder.Entity<Post>(e => 
+            builder.Entity<Post>(e =>
             {
                 e.HasIndex(x => x.Time);
             });

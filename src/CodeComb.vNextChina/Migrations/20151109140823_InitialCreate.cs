@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Migrations;
+using Microsoft.Data.Entity.Metadata;
 
 namespace CodeComb.vNextChina.Migrations
 {
@@ -13,7 +14,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Alias = table.Column<string>(nullable: true),
                     Port = table.Column<int>(nullable: false),
                     PrivateKey = table.Column<string>(nullable: true),
@@ -71,7 +72,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Accepted = table.Column<int>(nullable: false),
                     AnswerArchive = table.Column<byte[]>(nullable: true),
                     CheckPassed = table.Column<bool>(nullable: false),
@@ -100,8 +101,8 @@ namespace CodeComb.vNextChina.Migrations
                     PRI = table.Column<int>(nullable: false),
                     ParentId = table.Column<string>(nullable: true),
                     PostCount = table.Column<long>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    ThreadCount = table.Column<long>(nullable: false)
+                    ThreadCount = table.Column<long>(nullable: false),
+                    Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -137,7 +138,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Avatar = table.Column<byte[]>(nullable: true),
                     AvatarContentType = table.Column<string>(nullable: true),
@@ -168,7 +169,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     NormalizedName = table.Column<string>(nullable: true)
@@ -234,7 +235,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Content = table.Column<string>(nullable: true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     ForumId = table.Column<string>(nullable: true),
@@ -267,7 +268,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
                     UserId = table.Column<long>(nullable: false)
@@ -306,7 +307,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
                     RoleId = table.Column<long>(nullable: false)
@@ -349,7 +350,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Accepted = table.Column<int>(nullable: false),
                     Archive = table.Column<byte[]>(nullable: true),
                     ExperimentId = table.Column<long>(nullable: true),
@@ -401,8 +402,8 @@ namespace CodeComb.vNextChina.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Content = table.Column<string>(nullable: true),
                     ParentId = table.Column<Guid>(nullable: true),
-                    Time = table.Column<DateTime>(nullable: false),
                     ThreadId = table.Column<long>(nullable: false),
+                    Time = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>

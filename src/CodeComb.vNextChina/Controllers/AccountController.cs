@@ -57,7 +57,7 @@ namespace CodeComb.vNextChina.Controllers
             
             // 发送激活信
             var aes_email = Aes.Encrypt(email);
-            var url = Url.Action("RegisterDetail", "Account");
+            var url = Url.Link("default", new { action = "RegisterDetail", controller = "Account", key = aes_email });
             await Mail.SendEmailAsync(email, "vNext China 新用户注册验证信", $@"<html>
             <head></head>
             <body>

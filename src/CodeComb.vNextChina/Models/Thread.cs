@@ -14,6 +14,7 @@ namespace CodeComb.vNextChina.Models
         [MaxLength(64)]
         public string Title { get; set; }
 
+        [MaxLength(64)]
         [ForeignKey("Forum")]
         public string ForumId { get; set; }
 

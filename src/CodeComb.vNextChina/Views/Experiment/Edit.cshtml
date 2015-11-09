@@ -80,7 +80,7 @@
                     <tr>
                         <td class="row-title">校验标识</td>
                         <td>
-                            <input type="checkbox" name="IsChecked" value="true" />
+                            <input type="checkbox" name="IsChecked" value="true" @(Model.CheckPassed?"checked":"") />
                             （不勾选则普通用户无法访问该实验）
                         </td>
                     </tr>

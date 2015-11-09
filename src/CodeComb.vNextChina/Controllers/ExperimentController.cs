@@ -222,6 +222,7 @@ namespace CodeComb.vNextChina.Controllers
                 exp.AnswerArchive = await AnswerArchive.ReadAllBytesAsync();
             exp.Difficulty = Model.Difficulty;
             exp.Version = Model.Version;
+            exp.Description = Model.Description;
             DB.SaveChanges();
             return Prompt(x =>
             {

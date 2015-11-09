@@ -17,6 +17,7 @@ namespace CodeComb.vNextChina.Models
 
         public bool IsReadOnly { get; set; }
 
+        [MaxLength(64)]
         [ForeignKey("Parent")]
         public string ParentId { get; set; }
 

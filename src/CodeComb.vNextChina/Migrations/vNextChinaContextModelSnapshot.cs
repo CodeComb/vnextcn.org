@@ -13,7 +13,8 @@ namespace CodeComb.vNextChina.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-rc2-16288");
+                .HasAnnotation("ProductVersion", "7.0.0-rc2-16289")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("CodeComb.vNextChina.Hub.Models.Node", b =>
                 {
@@ -167,14 +168,15 @@ namespace CodeComb.vNextChina.Migrations
 
                     b.Property<int>("PRI");
 
-                    b.Property<string>("ParentId");
+                    b.Property<string>("ParentId")
+                        .HasAnnotation("MaxLength", 64);
 
                     b.Property<long>("PostCount");
 
+                    b.Property<long>("ThreadCount");
+
                     b.Property<string>("Title")
                         .HasAnnotation("MaxLength", 128);
-
-                    b.Property<long>("ThreadCount");
 
                     b.HasKey("Id");
 
@@ -190,9 +192,9 @@ namespace CodeComb.vNextChina.Migrations
 
                     b.Property<Guid?>("ParentId");
 
-                    b.Property<DateTime>("Time");
-
                     b.Property<long>("ThreadId");
+
+                    b.Property<DateTime>("Time");
 
                     b.Property<long>("UserId");
 
