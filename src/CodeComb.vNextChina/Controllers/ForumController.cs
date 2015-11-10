@@ -26,6 +26,7 @@ namespace CodeComb.vNextChina.Controllers
                 foreach (var y in x.SubForums)
                 {
                     y.LastPost = DB.Posts
+                        .Include(z => z.User)
                         .Include(z => z.Thread)
                         .ThenInclude(z => z.User)
                         .Where(z => z.Thread.ForumId == y.Id)
