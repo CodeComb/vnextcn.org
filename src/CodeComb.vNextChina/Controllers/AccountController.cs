@@ -253,13 +253,21 @@ namespace CodeComb.vNextChina.Controllers
         {
             var user = await UserManager.FindByIdAsync(id.ToString());
             if (User.AnyRoles("Master") && await UserManager.IsInAnyRolesAsync(user, "Root, Master"))
+            {
                 return Prompt(x =>
                 {
                     x.Title = "权限不足";
                     x.Details = "您无权编辑这个用户的角色！";
                 });
+            }
             else
-                return View();
+            {
+                ViewBag.Roles = DB.Roles
+                    .Select(x => x.Name)
+                    .ToList();
+                ViewBag.CurrentRole = (await UserManager.GetRolesAsync(user)).First();
+                return View(user);
+            }
         }
 
         [HttpPost]
