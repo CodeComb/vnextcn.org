@@ -29,7 +29,7 @@
                 <textarea class="textbox markdown-editor" name="Content" id="txtEditPost"></textarea>
                 <div class="markdown-editor-bottom">
                     <a href="javascript:EditPostSubmit()">保存修改</a>
-                    <a href="javascript:$('#edit-post-outer').append($('#edit-post'))">取消编辑</a>
+                    <a href="javascript:CancelEditPost()">取消编辑</a>
                     支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。
                 </div>
             </div>
@@ -310,6 +310,12 @@
             $('.post-edit').hide();
             popResult("回复编辑成功");
         });
+    }
+    function CancelEditPost()
+    {
+        $('#edit-post-outer').append($('#edit-post'))
+        $('.post-content').show();
+        $('.post-edit').hide();
     }
     </script>
 }
