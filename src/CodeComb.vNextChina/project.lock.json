@@ -3,10 +3,10 @@
   "version": 2,
   "targets": {
     "DNX,Version=v4.5.1": {
-      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16059": {
+      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16061": {
         "type": "package",
         "dependencies": {
-          "CodeComb.HtmlAgilityPack": "2.0.0-t151109001557",
+          "CodeComb.HtmlAgilityPack": "2.0.0-rc2-16062",
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
         },
         "frameworkAssemblies": [
@@ -22,7 +22,7 @@
           "lib/dnx451/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-rc2-16069": {
+      "CodeComb.AspNet.Extensions/2.0.0-rc2-16070": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15955",
@@ -43,7 +43,23 @@
           "lib/dnx451/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.Marked/2.0.0-rc2-16051": {
+      "CodeComb.HtmlAgilityPack/2.0.0-rc2-16062": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/net451/CodeComb.HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/net451/CodeComb.HtmlAgilityPack.dll": {}
+        }
+      },
+      "CodeComb.Marked/2.0.0-rc2-16052": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
@@ -61,7 +77,7 @@
           "lib/dnx451/CodeComb.Marked.dll": {}
         }
       },
-      "CodeComb.Net.EmailSender/2.0.0-rc2-16101": {
+      "CodeComb.Net.EmailSender/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15792"
@@ -79,7 +95,7 @@
           "lib/dnx451/CodeComb.Net.EmailSender.dll": {}
         }
       },
-      "CodeComb.Package/2.0.0-rc2-16068": {
+      "CodeComb.Package/2.0.0-rc2-16069": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -96,7 +112,7 @@
           "lib/net451/CodeComb.Package.dll": {}
         }
       },
-      "CodeComb.Security.Aes/2.0.0-rc2-16101": {
+      "CodeComb.Security.Aes/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15792"
@@ -2065,10 +2081,10 @@
       }
     },
     "DNXCore,Version=v5.0": {
-      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16059": {
+      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16061": {
         "type": "package",
         "dependencies": {
-          "CodeComb.HtmlAgilityPack": "2.0.0-t151109001557",
+          "CodeComb.HtmlAgilityPack": "2.0.0-rc2-16062",
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
         },
         "compile": {
@@ -2078,7 +2094,7 @@
           "lib/dnxcore50/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-rc2-16069": {
+      "CodeComb.AspNet.Extensions/2.0.0-rc2-16070": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15955",
@@ -2093,7 +2109,30 @@
           "lib/dotnet5.4/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.Marked/2.0.0-rc2-16051": {
+      "CodeComb.HtmlAgilityPack/2.0.0-rc2-16062": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23509",
+          "System.Collections": "4.0.11-beta-23509",
+          "System.Linq": "4.0.1-beta-23509",
+          "System.Runtime": "4.0.21-beta-23509",
+          "System.Threading": "4.0.11-beta-23509",
+          "System.Xml.ReaderWriter": "4.0.11-beta-23509",
+          "System.Xml.XDocument": "4.0.11-beta-23509",
+          "System.Xml.XmlDocument": "4.0.1-beta-23509",
+          "System.Xml.XmlSerializer": "4.0.11-beta-23509",
+          "System.Xml.XPath": "4.0.1-beta-23509",
+          "System.Xml.XPath.XDocument": "4.0.1-beta-23509",
+          "System.Xml.XPath.XmlDocument": "4.0.1-beta-23509"
+        },
+        "compile": {
+          "lib/dotnet5.4/CodeComb.HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/CodeComb.HtmlAgilityPack.dll": {}
+        }
+      },
+      "CodeComb.Marked/2.0.0-rc2-16052": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
@@ -2105,7 +2144,7 @@
           "lib/dotnet5.4/CodeComb.Marked.dll": {}
         }
       },
-      "CodeComb.Net.EmailSender/2.0.0-rc2-16101": {
+      "CodeComb.Net.EmailSender/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23509",
@@ -2126,7 +2165,7 @@
           "lib/dnxcore50/CodeComb.Net.EmailSender.dll": {}
         }
       },
-      "CodeComb.Package/2.0.0-rc2-16068": {
+      "CodeComb.Package/2.0.0-rc2-16069": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23509",
@@ -2148,7 +2187,7 @@
           "lib/dotnet5.4/CodeComb.Package.dll": {}
         }
       },
-      "CodeComb.Security.Aes/2.0.0-rc2-16101": {
+      "CodeComb.Security.Aes/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23509",
@@ -4739,7 +4778,7 @@
           "lib/DNXCore50/System.Threading.Timer.dll": {}
         }
       },
-      "System.Xml.ReaderWriter/4.0.10": {
+      "System.Xml.ReaderWriter/4.0.11-beta-23509": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -4754,17 +4793,17 @@
           "System.Runtime.InteropServices": "4.0.20",
           "System.Text.Encoding": "4.0.10",
           "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.0",
           "System.Threading.Tasks": "4.0.10"
         },
         "compile": {
-          "ref/dotnet/System.Xml.ReaderWriter.dll": {}
+          "ref/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Xml.ReaderWriter.dll": {}
+          "lib/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         }
       },
-      "System.Xml.XDocument/4.0.11-beta-23506": {
+      "System.Xml.XDocument/4.0.11-beta-23509": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -4786,13 +4825,106 @@
         "runtime": {
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
+      },
+      "System.Xml.XmlDocument/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XmlDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "System.Xml.XmlSerializer/4.0.11-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.Runtime": "4.0.0",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "System.Xml.XPath/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XPath.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XPath.dll": {}
+        }
+      },
+      "System.Xml.XPath.XDocument/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XDocument": "4.0.10",
+          "System.Xml.XPath": "4.0.1-beta-23509"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XPath.XDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XPath.XDocument.dll": {}
+        }
+      },
+      "System.Xml.XPath.XmlDocument/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0",
+          "System.Xml.XPath": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XPath.XmlDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XPath.XmlDocument.dll": {}
+        }
       }
     },
     "DNX,Version=v4.5.1/win7-x86": {
-      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16059": {
+      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16061": {
         "type": "package",
         "dependencies": {
-          "CodeComb.HtmlAgilityPack": "2.0.0-t151109001557",
+          "CodeComb.HtmlAgilityPack": "2.0.0-rc2-16062",
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
         },
         "frameworkAssemblies": [
@@ -4808,7 +4940,7 @@
           "lib/dnx451/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-rc2-16069": {
+      "CodeComb.AspNet.Extensions/2.0.0-rc2-16070": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15955",
@@ -4829,7 +4961,23 @@
           "lib/dnx451/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.Marked/2.0.0-rc2-16051": {
+      "CodeComb.HtmlAgilityPack/2.0.0-rc2-16062": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/net451/CodeComb.HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/net451/CodeComb.HtmlAgilityPack.dll": {}
+        }
+      },
+      "CodeComb.Marked/2.0.0-rc2-16052": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
@@ -4847,7 +4995,7 @@
           "lib/dnx451/CodeComb.Marked.dll": {}
         }
       },
-      "CodeComb.Net.EmailSender/2.0.0-rc2-16101": {
+      "CodeComb.Net.EmailSender/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15792"
@@ -4865,7 +5013,7 @@
           "lib/dnx451/CodeComb.Net.EmailSender.dll": {}
         }
       },
-      "CodeComb.Package/2.0.0-rc2-16068": {
+      "CodeComb.Package/2.0.0-rc2-16069": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -4882,7 +5030,7 @@
           "lib/net451/CodeComb.Package.dll": {}
         }
       },
-      "CodeComb.Security.Aes/2.0.0-rc2-16101": {
+      "CodeComb.Security.Aes/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15792"
@@ -6862,10 +7010,10 @@
       }
     },
     "DNX,Version=v4.5.1/win7-x64": {
-      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16059": {
+      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16061": {
         "type": "package",
         "dependencies": {
-          "CodeComb.HtmlAgilityPack": "2.0.0-t151109001557",
+          "CodeComb.HtmlAgilityPack": "2.0.0-rc2-16062",
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
         },
         "frameworkAssemblies": [
@@ -6881,7 +7029,7 @@
           "lib/dnx451/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-rc2-16069": {
+      "CodeComb.AspNet.Extensions/2.0.0-rc2-16070": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15955",
@@ -6902,7 +7050,23 @@
           "lib/dnx451/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.Marked/2.0.0-rc2-16051": {
+      "CodeComb.HtmlAgilityPack/2.0.0-rc2-16062": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Xml"
+        ],
+        "compile": {
+          "lib/net451/CodeComb.HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/net451/CodeComb.HtmlAgilityPack.dll": {}
+        }
+      },
+      "CodeComb.Marked/2.0.0-rc2-16052": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
@@ -6920,7 +7084,7 @@
           "lib/dnx451/CodeComb.Marked.dll": {}
         }
       },
-      "CodeComb.Net.EmailSender/2.0.0-rc2-16101": {
+      "CodeComb.Net.EmailSender/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15792"
@@ -6938,7 +7102,7 @@
           "lib/dnx451/CodeComb.Net.EmailSender.dll": {}
         }
       },
-      "CodeComb.Package/2.0.0-rc2-16068": {
+      "CodeComb.Package/2.0.0-rc2-16069": {
         "type": "package",
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -6955,7 +7119,7 @@
           "lib/net451/CodeComb.Package.dll": {}
         }
       },
-      "CodeComb.Security.Aes/2.0.0-rc2-16101": {
+      "CodeComb.Security.Aes/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-15792"
@@ -8935,10 +9099,10 @@
       }
     },
     "DNXCore,Version=v5.0/win7-x86": {
-      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16059": {
+      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16061": {
         "type": "package",
         "dependencies": {
-          "CodeComb.HtmlAgilityPack": "2.0.0-t151109001557",
+          "CodeComb.HtmlAgilityPack": "2.0.0-rc2-16062",
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
         },
         "compile": {
@@ -8948,7 +9112,7 @@
           "lib/dnxcore50/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-rc2-16069": {
+      "CodeComb.AspNet.Extensions/2.0.0-rc2-16070": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15955",
@@ -8963,7 +9127,30 @@
           "lib/dotnet5.4/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.Marked/2.0.0-rc2-16051": {
+      "CodeComb.HtmlAgilityPack/2.0.0-rc2-16062": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23509",
+          "System.Collections": "4.0.11-beta-23509",
+          "System.Linq": "4.0.1-beta-23509",
+          "System.Runtime": "4.0.21-beta-23509",
+          "System.Threading": "4.0.11-beta-23509",
+          "System.Xml.ReaderWriter": "4.0.11-beta-23509",
+          "System.Xml.XDocument": "4.0.11-beta-23509",
+          "System.Xml.XmlDocument": "4.0.1-beta-23509",
+          "System.Xml.XmlSerializer": "4.0.11-beta-23509",
+          "System.Xml.XPath": "4.0.1-beta-23509",
+          "System.Xml.XPath.XDocument": "4.0.1-beta-23509",
+          "System.Xml.XPath.XmlDocument": "4.0.1-beta-23509"
+        },
+        "compile": {
+          "lib/dotnet5.4/CodeComb.HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/CodeComb.HtmlAgilityPack.dll": {}
+        }
+      },
+      "CodeComb.Marked/2.0.0-rc2-16052": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
@@ -8975,7 +9162,7 @@
           "lib/dotnet5.4/CodeComb.Marked.dll": {}
         }
       },
-      "CodeComb.Net.EmailSender/2.0.0-rc2-16101": {
+      "CodeComb.Net.EmailSender/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23509",
@@ -8996,7 +9183,7 @@
           "lib/dnxcore50/CodeComb.Net.EmailSender.dll": {}
         }
       },
-      "CodeComb.Package/2.0.0-rc2-16068": {
+      "CodeComb.Package/2.0.0-rc2-16069": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23509",
@@ -9018,7 +9205,7 @@
           "lib/dotnet5.4/CodeComb.Package.dll": {}
         }
       },
-      "CodeComb.Security.Aes/2.0.0-rc2-16101": {
+      "CodeComb.Security.Aes/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23509",
@@ -10645,7 +10832,36 @@
           "lib/DNXCore50/System.Linq.Expressions.dll": {}
         }
       },
-      "runtime.win.System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23509": {
+      "runtime.any.System.Xml.XmlSerializer/4.0.11-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Emit": "4.0.0",
+          "System.Reflection.Emit.ILGeneration": "4.0.0",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Reflection.Primitives": "4.0.0",
+          "System.Reflection.TypeExtensions": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "runtime.win.System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
@@ -10680,7 +10896,7 @@
           "runtimes/win/lib/dotnet5.4/System.Text.Encoding.CodePages.dll": {}
         }
       },
-      "runtime.win7.System.Console/4.0.0-beta-23509": {
+      "runtime.win7.System.Console/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.10",
@@ -10853,7 +11069,7 @@
           "runtimes/win7/lib/dotnet5.4/System.IO.FileSystem.Watcher.dll": {}
         }
       },
-      "runtime.win7.System.Net.Http/4.0.1-beta-23509": {
+      "runtime.win7.System.Net.Http/4.0.1-beta-23506": {
         "type": "package",
         "dependencies": {
           "Microsoft.Win32.Primitives": "4.0.0",
@@ -10868,7 +11084,7 @@
           "System.Runtime.Extensions": "4.0.10",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.X509Certificates": "4.0.0-beta-23509",
+          "System.Security.Cryptography.X509Certificates": "4.0.0-beta-23506",
           "System.Text.Encoding": "4.0.10",
           "System.Threading": "4.0.0",
           "System.Threading.Tasks": "4.0.10"
@@ -10935,7 +11151,7 @@
           "lib/DNXCore50/System.Runtime.Extensions.dll": {}
         }
       },
-      "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23509": {
+      "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.10",
@@ -10943,7 +11159,7 @@
           "System.Runtime": "4.0.20",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23509",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23506",
           "System.Text.Encoding": "4.0.0",
           "System.Text.Encoding.Extensions": "4.0.0"
         },
@@ -10954,7 +11170,7 @@
           "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.Algorithms.dll": {}
         }
       },
-      "runtime.win7.System.Security.Cryptography.Encoding/4.0.0-beta-23509": {
+      "runtime.win7.System.Security.Cryptography.Encoding/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.0",
@@ -10966,7 +11182,7 @@
           "System.Runtime.Extensions": "4.0.10",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23509"
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23506"
         },
         "compile": {
           "ref/dotnet/_._": {}
@@ -10975,7 +11191,7 @@
           "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.Encoding.dll": {}
         }
       },
-      "runtime.win7.System.Security.Cryptography.X509Certificates/4.0.0-beta-23509": {
+      "runtime.win7.System.Security.Cryptography.X509Certificates/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -10989,11 +11205,11 @@
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
           "System.Runtime.Numerics": "4.0.0",
-          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Cng": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Csp": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Encoding": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23509",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Cng": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Csp": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Encoding": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23506",
           "System.Text.Encoding": "4.0.10",
           "System.Threading": "4.0.10"
         },
@@ -11897,7 +12113,7 @@
           "ref/dotnet5.4/System.Security.Cryptography.Algorithms.dll": {}
         }
       },
-      "System.Security.Cryptography.Cng/4.0.0-beta-23509": {
+      "System.Security.Cryptography.Cng/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.10",
@@ -11906,8 +12122,8 @@
           "System.Runtime.Extensions": "4.0.0",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23509",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23506",
           "System.Text.Encoding": "4.0.0"
         },
         "compile": {
@@ -11917,7 +12133,7 @@
           "lib/dotnet5.4/System.Security.Cryptography.Cng.dll": {}
         }
       },
-      "System.Security.Cryptography.Csp/4.0.0-beta-23509": {
+      "System.Security.Cryptography.Csp/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.10",
@@ -11927,9 +12143,9 @@
           "System.Runtime.Extensions": "4.0.10",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Encoding": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23509",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Encoding": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23506",
           "System.Text.Encoding": "4.0.10",
           "System.Threading": "4.0.10"
         },
@@ -12188,7 +12404,7 @@
           "lib/DNXCore50/System.Threading.Timer.dll": {}
         }
       },
-      "System.Xml.ReaderWriter/4.0.10": {
+      "System.Xml.ReaderWriter/4.0.11-beta-23509": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -12203,17 +12419,17 @@
           "System.Runtime.InteropServices": "4.0.20",
           "System.Text.Encoding": "4.0.10",
           "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.0",
           "System.Threading.Tasks": "4.0.10"
         },
         "compile": {
-          "ref/dotnet/System.Xml.ReaderWriter.dll": {}
+          "ref/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Xml.ReaderWriter.dll": {}
+          "lib/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         }
       },
-      "System.Xml.XDocument/4.0.11-beta-23506": {
+      "System.Xml.XDocument/4.0.11-beta-23509": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -12235,13 +12451,106 @@
         "runtime": {
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
+      },
+      "System.Xml.XmlDocument/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XmlDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "System.Xml.XmlSerializer/4.0.11-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.Runtime": "4.0.0",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "System.Xml.XPath/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XPath.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XPath.dll": {}
+        }
+      },
+      "System.Xml.XPath.XDocument/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XDocument": "4.0.10",
+          "System.Xml.XPath": "4.0.1-beta-23509"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XPath.XDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XPath.XDocument.dll": {}
+        }
+      },
+      "System.Xml.XPath.XmlDocument/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0",
+          "System.Xml.XPath": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XPath.XmlDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XPath.XmlDocument.dll": {}
+        }
       }
     },
     "DNXCore,Version=v5.0/win7-x64": {
-      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16059": {
+      "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16061": {
         "type": "package",
         "dependencies": {
-          "CodeComb.HtmlAgilityPack": "2.0.0-t151109001557",
+          "CodeComb.HtmlAgilityPack": "2.0.0-rc2-16062",
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
         },
         "compile": {
@@ -12251,7 +12560,7 @@
           "lib/dnxcore50/CodeComb.AspNet.AntiXSS.dll": {}
         }
       },
-      "CodeComb.AspNet.Extensions/2.0.0-rc2-16069": {
+      "CodeComb.AspNet.Extensions/2.0.0-rc2-16070": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc2-15955",
@@ -12266,7 +12575,30 @@
           "lib/dotnet5.4/CodeComb.AspNet.Extensions.dll": {}
         }
       },
-      "CodeComb.Marked/2.0.0-rc2-16051": {
+      "CodeComb.HtmlAgilityPack/2.0.0-rc2-16062": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1-beta-23509",
+          "System.Collections": "4.0.11-beta-23509",
+          "System.Linq": "4.0.1-beta-23509",
+          "System.Runtime": "4.0.21-beta-23509",
+          "System.Threading": "4.0.11-beta-23509",
+          "System.Xml.ReaderWriter": "4.0.11-beta-23509",
+          "System.Xml.XDocument": "4.0.11-beta-23509",
+          "System.Xml.XmlDocument": "4.0.1-beta-23509",
+          "System.Xml.XmlSerializer": "4.0.11-beta-23509",
+          "System.Xml.XPath": "4.0.1-beta-23509",
+          "System.Xml.XPath.XDocument": "4.0.1-beta-23509",
+          "System.Xml.XPath.XmlDocument": "4.0.1-beta-23509"
+        },
+        "compile": {
+          "lib/dotnet5.4/CodeComb.HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/CodeComb.HtmlAgilityPack.dll": {}
+        }
+      },
+      "CodeComb.Marked/2.0.0-rc2-16052": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNet.Mvc": "6.0.0-rc2-16339"
@@ -12278,7 +12610,7 @@
           "lib/dotnet5.4/CodeComb.Marked.dll": {}
         }
       },
-      "CodeComb.Net.EmailSender/2.0.0-rc2-16101": {
+      "CodeComb.Net.EmailSender/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23509",
@@ -12299,7 +12631,7 @@
           "lib/dnxcore50/CodeComb.Net.EmailSender.dll": {}
         }
       },
-      "CodeComb.Package/2.0.0-rc2-16068": {
+      "CodeComb.Package/2.0.0-rc2-16069": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23509",
@@ -12321,7 +12653,7 @@
           "lib/dotnet5.4/CodeComb.Package.dll": {}
         }
       },
-      "CodeComb.Security.Aes/2.0.0-rc2-16101": {
+      "CodeComb.Security.Aes/2.0.0-rc2-16102": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23509",
@@ -13948,7 +14280,36 @@
           "lib/DNXCore50/System.Linq.Expressions.dll": {}
         }
       },
-      "runtime.win.System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23509": {
+      "runtime.any.System.Xml.XmlSerializer/4.0.11-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Emit": "4.0.0",
+          "System.Reflection.Emit.ILGeneration": "4.0.0",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Reflection.Primitives": "4.0.0",
+          "System.Reflection.TypeExtensions": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet/_._": {}
+        },
+        "runtime": {
+          "lib/DNXCore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "runtime.win.System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.0",
@@ -13983,7 +14344,7 @@
           "runtimes/win/lib/dotnet5.4/System.Text.Encoding.CodePages.dll": {}
         }
       },
-      "runtime.win7.System.Console/4.0.0-beta-23509": {
+      "runtime.win7.System.Console/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.10",
@@ -14156,7 +14517,7 @@
           "runtimes/win7/lib/dotnet5.4/System.IO.FileSystem.Watcher.dll": {}
         }
       },
-      "runtime.win7.System.Net.Http/4.0.1-beta-23509": {
+      "runtime.win7.System.Net.Http/4.0.1-beta-23506": {
         "type": "package",
         "dependencies": {
           "Microsoft.Win32.Primitives": "4.0.0",
@@ -14171,7 +14532,7 @@
           "System.Runtime.Extensions": "4.0.10",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.X509Certificates": "4.0.0-beta-23509",
+          "System.Security.Cryptography.X509Certificates": "4.0.0-beta-23506",
           "System.Text.Encoding": "4.0.10",
           "System.Threading": "4.0.0",
           "System.Threading.Tasks": "4.0.10"
@@ -14238,7 +14599,7 @@
           "lib/DNXCore50/System.Runtime.Extensions.dll": {}
         }
       },
-      "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23509": {
+      "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.10",
@@ -14246,7 +14607,7 @@
           "System.Runtime": "4.0.20",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23509",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23506",
           "System.Text.Encoding": "4.0.0",
           "System.Text.Encoding.Extensions": "4.0.0"
         },
@@ -14257,7 +14618,7 @@
           "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.Algorithms.dll": {}
         }
       },
-      "runtime.win7.System.Security.Cryptography.Encoding/4.0.0-beta-23509": {
+      "runtime.win7.System.Security.Cryptography.Encoding/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.0",
@@ -14269,7 +14630,7 @@
           "System.Runtime.Extensions": "4.0.10",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23509"
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23506"
         },
         "compile": {
           "ref/dotnet/_._": {}
@@ -14278,7 +14639,7 @@
           "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.Encoding.dll": {}
         }
       },
-      "runtime.win7.System.Security.Cryptography.X509Certificates/4.0.0-beta-23509": {
+      "runtime.win7.System.Security.Cryptography.X509Certificates/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -14292,11 +14653,11 @@
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
           "System.Runtime.Numerics": "4.0.0",
-          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Cng": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Csp": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Encoding": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23509",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Cng": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Csp": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Encoding": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23506",
           "System.Text.Encoding": "4.0.10",
           "System.Threading": "4.0.10"
         },
@@ -15200,7 +15561,7 @@
           "ref/dotnet5.4/System.Security.Cryptography.Algorithms.dll": {}
         }
       },
-      "System.Security.Cryptography.Cng/4.0.0-beta-23509": {
+      "System.Security.Cryptography.Cng/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.10",
@@ -15209,8 +15570,8 @@
           "System.Runtime.Extensions": "4.0.0",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23509",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23506",
           "System.Text.Encoding": "4.0.0"
         },
         "compile": {
@@ -15220,7 +15581,7 @@
           "lib/dotnet5.4/System.Security.Cryptography.Cng.dll": {}
         }
       },
-      "System.Security.Cryptography.Csp/4.0.0-beta-23509": {
+      "System.Security.Cryptography.Csp/4.0.0-beta-23506": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.10",
@@ -15230,9 +15591,9 @@
           "System.Runtime.Extensions": "4.0.10",
           "System.Runtime.Handles": "4.0.0",
           "System.Runtime.InteropServices": "4.0.20",
-          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Encoding": "4.0.0-beta-23509",
-          "System.Security.Cryptography.Primitives": "4.0.0-beta-23509",
+          "System.Security.Cryptography.Algorithms": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Encoding": "4.0.0-beta-23506",
+          "System.Security.Cryptography.Primitives": "4.0.0-beta-23506",
           "System.Text.Encoding": "4.0.10",
           "System.Threading": "4.0.10"
         },
@@ -15491,7 +15852,7 @@
           "lib/DNXCore50/System.Threading.Timer.dll": {}
         }
       },
-      "System.Xml.ReaderWriter/4.0.10": {
+      "System.Xml.ReaderWriter/4.0.11-beta-23509": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -15506,17 +15867,17 @@
           "System.Runtime.InteropServices": "4.0.20",
           "System.Text.Encoding": "4.0.10",
           "System.Text.Encoding.Extensions": "4.0.10",
-          "System.Text.RegularExpressions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.0",
           "System.Threading.Tasks": "4.0.10"
         },
         "compile": {
-          "ref/dotnet/System.Xml.ReaderWriter.dll": {}
+          "ref/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         },
         "runtime": {
-          "lib/dotnet/System.Xml.ReaderWriter.dll": {}
+          "lib/dotnet5.4/System.Xml.ReaderWriter.dll": {}
         }
       },
-      "System.Xml.XDocument/4.0.11-beta-23506": {
+      "System.Xml.XDocument/4.0.11-beta-23509": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -15538,6 +15899,99 @@
         "runtime": {
           "lib/dotnet5.4/System.Xml.XDocument.dll": {}
         }
+      },
+      "System.Xml.XmlDocument/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XmlDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XmlDocument.dll": {}
+        }
+      },
+      "System.Xml.XmlSerializer/4.0.11-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.0.0",
+          "System.Runtime": "4.0.0",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "System.Xml.XPath/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XPath.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XPath.dll": {}
+        }
+      },
+      "System.Xml.XPath.XDocument/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Linq": "4.0.0",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XDocument": "4.0.10",
+          "System.Xml.XPath": "4.0.1-beta-23509"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XPath.XDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XPath.XDocument.dll": {}
+        }
+      },
+      "System.Xml.XPath.XmlDocument/4.0.1-beta-23509": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.Resources.ResourceManager": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Xml.ReaderWriter": "4.0.10",
+          "System.Xml.XmlDocument": "4.0.0",
+          "System.Xml.XPath": "4.0.0"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Xml.XPath.XmlDocument.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet5.4/System.Xml.XPath.XmlDocument.dll": {}
+        }
       }
     }
   },
@@ -15546,12 +16000,23 @@
       "type": "project",
       "path": "../CodeComb.vNextChina.Hub/project.json"
     },
-    "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16059": {
+    "CodeComb.AspNet.AntiXSS/2.0.0-rc2-16061": {
       "type": "package",
-      "sha512": "+5ONoL98om6lXfja04YehX3/IaNqYtkvoqSBkpeiubd3q/0NlRCB6fNWPndMGTg6GKOPz8DfuXeKd95f9yy30w==",
+      "sha512": "7vA7K2ShigTwexuNRLkEVEjmAwOO52o9+/RFPXV7vnuCtGwo9Cs8AkZ7HU2FriaifVoG17gXjBwR0n42Sh2Wsw==",
       "files": [
-        "CodeComb.AspNet.AntiXSS.2.0.0-rc2-16059.nupkg",
-        "CodeComb.AspNet.AntiXSS.2.0.0-rc2-16059.nupkg.sha512",
+        "__MACOSX/._[Content_Types].xml",
+        "__MACOSX/.__rels",
+        "__MACOSX/._CodeComb.AspNet.AntiXSS.nuspec",
+        "__MACOSX/._lib",
+        "__MACOSX/_rels/._.rels",
+        "__MACOSX/lib/._dnx451",
+        "__MACOSX/lib/._dnxcore50",
+        "__MACOSX/lib/dnx451/._CodeComb.AspNet.AntiXSS.dll",
+        "__MACOSX/lib/dnx451/._CodeComb.AspNet.AntiXSS.xml",
+        "__MACOSX/lib/dnxcore50/._CodeComb.AspNet.AntiXSS.dll",
+        "__MACOSX/lib/dnxcore50/._CodeComb.AspNet.AntiXSS.xml",
+        "CodeComb.AspNet.AntiXSS.2.0.0-rc2-16061.nupkg",
+        "CodeComb.AspNet.AntiXSS.2.0.0-rc2-16061.nupkg.sha512",
         "CodeComb.AspNet.AntiXSS.nuspec",
         "lib/dnx451/CodeComb.AspNet.AntiXSS.dll",
         "lib/dnx451/CodeComb.AspNet.AntiXSS.xml",
@@ -15559,12 +16024,12 @@
         "lib/dnxcore50/CodeComb.AspNet.AntiXSS.xml"
       ]
     },
-    "CodeComb.AspNet.Extensions/2.0.0-rc2-16069": {
+    "CodeComb.AspNet.Extensions/2.0.0-rc2-16070": {
       "type": "package",
-      "sha512": "k1cCTvAqwCRPILCnk2KeqZupU0D+5nmdl1gscuO+BBVw4lSzxZOec5Ry86X2NvC4VEHEQN7DqazJsGBmQhhqxw==",
+      "sha512": "YmXbVVxVQPJ+N8p4cVau4HxezTSRbnPbI9u2pQozUEzIVHm6yuN2MJZ3GJ+EV1qV5Kct6sqXZKQoqd0DW4aqRQ==",
       "files": [
-        "CodeComb.AspNet.Extensions.2.0.0-rc2-16069.nupkg",
-        "CodeComb.AspNet.Extensions.2.0.0-rc2-16069.nupkg.sha512",
+        "CodeComb.AspNet.Extensions.2.0.0-rc2-16070.nupkg",
+        "CodeComb.AspNet.Extensions.2.0.0-rc2-16070.nupkg.sha512",
         "CodeComb.AspNet.Extensions.nuspec",
         "lib/dnx451/CodeComb.AspNet.Extensions.dll",
         "lib/dnx451/CodeComb.AspNet.Extensions.xml",
@@ -15572,12 +16037,27 @@
         "lib/dotnet5.4/CodeComb.AspNet.Extensions.xml"
       ]
     },
-    "CodeComb.Marked/2.0.0-rc2-16051": {
+    "CodeComb.HtmlAgilityPack/2.0.0-rc2-16062": {
       "type": "package",
-      "sha512": "+0w7QqMCL4HPdxkI763UNF0DN/oLQQORvJ4bj5rjgMq2g6VIDUpDCE6quuH1/ZdynI+coAE0yx511pu9bCCzTg==",
+      "sha512": "FjIYJHlWoRp1zWnJ2BUWmreFEGqTxxxhLQExfC07fSM4GbwWO3OybzNYvS8xpyl8G+hdVgPMkCFTX14Nc9VMbw==",
       "files": [
-        "CodeComb.Marked.2.0.0-rc2-16051.nupkg",
-        "CodeComb.Marked.2.0.0-rc2-16051.nupkg.sha512",
+        "CodeComb.HtmlAgilityPack.2.0.0-rc2-16062.nupkg",
+        "CodeComb.HtmlAgilityPack.2.0.0-rc2-16062.nupkg.sha512",
+        "CodeComb.HtmlAgilityPack.nuspec",
+        "lib/dotnet5.4/CodeComb.HtmlAgilityPack.dll",
+        "lib/dotnet5.4/CodeComb.HtmlAgilityPack.xml",
+        "lib/net45/CodeComb.HtmlAgilityPack.dll",
+        "lib/net45/CodeComb.HtmlAgilityPack.xml",
+        "lib/net451/CodeComb.HtmlAgilityPack.dll",
+        "lib/net451/CodeComb.HtmlAgilityPack.xml"
+      ]
+    },
+    "CodeComb.Marked/2.0.0-rc2-16052": {
+      "type": "package",
+      "sha512": "tI7GUXXXL+rgTIfHw1AsGs3YnbdHhFagJxUMaT4RGqt2GRBNJbnfbWHAk/ps+HDuf9hpoqfgQbsU+7bqksM5aA==",
+      "files": [
+        "CodeComb.Marked.2.0.0-rc2-16052.nupkg",
+        "CodeComb.Marked.2.0.0-rc2-16052.nupkg.sha512",
         "CodeComb.Marked.nuspec",
         "lib/dnx451/CodeComb.Marked.dll",
         "lib/dnx451/CodeComb.Marked.xml",
@@ -15585,12 +16065,12 @@
         "lib/dotnet5.4/CodeComb.Marked.xml"
       ]
     },
-    "CodeComb.Net.EmailSender/2.0.0-rc2-16101": {
+    "CodeComb.Net.EmailSender/2.0.0-rc2-16102": {
       "type": "package",
-      "sha512": "LeORqtHQ8ijoPQn4jfONPGFMCC3ZwRQTVcMeOVjEpbCbReRW3GoLZn2h7yutgLgw64XZxjD4n9vp5G8fmMyhVQ==",
+      "sha512": "AsJiUbX8wWxC52KRktbs3VUx7ahPXzEmZuwkyow4A9YXmv2akcX7LZdZDdQy6mL38Rgs9Bk6MF1SkfWTVA9+aA==",
       "files": [
-        "CodeComb.Net.EmailSender.2.0.0-rc2-16101.nupkg",
-        "CodeComb.Net.EmailSender.2.0.0-rc2-16101.nupkg.sha512",
+        "CodeComb.Net.EmailSender.2.0.0-rc2-16102.nupkg",
+        "CodeComb.Net.EmailSender.2.0.0-rc2-16102.nupkg.sha512",
         "CodeComb.Net.EmailSender.nuspec",
         "lib/dnx451/CodeComb.Net.EmailSender.dll",
         "lib/dnx451/CodeComb.Net.EmailSender.xml",
@@ -15600,12 +16080,12 @@
         "lib/net46/CodeComb.Net.EmailSender.xml"
       ]
     },
-    "CodeComb.Package/2.0.0-rc2-16068": {
+    "CodeComb.Package/2.0.0-rc2-16069": {
       "type": "package",
-      "sha512": "5eikhAKOGSmUXrVvvnxy2MTd/iVTlDz9tyYYT39JRPY3uTcQeNlmgZrAILyXwlnAw8eC30jyhElB0MtW4QteCw==",
+      "sha512": "61+LaPCcEJE8R+6n1VmUSeSoC8+9i+aQ+vSUqSdT8JRJ+zJgAwjVPgzbK0cRZvC4r0N5U3CLXvrKV4NuWaVyQw==",
       "files": [
-        "CodeComb.Package.2.0.0-rc2-16068.nupkg",
-        "CodeComb.Package.2.0.0-rc2-16068.nupkg.sha512",
+        "CodeComb.Package.2.0.0-rc2-16069.nupkg",
+        "CodeComb.Package.2.0.0-rc2-16069.nupkg.sha512",
         "CodeComb.Package.nuspec",
         "lib/dotnet5.4/CodeComb.Package.dll",
         "lib/dotnet5.4/CodeComb.Package.xml",
@@ -15617,12 +16097,12 @@
         "lib/net46/CodeComb.Package.xml"
       ]
     },
-    "CodeComb.Security.Aes/2.0.0-rc2-16101": {
+    "CodeComb.Security.Aes/2.0.0-rc2-16102": {
       "type": "package",
-      "sha512": "YdWzIPpngadNLJjdEAizQKYHb4/eAlaiPzd1u9W6BI3Ri1vCKT6fD2vQaiybR3lVAvRkkKN7HKPEDZPTa/CStQ==",
+      "sha512": "ZFs5V8MszUvkTJFkcCwLPuXWY3jRYneB3K4SsLNWTmKt37gPOWWkqZm0tboMQQs6nBi0FlhsN0oc+ppeVPo76Q==",
       "files": [
-        "CodeComb.Security.Aes.2.0.0-rc2-16101.nupkg",
-        "CodeComb.Security.Aes.2.0.0-rc2-16101.nupkg.sha512",
+        "CodeComb.Security.Aes.2.0.0-rc2-16102.nupkg",
+        "CodeComb.Security.Aes.2.0.0-rc2-16102.nupkg.sha512",
         "CodeComb.Security.Aes.nuspec",
         "lib/dnx451/CodeComb.Security.Aes.dll",
         "lib/dnx451/CodeComb.Security.Aes.xml",
@@ -17120,14 +17600,36 @@
         "runtimes/aot/lib/netcore50/_._"
       ]
     },
-    "runtime.win.System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23509": {
+    "runtime.any.System.Xml.XmlSerializer/4.0.11-beta-23509": {
       "type": "package",
       "serviceable": true,
-      "sha512": "zU+/ra0eaHXRIewzwHjpHW+r0DI4b3xB8NtKfoaZ/TkpyuD1WU5yJB+k/CJzkOPNdbVagZm2f3nBZ5fwgxGK6g==",
+      "sha512": "qpC/jnS64ZmzMh48Nlo1W/5u1Xwj2PJHMIy97VC9yPmWkZhZAxAmCxMttiPPSGUYADIRUZe4NLKVN4gSDbUtkg==",
+      "files": [
+        "lib/DNXCore50/System.Xml.XmlSerializer.dll",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Xml.XmlSerializer.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet/_._",
+        "runtime.any.System.Xml.XmlSerializer.4.0.11-beta-23509.nupkg",
+        "runtime.any.System.Xml.XmlSerializer.4.0.11-beta-23509.nupkg.sha512",
+        "runtime.any.System.Xml.XmlSerializer.nuspec",
+        "runtimes/aot/lib/netcore50/_._"
+      ]
+    },
+    "runtime.win.System.Runtime.InteropServices.RuntimeInformation/4.0.0-beta-23506": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "QeVopRMPKLiA9xcZLkPnYLVPY7j9rnuT8PCrp5bM8P0tRyE8+Z4G7cs8vRCmc1/KZnDIYx4c37/gYS5OUYVgfg==",
       "files": [
         "ref/dotnet/_._",
-        "runtime.win.System.Runtime.InteropServices.RuntimeInformation.4.0.0-beta-23509.nupkg",
-        "runtime.win.System.Runtime.InteropServices.RuntimeInformation.4.0.0-beta-23509.nupkg.sha512",
+        "runtime.win.System.Runtime.InteropServices.RuntimeInformation.4.0.0-beta-23506.nupkg",
+        "runtime.win.System.Runtime.InteropServices.RuntimeInformation.4.0.0-beta-23506.nupkg.sha512",
         "runtime.win.System.Runtime.InteropServices.RuntimeInformation.nuspec",
         "runtimes/win/lib/dotnet5.1/System.Runtime.InteropServices.RuntimeInformation.dll"
       ]
@@ -17148,14 +17650,14 @@
         "runtimes/win/lib/wpa81/_._"
       ]
     },
-    "runtime.win7.System.Console/4.0.0-beta-23509": {
+    "runtime.win7.System.Console/4.0.0-beta-23506": {
       "type": "package",
       "serviceable": true,
-      "sha512": "ASEnMAJWxwQXnvppE7TNTDnCqlrhg7WmB+c7FqGAVSa5YCSpYognGDyomzWe2rfxLDpaM/AB1+TMqC/AAVzmqQ==",
+      "sha512": "AKzJ2WO7Zbo0MHcuaQDl/h5HsWqIVtSR4jhk2OEjYhDUow0eUFXU+Hxe2ney3Ao4NbIQw0zzL7QcqpLAegF1cg==",
       "files": [
         "ref/dotnet/_._",
-        "runtime.win7.System.Console.4.0.0-beta-23509.nupkg",
-        "runtime.win7.System.Console.4.0.0-beta-23509.nupkg.sha512",
+        "runtime.win7.System.Console.4.0.0-beta-23506.nupkg",
+        "runtime.win7.System.Console.4.0.0-beta-23506.nupkg.sha512",
         "runtime.win7.System.Console.nuspec",
         "runtimes/win7/lib/dotnet5.4/System.Console.dll",
         "runtimes/win7/lib/net/_._"
@@ -17283,14 +17785,14 @@
         "runtimes/win7/lib/wpa81/_._"
       ]
     },
-    "runtime.win7.System.Net.Http/4.0.1-beta-23509": {
+    "runtime.win7.System.Net.Http/4.0.1-beta-23506": {
       "type": "package",
       "serviceable": true,
-      "sha512": "DZRHjp41wdmVIQO3FRJiE+0EE+cwY1bDUoWFktdw4jwXYtCR3VynDN+Rq1Jkuw50aTOZNOLyL9TbjafQaBssww==",
+      "sha512": "v/4SaIYYU1gJ/8ahqWp/jyRfjqFJbzWmG93P3Hqm3BsvNUQu0Ug/CZFbh0gWYVdCSiHW5ZA9Oy7RMP4orazkkQ==",
       "files": [
         "ref/dotnet/_._",
-        "runtime.win7.System.Net.Http.4.0.1-beta-23509.nupkg",
-        "runtime.win7.System.Net.Http.4.0.1-beta-23509.nupkg.sha512",
+        "runtime.win7.System.Net.Http.4.0.1-beta-23506.nupkg",
+        "runtime.win7.System.Net.Http.4.0.1-beta-23506.nupkg.sha512",
         "runtime.win7.System.Net.Http.nuspec",
         "runtimes/win7/lib/DNXCore50/System.Net.Http.dll",
         "runtimes/win7/lib/netcore50/System.Net.Http.dll"
@@ -17362,40 +17864,40 @@
         "runtimes/win8-aot/lib/netcore50/System.Runtime.Extensions.dll"
       ]
     },
-    "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23509": {
+    "runtime.win7.System.Security.Cryptography.Algorithms/4.0.0-beta-23506": {
       "type": "package",
       "serviceable": true,
-      "sha512": "IvcSomtqAQsuiLqz3DBAT1vK1ed7PxYkW3vDGlutyYLUSQGyCTI2RpGet8eJi3rOJLAGj8su4H10MYCqMlb6VA==",
+      "sha512": "5Pjl4j0x/5lvP2D3rgWsXo7RjWuNNzYB6SL4q+nFnrflvrH5xZOwtJ/w1MjsisQn8S5rqOAevtd5j8+Bkhfl+A==",
       "files": [
         "ref/dotnet/_._",
-        "runtime.win7.System.Security.Cryptography.Algorithms.4.0.0-beta-23509.nupkg",
-        "runtime.win7.System.Security.Cryptography.Algorithms.4.0.0-beta-23509.nupkg.sha512",
+        "runtime.win7.System.Security.Cryptography.Algorithms.4.0.0-beta-23506.nupkg",
+        "runtime.win7.System.Security.Cryptography.Algorithms.4.0.0-beta-23506.nupkg.sha512",
         "runtime.win7.System.Security.Cryptography.Algorithms.nuspec",
         "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.Algorithms.dll",
         "runtimes/win7/lib/net/_._"
       ]
     },
-    "runtime.win7.System.Security.Cryptography.Encoding/4.0.0-beta-23509": {
+    "runtime.win7.System.Security.Cryptography.Encoding/4.0.0-beta-23506": {
       "type": "package",
       "serviceable": true,
-      "sha512": "BsUFySXdnEdrHa3DLR9zFc5rGSujRXlJZhcY/9trKrMahkKbQiqftj6J1ykLboL9LLRV6eTrVyPR0tTwLZTa/g==",
+      "sha512": "9RAvACUVI+OenrK2Egww2ziXWnjvoBDyjHgjxv2BQRGVKxiiU70Vgj8fHQltBYork0AoPJ9UyMDSvuoZoI44Hg==",
       "files": [
         "ref/dotnet/_._",
-        "runtime.win7.System.Security.Cryptography.Encoding.4.0.0-beta-23509.nupkg",
-        "runtime.win7.System.Security.Cryptography.Encoding.4.0.0-beta-23509.nupkg.sha512",
+        "runtime.win7.System.Security.Cryptography.Encoding.4.0.0-beta-23506.nupkg",
+        "runtime.win7.System.Security.Cryptography.Encoding.4.0.0-beta-23506.nupkg.sha512",
         "runtime.win7.System.Security.Cryptography.Encoding.nuspec",
         "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.Encoding.dll",
         "runtimes/win7/lib/net/_._"
       ]
     },
-    "runtime.win7.System.Security.Cryptography.X509Certificates/4.0.0-beta-23509": {
+    "runtime.win7.System.Security.Cryptography.X509Certificates/4.0.0-beta-23506": {
       "type": "package",
       "serviceable": true,
-      "sha512": "lec5Vuyy4CoCEE661es3Q+Osx8Ff+mruzOVV6pY0q2lxz4FV8kfOVS7e1WoHdZneSoN2rL9afOkjmF7oHUvWKw==",
+      "sha512": "DdgW31Cwvdpb8641NHF/d3xpwye1gV3GnwSFM3RcLrf4a6EyEQyGw8j5Pi8YUKyuYa6qkPSV2SAh5gsvmgdhUw==",
       "files": [
         "ref/dotnet/_._",
-        "runtime.win7.System.Security.Cryptography.X509Certificates.4.0.0-beta-23509.nupkg",
-        "runtime.win7.System.Security.Cryptography.X509Certificates.4.0.0-beta-23509.nupkg.sha512",
+        "runtime.win7.System.Security.Cryptography.X509Certificates.4.0.0-beta-23506.nupkg",
+        "runtime.win7.System.Security.Cryptography.X509Certificates.4.0.0-beta-23506.nupkg.sha512",
         "runtime.win7.System.Security.Cryptography.X509Certificates.nuspec",
         "runtimes/win7/lib/dotnet5.4/System.Security.Cryptography.X509Certificates.dll",
         "runtimes/win7/lib/net/_._",
@@ -20438,24 +20940,24 @@
         "System.Security.Cryptography.Algorithms.nuspec"
       ]
     },
-    "System.Security.Cryptography.Cng/4.0.0-beta-23509": {
+    "System.Security.Cryptography.Cng/4.0.0-beta-23506": {
       "type": "package",
       "serviceable": true,
-      "sha512": "eJrG23LCPaVdrRH8QxobS/qOTQubyFWzkbk4pfUx2cTaW5tVqDUgflLnCNoTo3e1gVVjwrutwnrXVis3uSkAig==",
+      "sha512": "fNittx7X00uUpEA7DSycxRiLADKbKfwUrGwCIRXQwLLG/v4Qr9lwYPUOuazoCy8pjfiSfIdhPGCar/J2J0gXpA==",
       "files": [
         "lib/dotnet5.4/System.Security.Cryptography.Cng.dll",
         "lib/net46/System.Security.Cryptography.Cng.dll",
         "ref/dotnet5.4/System.Security.Cryptography.Cng.dll",
         "ref/net46/System.Security.Cryptography.Cng.dll",
-        "System.Security.Cryptography.Cng.4.0.0-beta-23509.nupkg",
-        "System.Security.Cryptography.Cng.4.0.0-beta-23509.nupkg.sha512",
+        "System.Security.Cryptography.Cng.4.0.0-beta-23506.nupkg",
+        "System.Security.Cryptography.Cng.4.0.0-beta-23506.nupkg.sha512",
         "System.Security.Cryptography.Cng.nuspec"
       ]
     },
-    "System.Security.Cryptography.Csp/4.0.0-beta-23509": {
+    "System.Security.Cryptography.Csp/4.0.0-beta-23506": {
       "type": "package",
       "serviceable": true,
-      "sha512": "fNSFWC9Jic4KYtMH8DSPfxGqK6wq2piM/URbH97lhuFm8W+clxt4Fx6Sjadv0fgEOGz/3+YkG1lVfEvSYUcudA==",
+      "sha512": "TpqVfCEnVXNRYfMOJcHUGXuTrDXHERsd0h0h+N8DrC5x71Z0vD+uo2L/bqRU58MMMZbNrrGKX6VfIKQzq7UHWQ==",
       "files": [
         "lib/DNXCore50/System.Security.Cryptography.Csp.dll",
         "lib/MonoAndroid10/_._",
@@ -20469,8 +20971,8 @@
         "ref/net46/System.Security.Cryptography.Csp.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
-        "System.Security.Cryptography.Csp.4.0.0-beta-23509.nupkg",
-        "System.Security.Cryptography.Csp.4.0.0-beta-23509.nupkg.sha512",
+        "System.Security.Cryptography.Csp.4.0.0-beta-23506.nupkg",
+        "System.Security.Cryptography.Csp.4.0.0-beta-23506.nupkg.sha512",
         "System.Security.Cryptography.Csp.nuspec"
       ]
     },
@@ -21364,42 +21866,71 @@
         "System.Threading.Timer.nuspec"
       ]
     },
-    "System.Xml.ReaderWriter/4.0.10": {
+    "System.Xml.ReaderWriter/4.0.11-beta-23509": {
       "type": "package",
       "serviceable": true,
-      "sha512": "VdmWWMH7otrYV7D+cviUo7XjX0jzDnD/lTGSZTlZqfIQ5PhXk85j+6P0TK9od3PnOd5ZIM+pOk01G/J+3nh9/w==",
+      "sha512": "aZQznhAvTudAImHMgWaGIAJusurskL/8wCQxdD2qoGb56lxD6iRIWcGBCB4EYO9fd9f5j/mQE9AwIx7y6N+GOg==",
       "files": [
-        "lib/dotnet/System.Xml.ReaderWriter.dll",
+        "lib/dotnet5.4/System.Xml.ReaderWriter.dll",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
-        "lib/net46/_._",
+        "lib/net45/_._",
+        "lib/netcore50/System.Xml.ReaderWriter.dll",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
-        "ref/dotnet/de/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/es/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/fr/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/it/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/ja/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/ko/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/ru/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/System.Xml.ReaderWriter.dll",
-        "ref/dotnet/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/zh-hans/System.Xml.ReaderWriter.xml",
-        "ref/dotnet/zh-hant/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/de/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/es/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/fr/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/it/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/ja/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/ko/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/ru/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/System.Xml.ReaderWriter.dll",
+        "ref/dotnet5.1/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/zh-hans/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.1/zh-hant/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/de/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/es/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/fr/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/it/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/ja/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/ko/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/ru/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/System.Xml.ReaderWriter.dll",
+        "ref/dotnet5.4/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/zh-hans/System.Xml.ReaderWriter.xml",
+        "ref/dotnet5.4/zh-hant/System.Xml.ReaderWriter.xml",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
-        "ref/net46/_._",
+        "ref/net45/_._",
+        "ref/netcore50/de/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/es/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/fr/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/it/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/ja/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/ko/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/ru/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/System.Xml.ReaderWriter.dll",
+        "ref/netcore50/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/zh-hans/System.Xml.ReaderWriter.xml",
+        "ref/netcore50/zh-hant/System.Xml.ReaderWriter.xml",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
-        "System.Xml.ReaderWriter.4.0.10.nupkg",
-        "System.Xml.ReaderWriter.4.0.10.nupkg.sha512",
+        "System.Xml.ReaderWriter.4.0.11-beta-23509.nupkg",
+        "System.Xml.ReaderWriter.4.0.11-beta-23509.nupkg.sha512",
         "System.Xml.ReaderWriter.nuspec"
       ]
     },
-    "System.Xml.XDocument/4.0.11-beta-23506": {
+    "System.Xml.XDocument/4.0.11-beta-23509": {
       "type": "package",
       "serviceable": true,
-      "sha512": "+OL/iFG4FOHiwjnBYG1sgrf6SJmaXvg7THrX/MaE1ToILIql6A5Gr7dxgxMoyuQnREFx2crRMJZUvT7vYaOE/A==",
+      "sha512": "eH/RObTNouWV3cVF6jRyHWIZD3Bqm38NSpP5iTeQTfHHR8dPdNxk9GK+oRzLOPVZwDR8kq4hSyS3fdEQ6e1iGw==",
       "files": [
         "lib/dotnet5.4/System.Xml.XDocument.dll",
         "lib/MonoAndroid10/_._",
@@ -21452,9 +21983,195 @@
         "ref/wpa81/_._",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
-        "System.Xml.XDocument.4.0.11-beta-23506.nupkg",
-        "System.Xml.XDocument.4.0.11-beta-23506.nupkg.sha512",
+        "System.Xml.XDocument.4.0.11-beta-23509.nupkg",
+        "System.Xml.XDocument.4.0.11-beta-23509.nupkg.sha512",
         "System.Xml.XDocument.nuspec"
+      ]
+    },
+    "System.Xml.XmlDocument/4.0.1-beta-23509": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "zRNDN2Krqg02i7Bdl9bXKC9MUlTQRBu4w96PuyvfxTHrc5ihH8nOfMve7Xa4CzJzJNAAJ3leDMo8xJIqWh312Q==",
+      "files": [
+        "lib/dotnet5.4/System.Xml.XmlDocument.dll",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Xml.XmlDocument.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet5.4/de/System.Xml.XmlDocument.xml",
+        "ref/dotnet5.4/es/System.Xml.XmlDocument.xml",
+        "ref/dotnet5.4/fr/System.Xml.XmlDocument.xml",
+        "ref/dotnet5.4/it/System.Xml.XmlDocument.xml",
+        "ref/dotnet5.4/ja/System.Xml.XmlDocument.xml",
+        "ref/dotnet5.4/ko/System.Xml.XmlDocument.xml",
+        "ref/dotnet5.4/ru/System.Xml.XmlDocument.xml",
+        "ref/dotnet5.4/System.Xml.XmlDocument.dll",
+        "ref/dotnet5.4/System.Xml.XmlDocument.xml",
+        "ref/dotnet5.4/zh-hans/System.Xml.XmlDocument.xml",
+        "ref/dotnet5.4/zh-hant/System.Xml.XmlDocument.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Xml.XmlDocument.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "System.Xml.XmlDocument.4.0.1-beta-23509.nupkg",
+        "System.Xml.XmlDocument.4.0.1-beta-23509.nupkg.sha512",
+        "System.Xml.XmlDocument.nuspec"
+      ]
+    },
+    "System.Xml.XmlSerializer/4.0.11-beta-23509": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "HFmXLkLG3+0tlCftxN5mjSWMI2DmsoMipVAX2D4u5RpxyFXaJjA5kKQ0N+uEHvuhDIlnMyo4Uz+6XdQEwhXtkA==",
+      "files": [
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet5.1/de/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.1/es/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.1/fr/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.1/it/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.1/ja/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.1/ko/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.1/ru/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.1/System.Xml.XmlSerializer.dll",
+        "ref/dotnet5.1/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.1/zh-hans/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.1/zh-hant/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.4/de/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.4/es/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.4/fr/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.4/it/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.4/ja/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.4/ko/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.4/ru/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.4/System.Xml.XmlSerializer.dll",
+        "ref/dotnet5.4/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.4/zh-hans/System.Xml.XmlSerializer.xml",
+        "ref/dotnet5.4/zh-hant/System.Xml.XmlSerializer.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/netcore50/de/System.Xml.XmlSerializer.xml",
+        "ref/netcore50/es/System.Xml.XmlSerializer.xml",
+        "ref/netcore50/fr/System.Xml.XmlSerializer.xml",
+        "ref/netcore50/it/System.Xml.XmlSerializer.xml",
+        "ref/netcore50/ja/System.Xml.XmlSerializer.xml",
+        "ref/netcore50/ko/System.Xml.XmlSerializer.xml",
+        "ref/netcore50/ru/System.Xml.XmlSerializer.xml",
+        "ref/netcore50/System.Xml.XmlSerializer.dll",
+        "ref/netcore50/System.Xml.XmlSerializer.xml",
+        "ref/netcore50/zh-hans/System.Xml.XmlSerializer.xml",
+        "ref/netcore50/zh-hant/System.Xml.XmlSerializer.xml",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "runtime.json",
+        "System.Xml.XmlSerializer.4.0.11-beta-23509.nupkg",
+        "System.Xml.XmlSerializer.4.0.11-beta-23509.nupkg.sha512",
+        "System.Xml.XmlSerializer.nuspec"
+      ]
+    },
+    "System.Xml.XPath/4.0.1-beta-23509": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "pcEk0z0t+jaZzmpUzmINjBLVNcsB+iI2hBiqMpD4Jx5hMFqX/EfTJVB0ShAcJVmFMGeXacW6n4sszmSs80CaJw==",
+      "files": [
+        "lib/dotnet5.4/System.Xml.XPath.dll",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Xml.XPath.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet5.4/de/System.Xml.XPath.xml",
+        "ref/dotnet5.4/es/System.Xml.XPath.xml",
+        "ref/dotnet5.4/fr/System.Xml.XPath.xml",
+        "ref/dotnet5.4/it/System.Xml.XPath.xml",
+        "ref/dotnet5.4/ja/System.Xml.XPath.xml",
+        "ref/dotnet5.4/ko/System.Xml.XPath.xml",
+        "ref/dotnet5.4/ru/System.Xml.XPath.xml",
+        "ref/dotnet5.4/System.Xml.XPath.dll",
+        "ref/dotnet5.4/System.Xml.XPath.xml",
+        "ref/dotnet5.4/zh-hans/System.Xml.XPath.xml",
+        "ref/dotnet5.4/zh-hant/System.Xml.XPath.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Xml.XPath.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "System.Xml.XPath.4.0.1-beta-23509.nupkg",
+        "System.Xml.XPath.4.0.1-beta-23509.nupkg.sha512",
+        "System.Xml.XPath.nuspec"
+      ]
+    },
+    "System.Xml.XPath.XDocument/4.0.1-beta-23509": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "TQKOh9fP9KmAe8RNJlkpmFvx04p8uh8qYXxFvmhn3CQbtlJTMBUznd6EpLeQIqwye0uBGXRZ3I0hJjenN83pQA==",
+      "files": [
+        "lib/dotnet5.4/System.Xml.XPath.XDocument.dll",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Xml.XPath.XDocument.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet5.4/de/System.Xml.XPath.XDocument.xml",
+        "ref/dotnet5.4/es/System.Xml.XPath.XDocument.xml",
+        "ref/dotnet5.4/fr/System.Xml.XPath.XDocument.xml",
+        "ref/dotnet5.4/it/System.Xml.XPath.XDocument.xml",
+        "ref/dotnet5.4/ja/System.Xml.XPath.XDocument.xml",
+        "ref/dotnet5.4/ko/System.Xml.XPath.XDocument.xml",
+        "ref/dotnet5.4/ru/System.Xml.XPath.XDocument.xml",
+        "ref/dotnet5.4/System.Xml.XPath.XDocument.dll",
+        "ref/dotnet5.4/System.Xml.XPath.XDocument.xml",
+        "ref/dotnet5.4/zh-hans/System.Xml.XPath.XDocument.xml",
+        "ref/dotnet5.4/zh-hant/System.Xml.XPath.XDocument.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Xml.XPath.XDocument.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "System.Xml.XPath.XDocument.4.0.1-beta-23509.nupkg",
+        "System.Xml.XPath.XDocument.4.0.1-beta-23509.nupkg.sha512",
+        "System.Xml.XPath.XDocument.nuspec"
+      ]
+    },
+    "System.Xml.XPath.XmlDocument/4.0.1-beta-23509": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "J2pS19oreCKF9j2hB/zaTFKZGdoSw0A0uQvCxaYXzigjk6os4wlCQ/kjTSHpns6mE2Ls/ETR1hFdIdHNwnKuUQ==",
+      "files": [
+        "lib/dotnet5.4/System.Xml.XPath.XmlDocument.dll",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "ref/dotnet5.4/de/System.Xml.XPath.XmlDocument.xml",
+        "ref/dotnet5.4/es/System.Xml.XPath.XmlDocument.xml",
+        "ref/dotnet5.4/fr/System.Xml.XPath.XmlDocument.xml",
+        "ref/dotnet5.4/it/System.Xml.XPath.XmlDocument.xml",
+        "ref/dotnet5.4/ja/System.Xml.XPath.XmlDocument.xml",
+        "ref/dotnet5.4/ko/System.Xml.XPath.XmlDocument.xml",
+        "ref/dotnet5.4/ru/System.Xml.XPath.XmlDocument.xml",
+        "ref/dotnet5.4/System.Xml.XPath.XmlDocument.dll",
+        "ref/dotnet5.4/System.Xml.XPath.XmlDocument.xml",
+        "ref/dotnet5.4/zh-hans/System.Xml.XPath.XmlDocument.xml",
+        "ref/dotnet5.4/zh-hant/System.Xml.XPath.XmlDocument.xml",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "System.Xml.XPath.XmlDocument.4.0.1-beta-23509.nupkg",
+        "System.Xml.XPath.XmlDocument.4.0.1-beta-23509.nupkg.sha512",
+        "System.Xml.XPath.XmlDocument.nuspec"
       ]
     }
   },

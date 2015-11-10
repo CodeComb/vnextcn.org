@@ -17,6 +17,10 @@
         {
             <span class="thread-label">楼主</span>
         }
+        else if (await User.Manager.IsInAnyRolesAsync(x.User, "Root, Master"))
+        {
+            <span class="thread-label purple">OFFICIAL</span>
+        }
         @if (User.IsSignedIn())
         {
             @if (User.IsSignedIn() && (!Thread.IsLocked || User.AnyRoles("Root, Master")) && x.SubPosts.Count == 0)
@@ -45,18 +49,18 @@
             foreach (var y in x.SubPosts.OrderBy(z => z.Time))
             {
                 <div class="comment-item" data-id="@y.Id">
-                    <img class="comment-avatar" src="@Url.Action("Avatar", "Account", new { id = Thread.UserId })" />
+                    <img class="comment-avatar" src="@Url.Action("Avatar", "Account", new { id = y.UserId })" />
                     <div class="comment-content">
                         <p>
-                            @if ((await User.Manager.GetRolesAsync(y.User)).First() == "Root" || (await User.Manager.GetRolesAsync(y.User)).First() == "Master")
+                            @if (await User.Manager.IsInAnyRolesAsync(y.User, "Root, Master"))
                             {
-                                <span class="thread-label purple">@((await User.Manager.GetRolesAsync(y.User)).First())</span>
+                                <span class="thread-label purple">OFFICIAL</span>
                             }
                             else if (y.UserId == Thread.UserId)
                             {
                                 <span class="thread-label">楼主</span>
                             }
-                            <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId" class="center">@await Html.ColorUserNameAsync(y.User)</a>
+                            <a asp-action="Show" asp-controller="Account" asp-route-id="@y.UserId" class="center">@await Html.ColorUserNameAsync(y.User)</a>
                             <span class="table-post-time">@@@y.Time.ToString("yyyy-MM-dd HH:mm:ss")</span>
                             @if (User.IsSignedIn() && (y.UserId == User.Current.Id || User.AnyRoles("Root, Master")))
                             {
