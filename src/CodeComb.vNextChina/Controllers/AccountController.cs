@@ -108,9 +108,11 @@ namespace CodeComb.vNextChina.Controllers
             {
                 UserName = username,
                 Email = email,
-                EmailConfirmed = true
+                EmailConfirmed = true,
+                RegisteryTime = DateTime.Now
             };
             var result = await UserManager.CreateAsync(user, password);
+            await UserManager.AddToRoleAsync(user, "Member");
             if (result.Succeeded)
                 return Prompt(x =>
                 {

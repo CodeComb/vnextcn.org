@@ -111,10 +111,10 @@
                             {
                                 <tr data-id="@x.Id">
                                     <td class="center">
-                                        <a asp-action="Show" asp-controller="Account" asp-route-id="@Thread.UserId" class="center">@await Html.ColorUserNameAsync(Thread.User)</a>
+                                        <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId" class="center">@await Html.ColorUserNameAsync(x.User)</a>
                                         <hr />
-                                        <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = Thread.UserId })" /></p>
-                                        <p class="post-role"><span class="thread-label purple">@((await User.Manager.GetRolesAsync(Thread.User)).First())</span></p>
+                                        <p><img class="post-avatar" src="@Url.Action("Avatar", "Account", new { id = x.UserId })" /></p>
+                                        <p class="post-role"><span class="thread-label purple">@((await User.Manager.GetRolesAsync(x.User)).First())</span></p>
                                     </td>
                                     <td>
                                         @if (Thread.UserId == x.UserId)

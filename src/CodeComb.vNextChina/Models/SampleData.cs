@@ -25,13 +25,16 @@ namespace CodeComb.vNextChina.Models
 				await RoleManager.CreateAsync(new IdentityRole<long> { Name = "Member" });
 				await RoleManager.CreateAsync(new IdentityRole<long> { Name = "Banned" });
 				
-				var user = new User { UserName = "雨宫优子", Email = "1@1234.sh", Organization = "Code Comb Co,. Ltd.", WebSite = "http://1234.sh" };
+				var user = new User
+                {
+                    UserName = "雨宫优子",
+                    Email = "1@1234.sh",
+                    Organization = "Code Comb Co,. Ltd.",
+                    WebSite = "http://1234.sh",
+                    RegisteryTime = DateTime.Now
+                };
 				await UserManager.CreateAsync(user, "123456");
 				await UserManager.AddToRoleAsync(user, "Root");
-
-                var user2 = new User { UserName = "user", Email = "911574351@qq.com", Organization = "Code Comb Co,. Ltd.", WebSite = "http://1234.sh" };
-                await UserManager.CreateAsync(user2, "123456");
-                await UserManager.AddToRoleAsync(user, "Member");
 
                 // 添加Hello World实验
                 DB.Experiments.Add(new Experiment
