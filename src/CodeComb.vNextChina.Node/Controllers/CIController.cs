@@ -158,6 +158,12 @@ namespace CodeComb.vNextChina.Node.Controllers
 
         private void CopyDirectory(string srcDir, string tgtDir)
         {
+            srcDir = srcDir.Replace("//", "/").Replace(@"\\", "\\");
+            tgtDir = tgtDir.Replace("//", "/").Replace(@"\\", "\\");
+
+            if (!Directory.Exists(tgtDir))
+                Directory.CreateDirectory(tgtDir);
+
             DirectoryInfo source = new DirectoryInfo(srcDir);
             DirectoryInfo target = new DirectoryInfo(tgtDir);
 
