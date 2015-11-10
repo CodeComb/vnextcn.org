@@ -35,13 +35,13 @@ namespace CodeComb.vNextChina.Controllers
                     x.StatusCode = 403;
                 });
         }
-        
+
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(string email, [FromHeader] string host)
@@ -54,7 +54,7 @@ namespace CodeComb.vNextChina.Controllers
                     x.Details = $"电子邮箱{email}已经被注册，请更换后重试！";
                     x.StatusCode = 400;
                 });
-            
+
             // 发送激活信
             var aes_email = Aes.Encrypt(email);
             var url = Url.Link("default", new { action = "RegisterDetail", controller = "Account", key = aes_email });
@@ -64,7 +64,7 @@ namespace CodeComb.vNextChina.Controllers
             <p><a href=""{url}"">点击继续注册</a></p>
             </body>
             </html>");
-            
+
             return Prompt(x =>
             {
                 x.Title = "请验证您的邮箱";
@@ -73,7 +73,7 @@ namespace CodeComb.vNextChina.Controllers
                 x.RedirectUrl = "http://mail." + email.Split('@')[1];
             });
         }
-        
+
         [HttpGet]
         public IActionResult RegisterDetail(string key)
         {
@@ -90,7 +90,7 @@ namespace CodeComb.vNextChina.Controllers
                 });
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterDetail(string key, string username, string password)
@@ -98,7 +98,7 @@ namespace CodeComb.vNextChina.Controllers
             // 此时仍然需要检测一遍邮箱是否被注册
             var email = Aes.Decrypt(key);
             if (DB.Users.Any(x => x.Email == email))
-                return Prompt(x => 
+                return Prompt(x =>
                 {
                     x.Title = "注册失败";
                     x.Details = $"电子邮箱{email}已经被注册，请更换后重试！";
@@ -121,14 +121,15 @@ namespace CodeComb.vNextChina.Controllers
                     x.RedirectText = "现在登录";
                     x.RedirectUrl = Url.Action("Login", "Account");
                 });
-            else return Prompt(x =>
-            {
-                x.Title = "注册失败";
-                x.Details = result.Errors.First().Description;
-                x.StatusCode = 400;
-            });
+            else
+                return Prompt(x =>
+                {
+                    x.Title = "注册失败";
+                    x.Details = result.Errors.First().Description;
+                    x.StatusCode = 400;
+                });
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
@@ -289,6 +290,57 @@ namespace CodeComb.vNextChina.Controllers
             {
                 x.Title = "修改成功";
                 x.Details = $"用户{user.UserName}已经成为了{Role}！";
+            });
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Password(long id)
+        {
+            var user = await UserManager.FindByIdAsync(id.ToString());
+            if (User.AnyRoles("Master") && await UserManager.IsInAnyRolesAsync(user, "Root, Master") && User.Current.Id != user.Id)
+                return Prompt(x =>
+                {
+                    x.Title = "权限不足";
+                    x.Details = "您无权修改这个用户的密码！";
+                    x.StatusCode = 500;
+                });
+            return View(user);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Password(long id, string old, string password, string confirm)
+        {
+            if (confirm != password)
+                return Prompt(x =>
+                {
+                    x.Title = "修改失败";
+                    x.Details = "两次密码输入不一致，请返回重试！";
+                    x.StatusCode = 400;
+                });
+            var user = await UserManager.FindByIdAsync(id.ToString());
+            if (User.AnyRoles("Master") && await UserManager.IsInAnyRolesAsync(user, "Root, Master") && User.Current.Id != user.Id)
+                return Prompt(x =>
+                {
+                    x.Title = "权限不足";
+                    x.Details = "您无权修改这个用户的密码！";
+                    x.StatusCode = 500;
+                });
+            if (!User.AnyRoles("Root, Master") && !await UserManager.CheckPasswordAsync(user, old))
+                return Prompt(x =>
+                {
+                    x.Title = "修改失败";
+                    x.Details = "旧密码不正确，请返回重试！";
+                    x.StatusCode = 400;
+                });
+            var token = await UserManager.GeneratePasswordResetTokenAsync(user);
+            await UserManager.ResetPasswordAsync(user, token, password);
+            return Prompt(x =>
+            {
+                x.Title = "修改成功";
+                x.Details = "新密码已生效！";
             });
         }
     }
