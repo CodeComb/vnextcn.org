@@ -29,7 +29,7 @@ namespace CodeComb.vNextChina.Models
                 {
                     UserName = "雨宫优子",
                     Email = "1@1234.sh",
-                    Organization = "Code Comb Co,. Ltd.",
+                    Organization = "Code Comb Co., Ltd.",
                     WebSite = "http://1234.sh",
                     RegisteryTime = DateTime.Now
                 };
@@ -176,7 +176,7 @@ namespace CodeComb.vNextChina.Models
                     Id = "ef-7",
                     Title = "Entity Framework 7",
                     ParentId = "vnext",
-                    Description = "Entity Framework 7 OR/M 技术交流",
+                    Description = "Entity Framework 7 ORM 技术交流",
                     PRI = 4
                 };
                 var subforum6 = new Forum

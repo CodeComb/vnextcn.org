@@ -121,6 +121,10 @@
                                         {
                                             <span class="thread-label">楼主</span>
                                         }
+                                        else if (await User.Manager.IsInAnyRolesAsync(x.User, "Root, Master"))
+                                        {
+                                            <span class="thread-label purple">OFFICIAL</span>
+                                        }
                                         @if (User.IsSignedIn())
                                         {
                                             @if (User.IsSignedIn() && (!Thread.IsLocked || User.AnyRoles("Root, Master")) && x.SubPosts.Count == 0)
@@ -152,9 +156,9 @@
                                                     <img class="comment-avatar" src="@Url.Action("Avatar", "Account", new { id = Thread.UserId })" />
                                                     <div class="comment-content">
                                                         <p>
-                                                            @if ((await User.Manager.GetRolesAsync(y.User)).First() == "Root" || (await User.Manager.GetRolesAsync(y.User)).First() == "Master")
+                                                            @if (await User.Manager.IsInAnyRolesAsync(x.User, "Root, Master"))
                                                             {
-                                                                <span class="thread-label purple">@((await User.Manager.GetRolesAsync(y.User)).First())</span>
+                                                                <span class="thread-label purple">OFFICIAL</span>
                                                             }
                                                             else if (y.UserId == Thread.UserId)
                                                             {
