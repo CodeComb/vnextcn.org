@@ -67,7 +67,7 @@ namespace CodeComb.CI.Runner
                 if (OS.Current != OSType.Windows)
                 {
                     this.StartInfo.FileName = "bash";
-                    this.StartInfo.Arguments = "-c \"./build.sh\"";
+                    this.StartInfo.Arguments = "-c \"export MONO_THREADS_PER_CPU=2000; chmod ugo+x build.sh; ./build.sh\"";
                 }
 
                 // Clean DNX environment variables
