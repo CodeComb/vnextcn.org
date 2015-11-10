@@ -110,18 +110,7 @@ namespace CodeComb.vNextChina.Node.Controllers
             CopyDirectory(FindProject(directory + "/user"), Configuration["Pool"] + "/" + identifier + "/src/web");
             Console.WriteLine($"生成评测目录 {Configuration["Pool"] + "/" + identifier}");
             if (nuget == null) nuget = "";
-            var nugetPath = Configuration["Pool"] + "/" + identifier + "/Nuget.config";
-            try // For *nix
-            {
-                System.IO.File.Delete(Configuration["Pool"] + "/" + identifier + "/Nuget.config");
-                System.IO.File.Delete(Configuration["Pool"] + "/" + identifier + "/Nuget.Config");
-                System.IO.File.Delete(Configuration["Pool"] + "/" + identifier + "/NuGet.config");
-                System.IO.File.Delete(Configuration["Pool"] + "/" + identifier + "/NuGet.Config");
-                System.IO.File.Delete(Configuration["Pool"] + "/" + identifier + "/nuget.config");
-            }
-            catch
-            {
-            }
+            var nugetPath = Configuration["Pool"] + "/" + identifier + "/NuGet.config";
             System.IO.File.WriteAllText(nugetPath, GenerateNuGetConfig(nuget.Split('\n')));
             Console.WriteLine($"生成NuGet.config {nugetPath}");
             Runner.WaitingTasks.Enqueue(new CITask(identifier.ToString(), Configuration["Pool"] + "/" + identifier, Runner.MaxTimeLimit));
