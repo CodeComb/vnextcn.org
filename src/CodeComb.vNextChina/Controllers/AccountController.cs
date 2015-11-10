@@ -246,5 +246,42 @@ namespace CodeComb.vNextChina.Controllers
                 return File(user.Avatar, user.AvatarContentType);
             }
         }
+
+        [HttpGet]
+        [AnyRoles("Root, Master")]
+        public async Task<IActionResult> Role(long id)
+        {
+            var user = await UserManager.FindByIdAsync(id.ToString());
+            if (User.AnyRoles("Master") && await UserManager.IsInAnyRolesAsync(user, "Root, Master"))
+                return Prompt(x =>
+                {
+                    x.Title = "权限不足";
+                    x.Details = "您无权编辑这个用户的角色！";
+                });
+            else
+                return View();
+        }
+
+        [HttpPost]
+        [AnyRoles("Root, Master")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Role(long id, string Role)
+        {
+            var user = await UserManager.FindByIdAsync(id.ToString());
+            if (User.AnyRoles("Master") && await UserManager.IsInAnyRolesAsync(user, "Root, Master"))
+                return Prompt(x =>
+                {
+                    x.Title = "权限不足";
+                    x.Details = "您无权编辑这个用户的角色！";
+                    x.StatusCode = 500;
+                });
+            await UserManager.RemoveFromRolesAsync(user, await UserManager.GetRolesAsync(user));
+            await UserManager.AddToRoleAsync(user, Role);
+            return Prompt(x =>
+            {
+                x.Title = "修改成功";
+                x.Details = $"用户{user.UserName}已经成为了{Role}！";
+            });
+        }
     }
 }

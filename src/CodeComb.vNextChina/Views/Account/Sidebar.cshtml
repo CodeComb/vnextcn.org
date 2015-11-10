@@ -9,5 +9,9 @@
             <p><a asp-controller="Account" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 编辑个人资料</a></p>
             <p><a asp-controller="Account" asp-action="Password" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 修改密码</a></p>
         }
+        @if (User.AnyRoles("Root") || User.AnyRoles("Master") && !await User.Manager.IsInAnyRolesAsync(Model, "Root, Master"))
+        {
+            <p><a asp-controller="Account" asp-action="Role" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 修改角色</a></p>
+        }
     </div>
 </div>
