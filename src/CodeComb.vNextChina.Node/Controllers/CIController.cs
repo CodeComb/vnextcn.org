@@ -180,14 +180,14 @@ namespace CodeComb.vNextChina.Node.Controllers
 
             for (int i = 0; i < files.Length; i++)
             {
-                System.IO.File.Copy(files[i].FullName, target.FullName + @"\" + files[i].Name, true);
+                System.IO.File.Copy(files[i].FullName, target.FullName + (OS.Current == OSType.Windows ? "\\" : "/") + files[i].Name, true);
             }
 
             DirectoryInfo[] dirs = source.GetDirectories();
 
             for (int j = 0; j < dirs.Length; j++)
             {
-                CopyDirectory(dirs[j].FullName, target.FullName + @"\" + dirs[j].Name);
+                CopyDirectory(dirs[j].FullName, target.FullName + (OS.Current == OSType.Windows ? "\\" : "/") + dirs[j].Name);
             }
         }
 
