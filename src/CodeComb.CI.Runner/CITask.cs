@@ -129,6 +129,7 @@ namespace CodeComb.CI.Runner
             }
             catch(Exception e)
             {
+                Console.WriteLine(e.ToString());
                 if (OnBuildFailed != null)
                     OnBuildFailed(this, new BuildFailedArgs
                     {
