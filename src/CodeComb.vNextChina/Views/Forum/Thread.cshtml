@@ -90,7 +90,7 @@
                                     <div class="thread-content">
                                         @Html.Sanitize(Html.Marked(Thread.Content).ToString())
                                     </div>
-                                    @if (Thread.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
+                                    @if (User.IsSignedIn() && Thread.UserId == User.Current.Id || User.AnyRoles("Root, Master"))
                                     {
                                         <div class="thread-edit">
                                             <form asp-action="EditThread" asp-controller="Forum" asp-route-id="@Thread.Id" id="frmEditThread">
