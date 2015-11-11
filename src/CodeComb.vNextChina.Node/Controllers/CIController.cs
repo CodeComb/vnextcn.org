@@ -107,7 +107,7 @@ namespace CodeComb.vNextChina.Node.Controllers
             Unzip.ExtractAll(tempDirectory + identifier + "/" + identifier + ".zip", tempDirectory + identifier + "/experiment/", true);
             Console.WriteLine("测试程序解压成功 " + tempDirectory + identifier + "/experiment/");
             CopyDirectory(FindRoot(tempDirectory + identifier + "/experiment"), Configuration["Pool"] + "/" + identifier);
-            CopyDirectory(FindProject(directory + "/user"), Configuration["Pool"] + "/" + identifier + "/src/web");
+            CopyDirectory(FindProject(directory + "/user"), Configuration["Pool"] + "/" + identifier + "/src/user");
             Console.WriteLine($"生成评测目录 {Configuration["Pool"] + "/" + identifier}");
             if (nuget == null) nuget = "";
             var nugetPath = Configuration["Pool"] + "/" + identifier + "/NuGet.config";

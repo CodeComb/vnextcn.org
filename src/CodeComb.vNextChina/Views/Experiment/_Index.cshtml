@@ -1,4 +1,4 @@
-@model IEnumerable<Experiment>
+@model IEnumerable<ExperimentList>
 @{
 	Layout = null;
 }
@@ -8,7 +8,12 @@
 	<tr>
 		@if (User.IsSignedIn())
 		{
-			<td></td>
+			<td class="center">
+                @if (x.Flag.HasValue)
+                {
+                    @Html.ColorFlag(x.Flag.Value);
+                }
+            </td>
 		}
 		<td><a asp-action="Show" asp-controller="Experiment" asp-route-id="@x.Id">E@(x.Id) @x.Title</a></td>
 		<td>@x.Accepted</td>

@@ -66,7 +66,7 @@ namespace CodeComb.vNextChina.Controllers
         }
 
         [HttpPost]
-        public string Failed(long id, [FromHeader(Name = "private-key")]string PrivateKey)
+        public async Task<string> Failed(long id, [FromHeader(Name = "private-key")]string PrivateKey)
         {
             var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
             var status = DB.Statuses.Where(x => x.Id == id).Single();
@@ -84,6 +84,8 @@ namespace CodeComb.vNextChina.Controllers
             }
             status.Result = status.GenerateResult();
             DB.SaveChanges();
+            if (status.Result != Models.StatusResult.Building && status.Result != Models.StatusResult.Building)
+                await Helpers.FlagBuilder.BuildAsync(DB, status.UserId);
             vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusDetailChanged(status.Id);
             if (status.ProjectId.HasValue)
                 vNextChinaHub.Clients.Group("CI").OnStatusChanged(status.ProjectId.Value);
@@ -91,7 +93,7 @@ namespace CodeComb.vNextChina.Controllers
         }
 
         [HttpPost]
-        public string Successful(long id, [FromHeader(Name = "private-key")]string PrivateKey)
+        public async Task<string> Successful(long id, [FromHeader(Name = "private-key")]string PrivateKey)
         {
             var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
             var status = DB.Statuses
@@ -114,6 +116,8 @@ namespace CodeComb.vNextChina.Controllers
             if (status.ExperimentId.HasValue)
                 status.Experiment.Accepted++;
             DB.SaveChanges();
+            if (status.Result != Models.StatusResult.Building && status.Result != Models.StatusResult.Building)
+                await Helpers.FlagBuilder.BuildAsync(DB, status.UserId);
             vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
             if (status.ProjectId.HasValue)
                 vNextChinaHub.Clients.Group("CI").OnStatusChanged(status.ProjectId.Value);
@@ -121,7 +125,7 @@ namespace CodeComb.vNextChina.Controllers
         }
 
         [HttpPost]
-        public string TimeLimitExceeded(long id, [FromHeader(Name = "private-key")]string PrivateKey)
+        public async Task<string> TimeLimitExceeded(long id, [FromHeader(Name = "private-key")]string PrivateKey)
         {
             var node = NodeProvider.Nodes.Where(x => x.PrivateKey == PrivateKey).Single();
             var status = DB.Statuses.Where(x => x.Id == id).Single();
@@ -140,6 +144,8 @@ namespace CodeComb.vNextChina.Controllers
             }
             status.Result = status.GenerateResult();
             DB.SaveChanges();
+            if (status.Result != Models.StatusResult.Building && status.Result != Models.StatusResult.Building)
+                await Helpers.FlagBuilder.BuildAsync(DB, status.UserId);
             vNextChinaHub.Clients.Group("StatusList").OnStatusChanged(status.Id);
             vNextChinaHub.Clients.Group("Status" + status.Id).OnStatusDetailChanged(status.Id);
             if (status.ProjectId.HasValue)

@@ -8,12 +8,13 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Authorization;
 using Microsoft.Data.Entity;
 using CodeComb.vNextChina.Models;
+using CodeComb.vNextChina.ViewModels;
 
 namespace CodeComb.vNextChina.Controllers
 {
     public class ExperimentController : BaseController
     {
-        public IActionResult Index(string Title, long? number)
+        public async Task<IActionResult> Index(string Title, long? number)
         {
             IEnumerable<Experiment> ret = DB.Experiments
                 .Include(x => x.Contests)
@@ -25,7 +26,19 @@ namespace CodeComb.vNextChina.Controllers
                 ret = ret.Where(x => x.Title.Contains(Title) || Title.Contains(x.Title));
             if (number.HasValue)
                 ret = ret.Where(x => x.Id == number.Value);
-            return AjaxPagedView(ret, ".lst-experiments", 100);
+            if (User.IsSignedIn() && string.IsNullOrEmpty(User.Current.ExperimentFlags))
+                User.Current.ExperimentFlags = await Helpers.FlagBuilder.BuildAsync(DB, User.Current.Id);
+            var result = ret.Select(x => new ExperimentList
+            {
+                Title = x.Title,
+                Submitted = x.Submitted,
+                Accepted = x.Accepted,
+                ACRatio = x.ACRatio,
+                Difficulty = x.Difficulty,
+                Id = x.Id,
+                Flag = User.IsSignedIn() ? (User.Current.ExpFlags.Where(y => y.Id == x.Id).Select(y => y.Status).SingleOrDefault() ?? null) : null
+            });
+            return AjaxPagedView(result, ".lst-experiments", 100);
         }
         
         [Route("Experiment/{id:long}")]

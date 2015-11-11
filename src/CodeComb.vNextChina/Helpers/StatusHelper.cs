@@ -27,5 +27,13 @@ namespace Microsoft.AspNet.Mvc.Rendering
                     return new HtmlString("<span>Unknown</span>");
             }
         }
+
+        public static HtmlString ColorFlag(this IHtmlHelper self, StatusResult result)
+        {
+            if (result == StatusResult.Successful)
+                return new HtmlString("<span class=\"status-successful\">Passed</span>");
+            else
+                return new HtmlString("<span class=\"status-failed\">Failed</span>");
+        }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
+using CodeComb.vNextChina.ViewModels;
 
 namespace CodeComb.vNextChina.Models
 {
@@ -24,5 +26,16 @@ namespace CodeComb.vNextChina.Models
 
         [MaxLength(128)]
         public string WebSite { get; set; }
+
+        public string ExperimentFlags { get; set; }
+
+        [NotMapped]
+        public List<Flag> ExpFlags
+        {
+            get
+            {
+                return JsonConvert.DeserializeObject<List<Flag>>(ExperimentFlags);
+            }
+        }
     }
 }

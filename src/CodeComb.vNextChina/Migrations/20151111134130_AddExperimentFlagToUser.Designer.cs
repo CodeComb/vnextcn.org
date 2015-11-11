@@ -8,9 +8,10 @@ using CodeComb.vNextChina.Models;
 namespace CodeComb.vNextChina.Migrations
 {
     [DbContext(typeof(vNextChinaContext))]
-    partial class vNextChinaContextModelSnapshot : ModelSnapshot
+    [Migration("20151111134130_AddExperimentFlagToUser")]
+    partial class AddExperimentFlagToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc2-16311");
