@@ -18,6 +18,7 @@ namespace CodeComb.vNextChina.Helpers
                     .Where(x => x.UserId == UserId && x.ExperimentId != null)
                     .OrderByDescending(x => x.Time)
                     .Select(x => new Flag { Id = x.ExperimentId.Value, Status = x.Result == StatusResult.Successful ? StatusResult.Successful : StatusResult.Failed })
+                    .OrderBy(x => x.Status)
                     .DistinctBy(x => x.Id)
                     .ToList();
                 var json = JsonConvert.SerializeObject(tmp);

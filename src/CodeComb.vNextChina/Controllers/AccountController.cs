@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using System.Net;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Authorization;
@@ -58,7 +59,7 @@ namespace CodeComb.vNextChina.Controllers
             // 发送激活信
             var aes_email = Aes.Encrypt(email);
             //var url = Url.Link("default", new { action = "RegisterDetail", controller = "Account", key = aes_email });
-            var url = $"http://vnextcn.org/Account/RegisterDetail?key={aes_email}";
+            var url = $"http://vnextcn.org/Account/RegisterDetail?key={WebUtility.UrlEncode(aes_email)}";
             await Mail.SendEmailAsync(email, "vNext China 新用户注册验证信", $@"<html>
             <head></head>
             <body>
