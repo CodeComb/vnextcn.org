@@ -45,9 +45,20 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="row-title">打包文件URL</td>
+                        <td class="row-title">还原方式</td>
                         <td>
-                            <input type="text" class="w-3 textbox" name="ZipUrl" />
+                            <select name="RestoreMethod">
+                                @foreach(var x in Enum.GetNames(typeof(ProjectRestoreMethod)))
+                                {
+                                    <option>@x</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">URL</td>
+                        <td>
+                            <input type="text" class="w-3 textbox" name="Url" />
                         </td>
                     </tr>
                     <tr>
@@ -60,8 +71,19 @@
             </div>
             <h3 class="exp-sub-title">发布设置</h3>
             <div class="cont-outer">
-                <p>目前仅支持发布到NuGet Gallery</p>
+                <p>目前不可用</p>
                 <table class="detail-table">
+                    <tr>
+                        <td class="row-title">发布方式</td>
+                        <td>
+                            <select name="PublishMethod">
+                                @foreach (var x in Enum.GetNames(typeof(ProjectPublishMethod)))
+                                {
+                                    <option>@x</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
                     <tr>
                         <td class="row-title">NuGet Host</td>
                         <td><input type="text" class="w-3 textbox" name="NuGetHost" value="https://www.nuget.org/" /></td>

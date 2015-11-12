@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Migrations;
-using Microsoft.Data.Entity.Metadata;
 
 namespace CodeComb.vNextChina.Migrations
 {
@@ -14,7 +13,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Alias = table.Column<string>(nullable: true),
                     Port = table.Column<int>(nullable: false),
                     PrivateKey = table.Column<string>(nullable: true),
@@ -72,7 +71,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Accepted = table.Column<int>(nullable: false),
                     AnswerArchive = table.Column<byte[]>(nullable: true),
                     CheckPassed = table.Column<bool>(nullable: false),
@@ -138,13 +137,14 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Avatar = table.Column<byte[]>(nullable: true),
                     AvatarContentType = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
+                    ExperimentFlags = table.Column<string>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     Motto = table.Column<string>(nullable: true),
@@ -169,7 +169,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     NormalizedName = table.Column<string>(nullable: true)
@@ -190,11 +190,12 @@ namespace CodeComb.vNextChina.Migrations
                     NuGetHost = table.Column<string>(nullable: true),
                     NuGetPrivateKey = table.Column<string>(nullable: true),
                     PRI = table.Column<int>(nullable: false),
+                    RestoreMethod = table.Column<int>(nullable: false),
                     RunWithLinux = table.Column<bool>(nullable: false),
                     RunWithOsx = table.Column<bool>(nullable: false),
                     RunWithWindows = table.Column<bool>(nullable: false),
-                    VersionRule = table.Column<string>(nullable: true),
-                    ZipUrl = table.Column<string>(nullable: true)
+                    Url = table.Column<string>(nullable: true),
+                    VersionRule = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -235,7 +236,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Content = table.Column<string>(nullable: true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     ForumId = table.Column<string>(nullable: true),
@@ -268,7 +269,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
                     UserId = table.Column<long>(nullable: false)
@@ -307,7 +308,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
                     RoleId = table.Column<long>(nullable: false)
@@ -350,7 +351,7 @@ namespace CodeComb.vNextChina.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Accepted = table.Column<int>(nullable: false),
                     Archive = table.Column<byte[]>(nullable: true),
                     ExperimentId = table.Column<long>(nullable: true),

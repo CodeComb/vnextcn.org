@@ -103,13 +103,14 @@ namespace CodeComb.vNextChina.Hub
             }
         }
 
-        public async Task<bool> SendCIBuildTask(long id,  string ZipUrl, string Version, string AdditionalEnvironmentVariables)
+        public async Task<bool> SendCIBuildTask(long id, int RestoreMethod, string Url, string Version, string AdditionalEnvironmentVariables)
         {
             var result = await client.PostAsync("/api/ci/newci", new FormUrlEncodedContent(new Dictionary<string, string>
             {
                 { "id", id.ToString() },
                 { "Version", Version },
-                { "ZipUrl", ZipUrl.ToString() },
+                { "Url", Url.ToString() },
+                { "RestoreMethod", RestoreMethod.ToString() },
                 { "AdditionalEnvironmentVariables", AdditionalEnvironmentVariables }
             }));
             Console.WriteLine($"{Alias} 成功接收任务#{id}");

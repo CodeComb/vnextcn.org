@@ -11,7 +11,7 @@
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-3": {
+      "CodeComb.Package/2.0.0-beta8-5": {
         "type": "package",
         "dependencies": {
           "Microsoft.Dnx.Runtime": "1.0.0-beta8",
@@ -1444,14 +1444,14 @@
           "System.Xml.XPath.XmlDocument": "4.0.1-beta-23409"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-3": {
+      "CodeComb.Package/2.0.0-beta8-5": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23409",
           "Microsoft.Dnx.Runtime": "1.0.0-beta8",
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
           "System.Collections": "4.0.11-beta-23409",
-          "System.Diagnostics.Process": "4.0.0-beta-23409",
+          "System.Diagnostics.Process": "4.1.0-beta-23409",
           "System.IO.Compression": "4.0.1-beta-23409",
           "System.Linq": "4.0.1-beta-23409",
           "System.Net.Http": "4.0.1-beta-23409",
@@ -2821,7 +2821,7 @@
           "ref/dotnet/System.Diagnostics.Debug.dll": {}
         }
       },
-      "System.Diagnostics.Process/4.0.0-beta-23409": {
+      "System.Diagnostics.Process/4.1.0-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.0",
@@ -3724,7 +3724,7 @@
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-3": {
+      "CodeComb.Package/2.0.0-beta8-5": {
         "type": "package",
         "dependencies": {
           "Microsoft.Dnx.Runtime": "1.0.0-beta8",
@@ -5144,7 +5144,7 @@
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-3": {
+      "CodeComb.Package/2.0.0-beta8-5": {
         "type": "package",
         "dependencies": {
           "Microsoft.Dnx.Runtime": "1.0.0-beta8",
@@ -6580,14 +6580,14 @@
           "System.Xml.XPath.XmlDocument": "4.0.1-beta-23409"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-3": {
+      "CodeComb.Package/2.0.0-beta8-5": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23409",
           "Microsoft.Dnx.Runtime": "1.0.0-beta8",
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
           "System.Collections": "4.0.11-beta-23409",
-          "System.Diagnostics.Process": "4.0.0-beta-23409",
+          "System.Diagnostics.Process": "4.1.0-beta-23409",
           "System.IO.Compression": "4.0.1-beta-23409",
           "System.Linq": "4.0.1-beta-23409",
           "System.Net.Http": "4.0.1-beta-23409",
@@ -8301,7 +8301,7 @@
           "ref/dotnet/System.Diagnostics.Debug.dll": {}
         }
       },
-      "System.Diagnostics.Process/4.0.0-beta-23409": {
+      "System.Diagnostics.Process/4.1.0-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.0",
@@ -9349,14 +9349,14 @@
           "System.Xml.XPath.XmlDocument": "4.0.1-beta-23409"
         }
       },
-      "CodeComb.Package/2.0.0-beta8-3": {
+      "CodeComb.Package/2.0.0-beta8-5": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1-beta-23409",
           "Microsoft.Dnx.Runtime": "1.0.0-beta8",
           "Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
           "System.Collections": "4.0.11-beta-23409",
-          "System.Diagnostics.Process": "4.0.0-beta-23409",
+          "System.Diagnostics.Process": "4.1.0-beta-23409",
           "System.IO.Compression": "4.0.1-beta-23409",
           "System.Linq": "4.0.1-beta-23409",
           "System.Net.Http": "4.0.1-beta-23409",
@@ -11070,7 +11070,7 @@
           "ref/dotnet/System.Diagnostics.Debug.dll": {}
         }
       },
-      "System.Diagnostics.Process/4.0.0-beta-23409": {
+      "System.Diagnostics.Process/4.1.0-beta-23409": {
         "type": "package",
         "dependencies": {
           "System.IO": "4.0.0",
@@ -12099,12 +12099,12 @@
       "type": "project",
       "path": "../CodeComb.CI.Runner/project.json"
     },
-    "CodeComb.Package/2.0.0-beta8-3": {
+    "CodeComb.Package/2.0.0-beta8-5": {
       "type": "package",
-      "sha512": "+LTLj7DI7Y2LXmDhxqYp0ULwkXDK3tmECXEjEEs0zcAJpe8Eeic/x/STHyElf0fxfejKjVCVw8tmCxUY4PYaGA==",
+      "sha512": "DsvVFOMathz0H/Kk2rGA4MisHCjsM/5gcAbWGxlFN3KUMflPuRWwmyhFOYRtLxDp1o7UuvAAImwjyIqyWIfgHQ==",
       "files": [
-        "CodeComb.Package.2.0.0-beta8-3.nupkg",
-        "CodeComb.Package.2.0.0-beta8-3.nupkg.sha512",
+        "CodeComb.Package.2.0.0-beta8-5.nupkg",
+        "CodeComb.Package.2.0.0-beta8-5.nupkg.sha512",
         "CodeComb.Package.nuspec",
         "lib/dnx451/CodeComb.Package.dll",
         "lib/dnx451/CodeComb.Package.xml",
@@ -14140,10 +14140,10 @@
         "System.Diagnostics.Debug.nuspec"
       ]
     },
-    "System.Diagnostics.Process/4.0.0-beta-23409": {
+    "System.Diagnostics.Process/4.1.0-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "4K/9jyMa48SwPXRvIz37AhwgYeoAN4ZOCMM7E0N6u22CLujSWHLrJbNK0EdaLmZTXL0yvzxEeguux6QCNIUpCw==",
+      "sha512": "VLTAJH3qKr4UUJeoP75sTeTWCyvsX2RQD1JoaXrXrqGLE4VXIDBlJEFd/Llbtupq09DvRcKSJohownJh5M5x9A==",
       "files": [
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
@@ -14177,8 +14177,8 @@
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "runtime.json",
-        "System.Diagnostics.Process.4.0.0-beta-23409.nupkg",
-        "System.Diagnostics.Process.4.0.0-beta-23409.nupkg.sha512",
+        "System.Diagnostics.Process.4.1.0-beta-23409.nupkg",
+        "System.Diagnostics.Process.4.1.0-beta-23409.nupkg.sha512",
         "System.Diagnostics.Process.nuspec"
       ]
     },
@@ -16552,6 +16552,7 @@
       "Microsoft.Framework.Logging >= 1.0.0-beta8",
       "Microsoft.Framework.Logging.Console >= 1.0.0-beta8",
       "Microsoft.Framework.Configuration >= 1.0.0-beta8",
+      "CodeComb.Package >= 2.0.0-beta8-5",
       "CodeComb.CI.Runner >= 2.0.0-beta8"
     ],
     "DNX,Version=v4.5.1": [

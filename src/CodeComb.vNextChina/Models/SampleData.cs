@@ -95,7 +95,8 @@ namespace CodeComb.vNextChina.Models
                     RunWithOsx = true,
                     RunWithWindows = true,
                     CISetId = ciset.Id,
-                    ZipUrl = "https://github.com/CodeComb/vnextcn.org/archive/dev.zip",
+                    RestoreMethod = ProjectRestoreMethod.Git,
+                    Url = "https://github.com/CodeComb/vnextcn.org.git",
                     VersionRule = "2.0.0-rc2-{0}",
                     Alias = "vnextcn.org"
                 });
@@ -108,7 +109,8 @@ namespace CodeComb.vNextChina.Models
                     RunWithOsx = true,
                     RunWithWindows = true,
                     CISetId = ciset.Id,
-                    ZipUrl = "https://github.com/CodeComb/Extensions/archive/dev.zip",
+                    RestoreMethod = ProjectRestoreMethod.Git,
+                    Url = "https://github.com/CodeComb/Extensions.git",
                     VersionRule = "2.0.0-rc2-{0}",
                     Alias = "CodeComb.AspNet.Extensions"
                 });
@@ -121,7 +123,8 @@ namespace CodeComb.vNextChina.Models
                     RunWithOsx = true,
                     RunWithWindows = true,
                     CISetId = ciset.Id,
-                    ZipUrl = "https://github.com/CodeComb/Aes/archive/dev.zip",
+                    RestoreMethod = ProjectRestoreMethod.Git,
+                    Url = "https://github.com/CodeComb/CodeComb.Security.Aes.git",
                     VersionRule = "2.0.0-rc2-{0}",
                     Alias = "CodeComb.Security.Aes"
                 });

@@ -4,6 +4,7 @@
 
   "dependencies": {
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-*",
     "Microsoft.AspNet.Mvc": "6.0.0-*",
     "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-*",
     "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-*",
@@ -26,7 +27,7 @@
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel --server.urls=http://*:5000",
+    "web": "Microsoft.AspNet.Server.WebListener --server.urls=http://localhost:5000",
     "ef": "EntityFramework.Commands"
   },
 

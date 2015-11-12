@@ -89,7 +89,7 @@ namespace CodeComb.vNextChina.Controllers
                 status.LinuxResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.Linux);
                 if (node != null)
-                    node.SendCIBuildTask(status.Id, project.ZipUrl, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, (int)project.RestoreMethod, project.Url, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
                 else
                     status.LinuxResult = StatusResult.Ignored;
             }
@@ -99,7 +99,7 @@ namespace CodeComb.vNextChina.Controllers
                 status.OsxResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
                 if (node != null)
-                    node.SendCIBuildTask(status.Id, project.ZipUrl, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, (int)project.RestoreMethod, project.Url, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
                 else
                     status.OsxResult = StatusResult.Ignored;
             }
@@ -109,7 +109,7 @@ namespace CodeComb.vNextChina.Controllers
                 status.WindowsResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.Windows);
                 if (node != null)
-                    node.SendCIBuildTask(status.Id, project.ZipUrl, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, (int)project.RestoreMethod, project.Url, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
                 else
                     status.WindowsResult = StatusResult.Ignored;
             }
@@ -157,7 +157,7 @@ namespace CodeComb.vNextChina.Controllers
                     status.LinuxResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.Linux);
                     if (node != null)
-                        node.SendCIBuildTask(status.Id, x.ZipUrl, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, (int)x.RestoreMethod, x.Url, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
                     else
                         status.LinuxResult = StatusResult.Ignored;
                 }
@@ -167,7 +167,7 @@ namespace CodeComb.vNextChina.Controllers
                     status.OsxResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
                     if (node != null)
-                        node.SendCIBuildTask(status.Id, x.ZipUrl, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, (int)x.RestoreMethod, x.Url, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
                     else
                         status.OsxResult = StatusResult.Ignored;
                 }
@@ -177,7 +177,7 @@ namespace CodeComb.vNextChina.Controllers
                     status.WindowsResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.Windows);
                     if (node != null)
-                        node.SendCIBuildTask(status.Id, x.ZipUrl, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, (int)x.RestoreMethod, x.Url, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
                     else
                         status.WindowsResult = StatusResult.Ignored;
                 }
@@ -378,8 +378,9 @@ namespace CodeComb.vNextChina.Controllers
             bool RunWithWindows,
             bool RunWithOsx,
             string VersionRule,
-            string ZipUrl,
-            int CurrentVersion)
+            string Url,
+            int CurrentVersion,
+            ProjectRestoreMethod RestoreMethod)
         {
             var ciset = DB.CISets
                 .Where(x => x.Id == id)
@@ -411,14 +412,15 @@ namespace CodeComb.vNextChina.Controllers
             project.RunWithOsx = RunWithOsx;
             project.RunWithWindows = RunWithWindows;
             project.VersionRule = VersionRule;
-            project.ZipUrl = ZipUrl;
+            project.Url = Url;
+            project.RestoreMethod = RestoreMethod;
             DB.SaveChanges();
             return Prompt(x => 
             {
                 x.Title = "修改成功";
                 x.Details = "项目信息已经修改成功！";
                 x.RedirectText = "返回项目列表";
-                x.RedirectUrl = Url.Action("Show", "CI", new { id = id });
+                x.RedirectUrl = this.Url.Action("Show", "CI", new { id = id });
             });
         }
         

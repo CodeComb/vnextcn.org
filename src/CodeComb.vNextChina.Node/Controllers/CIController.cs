@@ -32,7 +32,7 @@ namespace CodeComb.vNextChina.Node.Controllers
         public CIRunner Runner { get; set; }
 
         [HttpPost]
-        public async Task<string> NewCI(long id, string ZipUrl, string version = null, string AdditionalEnvironmentVariables = null)
+        public async Task<string> NewCI(long id, int RestoreMethod, string Url, string version = null, string AdditionalEnvironmentVariables = null)
         {
             try
             {
@@ -44,13 +44,46 @@ namespace CodeComb.vNextChina.Node.Controllers
                     { "id", identifier.ToString() }
                 }));
 
+                var action = "Downloading";
+                if (RestoreMethod == 1)
+                    action = "Cloning";
+                if (RestoreMethod == 2)
+                    action = "Checking out";
+
                 Startup.Client.PostAsync("/api/Runner/Output", new FormUrlEncodedContent(new Dictionary<string, string>
                 {
                     { "id", identifier.ToString() },
-                    { "text", "Downloading from " + ZipUrl + "\r\n" }
+                    { "text", $"{action} from " + Url + "\r\n" }
                 }));
 
-                await Download.DownloadAndExtractAll(ZipUrl, path);
+                if (RestoreMethod == 0)
+                    await Download.DownloadAndExtractAll(Url, path);
+                else if (RestoreMethod == 1)
+                {
+                    var result = GitClone.Clone(Url, path);
+                    if (!result.IsSucceeded)
+                    {
+                        Startup.Client.PostAsync("/api/Runner/Output", new FormUrlEncodedContent(new Dictionary<string, string>
+                        {
+                            { "id", identifier.ToString() },
+                            { "text", $"{result.Error}\r\n" }
+                        }));
+                        return "ok";
+                    }
+                }
+                else
+                {
+                    var result = GitClone.Clone(Url, path);
+                    if (!result.IsSucceeded)
+                    {
+                        Startup.Client.PostAsync("/api/Runner/Output", new FormUrlEncodedContent(new Dictionary<string, string>
+                        {
+                            { "id", identifier.ToString() },
+                            { "text", $"{result.Error}\r\n" }
+                        }));
+                        return "ok";
+                    }
+                }
 
                 Startup.Client.PostAsync("/api/Runner/Output", new FormUrlEncodedContent(new Dictionary<string, string>
                 {

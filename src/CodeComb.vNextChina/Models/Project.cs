@@ -6,13 +6,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeComb.vNextChina.Models
 {
+    public enum ProjectRestoreMethod
+    {
+        Zip,
+        Git,
+        Svn
+    }
+
+    public enum ProjectPublishMethod
+    {
+        None,
+        NuGet,
+        WebDeploy
+    }
+
     public class Project
     {
         public Guid Id { get; set; }
 
         public string Alias { get; set; }
 
-        public string ZipUrl { get; set; }
+        public string Url { get; set; }
 
         public string VersionRule { get; set; }
 
@@ -31,6 +45,10 @@ namespace CodeComb.vNextChina.Models
         public bool RunWithLinux { get; set; }
 
         public bool RunWithWindows { get; set; }
+
+        public ProjectRestoreMethod RestoreMethod { get; set; }
+
+        public ProjectPublishMethod PublishMethod { get; set; }
 
         [ForeignKey("CISet")]
         public Guid CISetId { get; set; }

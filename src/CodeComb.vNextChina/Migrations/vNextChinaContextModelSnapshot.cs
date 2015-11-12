@@ -13,7 +13,7 @@ namespace CodeComb.vNextChina.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-rc2-16311");
+                .HasAnnotation("ProductVersion", "7.0.0-rc2-16326");
 
             modelBuilder.Entity("CodeComb.vNextChina.Hub.Models.Node", b =>
                 {
@@ -221,15 +221,17 @@ namespace CodeComb.vNextChina.Migrations
 
                     b.Property<int>("PRI");
 
+                    b.Property<int>("RestoreMethod");
+
                     b.Property<bool>("RunWithLinux");
 
                     b.Property<bool>("RunWithOsx");
 
                     b.Property<bool>("RunWithWindows");
 
-                    b.Property<string>("VersionRule");
+                    b.Property<string>("Url");
 
-                    b.Property<string>("ZipUrl");
+                    b.Property<string>("VersionRule");
 
                     b.HasKey("Id");
 

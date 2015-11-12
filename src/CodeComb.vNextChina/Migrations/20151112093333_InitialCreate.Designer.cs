@@ -8,14 +8,13 @@ using CodeComb.vNextChina.Models;
 namespace CodeComb.vNextChina.Migrations
 {
     [DbContext(typeof(vNextChinaContext))]
-    [Migration("20151109140823_InitialCreate")]
+    [Migration("20151112093333_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-rc2-16289")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "7.0.0-rc2-16326");
 
             modelBuilder.Entity("CodeComb.vNextChina.Hub.Models.Node", b =>
                 {
@@ -223,15 +222,17 @@ namespace CodeComb.vNextChina.Migrations
 
                     b.Property<int>("PRI");
 
+                    b.Property<int>("RestoreMethod");
+
                     b.Property<bool>("RunWithLinux");
 
                     b.Property<bool>("RunWithOsx");
 
                     b.Property<bool>("RunWithWindows");
 
-                    b.Property<string>("VersionRule");
+                    b.Property<string>("Url");
 
-                    b.Property<string>("ZipUrl");
+                    b.Property<string>("VersionRule");
 
                     b.HasKey("Id");
 
@@ -354,7 +355,8 @@ namespace CodeComb.vNextChina.Migrations
 
                     b.Property<DateTime>("CreationTime");
 
-                    b.Property<string>("ForumId");
+                    b.Property<string>("ForumId")
+                        .HasAnnotation("MaxLength", 64);
 
                     b.Property<bool>("IsAnnouncement");
 
@@ -401,6 +403,8 @@ namespace CodeComb.vNextChina.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("ExperimentFlags");
 
                     b.Property<bool>("LockoutEnabled");
 
