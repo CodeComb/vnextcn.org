@@ -147,12 +147,29 @@ namespace CodeComb.vNextChina.Controllers
                 rankitem.User = x.User;
                 foreach(var y in exps)
                 {
-                    var last = statuses.Where(z => z.UserId == x.UserId && z.ExperimentId == y.Id).LastOrDefault();
+                    var last = statuses
+                        .Where(z => z.UserId == x.UserId && z.ExperimentId == y.Id)
+                        .LastOrDefault();
                     if (last != null)
                     {
+                        var divide = 0;
+                        if (last.LinuxResult != StatusResult.Ignored)
+                            divide++;
+                        if (last.OsxResult != StatusResult.Ignored)
+                            divide++;
+                        if (last.WindowsResult != StatusResult.Ignored)
+                            divide++;
+
+                        var point = y.Point;
+                        if (last.LinuxResult == StatusResult.Failed && DB.StatusDetails.Where(z => z.OS == Package.OSType.Linux && z.StatusId == last.Id).Count() == 0)
+                            point -= (point / divide);
+                        if (last.OsxResult == StatusResult.Failed && DB.StatusDetails.Where(z => z.OS == Package.OSType.OSX && z.StatusId == last.Id).Count() == 0)
+                            point -= (point / divide);
+                        if (last.WindowsResult == StatusResult.Failed && DB.StatusDetails.Where(z => z.OS == Package.OSType.Windows && z.StatusId == last.Id).Count() == 0)
+                            point -= (point / divide);
                         rankitem.Details[y.Number] = new ContestRankDetail
                         {
-                            Point =  last.Total == 0 ? 0 : last.Accepted * y.Point / last.Total,
+                            Point = last.Total == 0 ? 0 : last.Accepted * point / last.Total,
                             TimeUsage = last.TimeUsage
                         }; 
                     }
