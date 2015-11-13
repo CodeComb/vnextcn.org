@@ -68,7 +68,6 @@ namespace CodeComb.vNextChina.Models
                     Title = "vNext China Test Round #1",
                     Begin = DateTime.Now,
                     End = DateTime.Now.AddHours(3),
-                    CompetitorCount = 0,
                     Description = "欢迎来到vNext China"
                 });
                 DB.ContestExperiments.Add(new ContestExperiment

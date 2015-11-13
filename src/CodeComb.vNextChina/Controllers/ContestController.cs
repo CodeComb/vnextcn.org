@@ -67,6 +67,10 @@ namespace CodeComb.vNextChina.Controllers
                     x.Details = "您请求的资源没有找到，请返回重试！";
                     x.StatusCode = 404;
                 });
+            ViewBag.CompetitorCount = DB.Statuses
+                .Where(x => x.Time >= ret.Begin && x.Time < ret.End)
+                .DistinctBy(x => x.UserId)
+                .Count();
             var statistics = new List<ContestStatistics>();
             var number = 'A';
             foreach (var x in ret.Experiments.OrderBy(y => y.Point))

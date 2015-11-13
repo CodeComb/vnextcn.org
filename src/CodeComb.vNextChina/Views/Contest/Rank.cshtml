@@ -1,6 +1,7 @@
 ﻿@model Contest
 @{ 
     ViewBag.Title = "排名 - " + Model.Title;
+    var i = 1;
 }
 
 <div class="container">
@@ -9,6 +10,7 @@
             <h2 class="exp-title">@ViewBag.Title</h2>
             <table class="table table-rank">
                 <colgroup>
+                    <col style="width: 40px" />
                     <col style="width: 56px" />
                     <col style="width: 110px" />
                     <col style="width: 60px" />
@@ -20,6 +22,7 @@
                 </colgroup>
                 <thead>
                     <tr>
+                        <th class="center">#</th>
                         <th class="center">头像</th>
                         <th>选手</th>
                         <th class="center">(Pts)</th>
@@ -34,6 +37,7 @@
                     @foreach(ContestRank x in ViewBag.Rank)
                     {
                         <tr>
+                            <td class="center">@(i++)</td>
                             <td class="center rank-avatar-td"><a asp-action="Show" asp-controller="Account" asp-route-id="x.User.Id"><img src="@Url.Action("Avatar", "Account", new { id = x.User.Id })" class="rank-avatar" /></a></td>
                             <td><a asp-action="Show" asp-controller="Account" asp-route-id="x.User.Id">@await Html.ColorUserNameAsync(x.User)</a></td>
                             <td class="center">@x.Point</td>

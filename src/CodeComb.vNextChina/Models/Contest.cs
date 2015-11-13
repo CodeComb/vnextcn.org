@@ -28,8 +28,6 @@ namespace CodeComb.vNextChina.Models
 
         public string Description { get; set; }
 
-        public long CompetitorCount { get; set; }
-
         [NotMapped]
         public ContestStatus Status
         {
