@@ -34,7 +34,14 @@ namespace CodeComb.vNextChina.Models
         {
             get
             {
-                return JsonConvert.DeserializeObject<List<Flag>>(ExperimentFlags);
+                try
+                {
+                    return JsonConvert.DeserializeObject<List<Flag>>(ExperimentFlags);
+                }
+                catch
+                {
+                    return new List<Flag>();
+                }
             }
         }
     }
