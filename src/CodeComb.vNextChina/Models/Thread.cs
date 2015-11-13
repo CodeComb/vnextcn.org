@@ -18,7 +18,7 @@ namespace CodeComb.vNextChina.Models
         [ForeignKey("Forum")]
         public string ForumId { get; set; }
 
-        public Forum Forum { get; set; }
+        public virtual Forum Forum { get; set; }
 
         public string Content { get; set; }
 

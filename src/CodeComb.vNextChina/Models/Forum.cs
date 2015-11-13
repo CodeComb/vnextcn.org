@@ -21,7 +21,7 @@ namespace CodeComb.vNextChina.Models
         [ForeignKey("Parent")]
         public string ParentId { get; set; }
 
-        public Forum Parent { get; set; }
+        public virtual Forum Parent { get; set; }
 
         public virtual ICollection<Forum> SubForums { get; set; }
 
