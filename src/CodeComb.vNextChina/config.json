@@ -1,8 +1,8 @@
 ﻿{
   "Data": {
     "DefaultConnection": {
-      "Mode": "SQLite",
-      "ConnectionString": "Data source={appRoot}/Database/vnextcn.db"
+      "Mode": "SqlServer",
+      "ConnectionString": "Data source=localhost;database=vnextcn;uid=sa;password=Yuuko19931101"
     }
   }
 }

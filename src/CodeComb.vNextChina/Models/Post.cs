@@ -14,7 +14,7 @@ namespace CodeComb.vNextChina.Models
         [ForeignKey("Thread")]
         public long ThreadId { get; set; }
         
-        public Thread Thread { get; set; }
+        public virtual Thread Thread { get; set; }
 
         public string Content { get; set; }
 
@@ -35,13 +35,13 @@ namespace CodeComb.vNextChina.Models
         [ForeignKey("Parent")]
         public Guid? ParentId { get; set; }
 
-        public Post Parent { get; set; }
+        public virtual Post Parent { get; set; }
 
         public virtual ICollection<Post> SubPosts { get; set; } = new List<Post>();
 
         [ForeignKey("User")]
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }
