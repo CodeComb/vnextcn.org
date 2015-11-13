@@ -115,14 +115,14 @@ namespace CodeComb.vNextChina.Node.Controllers
         public string NewJudge(long id, IFormFile user, IFormFile problem, string nuget)
         {
             var identifier = id;
-            var directory = Path.GetTempPath() + $@"/vec/{identifier}/";
+            var directory = Configuration["Pool"] + $@"/temp/{identifier}/";
             if (OS.Current == OSType.Windows)
                 directory = directory.Replace('/', '\\');
             else
                 directory = directory.Replace('\\', '/');
             directory = directory.Replace(@"\\", @"\");
             directory = directory.Replace(@"//", @"/");
-            Console.WriteLine("工作路径 "+ Path.GetTempPath() + $@"/vec/{identifier}/");
+            Console.WriteLine("工作路径 "+ Configuration["Pool"] + $@"/temp/{identifier}/");
             if (Directory.Exists(directory))
                 Directory.Delete(directory.TrimEnd('\\').TrimEnd('/'), true);
             Directory.CreateDirectory(directory);
@@ -130,7 +130,7 @@ namespace CodeComb.vNextChina.Node.Controllers
             Console.WriteLine("用户程序保存成功 " + directory + $@"/{identifier}.zip");
             Unzip.ExtractAll(directory + $@"/{identifier}.zip", directory + "/user/", true);
             Console.WriteLine("用户程序解压成功 " + directory + "/user");
-            var tempDirectory = Path.GetTempPath() + "/vec/";
+            var tempDirectory = Configuration["Pool"] + "/temp/";
             if (!Directory.Exists(tempDirectory))
                 Directory.CreateDirectory(tempDirectory);
             if (!Directory.Exists(tempDirectory + identifier))
