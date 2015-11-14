@@ -380,6 +380,7 @@ namespace CodeComb.vNextChina.Controllers
             string VersionRule,
             string Url,
             int CurrentVersion,
+            string Branch,
             ProjectRestoreMethod RestoreMethod)
         {
             var ciset = DB.CISets
@@ -413,6 +414,7 @@ namespace CodeComb.vNextChina.Controllers
             project.RunWithWindows = RunWithWindows;
             project.VersionRule = VersionRule;
             project.Url = Url;
+            project.Branch = Branch;
             project.RestoreMethod = RestoreMethod;
             DB.SaveChanges();
             return Prompt(x => 

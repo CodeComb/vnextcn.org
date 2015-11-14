@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CodeComb.vNextChina.Models
@@ -27,6 +28,9 @@ namespace CodeComb.vNextChina.Models
         public string Alias { get; set; }
 
         public string Url { get; set; }
+
+        [MaxLength(64)]
+        public string Branch { get; set; }
 
         public string VersionRule { get; set; }
 

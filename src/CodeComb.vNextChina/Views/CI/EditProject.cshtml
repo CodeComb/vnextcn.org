@@ -62,6 +62,12 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="row-title">分支</td>
+                        <td>
+                            <input type="text" class="w-3 textbox" name="Branch" value="@ViewBag.Project.Branch" /> 不填则为默认分支
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="row-title">额外的环境变量（json形式）</td>
                         <td>
                             <textarea class="textbox" style="width: calc(100% - 10px);height:240px;" name="AdditionalEnvironmentVariables">@ViewBag.Project.AdditionalEnvironmentVariables</textarea>

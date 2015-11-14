@@ -8,7 +8,7 @@
     "Microsoft.Framework.Logging": "1.0.0-beta8",
     "Microsoft.Framework.Logging.Console": "1.0.0-beta8",
     "Microsoft.Framework.Configuration": "1.0.0-beta8",
-    "CodeComb.Package": "2.0.0-beta8-5",
+    "CodeComb.Package": "2.0.0-beta8-6",
     "CodeComb.CI.Runner": "2.0.0-beta8"
   },
 
