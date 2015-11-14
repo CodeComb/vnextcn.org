@@ -32,7 +32,7 @@ namespace CodeComb.vNextChina.Node.Controllers
         public CIRunner Runner { get; set; }
 
         [HttpPost]
-        public async Task<string> NewCI(long id, int RestoreMethod, string Url, string version = null, string AdditionalEnvironmentVariables = null)
+        public async Task<string> NewCI(long id, int RestoreMethod, string Url, string Branch, string version = null, string AdditionalEnvironmentVariables = null)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace CodeComb.vNextChina.Node.Controllers
                     await Download.DownloadAndExtractAll(Url, path);
                 else if (RestoreMethod == 1)
                 {
-                    var result = GitClone.Clone(Url, path);
+                    var result = GitClone.Clone(Url, path, Branch);
                     if (!result.IsSucceeded)
                     {
                         Startup.Client.PostAsync("/api/Runner/Output", new FormUrlEncodedContent(new Dictionary<string, string>

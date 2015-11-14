@@ -162,7 +162,7 @@ namespace CodeComb.vNextChina.Controllers
                 if (node == null)
                     Status.LinuxResult = Models.StatusResult.Ignored;
                 else
-                    await node.SendJudgeTask(Status.Id, Status.Archive, Status.Experiment.TestArchive, Status.NuGet + "\r\n" + Status.Experiment.NuGet);
+                    node.SendJudgeTask(Status.Id, Status.Archive, Status.Experiment.TestArchive, Status.NuGet + "\r\n" + Status.Experiment.NuGet);
             }
             if (Status.RunWithWindows)
             {
@@ -170,7 +170,7 @@ namespace CodeComb.vNextChina.Controllers
                 if (node == null)
                     Status.WindowsResult = Models.StatusResult.Ignored;
                 else
-                    await node.SendJudgeTask(Status.Id, Status.Archive, Status.Experiment.TestArchive, Status.NuGet + "\r\n" + Status.Experiment.NuGet);
+                    node.SendJudgeTask(Status.Id, Status.Archive, Status.Experiment.TestArchive, Status.NuGet + "\r\n" + Status.Experiment.NuGet);
             }
             if (Status.RunWithOsx)
             {
@@ -178,7 +178,7 @@ namespace CodeComb.vNextChina.Controllers
                 if (node == null)
                     Status.OsxResult = Models.StatusResult.Ignored;
                 else
-                    await node.SendJudgeTask(Status.Id, Status.Archive, Status.Experiment.TestArchive, Status.NuGet + "\r\n" + Status.Experiment.NuGet);
+                    node.SendJudgeTask(Status.Id, Status.Archive, Status.Experiment.TestArchive, Status.NuGet + "\r\n" + Status.Experiment.NuGet);
             }
             Status.Result = Status.GenerateResult();
             exp.Submitted++;

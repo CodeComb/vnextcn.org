@@ -89,7 +89,7 @@ namespace CodeComb.vNextChina.Controllers
                 status.LinuxResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.Linux);
                 if (node != null)
-                    node.SendCIBuildTask(status.Id, (int)project.RestoreMethod, project.Url, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, (int)project.RestoreMethod, project.Url, project.Branch, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
                 else
                     status.LinuxResult = StatusResult.Ignored;
             }
@@ -99,7 +99,7 @@ namespace CodeComb.vNextChina.Controllers
                 status.OsxResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
                 if (node != null)
-                    node.SendCIBuildTask(status.Id, (int)project.RestoreMethod, project.Url, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, (int)project.RestoreMethod, project.Url, project.Branch, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
                 else
                     status.OsxResult = StatusResult.Ignored;
             }
@@ -109,7 +109,7 @@ namespace CodeComb.vNextChina.Controllers
                 status.WindowsResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.Windows);
                 if (node != null)
-                    node.SendCIBuildTask(status.Id, (int)project.RestoreMethod, project.Url, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
+                    node.SendCIBuildTask(status.Id, (int)project.RestoreMethod, project.Url, project.Branch, string.Format(project.VersionRule, project.CurrentVersion), project.AdditionalEnvironmentVariables);
                 else
                     status.WindowsResult = StatusResult.Ignored;
             }
@@ -157,7 +157,7 @@ namespace CodeComb.vNextChina.Controllers
                     status.LinuxResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.Linux);
                     if (node != null)
-                        node.SendCIBuildTask(status.Id, (int)x.RestoreMethod, x.Url, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, (int)x.RestoreMethod, x.Url, x.Branch, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
                     else
                         status.LinuxResult = StatusResult.Ignored;
                 }
@@ -167,7 +167,7 @@ namespace CodeComb.vNextChina.Controllers
                     status.OsxResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
                     if (node != null)
-                        node.SendCIBuildTask(status.Id, (int)x.RestoreMethod, x.Url, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, (int)x.RestoreMethod, x.Url, x.Branch, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
                     else
                         status.OsxResult = StatusResult.Ignored;
                 }
@@ -177,7 +177,7 @@ namespace CodeComb.vNextChina.Controllers
                     status.WindowsResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.Windows);
                     if (node != null)
-                        node.SendCIBuildTask(status.Id, (int)x.RestoreMethod, x.Url, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, (int)x.RestoreMethod, x.Url, x.Branch, string.Format(x.VersionRule, x.CurrentVersion), x.AdditionalEnvironmentVariables);
                     else
                         status.WindowsResult = StatusResult.Ignored;
                 }

@@ -13,7 +13,7 @@
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel --server.urls http://*:6070"
+    "web": "Microsoft.AspNet.Server.Kestrel"
   },
 
   "frameworks": {

@@ -127,7 +127,7 @@ namespace CodeComb.vNextChina.Controllers
                     if (status.ExperimentId.HasValue)
                         node.SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
                     else
-                        node.SendCIBuildTask(status.Id, (int)status.Project.RestoreMethod, status.Project.Url, string.Format(status.Project.VersionRule, ++status.Project.CurrentVersion), status.Project.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, (int)status.Project.RestoreMethod, status.Project.Url, status.Project.Branch, string.Format(status.Project.VersionRule, ++status.Project.CurrentVersion), status.Project.AdditionalEnvironmentVariables);
                 }
             }
             if (status.RunWithWindows)
@@ -140,7 +140,7 @@ namespace CodeComb.vNextChina.Controllers
                     if (status.ExperimentId.HasValue)
                         node.SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
                     else
-                        node.SendCIBuildTask(status.Id, (int)status.Project.RestoreMethod, status.Project.Url, string.Format(status.Project.VersionRule, ++status.Project.CurrentVersion), status.Project.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, (int)status.Project.RestoreMethod, status.Project.Url, status.Project.Branch, string.Format(status.Project.VersionRule, ++status.Project.CurrentVersion), status.Project.AdditionalEnvironmentVariables);
                 }
             }
             if (status.RunWithOsx)
@@ -153,7 +153,7 @@ namespace CodeComb.vNextChina.Controllers
                     if (status.ExperimentId.HasValue)
                         node.SendJudgeTask(status.Id, status.Archive, status.Experiment.TestArchive, status.NuGet + "\r\n" + status.Experiment.NuGet);
                     else
-                        node.SendCIBuildTask(status.Id, (int)status.Project.RestoreMethod, status.Project.Url, string.Format(status.Project.VersionRule, ++status.Project.CurrentVersion), status.Project.AdditionalEnvironmentVariables);
+                        node.SendCIBuildTask(status.Id, (int)status.Project.RestoreMethod, status.Project.Url, status.Project.Branch, string.Format(status.Project.VersionRule, ++status.Project.CurrentVersion), status.Project.AdditionalEnvironmentVariables);
                 }
             }
             DB.SaveChanges();
