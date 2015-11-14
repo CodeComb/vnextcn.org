@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "找回密码";
+}
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 col-md-offset-2">
+        <div class="card card-single card-error">
+            <div class="error-block-inner">
+                <h3>找回密码</h3>
+                <p>在此我们需要验证您的邮箱合法性</p>
+                <form method="post" asp-action="Forgot" asp-controller="Account">
+                    <p>
+                        <span class="texthold">电子邮箱</span>
+                        <input type="text" class="textbox w-3" name="email" />
+                    </p>
+                    <input type="submit" value="发送验证邮件" class="btn btn-default ripple home-link" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

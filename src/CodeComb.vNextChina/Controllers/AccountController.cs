@@ -132,6 +132,104 @@ namespace CodeComb.vNextChina.Controllers
                 });
         }
 
+        [HttpGet]
+        public IActionResult Forgot()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Forgot(string email)
+        {
+            // 判断该邮箱是否已经存在 不存在不能密码重置
+            if (!DB.Users.Any(x => x.Email == email))
+                return Prompt(x =>
+                {
+                    x.Title = "找回密码失败";
+                    x.Details = $"电子邮箱{email}不存在，请更换后重试！";
+                    x.StatusCode = 400;
+                });
+
+            // 发送激活信
+            var aes_email = Aes.Encrypt(email);
+            //var url = Url.Link("default", new { action = "ForgotDetail", controller = "Account", key = aes_email });
+            var url = $"http://vnextcn.org/Account/ForgotDetail?key={WebUtility.UrlEncode(aes_email)}";
+            await Mail.SendEmailAsync(email, "vNext China  密码找回验证信", $@"<html>
+            <head></head>
+            <body>
+            <p><a href=""{url}"">点击继续完成找回密码</a></p>
+            </body>
+            </html>");
+
+            return Prompt(x =>
+            {
+                x.Title = "请验证您的邮箱";
+                x.Details = $"我们向您的邮箱{email}中发送了一条包含验证链接的邮件，请通过邮件打开链接继续完成密码找回操作";
+                x.RedirectText = "进入邮箱";
+                x.RedirectUrl = "http://mail." + email.Split('@')[1];
+            });
+        }
+
+        [HttpGet]
+        public IActionResult ForgotDetail(string key)
+        {
+            // 判断该邮箱是否已经存在 不存在不能密码重置
+            var email = Aes.Decrypt(key);
+            ViewBag.Key = key;
+            ViewBag.Email = email;
+            if (!DB.Users.Any(x => x.Email == email))
+                return Prompt(x =>
+                {
+                    x.Title = "找回密码失败";
+                    x.Details = $"电子邮箱{email}不存在，请更换后重试！";
+                    x.StatusCode = 400;
+                });
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotDetail(string key, string password, string confirm)
+        {
+            if (password != confirm)
+            {
+                return Prompt(x =>
+                {
+                    x.Title = "找回密码失败";
+                    x.Details = $"两次输入密码不一致！";
+                    x.StatusCode = 400;
+                });
+            }
+            // 判断该邮箱是否已经存在 不存在不能密码重置
+            var email = Aes.Decrypt(key);
+            if (!DB.Users.Any(x => x.Email == email))
+                return Prompt(x =>
+                {
+                    x.Title = "密码重置失败";
+                    x.Details = $"电子邮箱{email}不存在，请更换后重试！";
+                    x.StatusCode = 400;
+                });
+            var user = await UserManager.FindByEmailAsync(email);
+            string resetToken = await UserManager.GeneratePasswordResetTokenAsync(user);
+            var result = await UserManager.ResetPasswordAsync(user, resetToken, password);
+            if (result.Succeeded)
+                return Prompt(x =>
+                {
+                    x.Title = "密码重置成功";
+                    x.Details = "现在您可以使用这个帐号登录vNext China了！";
+                    x.RedirectText = "现在登录";
+                    x.RedirectUrl = Url.Action("Login", "Account");
+                });
+            else
+                return Prompt(x =>
+                {
+                    x.Title = "注册失败";
+                    x.Details = result.Errors.First().Description;
+                    x.StatusCode = 400;
+                });
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()

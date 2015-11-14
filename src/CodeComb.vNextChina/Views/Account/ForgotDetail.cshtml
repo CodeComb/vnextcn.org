@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "找回密码";
+}
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 col-md-offset-2">
+        <div class="card card-single card-error">
+            <div class="error-block-inner">
+                <h3>密码重置</h3>
+                <p>请设置新密码</p>
+                <form method="post" asp-controller="Account" asp-action="ForgotDetail">
+                    <p>
+                        <span class="texthold">电子邮箱</span>
+                        <span>@ViewBag.Email</span>
+                    </p>
+                    <p>
+                        <span class="texthold">密码</span>
+                        <input type="password" class="textbox w-3" name="password" />
+                    </p>
+                    <p>
+                        <span class="texthold">密码重复</span>
+                        <input type="password" class="textbox w-3" name="confirm" />
+                    </p>
+                    <input type="hidden" name="key" value="@ViewBag.Key" />
+                    <input type="submit" value="提交" class="btn btn-default ripple home-link" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
