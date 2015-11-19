@@ -1,0 +1,157 @@
+﻿@model IEnumerable<Thread>
+@{ 
+    Forum Forum = ViewBag.Forum;
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_12">
+            <h2 class="forum-title">@ViewBag.Title</h2>
+            <div class="cont-outer">
+                <table class="table table-thread">
+                    <colgroup>
+                        <col class="hide-when-narrow" style="width: 50px" />
+                        <col />
+                        <col style="width: 120px" />
+                        <col class="hide-when-narrow" style="width: 110px" />
+                        <col class="hide-when-narrow" style="width: 171px" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="hide-when-narrow"></th>
+                            <th>主题</th>
+                            <th class="center">作者</th>
+                            <th class="center hide-when-narrow">回复/查看</th>
+                            <th class="hide-when-narrow">最后回复</th>
+                        </tr>
+                    </thead>
+                    <tbody class="thread-announcements">
+                        @foreach (Thread x in ViewBag.Announcements)
+                        {
+                            <tr data-id="thread-@x.Id">
+                                <td class="hide-when-narrow center"><i class="fa fa-volume-up thread-icon"></i></td>
+                                <td>
+                                    <a asp-action="Thread" asp-controller="Forum" asp-route-id="@x.Id">@x.Title</a>
+                                    @if (x.IsAnnouncement)
+                                    { 
+                                        <span class="thread-label purple">ANNOUNCEMENT</span>
+                                    }
+                                    @if (x.IsLocked)
+                                    {
+                                        <span class="thread-label">LOCKED</span>
+                                    }
+                                </td>
+                                <td class="center">
+                                    <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@await Html.ColorUserNameAsync(x.User)</a>
+                                    <br />
+                                    <span class="thread-time">@x.CreationTime.ToString("yyyy-MM-dd HH:mm")</span>
+                                </td>
+                                <td class="hide-when-narrow center">
+                                    <span class="table-thread-post">@x.Posts.Count</span> / <span class="table-thread-visit">@x.Visit</span>
+                                </td>
+                                <td class="hide-when-narrow">
+                                    <div class="table-thread-last-post">
+                                        @if (x.LastPost != null)
+                                        {
+                                            <img src="@Url.Action("Avatar", "Account", new { id = x.LastPost.UserId })" class="table-forums-avatar" />
+                                            <a asp-action="Thread" asp-controller="Forum" asp-route-id="@x.LastPost.ThreadId"><span class="table-forums-micro-title gray">@x.LastPost.FiltedContent</span></a>
+                                            <div class="table-forums-micro-title"><a asp-action="Show" asp-controller="Account" asp-route-id="@x.LastPost.UserId">@await Html.ColorUserNameAsync(x.LastPost.User)</a> <span class="table-forums-lastrep-time">@@@x.LastPost.Time.ToString("yyyy:MM:dd HH:mm")</span></div>
+                                        }
+                                        else
+                                        {
+                                            <span class="table-forums-noreply">暂无回复</span>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tbody class="lst-threads">
+                        @foreach (var x in Model)
+                        {
+                            <tr data-id="thread-@x.Id">
+                                @if (x.IsLocked)
+                                {
+                                    <td class="hide-when-narrow center"><i class="fa fa-lock thread-icon"></i></td>
+                                }
+                                else
+                                {
+                                    <td class="hide-when-narrow center"><i class="fa fa-commenting-o thread-icon"></i></td>
+                                }
+                                <td>
+                                    <a asp-action="Thread" asp-controller="Forum" asp-route-id="@x.Id">@x.Title</a>
+                                    @if (x.IsTop)
+                                    {
+                                        <span class="thread-label purple">TOP</span>
+                                    }
+                                    @if (x.IsLocked)
+                                    {
+                                        <span class="thread-label">LOCKED</span>
+                                    }
+                                </td>
+                                <td class="center">
+                                    <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@await Html.ColorUserNameAsync(x.User)</a>
+                                    <br />
+                                    <span class="thread-time">@x.CreationTime.ToString("yyyy-MM-dd HH:mm")</span>
+                                </td>
+                                <td class="hide-when-narrow center">
+                                    <span class="table-thread-post center">@x.Posts.Count</span> / <span class="table-thread-visit">@x.Visit</span>
+                                </td>
+                                <td class="hide-when-narrow">
+                                    <div class="table-thread-last-post">
+                                        @if (x.LastPost != null)
+                                        {
+                                            <img src="@Url.Action("Avatar", "Account", new { id = x.LastPost.UserId })" class="table-forums-avatar" />
+                                            <a asp-action="Thread" asp-controller="Forum" asp-route-id="@x.LastPost.Id"><span class="table-forums-micro-title gray">@x.LastPost.FiltedContent</span></a>
+                                            <div class="table-forums-micro-title"><a asp-action="Show" asp-controller="Account" asp-route-id="@x.LastPost.UserId">@await Html.ColorUserNameAsync(x.LastPost.User)</a> <span class="table-forums-lastrep-time">@@@x.LastPost.Time.ToString("yyyy:MM:dd HH:mm")</span></div>
+                                        }
+                                        else
+                                        {
+                                            <span class="table-forums-noreply">暂无回复</span>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="pager-outer">
+                    @Html.MakePager()
+                    <div class="clear"></div>
+                </div>
+                @if (User.IsSignedIn() && (!Forum.IsReadOnly || User.AnyRoles("Root, Master")))
+                {
+                    <br />
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>发表主题</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background:#fff!important">
+                                <td>
+                                    <form asp-action="Open" asp-controller="Forum" asp-route-id="@Forum.Id" method="post">
+                                        <input type="text" class="textbox w-3" name="Title" placeholder="主题标题" />
+                                        <hr />
+                                        <div class="markdown-editor-outer">
+                                            <textarea class="textbox markdown-editor" name="Content"></textarea>
+                                            <div class="markdown-editor-bottom">支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。</div>
+                                        </div>
+                                        <hr />
+                                        <p>
+                                            <input type="submit" class="btn btn-default" value="发表主题" />
+                                        </p>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var id = '@Forum.Id';
+</script>

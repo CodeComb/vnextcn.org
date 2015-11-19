@@ -1,0 +1,104 @@
+﻿@model Project
+@{
+    ViewBag.Title = Model.Alias;
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <h3 class="exp-sub-title">构建信息</h3>
+            <div class="cont-outer">
+                @if (ViewBag.Status == null)
+                {
+                    <p>尚未构建</p>
+                }
+                else
+                {
+                    <table class="detail-table">
+                        <tr>
+                            <td>当前版本</td>
+                            <td>构建结果</td>
+                            <td><i class="fa fa-windows"></i> Windows</td>
+                            <td><i class="fa fa-linux"></i> Linux</td>
+                            <td><i class="fa fa-apple"></i> Mac OS X</td>
+                            <td>构建时间</td>
+                        </tr>
+                        <tr>
+                            <td>@string.Format(Model.VersionRule, Model.CurrentVersion)</td>
+                            <td><img src="@Url.Action("Badge", "CI", new { id = Model.Id })" /></td>
+                            <td><img src="@Url.Action("BadgeWithOS", "CI", new { id = Model.Id, os = CodeComb.Package.OSType.Windows })" /></td>
+                            <td><img src="@Url.Action("BadgeWithOS", "CI", new { id = Model.Id, os = CodeComb.Package.OSType.Linux })" /></td>
+                            <td><img src="@Url.Action("BadgeWithOS", "CI", new { id = Model.Id, os = CodeComb.Package.OSType.OSX })" /></td>
+                            <td>@ViewBag.Status.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        </tr>
+                    </table>
+                }
+            </div>
+            @if (ViewBag.Status.Result != StatusResult.Ignored)
+            {
+                <h3 class="exp-sub-title">运行输出</h3>
+                <div class="cont-outer">
+                    <div class="status-os-outer">
+                        @if (ViewBag.Status.RunWithWindows && ViewBag.Status.WindowsResult != StatusResult.Ignored)
+                        {
+                            <a href="javascript:;" class="status-os-item" data-os="Windows"><i class="fa fa-windows"></i> Windows</a>
+                        }
+                        @if (ViewBag.Status.RunWithLinux && ViewBag.Status.LinuxResult != StatusResult.Ignored)
+                        {
+                            <a href="javascript:;" class="status-os-item" data-os="Linux"><i class="fa fa-linux"></i> Linux</a>
+                        }
+                        @if (ViewBag.Status.RunWithOsx && ViewBag.Status.OsxResult != StatusResult.Ignored)
+                        {
+                            <a href="javascript:;" class="status-os-item" data-os="OSX"><i class="fa fa-apple"></i> Mac OS X</a>
+                        }
+                    </div>
+                    <div class="pre-outer project-building">
+                        <pre id="console-output"></pre>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="grid_3 sidebar">
+            <h3 class="header">操作</h3>
+            <p><a asp-action="Show" asp-controller="CI" asp-route-id="@Model.CISetId"><i class="fa fa-angle-double-right"></i> 返回项目列表</a></p>
+            <p><a asp-action="Index" asp-controller="Status" asp-route-pid="@Model.Id"><i class="fa fa-angle-double-right"></i> 构建历史</a></p>
+            @if (User.AnyRolesOrClaims("Root, Master", "Owned CI set", Model.CISetId.ToString()))
+            {
+                <p><a href="javascript:;"><i class="fa fa-angle-double-right"></i> 重新构建</a></p>
+            }
+        </div>
+    </div>
+</div>
+<form asp-action="Build" asp-controller="CI" asp-route-id="@Model.CISetId" id="frmBuild"></form>
+<script>
+    var id = @ViewBag.Status.Id;
+    function Build()
+    {
+        $('#frmBuild').submit();
+    }
+
+    var CurrentOS;
+    if ($('.status-os-item').length > 0)
+    {
+        $('.status-os-item').removeClass('active');
+        $('.status-os-item').first().addClass('active');
+        CurrentOS = $('.status-os-item').first().attr('data-os');
+        LoadOutput();
+    }
+
+    $('.status-os-item').click(function () {
+        $('.status-os-item').removeClass('active');
+        $(this).addClass('active');
+        CurrentOS = $(this).attr('data-os');
+        LoadOutput();
+    });
+
+    function LoadOutput()
+    {
+        $.get('@Url.Action("Output", "Status", new { id = ViewBag.Status.Id })', { os: CurrentOS }, function (data)
+        {
+            $('#console-output').text(data);
+        });
+    }
+</script>

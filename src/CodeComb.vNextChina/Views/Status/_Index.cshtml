@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Status>
+@{ 
+    Layout = null;
+}
+@foreach (var x in Model)
+{
+    <tr data-id="status-@x.Id">
+        <td class="center"><a asp-action="Show" asp-controller="Status" asp-route-id="@x.Id">@Html.ColorStatus(x.Result)</a></td>
+        @if (x.Total > 0)
+        {
+            if (x.Total != x.Accepted)
+            {
+                <td class="center status-has-error hide-when-narrow">@(x.Total - x.Accepted)</td>
+            }
+            else
+            {
+                <td class="center status-accepted hide-when-narrow">@(x.Total - x.Accepted)</td>
+            }
+        }
+        else
+        {
+            <td class="center hide-when-narrow">N/A</td>
+        }
+        <td class="center hide-when-narrow">@x.TimeUsage</td>
+        <td class="center hide-when-narrow">@x.MemoryUsage</td>
+        <td class="status-project">
+            @if (x.Type == StatusType.Experiment)
+            {
+                <a asp-action="Show" asp-controller="Experiment" asp-route-id="@x.ExperimentId">E@(x.Experiment.Id) @x.Experiment.Title</a>
+            }
+            else
+            {
+                <a asp-action="Project" asp-controller="CI" asp-route-id="@x.ProjectId">@x.User.UserName/@x.Project.Alias</a>
+            }
+        </td>
+        <td class="right status-author"><a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@await Html.ColorUserNameAsync(x.User)</a></td>
+        <td class="center hide-when-narrow">@x.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
+    </tr>
+}

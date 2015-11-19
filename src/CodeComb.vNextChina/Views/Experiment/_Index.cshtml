@@ -1,0 +1,19 @@
+@model IEnumerable<Experiment>
+@{
+	Layout = null;
+}
+
+@foreach(var x in Model)
+{
+	<tr>
+		@if (User.IsSignedIn())
+		{
+			<td></td>
+		}
+		<td><a asp-action="Show" asp-controller="Experiment" asp-route-id="@x.Id">E@(x.Id) @x.Title</a></td>
+		<td>@x.Accepted</td>
+		<td>@x.Submitted</td>
+		<td>@x.ACRatio%</td>
+		<td>@x.Difficulty</td>
+	</tr>
+}

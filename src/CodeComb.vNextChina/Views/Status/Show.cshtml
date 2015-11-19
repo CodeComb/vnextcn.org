@@ -1,0 +1,169 @@
+﻿@model Status
+@{
+    ViewBag.Title = $"运行状态 - #{Model.Id}";
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <h3 class="exp-sub-title">运行摘要</h3>
+            <div class="cont-outer">
+                <table class="detail-table status-detail">
+                    <tr class="detail-table-header">
+                        <td>项目</td>
+                        <td>运行时长</td>
+                        <td>代码长度</td>
+                        <td>提交时间</td>
+                        @if (Model.Details.Count > 0)
+                        {
+                            <td>错误数</td>
+                        }
+                        <td>运行结果</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.Type == StatusType.Experiment)
+                            {
+                                <a asp-action="Show" asp-controller="Experiment" asp-route-id="@Model.ExperimentId">E@(Model.ExperimentId) @Model.Experiment.Title</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Project" asp-controller="CI" asp-route-id="@Model.ProjectId">@Model.User.UserName/@Model.Project.Alias</a>
+                            }
+                        </td>
+                        <td>@(Model.Details.Sum(x => x.Time))  s</td>
+                        <td>@(Model.MemoryUsage) KiB</td>
+                        <td>@Model.Time.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        @if (Model.Details.Count > 0)
+                        {
+                            <td>@Model.Details.Where(x => x.Result == TestCaseResult.Fail).Count()</td>
+                        }
+                        <td>@Html.ColorStatus(Model.Result)</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="test-cases">
+                @if (Model.Details.Count > 0)
+            {
+                    <h3 class="exp-sub-title">测试用例</h3>
+                    <div class="cont-outer">
+                        <div class="table-overflow-outer">
+                            <table class="table no-shadow">
+                                <thead>
+                                    <tr>
+                                        <th>用例</th>
+                                        <th>方法</th>
+                                        <th>时间</th>
+                                        <th>系统</th>
+                                        <th>结果</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var x in Model.Details)
+                                    {
+                                        <tr>
+                                            <td>@x.Title</td>
+                                            <td>@x.Method</td>
+                                            <td>@x.Time s</td>
+                                            <td>
+                                                @if (x.OS == CodeComb.Package.OSType.Linux)
+                                                {
+                                                    <i class="fa fa-linux"></i>
+                                                }
+                                                else if (x.OS == CodeComb.Package.OSType.OSX)
+                                                {
+                                                    <i class="fa fa-apple"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa fa-windows"></i>
+                                                }
+
+                                                @x.OS
+                                            </td>
+                                            <td>@x.Result</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (Model.Result != StatusResult.Ignored)
+            {
+                <h3 class="exp-sub-title">运行输出</h3>
+                <div class="cont-outer">
+                    <div class="status-os-outer">
+                        @if (Model.RunWithWindows && Model.WindowsResult != StatusResult.Ignored)
+                        {
+                            <a href="javascript:;" class="status-os-item" data-os="Windows"><i class="fa fa-windows"></i> Windows</a>
+                        }
+                        @if (Model.RunWithLinux && Model.LinuxResult != StatusResult.Ignored)
+                        {
+                            <a href="javascript:;" class="status-os-item" data-os="Linux"><i class="fa fa-linux"></i> Linux</a>
+                        }
+                        @if (Model.RunWithOsx && Model.OsxResult != StatusResult.Ignored)
+                        {
+                            <a href="javascript:;" class="status-os-item" data-os="OSX"><i class="fa fa-apple"></i> Mac OS X</a>
+                        }
+                    </div>
+                    <div class="pre-outer">
+                        <pre id="console-output"></pre>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="grid_3">
+            <p class="center"><img class="sidebar-avatar" src="~/Account/Avatar/@Model.UserId" style="width: 100%;" /></p>
+            <p class="center"><a asp-controller="Account" asp-action="Show" asp-route-id="@Model.UserId">@await Html.ColorUserNameAsync(Model.User, "sidebar-username")</a></p>
+            <div class="sidebar-nobg">
+                <p><a href="javascript:$('#frmRerun').submit();"><i class="fa fa-angle-double-right"></i> 重新运行</a></p>
+                <form asp-action="Rerun" asp-controller="Status" asp-route-id="@Model.Id" method="post" id="frmRerun"></form>
+                @if (Model.Result == StatusResult.Building)
+                {
+                    <p><a href="javascript:$('#frmAbort').submit();"><i class="fa fa-angle-double-right"></i> 停止运行</a></p>
+                    <form asp-action="Abort" asp-controller="Status" asp-route-id="@Model.Id" method="post" id="frmAbort"></form>
+                }
+                <p><a asp-action="Index" asp-controller="Status"><i class="fa fa-angle-double-right"></i> 返回状态列表</a></p>
+                @if (Model.Type == StatusType.Experiment)
+                {
+                    <p><a asp-action="Show" asp-controller="Experiment" asp-route-id="@Model.ExperimentId"><i class="fa fa-angle-double-right"></i> 返回实验#@Model.ExperimentId</a></p>
+                    <p><a asp-action="Index" asp-controller="Forum" asp-route-experiment="@Model.Id"><i class="fa fa-angle-double-right"></i> 讨论该实验</a></p>
+                }
+                else
+                {
+                    <p><a asp-action="Project" asp-controller="CI" asp-route-id="@Model.ProjectId.Value"><i class="fa fa-angle-double-right"></i> 返回项目@(Model.Project.Alias)</a></p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var id = @Model.Id;
+    var CurrentOS;
+    if ($('.status-os-item').length > 0)
+    {
+        $('.status-os-item').removeClass('active');
+        $('.status-os-item').first().addClass('active');
+        CurrentOS = $('.status-os-item').first().attr('data-os');
+        LoadOutput();
+    }
+
+    $('.status-os-item').click(function () {
+        $('.status-os-item').removeClass('active');
+        $(this).addClass('active');
+        CurrentOS = $(this).attr('data-os');
+        LoadOutput();
+    });
+
+    function LoadOutput()
+    {
+        $.get('@Url.Action("Output", "Status", new { id = Model.Id })', { os: CurrentOS }, function (data)
+        {
+            $('#console-output').text(data);
+            $('.pre-outer').scrollTop($('pre').height());
+        });
+    }
+</script>

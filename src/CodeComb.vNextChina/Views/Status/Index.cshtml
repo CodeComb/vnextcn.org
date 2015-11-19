@@ -1,0 +1,53 @@
+﻿@{ 
+    ViewBag.Title = "运行状态";
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <table class="table">
+                <colgroup>
+                    <col style="width:13%; text-align: center" />
+                    <col class="hide-when-narrow" style="width:7%" />
+                    <col class="hide-when-narrow" style="width:7%" />
+                    <col class="hide-when-narrow" style="width:7%" />
+                    <col />
+                    <col style="width:13%" />
+                    <col class="hide-when-narrow" style="width:20%" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="center">Flag</th>
+                        <th class="center hide-when-narrow">Err</th>
+                        <th class="center hide-when-narrow">(ms)</th>
+                        <th class="center hide-when-narrow">(KiB)</th>
+                        <th class="status-project">项目</th>
+                        <th class="right status-author">提交者</th>
+                        <th class="center hide-when-narrow">提交时间</th>
+                    </tr>
+                </thead>
+                <tbody class="lst-statuses"></tbody>
+            </table>
+            @Html.MakePager()
+        </div>
+        <div class="grid_3 sidebar">
+            <h3 class="header">检索</h3>
+            <form method="get" asp-action="Index" asp-controller="Status">
+                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="number" placeholder="记录号" value="@Context.Request.Query["Number"]" /></p>
+                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="username" placeholder="用户名" value="@Context.Request.Query["Username"]" /></p>
+                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="experiment" placeholder="实验名称" value="@Context.Request.Query["Experiment"]" /></p>
+                <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="project" placeholder="项目名称" value="@Context.Request.Query["Project"]" /></p>
+                <p>
+                    <select name="Result">
+                        <option value="">运行结果</option>
+                        @foreach(var x in Enum.GetNames(typeof(StatusResult)))
+                        {
+                            <!option @(Context.Request.Query["Result"] == x ? "selected" : "")>@x</!option>
+                        }
+                    </select>
+                </p>
+                <p><input type="submit" class="btn btn-default" value="过滤" /></p>
+            </form>
+        </div>
+    </div>
+</div>

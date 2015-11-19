@@ -1,0 +1,59 @@
+﻿@model CISet
+@{ 
+    ViewBag.Title = Model.Title;
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <h3 class="exp-sub-title">项目构建状态</h3>
+            <div class="cont-outer">
+                <table class="table no-shadow lst-ci">
+                    <thead>
+                        <tr>
+                            <th>项目名称</th>
+                            <th>构建状态</th>
+                            <th>最新版本</th>
+                            <th>构建顺序</th>
+                            @if (User.AnyRolesOrClaims("Root, Master", "Owned CI set", Model.Id.ToString()))
+                            {
+                                <th>操作</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var x in Model.Projects.OrderBy(x => x.PRI))
+                        {
+                            <tr data-id="ci-@x.Id">
+                                <td><a asp-action="Project" asp-controller="CI" asp-route-id="@x.Id">@x.Alias</a></td>
+                                <td>
+                                    <img src="@Url.Action("Badge", "CI", new { id = x.Id })" />
+                                </td>
+                                <td>@string.Format(x.VersionRule, x.CurrentVersion)</td>
+                                <td>@x.PRI</td>
+                                @if (User.AnyRolesOrClaims("Root, Master", "Owned CI set", Model.Id.ToString()))
+                                {
+                                    <td>
+                                        <a href="javascript:Build('@x.Id');"><i class="fa fa-play"></i> 构建</a>                                        
+                                        &nbsp;&nbsp;
+                                        <a asp-action="EditProject" asp-controller="CI" asp-route-id="@Model.Id" asp-route-pid="@x.Id"><i class="fa fa-cog"></i> 编辑</a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @Html.Partial("Sidebar")
+    </div>
+</div>
+<form asp-action="Build" asp-controller="CI" method="post" id="frmBuild" asp-route-id="@Model.Id"><input type="hidden" name="pid" id="projectId" /></form>
+<script>
+    function Build(pid)
+    {
+        $('#projectId').val(pid);
+        $('#frmBuild').submit();
+    }
+</script>

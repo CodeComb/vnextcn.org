@@ -1,0 +1,22 @@
+﻿@model Project
+@{ 
+    Layout = null;
+    var x = Model;
+}
+
+<tr data-id="ci-@x.Id">
+    <td><a asp-action="Project" asp-controller="CI" asp-route-id="@x.Id">@x.Alias</a></td>
+    <td>
+        <img src="@Url.Action("Badge", "CI", new { id = x.Id, rnd = Guid.NewGuid() })" />
+    </td>
+    <td>@string.Format(x.VersionRule, x.CurrentVersion)</td>
+    <td>@x.PRI</td>
+    @if (User.AnyRolesOrClaims("Root, Master", "Owned CI set", Model.Id.ToString()))
+    {
+        <td>
+            <a href="javascript:Build('@x.Id');"><i class="fa fa-play"></i> 构建</a>
+            &nbsp;&nbsp;
+            <a asp-action="EditProject" asp-controller="CI" asp-route-id="@Model.Id" asp-route-pid="@x.Id"><i class="fa fa-cog"></i> 编辑</a>
+        </td>
+    }
+</tr>

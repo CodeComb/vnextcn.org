@@ -1,0 +1,42 @@
+﻿@model Contest
+@{ 
+    ViewBag.Title = "编辑比赛 - " + Model.Title;
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <form asp-action="Edit" asp-controller="Contest" asp-route-id="@Model.Id" method="post" class="cont-outer">
+                <table class="detail-table no-border">
+                    <tr>
+                        <td class="row-title">标题</td>
+                        <td><input type="text" class="textbox w-3" asp-for="Title" /></td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">开始时间</td>
+                        <td><input type="datetime" class="textbox w-3" asp-for="Begin" /></td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">结束时间</td>
+                        <td><input type="datetime" class="textbox w-3" asp-for="End" /></td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">比赛简介</td>
+                        <td>
+                            <div class="markdown-editor-outer">
+                                <textarea class="textbox markdown-editor" asp-for="Description"></textarea>
+                                <div class="markdown-editor-bottom">支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="保存" class="btn btn-default" /></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        @Html.Partial("Sidebar")
+    </div>
+</div>

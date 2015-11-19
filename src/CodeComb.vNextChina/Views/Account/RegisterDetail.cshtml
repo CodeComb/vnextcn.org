@@ -1,0 +1,34 @@
+@{ 
+    ViewBag.Title = "新用户注册";
+}
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 col-md-offset-2">
+        <div class="card card-single card-error">
+            <div class="error-block-inner">
+                <h3>注册 vNext China 帐号</h3>
+				<p>请完善您的个人资料</p>
+                <form method="post" asp-controller="Account" asp-action="RegisterDetail">
+					<p>
+						<span class="texthold">电子邮箱</span>
+                        <span>@ViewBag.Email</span>
+					</p>
+                    <p>
+                        <span class="texthold">用户名</span>
+                        <input type="text" class="textbox w-3" name="username" />
+                    </p>
+                    <p>
+                        <span class="texthold">密码</span>
+                        <input type="password" class="textbox w-3" name="password" />
+                    </p>
+                    <p>
+                        <span class="texthold">密码重复</span>
+                        <input type="password" class="textbox w-3" name="confirm" />
+                    </p>
+                    <input type="hidden" name="key" value="@ViewBag.Key" />
+                    <input type="submit" value="注册" class="btn btn-default ripple home-link" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

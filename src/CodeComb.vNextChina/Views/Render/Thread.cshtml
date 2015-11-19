@@ -1,0 +1,49 @@
+﻿@model Thread
+@{
+    Layout = null;
+    var x = Model;
+}
+
+<tr data-id="thread-@x.Id">
+    @if (x.IsLocked)
+    {
+        <td class="hide-when-narrow center"><i class="fa fa-lock thread-icon"></i></td>
+    }
+    else
+    {
+        <td class="hide-when-narrow center"><i class="fa fa-commenting-o thread-icon"></i></td>
+    }
+    <td>
+        <a asp-action="Thread" asp-controller="Forum" asp-route-id="@x.Id">@x.Title</a>
+        @if (x.IsTop)
+        {
+            <span class="thread-label purple">TOP</span>
+        }
+        @if (x.IsLocked)
+        {
+            <span class="thread-label">LOCKED</span>
+        }
+    </td>
+    <td class="center">
+        <a asp-action="Show" asp-controller="Account" asp-route-id="@x.UserId">@await Html.ColorUserNameAsync(x.User)</a>
+        <br />
+        <span class="thread-time">@x.CreationTime.ToString("yyyy-MM-dd HH:mm")</span>
+    </td>
+    <td class="hide-when-narrow center">
+        <span class="table-thread-post center">@x.Posts.Count</span> / <span class="table-thread-visit">@x.Visit</span>
+    </td>
+    <td class="hide-when-narrow">
+        <div class="table-thread-last-post">
+            @if (x.LastPost != null)
+            {
+                <img src="@Url.Action("Avatar", "Account", new { id = x.LastPost.UserId })" class="table-forums-avatar" />
+                <a asp-action="Thread" asp-controller="Forum" asp-route-id="@x.LastPost.Id"><span class="table-forums-micro-title gray">@x.LastPost.FiltedContent</span></a>
+                <div class="table-forums-micro-title"><a asp-action="Show" asp-controller="Account" asp-route-id="@x.LastPost.UserId">@await Html.ColorUserNameAsync(x.LastPost.User)</a> <span class="table-forums-lastrep-time">@@@x.LastPost.Time.ToString("yyyy:MM:dd HH:mm")</span></div>
+            }
+            else
+            {
+                <span class="table-forums-noreply">暂无回复</span>
+            }
+        </div>
+    </td>
+</tr>

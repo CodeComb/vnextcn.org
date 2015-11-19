@@ -1,0 +1,20 @@
+﻿@{ 
+    ViewBag.Title = "创建比赛";
+}
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 col-md-offset-2">
+        <div class="card card-single card-error">
+            <div class="error-block-inner">
+                <h3>@ViewBag.Title</h3>
+                <form method="post" asp-action="Create" asp-controller="Experiment">
+                    <p>
+                        <span class="texthold">比赛名称</span>
+                        <input type="text" class="textbox w-3" name="Title" />
+                    </p>
+                    <input type="submit" value="创建比赛" class="btn btn-default ripple home-link" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

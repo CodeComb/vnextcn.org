@@ -1,0 +1,19 @@
+﻿@model Contest
+@{ 
+    Layout = null;
+}
+<div class="grid_3 sidebar">
+    <h3 class="header">操作</h3>
+    <p><a asp-action="Show" asp-controller="Contest" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 比赛信息</a></p>
+    <p><a asp-action="Index" asp-controller="Status" asp-route-begin="@Model.Begin" asp-route-end="@Model.End"><i class="fa fa-angle-double-right"></i> 提交记录</a></p>
+    @if (Model.Status > ContestStatus.Pending)
+    {
+        <p><a asp-action="Rank" asp-controller="Contest" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 比赛排名</a></p>
+    }
+    @if (User.AnyRoles("Root, Master"))
+    {
+        <p><a asp-action="Edit" asp-controller="Contest" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 比赛设置</a></p>
+        <p><a asp-action="Experiment" asp-controller="Contest" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 题目设置</a></p>
+        <p><a asp-action="Rerun" asp-controller="Contest" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 重测比赛</a></p>
+    }
+</div>

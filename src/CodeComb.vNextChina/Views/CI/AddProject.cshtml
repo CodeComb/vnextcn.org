@@ -1,0 +1,81 @@
+﻿@model CISet
+@{ 
+    ViewBag.Title = "添加项目";
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <form asp-action="AddProject" asp-controller="CI" asp-route-id="@Model.Id" method="post" class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <h3 class="exp-sub-title">基本信息</h3>
+            <div class="cont-outer">
+                <table class="detail-table">
+                    <tr>
+                        <td class="row-title">项目名称</td>
+                        <td>
+                            <input type="text" class="w-3 textbox" name="Alias" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">构建顺序</td>
+                        <td>
+                            <input type="text" class="w-3 textbox" name="PRI" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">构建平台</td>
+                        <td>
+                            <input type="checkbox" value="true" name="RunWithWindows" /> <i class="fa fa-windows"></i> Windows
+                            <br />
+                            <input type="checkbox" value="true" name="RunWithLinux" /> <i class="fa fa-linux"></i> Linux
+                            <br />
+                            <input type="checkbox" value="true" name="RunWithOsx" /> <i class="fa fa-apple"></i> Mac OS X
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">版本规则</td>
+                        <td>
+                            <input type="text" class="w-3 textbox" name="VersionRule" value="1.0.0-CI-{0}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">当前版本</td>
+                        <td>
+                            <input type="text" class="w-3 textbox" name="CurrentVersion" value="10000" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">打包文件URL</td>
+                        <td>
+                            <input type="text" class="w-3 textbox" name="ZipUrl" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">额外的环境变量（json形式）</td>
+                        <td>
+                            <textarea class="textbox" style="width: calc(100% - 10px);height:240px;" name="AdditionalEnvironmentVariables"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <h3 class="exp-sub-title">发布设置</h3>
+            <div class="cont-outer">
+                <p>目前仅支持发布到NuGet Gallery</p>
+                <table class="detail-table">
+                    <tr>
+                        <td class="row-title">NuGet Host</td>
+                        <td><input type="text" class="w-3 textbox" name="NuGetHost" value="https://www.nuget.org/" /></td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">NuGet Private Key</td>
+                        <td><input type="text" class="w-3 textbox" name="NuGetPrivateKey" /></td>
+                    </tr>
+                </table>
+            </div>
+            <p>
+                <input type="submit" class="btn btn-default" value="创建项目" />
+            </p>
+        </form>
+        @Html.Partial("Sidebar")
+    </div>
+</div>

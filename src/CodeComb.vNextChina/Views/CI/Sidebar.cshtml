@@ -1,0 +1,15 @@
+﻿@model CISet
+@{
+    Layout = null;
+}
+<div class="grid_3 sidebar">
+    <h3 class="header">操作</h3>
+    <p><a asp-action="Show" asp-controller="Contest" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 项目信息</a></p>
+    @if (User.AnyRolesOrClaims("Root, Master", "Owned CI set", Model.Id.ToString()))
+    {
+        <p><a href="javascript:$('#frmBuildAll').submit();"><i class="fa fa-angle-double-right"></i> 全部构建</a></p>
+        <p><a asp-action="EditCISet" asp-controller="CI" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 编辑项目集合</a></p>
+        <p><a asp-action="AddProject" asp-controller="CI" asp-route-id="@Model.Id"><i class="fa fa-angle-double-right"></i> 添加项目</a></p>
+    }
+</div>
+<form asp-action="BuildAll" asp-controller="CI" method="post" id="frmBuildAll" asp-route-id="@Model.Id"></form>

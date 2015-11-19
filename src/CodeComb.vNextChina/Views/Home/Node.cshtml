@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CodeComb.vNextChina.Hub.Node>
+@{ 
+    ViewBag.Title = "可用度";
+}
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 col-md-offset-2">
+        <div>
+            <div class="error-block-inner">
+                <h2>@ViewBag.Title</h2>
+                <table class="table no-shadow">
+                    <thead>
+                        <tr>
+                            <th>节点名称</th>
+                            <th>状态</th>
+                            <th>操作系统</th>
+                            <th>当前任务数</th>
+                            <th>最大任务数</th>
+                            <th>丢失连接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var x in Model)
+                        { 
+                            <tr>
+                                <td>@x.Alias</td>
+                                <td>@x.Status</td>
+                                <td>
+                                    @if (x.Status == CodeComb.vNextChina.Hub.NodeStatus.Lost)
+                                    {
+                                        <i class="fa fa-chevron-circle-down"></i>
+                                        @("Unknown")
+                                    }
+                                    else if (x.OS == CodeComb.Package.OSType.Linux)
+                                    { 
+                                        <i class="fa fa-linux"></i>
+                                        @(x.OS)
+                                    }
+                                    else if (x.OS == CodeComb.Package.OSType.OSX)
+                                    {
+                                        <i class="fa fa-apple"></i>
+                                        @(x.OS)
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-windows"></i>
+                                        @(x.OS)
+                                    }
+                                </td>
+                                <td>@x.CurrentThread</td>
+                                <td>@x.MaxThread</td>
+                                <td>@x.LostConnectionCount</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

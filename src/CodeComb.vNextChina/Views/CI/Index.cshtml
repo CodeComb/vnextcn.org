@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CISet>
+@{ 
+    ViewBag.Title = "持续集成";
+}
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 col-md-offset-2">
+        <div>
+            <div class="error-block-inner">
+                <h2>@ViewBag.Title</h2>
+                <p>
+                    <a asp-action="CreateCISet" asp-controller="CI"><i class="fa fa-plus-circle"></i> 创建项目集合</a>
+                </p>
+                @if (Model.Count() == 0)
+                {
+                    <p>您还没有创建过任何项目集合</p>
+                }
+                <div class="block-outer">
+                    @foreach (var x in Model)
+                    {
+                        <div class="block yellow">
+                            <h2><a asp-action="Show" asp-controller="CI" asp-route-id="@x.Id">@x.Title</a></h2>
+                            <table class="detail-table no-border">
+                                <tr>
+                                    <td class="row-title">项目数</td>
+                                    <td>@x.Projects.Count</td>
+                                </tr>
+                                <tr>
+                                    <td class="row-title">创建日期</td>
+                                    <td>@x.CreationTime.ToString("yyyy-MM-dd")</td>
+                                </tr>
+                                <tr>
+                                    <td class="row-title">上次构建时间</td>
+                                    <td>@(x.LastBuildingTime == null ? "N/A" : x.LastBuildingTime.Value.ToString("yyyy-MM-dd HH:mm:ss"))</td>
+                                </tr>
+                            </table>
+                            <br />
+                            <p>
+                                <a asp-action="Show" asp-controller="CI" asp-route-id="@x.Id" class="btn btn-default">
+                                    <i class="fa fa-file-text-o"></i>
+                                    查看集合
+                                </a>
+                                <a href="javascript:BuildAll('@x.Id');" class="btn btn-default">
+                                    <i class="fa fa-play"></i>
+                                    开始构建
+                                </a>
+                                <a asp-action="EditCISet" asp-controller="CI" asp-route-id="@x.Id" class="btn btn-default">
+                                    <i class="fa fa-cog"></i>
+                                    编辑集合
+                                </a>
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form asp-action="BuildAll" asp-controller="CI" method="post" id="frmBuildAll"><input type="hidden" id="CISetId" name="id" /></form>
+<script>
+    function BuildAll(id)
+    {
+        $('#CISetId').val(id);
+        $('#frmBuildAll').submit();
+    }
+</script>

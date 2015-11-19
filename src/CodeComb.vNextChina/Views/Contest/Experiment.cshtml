@@ -1,0 +1,60 @@
+﻿@model Contest
+@{
+    ViewBag.Title = "编辑题目 - " + Model.Title;
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="exp-title">@ViewBag.Title</h2>
+            <h3 class="exp-sub-title">已添加题目</h3>
+            <div class="cont-outer">
+                <table class="table no-shadow">
+                    <thead>
+                        <tr>
+                            <th>题目</th>
+                            <th>分值</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model.Experiments)
+                        {
+                            <tr>
+                                <td><a asp-action="Show" asp-controller="Experiment" asp-route-id="@x.ExperimentId">E@(x.ExperimentId) @x.Experiment.Title</a></td>
+                                <td>@x.Point</td>
+                                <td>
+                                    <a href="javascript:Delete(@x.ExperimentId)">删除题目</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <h3 class="exp-sub-title">添加题目</h3>
+            <form class="cont-outer" method="post" asp-action="AddExperiment" asp-controller="Contest" asp-route-id="@Model.Id">
+                <table class="detail-table">
+                    <tr>
+                        <td class="row-title">题号</td>
+                        <td><input type="text" class="textbox w-3" name="ExperimentId" /></td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">分值</td>
+                        <td><input type="number" class="textbox w-3" name="Point" /></td>
+                    </tr>
+                </table>
+                <br />
+                <input type="submit" value="添加" class="btn btn-default" />
+            </form>
+            <script>
+                function Delete(id)
+                {
+                    $('#deleteId').val(id);
+                    $('#frmDeleteExperiment').submit();
+                }
+            </script>
+            <form asp-action="DeleteExperiment" asp-controller="Contest" method="post" id="frmDeleteExperiment" asp-route-id="@Model.Id"><input type="hidden" name="eid" id="deleteId" /></form>
+        </div>
+        @Html.Partial("Sidebar")
+    </div>
+</div>

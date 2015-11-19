@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Contest>
+@{ 
+    ViewBag.Title = "比赛列表";
+}
+
+<div class="container">
+    <div class="cont-wrap">
+        <div class="grid_9">
+            <h2 class="header">@ViewBag.Title</h2>
+            <div class="block-outer">
+                @foreach (Contest x in ViewBag.InProgress)
+                {
+                    <div class="block red">
+                        <h2><a asp-action="Show" asp-controller="Contest" asp-route-id="@x.Id">@x.Title</a></h2>
+                        <p class="small"><span>时间: @x.Begin.ToString("yyyy-MM-dd HH:mm:ss") ~ @x.End.ToString("yyyy-MM-dd HH:mm:ss")</span></p>
+                        @Html.Sanitize(Html.Marked(x.Description).ToString())
+                    </div>
+                }
+                @foreach (var x in Model)
+                {
+                    if (DateTime.Now < x.Begin)
+                    {
+                        <div class="block blue">
+                            <h2><a asp-action="Show" asp-controller="Contest" asp-route-id="@x.Id">@x.Title</a></h2>
+                            <p class="small"><span>时间: @x.Begin.ToString("yyyy-MM-dd HH:mm:ss") ~ @x.End.ToString("yyyy-MM-dd HH:mm:ss")</span></p>
+                            @Html.Sanitize(Html.Marked(x.Description).ToString())
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="block">
+                            <h2><a asp-action="Show" asp-controller="Contest" asp-route-id="@x.Id">@x.Title</a></h2>
+                            <p class="small"><span>时间: @x.Begin.ToString("yyyy-MM-dd HH:mm:ss") ~ @x.End.ToString("yyyy-MM-dd HH:mm:ss")</span></p>
+                            @Html.Sanitize(Html.Marked(x.Description).ToString())
+                        </div>
+                    }
+                }
+            </div>
+            <div class="pager-outer">
+                @Html.MakePager()
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="grid_3">
+            <div class="sidebar">
+                <h3 class="header">检索</h3>
+                <form>
+                    <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="title" placeholder="比赛名称" value="@Context.Request.Query["Title"]" /></p>
+                    <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="begin" placeholder="开始时间" value="@Context.Request.Query["Begin"]" /></p>
+                    <p><input type="text" style="width: calc(100% - 8px)" class="textbox" name="end" placeholder="结束时间" value="@Context.Request.Query["End"]" /></p>
+                    <p><input type="submit" class="btn btn-default" value="过滤" /></p>
+                </form>            
+            </div>
+            @if (User.AnyRoles("Root, Master"))
+            {
+                <div class="sidebar">
+                    <h3 class="header">管理</h3>
+                    <p><a asp-action="Create" asp-controller="Contest">创建比赛</a></p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿<div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+        <li class="home"><a asp-action="Index" asp-controller="Home">首页</a></li>
+        <li class="experiment"><a asp-action="Index" asp-controller="Experiment">实验室</a></li>
+        <li class="contest"><a asp-action="Index" asp-controller="Contest">比赛</a></li>
+        <li class="ci"><a asp-action="Index" asp-controller="CI">CI</a></li>
+        <li class="ci"><a asp-action="Index" asp-controller="Status">运行状态</a></li>
+        <li class="forum"><a asp-action="Index" asp-controller="Forum">论坛</a></li>
+        @if (User.IsSignedIn())
+        {
+            <li class="center"><a asp-action="Show" asp-controller="Account" asp-route-id="@User.Current.Id">会员中心</a></li>
+            <li class="logout"><a href="javascript:$('#frmLogout').submit()">注销</a></li>
+            <form id="frmLogout" asp-action="Logout" asp-controller="Account" method="post"></form>
+        }
+        else
+        {
+            <li class="login"><a asp-action="Login" asp-controller="Account">登录</a></li>
+            <li class="register"><a asp-action="Register" asp-controller="Account">注册</a></li>
+        }
+    </ul>
+</div>

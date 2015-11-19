@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="referrer" content="origin" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>@ViewBag.Title - vNext China</title>
+    <link href="~/styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/styles/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/styles/monokai_sublime.css" rel="stylesheet" />
+    <link href="~/styles/vnextcn.base.css" rel="stylesheet" />
+    <script src="~/scripts/jquery.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/jquery.autoajax.js"></script>
+    <script src="~/scripts/vnextcn.plugins.js"></script>
+    <script src="~/scripts/vnextcn.markdown.js"></script>
+    <script src="~/scripts/jquery.signalr-2.0.3.js"></script>
+    <script src="~/signalr/js"></script>
+    <script src="~/scripts/vnextcn.ajax.js"></script>
+    <script src="~/scripts/vnextcn.main.js"></script>
+    <script src="~/scripts/vnextcn.signalr.js"></script>
+</head>
+<body class="home-template fixed-navbar">
+    <!-- start header -->
+    <header class="main-header">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="material-icons">&#xE5D2;</i>
+                    </button>
+                    <!-- start logo -->
+                    <a class="navbar-brand text-logo" asp-controller="Home" asp-action="Index">vNext CN</a>
+                    <!-- end logo -->
+                </div>
+                @Html.Partial("_Navigator")
+            </div>
+        </nav>
+    </header>
+    <!-- end header -->
+
+    <div class="cover cover-single">
+
+    </div>
+    <div class="main-content-area">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+
+    @Html.Partial("_Footer")
+    <a href="#" id="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <div class="search-popup">
+        <div class="close-button">
+            <i class="material-icons">&#xE5C9;</i>
+        </div>
+        <div class="container popup-inner">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form>
+                        <div class="input-group">
+                            <input type="email" class="required" id="search-input">
+                            <span class="bar"></span>
+                            <label>Type to search</label>
+                        </div>
+                        <!-- <input type="text"  placeholder="" /> -->
+                    </form>
+                    <div id="search-results">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

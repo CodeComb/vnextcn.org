@@ -1,0 +1,7 @@
+﻿{
+  "MaxThread": 4,
+  "Pool": "C:\\Pool",
+  "Server": "localhost",
+  "Port": 5000,
+  "PrivateKey": "4IbkO2iRm0bm0hxj2VVTUR8rsNOmCIh5"
+}

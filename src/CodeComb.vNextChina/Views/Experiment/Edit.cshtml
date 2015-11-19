@@ -1,0 +1,96 @@
+@model Experiment
+@{
+	ViewBag.Title = "编辑 - " + Model.Title + " - 实验室";
+}
+<div class="container">
+	<div class="cont-wrap">
+		<div class="grid_9">
+			<h2 class="exp-title">@Model.Title</h2>
+			<h3 class="exp-sub-title">编辑实验</h3>
+            <form asp-action="Edit" asp-controller="Experiment" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+                <table class="detail-table">
+                    <tr>
+                        <td class="row-title">实验名称</td>
+                        <td>
+                            <input type="text" class="textbox" name="Title" asp-for="Title" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">实验内容</td>
+                        <td>
+                            <div class="markdown-editor-outer">
+                                <textarea class="textbox markdown-editor" asp-for="Description"></textarea>
+                                <div class="markdown-editor-bottom">支持Markdown语法、拖拽图片文件至编辑区或直接从剪贴板粘贴可上传图片文件。</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">运行时间限制（毫秒）</td>
+                        <td>
+                            <input type="text" class="textbox" asp-for="TimeLimit" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">运行平台</td>
+                        <td>
+                            <select asp-for="OS">
+                                @foreach (var x in Enum.GetNames(typeof(OSType)))
+                                {
+                                    <option value="@x">@x</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">运行时</td>
+                        <td>
+                            <input type="text" class="textbox" asp-for="Version" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">命名空间</td>
+                        <td>
+                            <input type="text" class="textbox" asp-for="Namespace" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">NuGet Feeds</td>
+                        <td>
+                            <textarea class="textbox" asp-for="NuGet" style="width: calc(100% - 10px);height:240px;"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">难度</td>
+                        <td>
+                            <input type="range" min="1" max="10" step="1" asp-for="Difficulty" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">测试程序</td>
+                        <td>
+                            <input type="file" name="TestArchive" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">标准程序</td>
+                        <td>
+                            <input type="file" name="AnswerArchive" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-title">校验标识</td>
+                        <td>
+                            <input type="checkbox" name="IsChecked" value="true" />
+                            （不勾选则普通用户无法访问该实验）
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <input type="submit" value="保存" class="btn btn-default" />
+            </form>
+		</div>
+		<div class="grid_3 sidebar">
+			<h3 class="header">操作</h3>
+		</div>
+	</div>
+</div>
