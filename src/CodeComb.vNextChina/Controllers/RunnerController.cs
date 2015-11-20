@@ -113,7 +113,7 @@ namespace CodeComb.vNextChina.Controllers
                     break;
             }
             status.Result = status.GenerateResult();
-            if (status.ExperimentId.HasValue)
+            if (status.ExperimentId.HasValue && status.Result == Models.StatusResult.Successful)
                 status.Experiment.Accepted++;
             DB.SaveChanges();
             if (status.Result != Models.StatusResult.Building && status.Result != Models.StatusResult.Building)
