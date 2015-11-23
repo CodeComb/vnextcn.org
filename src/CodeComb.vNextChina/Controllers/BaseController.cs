@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.SignalR;
-using Microsoft.AspNet.SignalR.Infrastructure;
-using Microsoft.Extensions.DependencyInjection;
 using CodeComb.Net.EmailSender;
 using CodeComb.Security.Aes;
 using CodeComb.vNextChina.Models;
@@ -16,19 +11,19 @@ namespace CodeComb.vNextChina.Controllers
 {
     public class BaseController : BaseController<vNextChinaContext, User, long>
     {
-        [FromServices]
+        [Inject]
         public INodeProvider NodeProvider { get; set; }
 
-        [FromServices]
+        [Inject]
         public IEmailSender Mail { get; set; }
         
-        [FromServices]
+        [Inject]
         public AesCrypto Aes { get; set; }
         
-        [FromServices]
+        [Inject]
         public new AspNet.Extensions.SmartUser.SmartUser<User, long> User { get; set; }
 
-        [FromServices]
+        [Inject]
         public IHubContext<vNextChinaHub> vNextChinaHub { get; set; }
 
         public override void Prepare()
