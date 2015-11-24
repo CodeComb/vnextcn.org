@@ -95,7 +95,7 @@ namespace CodeComb.vNextChina.Controllers
             }
             if (project.RunWithOsx)
             {
-                status.RunWithLinux = true;
+                status.RunWithOsx = true;
                 status.OsxResult = StatusResult.Queued;
                 var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
                 if (node != null)
@@ -163,7 +163,7 @@ namespace CodeComb.vNextChina.Controllers
                 }
                 if (x.RunWithOsx)
                 {
-                    status.RunWithLinux = true;
+                    status.RunWithOsx = true;
                     status.OsxResult = StatusResult.Queued;
                     var node = NodeProvider.GetFreeNode(Package.OSType.OSX);
                     if (node != null)
