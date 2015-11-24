@@ -16,7 +16,7 @@ namespace CodeComb.vNextChina.Hub
         {
             DB = db;
             Nodes = new List<Node>();
-            foreach (var x in DB.Nodes.ToList())
+            foreach (var x in DB.Nodes)
             {
                 var y = new Node
                 {

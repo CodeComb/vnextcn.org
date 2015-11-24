@@ -6,7 +6,6 @@ using System.IO;
 using System.Net.Http;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Http;
-using Microsoft.Framework.Configuration;
 using Newtonsoft.Json;
 using CodeComb.CI.Runner;
 using CodeComb.Package;
@@ -28,7 +27,7 @@ namespace CodeComb.vNextChina.Node.Controllers
             return Path.GetDirectoryName(files.First());
         }
 
-        [FromServices]
+        [Inject]
         public CIRunner Runner { get; set; }
 
         [HttpPost]

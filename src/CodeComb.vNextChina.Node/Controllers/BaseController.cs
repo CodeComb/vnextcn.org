@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Filters;
-using Microsoft.Framework.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace CodeComb.vNextChina.Node.Controllers
 {
     public class BaseController : Controller
     {
-        [FromServices]
+        [Inject]
         public IConfiguration Configuration { get; set; }
 
         public override void OnActionExecuting(ActionExecutingContext context)

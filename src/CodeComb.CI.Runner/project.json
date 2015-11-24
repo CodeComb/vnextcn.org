@@ -1,39 +1,44 @@
 ﻿{
   "title": "CodeComb.CI.Runner",
-  "version": "2.0.0-beta8",
+  "version": "2.0.0-*",
   "description": "ASP.Net vNext CI Library",
   "copyright": "Harbin Code Comb Technology Co.,Ltd",
   "authors": [ "AmamiyaYuuko" ],
-  "tags": [ "Ffmpeg" ,"vNext", "CI" ],
+  "tags": [ "Ffmpeg", "vNext", "CI" ],
   "iconUrl": "http://www.1234.sh/images/logo.png",
   "projectUrl": "https://github.com/CodeComb/ContinuousIntegration",
   "licenseUrl": "",
 
   "dependencies": {
-    "Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
-    "CodeComb.Package": "2.0.0-beta8-6"
+    "Microsoft.Extensions.DependencyInjection": "1.0.0-*",
+    "CodeComb.Package": "2.0.0-*"
   },
 
   "frameworks": {
-    "dnx451": { },
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.XML": "4.0.0.0",
+        "System.Xml.Linq": "4.0.0.0"
+      }
+    },
     "dnxcore50": {
       "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23409",
-        "System.Collections": "4.0.11-beta-23409",
-        "System.Linq": "4.0.1-beta-23409",
-        "System.Runtime": "4.0.21-beta-23409",
-        "System.Threading": "4.0.11-beta-23409",
-        "System.Threading.Timer": "4.0.1-beta-23409",
-        "System.IO": "4.0.11-beta-23409",
-        "System.Security.SecureString": "4.0.0-beta-23409",
-        "System.Diagnostics.Process": "4.0.0-beta-23409",
-        "System.Xml.XPath.XDocument": "4.0.1-beta-23409",
-        "System.Xml.XmlDocument": "4.0.1-beta-23409",
-        "System.Xml.XDocument": "4.0.11-beta-23409",
-        "System.Xml.ReaderWriter": "4.0.11-beta-23409",
-        "System.Xml.XPath.XmlDocument": "4.0.1-beta-23409",
-        "System.Xml.XPath": "4.0.1-beta-23409",
-        "System.Xml.XmlSerializer": "4.0.11-beta-23409"
+        "Microsoft.CSharp": "4.0.1-*",
+        "System.Collections": "4.0.11-*",
+        "System.Linq": "4.0.1-*",
+        "System.Runtime": "4.0.21-*",
+        "System.Threading": "4.0.11-*",
+        "System.Threading.Timer": "4.0.1-*",
+        "System.IO": "4.0.11-*",
+        "System.Security.SecureString": "4.0.0-*",
+        "System.Diagnostics.Process": "4.0.0-*",
+        "System.Xml.XPath.XDocument": "4.0.1-*",
+        "System.Xml.XmlDocument": "4.0.1-*",
+        "System.Xml.XDocument": "4.0.11-*",
+        "System.Xml.ReaderWriter": "4.0.11-*",
+        "System.Xml.XPath.XmlDocument": "4.0.1-*",
+        "System.Xml.XPath": "4.0.1-*",
+        "System.Xml.XmlSerializer": "4.0.11-*"
       }
     }
   }

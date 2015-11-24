@@ -7,10 +7,10 @@ using System.Net.Http;
 using System.IO;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Logging;
-using Microsoft.Framework.Configuration;
-using Microsoft.Dnx.Runtime;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Extensions.Configuration;
 
 namespace CodeComb.vNextChina.Node
 {
@@ -42,7 +42,7 @@ namespace CodeComb.vNextChina.Node
                  .AddJsonFile(Path.Combine(appEnv.ApplicationBasePath, $"config.testing.json"), optional: true)
                  .AddEnvironmentVariables();
             Configuration = builder.Build();
-            services.AddInstance(Configuration);
+            services.AddConfiguration(out Configuration);
             services.AddMvc();
             services.AddCIRunner(Convert.ToInt32(Configuration["MaxThread"]));
         }
