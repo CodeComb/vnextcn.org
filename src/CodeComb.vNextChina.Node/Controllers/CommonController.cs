@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Framework.Configuration;
 using CodeComb.Package;
 using CodeComb.CI.Runner;
 
@@ -12,7 +8,7 @@ namespace CodeComb.vNextChina.Node.Controllers
     [Route("api/common/[action]")]
     public class CommonController : BaseController
     {
-        [FromServices]
+        [Inject]
         public CIRunner Runner { get; set; }
 
         [HttpGet]
